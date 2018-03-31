@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<EditText-->
+    <!--android:id="@+id/textViewMemory"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/textViewResult"-->
+    <!--android:editable="false"-->
+    <!--android:text="M 12345678"-->
+    <!--android:textAlignment="viewStart"-->
+    <!--android:textColor="@color/pankaj_results_text_color"-->
+    <!--android:textSize="@dimen/_12sdp"-->
+    <!--android:layout_weight=".2"/>-->
+    <!--&lt;!&ndash;android:background="#00000000"&ndash;&gt;-->
+
+    <!--<EditText-->
+    <!--android:id="@+id/textViewResult"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Result"-->
+    <!--android:textAlignment="viewEnd"-->
+    <!--android:textColor="@color/pankaj_results_text_color"-->
+    <!--android:textSize="@dimen/_36sdp"-->
+    <!--android:layout_weight=".6"/>-->
+    <!--&lt;!&ndash;android:background="#00000000"&ndash;&gt;-->
+
+    <!--<EditText-->
+    <!--android:id="@+id/textViewProblem"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="14+12"-->
+    <!--android:textAlignment="textEnd"-->
+    <!--android:textColor="@color/pankaj_results_text_color"-->
+    <!--android:textSize="@dimen/_20sdp"-->
+    <!--android:layout_weight=".2"/>-->
+
+    <!--android:background="#00000000"-->
+
+    <include
+        layout="@layout/display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <include
+        layout="@layout/pad_standard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
