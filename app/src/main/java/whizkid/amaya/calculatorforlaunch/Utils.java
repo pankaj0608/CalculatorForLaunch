@@ -13,6 +13,7 @@ public class Utils {
     public static final String MULTIPLY = "*";
     public static final String DIVIDE = "/";
     public static final String ALL_CLEAR = "ALLCLEAR";
+    public static final String BACK = "BACK";
     public static final String EVALUATE = "=";
     public static final String MEMORY_SAVED_VALE = "MEMORY_SAVED_VALE";
     public static final String MEMORY_PREFIX ="M ";

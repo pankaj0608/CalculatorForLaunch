@@ -82,7 +82,7 @@
         style="@style/PadButtonStyle.Numeric.Operator"
         app:layout_columnWeight="1"
         android:onClick="calculateMe"
-        android:tag="C"
+        android:tag="BACK"
         android:text="C" />
 
     <Button
@@ -90,7 +90,7 @@
         style="@style/PadButtonStyle.Numeric.Operator"
         app:layout_columnWeight="1"
         android:onClick="clearAll"
-        android:tag="AC"
+        android:tag="ALLCLEAR"
         android:text="AC" />
 
     <Button

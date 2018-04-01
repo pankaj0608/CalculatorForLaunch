@@ -188,11 +188,26 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     public void clearAll(View view) {
         textViewResult.setText("");
+        textViewEquation.setText("");
+
     }
 
     public void calculateMe(View view) {
         String tag = view.getTag().toString();
-        textViewEquation.setText(textViewEquation.getText().toString() + tag);
+        String currentEquation = textViewEquation.getText().toString();
+
+        if (Utils.BACK.equals(tag)) {
+            if(currentEquation.length() > 1) {
+                textViewEquation.setText(currentEquation.substring(0, currentEquation.length()-1));
+            }
+            else {
+                textViewEquation.setText("");
+            }
+        }
+        else {
+            textViewEquation.setText(textViewEquation.getText().toString() + tag);
+        }
+
         textViewResult.setText(Utils.evalMe(textViewEquation.getText().toString()));
 //
 //        result = null;
