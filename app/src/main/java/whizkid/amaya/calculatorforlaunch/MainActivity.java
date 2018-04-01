@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -47,7 +49,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     EditText textViewResult;
     EditText textViewEquation;
     EditText textViewMemory;
-
+    final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
+    final Typeface sansSeifCondensed = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
 
     String result;
     String operand1;
@@ -90,58 +93,50 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //setContentView(R.layout.activity_main);
-//        setContentView(R.layout.activity_calculator_port);
         setContentView(R.layout.mylayout_phone);
 
+        //Pankaj Code Starts
         resetOperators();
-//        textViewResult = (EditText) findViewById(R.id.textViewResult);
-//        Typeface typeface = ResourcesCompat.getFont(this, R.font.seymour_one);
-//        textViewResult.setTypeface(typeface);
-//
-//        Button btn = (Button) findViewById(resources[0]);
-//        btn.setTypeface(typeface);
-        Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
-        Typeface sansSeifCondensed = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
 
         textViewResult = (EditText) findViewById(R.id.textViewResult);
         textViewEquation = (EditText) findViewById(R.id.textViewEquation);
         textViewMemory = (EditText) findViewById(R.id.textViewMemory);
 
-        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
-        String storedMemory = sharedPreferences.getString(Utils.MEMORY_SAVED_VALE, "");
+        //Add listener so that we can chek the validity of the equation
+        textViewEquation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        if (storedMemory != null && storedMemory.trim().length() > 0) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                System.out.println("text for the equation changed " + s.toString());
+            }
+        });
+
+        //get the memory from the Share Preference
+        String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE,
+                this.getPreferences(Context.MODE_PRIVATE));
+
+        if (Utils.isNotNullString(storedMemory)) {
             textViewMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
         }
 
+        //Set the font type for the fields
         textViewResult.setTypeface(sansSeifNormal);
+        textViewResult.setTypeface(sansSeifNormal);
+        textViewMemory.setTypeface(sansSeifCondensed);
 
         for (int i = 0; i < resourcesButton.length; i++) {
             ((Button) findViewById(resourcesButton[i])).setTypeface(sansSeifNormal);
         }
 
-        ((TextView) findViewById(R.id.textViewResult)).setTypeface(sansSeifNormal);
-        ((TextView) findViewById(R.id.textViewEquation)).setTypeface(sansSeifNormal);
-        ((TextView) findViewById(R.id.textViewMemory)).setTypeface(sansSeifCondensed);
-
-
-        //btn1.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
-
-        //this.openOrCreateDatabase("CalculatorPro", MODE_PRIVATE, null);
-//        SharedPreferences sharedPreferences =
-//                this.getSharedPreferences(
-//                        "com.amaya.whizkid.calculatorpro",
-//                        Context.MODE_PRIVATE);
-//
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString("AUTHOR", "Amaya Kumar");
-//        editor.commit();
-//        editor.apply();
-//
-//        String author = sharedPreferences.getString("AUTHOR", "NOT SET");
-//        System.out.println("Shared Preferences Author onCreate " + author);
 
     }
 
@@ -184,7 +179,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             editor.putString(Utils.MEMORY_SAVED_VALE,
                     textViewMemory.getText().toString().substring(Utils.MEMORY_PREFIX.length()));
         } else {
-            editor.putString(Utils.MEMORY_SAVED_VALE,"");
+            editor.putString(Utils.MEMORY_SAVED_VALE, "");
         }
         editor.commit();
     }

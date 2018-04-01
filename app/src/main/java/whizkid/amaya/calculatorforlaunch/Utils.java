@@ -1,5 +1,9 @@
 package whizkid.amaya.calculatorforlaunch;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.widget.EditText;
+
 import java.util.ArrayList;
 
 public class Utils {
@@ -123,6 +127,25 @@ public class Utils {
         String result[] = new String[validList.size()];
         return validList.toArray(result);
     }
+
+
+    public static String getValueFromSharedPreference(final String key,
+                                                      SharedPreferences sharedPreferences) {
+
+        return sharedPreferences.getString(key, "");
+
+    }
+
+    static boolean isNotNullString(String val) {
+
+        return val != null && val.trim().length() > 0;
+    }
+
+    boolean isEditTextEmpty(EditText editText) {
+
+        return false;
+    }
+
     /**
      * Computes the file
      * @param equation
