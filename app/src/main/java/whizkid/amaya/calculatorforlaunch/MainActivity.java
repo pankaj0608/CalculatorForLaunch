@@ -117,6 +117,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             @Override
             public void afterTextChanged(Editable s) {
                 System.out.println("text for the equation changed " + s.toString());
+                textViewResult.setText(Utils.evalMe(s.toString()));
             }
         });
 
