@@ -190,39 +190,42 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     }
 
     public void calculateMe(View view) {
-
-        result = null;
         String tag = view.getTag().toString();
-        String resultCurrentValue = textViewResult.getText().toString();
-
-        boolean isItOperatorTag = Utils.isTagOperator(tag);
-        boolean isItEvaluateTag = Utils.isTagEvaluateOperator(tag);
-        boolean isItClearTag = Utils.isItClearTagOperator(tag);
-
-        if (isItClearTag) {
-            setValueToTextResult("0");
-            return;
-        }
-
-        if (isItEvaluateTag) {
-            result = evaluate(resultCurrentValue);
-        }
-
-        //if it was evaluate tag then set the result
-        if (isItEvaluateTag) {
-            setValueToTextResult(result);
-            textViewEquation.setText(resultCurrentValue);
-        } else {
-            //if evaluation has already been done then start from scratch
-            //unless it's a operator
-            if (evaluationDone && !isItOperatorTag) {
-                setValueToTextResult(tag);
-                textViewEquation.setText("");
-            } else {
-                setValueToTextResult(resultCurrentValue + tag);
-            }
-            evaluationDone = false;
-        }
+        textViewEquation.setText(textViewEquation.getText().toString() + tag);
+        textViewResult.setText(Utils.evalMe(textViewEquation.getText().toString()));
+//
+//        result = null;
+//        String tag = view.getTag().toString();
+//        String resultCurrentValue = textViewResult.getText().toString();
+//
+//        boolean isItOperatorTag = Utils.isTagOperator(tag);
+//        boolean isItEvaluateTag = Utils.isTagEvaluateOperator(tag);
+//        boolean isItClearTag = Utils.isItClearTagOperator(tag);
+//
+//        if (isItClearTag) {
+//            setValueToTextResult("0");
+//            return;
+//        }
+//
+//        if (isItEvaluateTag) {
+//            result = evaluate(resultCurrentValue);
+//        }
+//
+//        //if it was evaluate tag then set the result
+//        if (isItEvaluateTag) {
+//            setValueToTextResult(result);
+//            textViewEquation.setText(resultCurrentValue);
+//        } else {
+//            //if evaluation has already been done then start from scratch
+//            //unless it's a operator
+//            if (evaluationDone && !isItOperatorTag) {
+//                setValueToTextResult(tag);
+//                textViewEquation.setText("");
+//            } else {
+//                setValueToTextResult(resultCurrentValue + tag);
+//            }
+//            evaluationDone = false;
+//        }
 
     }
 
