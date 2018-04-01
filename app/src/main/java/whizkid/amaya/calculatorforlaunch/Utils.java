@@ -1,5 +1,7 @@
 package whizkid.amaya.calculatorforlaunch;
 
+import java.util.ArrayList;
+
 public class Utils {
 
     public static final String ADD = "+";
@@ -59,11 +61,6 @@ public class Utils {
         return false;
     }
 
-    /**
-     * Computes the file
-     * @param equation
-     * @return
-     */
     static String evalMe(String equation) {
 
         if(equation == null || equation.trim().length() == 0) {
@@ -73,13 +70,26 @@ public class Utils {
         System.out.println("equation " + equation);
 
         double result = 0.0;
+
+        //pankaj added
+        equation = equation.replace("--", "+");
+
         String noMinus = equation.replace("-", "+-");
-        String[] byPluses = noMinus.split("\\+");
+//        String[] byPluses = noMinus.split("\\+");
+
+        //pankaj added remove ""
+        String[] byPluses = removeBlankEnteries(noMinus.split("\\+"));
+
+        System.out.println("byPluses.length " + byPluses.length);
 
         for (String multipl : byPluses) {
             String[] byMultipl = multipl.split("\\*");
             double multiplResult = 1.0;
             for (String operand : byMultipl) {
+                //pankaj added
+                if (operand == null || operand.trim().equals("")) {
+                    continue;
+                }
                 if (operand.contains("/")) {
                     String[] division = operand.split("\\/");
                     double divident = Double.parseDouble(division[0]);
@@ -94,8 +104,57 @@ public class Utils {
             result += multiplResult;
         }
 
-        System.out.println("result " + result);
         return Double.toString(result);
     }
+
+    static String[] removeBlankEnteries(String[] received) {
+        ArrayList<String> validList = new ArrayList<>();
+
+        for (int i = 0; i < received.length; i++) {
+            if (received[i] != null && !received[i].trim().equals("")) {
+                validList.add(received[i]);
+            }
+        }
+        String result[] = new String[validList.size()];
+        return validList.toArray(result);
+    }
+    /**
+     * Computes the file
+     * @param equation
+     * @return
+     */
+//    static String evalMeOriginal(String equation) {
+//
+//        if(equation == null || equation.trim().length() == 0) {
+//            return "";
+//        }
+//
+//        System.out.println("equation " + equation);
+//
+//        double result = 0.0;
+//        String noMinus = equation.replace("-", "+-");
+//        String[] byPluses = noMinus.split("\\+");
+//
+//        for (String multipl : byPluses) {
+//            String[] byMultipl = multipl.split("\\*");
+//            double multiplResult = 1.0;
+//            for (String operand : byMultipl) {
+//                if (operand.contains("/")) {
+//                    String[] division = operand.split("\\/");
+//                    double divident = Double.parseDouble(division[0]);
+//                    for (int i = 1; i < division.length; i++) {
+//                        divident /= Double.parseDouble(division[i]);
+//                    }
+//                    multiplResult *= divident;
+//                } else {
+//                    multiplResult *= Double.parseDouble(operand);
+//                }
+//            }
+//            result += multiplResult;
+//        }
+//
+//        System.out.println("result " + result);
+//        return Double.toString(result);
+//    }
 
 }
