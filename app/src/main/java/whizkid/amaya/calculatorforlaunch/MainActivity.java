@@ -93,6 +93,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.mylayout_phone);
 
         //Pankaj Code Starts
@@ -101,6 +102,10 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         textViewResult = (EditText) findViewById(R.id.textViewResult);
         textViewEquation = (EditText) findViewById(R.id.textViewEquation);
         textViewMemory = (EditText) findViewById(R.id.textViewMemory);
+
+        //TODO remove this option for API15
+        textViewEquation.setShowSoftInputOnFocus(false);
+
 
         //Add listener so that we can chek the validity of the equation
         textViewEquation.addTextChangedListener(new TextWatcher() {
@@ -160,7 +165,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                     memoryCurrent
                             + "+"
                             + resultCurrent);
-            textViewMemory.setText(Utils.MEMORY_PREFIX +memoryCurrent);
+            textViewMemory.setText(Utils.MEMORY_PREFIX + memoryCurrent);
 
         } else if (view.getTag().equals(Utils.MEMORY_SUBTRACT)) {
             memoryCurrent = Utils.evalMe(
@@ -193,21 +198,18 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         String currentEquation = textViewEquation.getText().toString();
 
         if (Utils.BACK.equals(tag)) {
-            if(currentEquation.length() > 1) {
-                textViewEquation.setText(currentEquation.substring(0, currentEquation.length()-1));
-            }
-            else {
+            if (currentEquation.length() > 1) {
+                textViewEquation.setText(currentEquation.substring(0, currentEquation.length() - 1));
+            } else {
                 textViewEquation.setText("");
             }
-        }
-        else if(Utils.EVALUATE.equals(tag)) {
+        } else if (Utils.EVALUATE.equals(tag)) {
             textViewEquation.setText(Utils.evalMe(textViewEquation.getText().toString()));
-        }
-        else {
+        } else {
             textViewEquation.setText(textViewEquation.getText().toString() + tag);
         }
 
-       // textViewResult.setText(Utils.evalMe(textViewEquation.getText().toString()));
+        // textViewResult.setText(Utils.evalMe(textViewEquation.getText().toString()));
 //
 //        result = null;
 //        String tag = view.getTag().toString();
