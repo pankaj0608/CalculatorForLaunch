@@ -136,6 +136,15 @@ public class Utils {
 
     }
 
+
+    public static void putStringInSharedPreference(final String key, final String value,
+                                                      SharedPreferences sharedPreferences) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key,value);
+        editor.commit();
+    }
+
+
     static boolean isNotNullString(String val) {
 
         return val != null && val.trim().length() > 0;

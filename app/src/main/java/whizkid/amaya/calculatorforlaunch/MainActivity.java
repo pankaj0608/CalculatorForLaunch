@@ -172,16 +172,17 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             textViewResult.setText(textViewMemory.getText().toString());
         }
 
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
+        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        String valueToPutInMemory = "";
+
         if (textViewMemory.getText() != null &&
                 textViewMemory.getText().toString().length() > Utils.MEMORY_PREFIX.length()) {
-            editor.putString(Utils.MEMORY_SAVED_VALE,
-                    textViewMemory.getText().toString().substring(Utils.MEMORY_PREFIX.length()));
-        } else {
-            editor.putString(Utils.MEMORY_SAVED_VALE, "");
+            valueToPutInMemory =
+                    textViewMemory.getText().toString().substring(Utils.MEMORY_PREFIX.length());
         }
-        editor.commit();
+
+        Utils.putStringInSharedPreference(Utils.MEMORY_SAVED_VALE, valueToPutInMemory, sharedPreferences);
+
     }
 
     public void clearAll(View view) {
@@ -189,17 +190,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     }
 
     public void calculateMe(View view) {
-
-//        if (true) {
-//            return;
-//        }
-
-        SharedPreferences sharedPreferences =
-                this.getSharedPreferences(
-                        "com.amaya.whizkid.calculatorpro",
-                        MODE_PRIVATE);
-        String author = sharedPreferences.getString("AUTHOR", "NOT SET");
-        System.out.println("Shared Preferences Author " + author);
 
         result = null;
         String tag = view.getTag().toString();
