@@ -67,11 +67,17 @@ public class Utils {
 
     static String evalMe(String equation) {
 
+        System.out.println("equation " + equation);
+
         if(equation == null || equation.trim().length() == 0) {
             return "";
         }
 
-        System.out.println("equation " + equation);
+        if(equation.endsWith(Utils.DIVIDE) || equation.endsWith(Utils.MULTIPLY)
+                || equation.endsWith(Utils.ADD) || equation.endsWith(Utils.SUBTRACT)) {
+
+            return evalMe(equation.substring(0,equation.length()-1));
+        }
 
         double result = 0.0;
 
