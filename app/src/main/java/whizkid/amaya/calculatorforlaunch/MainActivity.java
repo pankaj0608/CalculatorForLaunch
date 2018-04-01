@@ -54,7 +54,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     String operand2;
     String operator;
     boolean evaluationDone = false;
-    int[] resources =
+    int[] resourcesButton =
             {R.id.buttonSignChange,
                     R.id.buttonDecimal,
                     R.id.button0,
@@ -85,11 +85,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putString(Utils.MEMORY_SAVED_VALE, textViewMemory.getText().toString());
-        super.onSaveInstanceState(outState);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,17 +109,17 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         textViewEquation = (EditText) findViewById(R.id.textViewEquation);
         textViewMemory = (EditText) findViewById(R.id.textViewMemory);
 
-        if (savedInstanceState != null) {
-            if (savedInstanceState.get(Utils.MEMORY_SAVED_VALE) != null) {
-                textViewMemory.setText(savedInstanceState.get(Utils.MEMORY_SAVED_VALE).toString());
-            } else {
-                textViewMemory.setText("");
-            }
+        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        String storedMemory = sharedPreferences.getString(Utils.MEMORY_SAVED_VALE, "");
+
+        if (storedMemory != null && storedMemory.trim().length() > 0) {
+            textViewMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
         }
+
         textViewResult.setTypeface(sansSeifNormal);
 
-        for (int i = 0; i < resources.length; i++) {
-            ((Button) findViewById(resources[i])).setTypeface(sansSeifNormal);
+        for (int i = 0; i < resourcesButton.length; i++) {
+            ((Button) findViewById(resourcesButton[i])).setTypeface(sansSeifNormal);
         }
 
         ((TextView) findViewById(R.id.textViewResult)).setTypeface(sansSeifNormal);
@@ -135,18 +130,18 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         //btn1.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 
         //this.openOrCreateDatabase("CalculatorPro", MODE_PRIVATE, null);
-        SharedPreferences sharedPreferences =
-                this.getSharedPreferences(
-                        "com.amaya.whizkid.calculatorpro",
-                        Context.MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("AUTHOR", "Amaya Kumar");
-        editor.commit();
-        editor.apply();
-
-        String author = sharedPreferences.getString("AUTHOR", "NOT SET");
-        System.out.println("Shared Preferences Author onCreate " + author);
+//        SharedPreferences sharedPreferences =
+//                this.getSharedPreferences(
+//                        "com.amaya.whizkid.calculatorpro",
+//                        Context.MODE_PRIVATE);
+//
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("AUTHOR", "Amaya Kumar");
+//        editor.commit();
+//        editor.apply();
+//
+//        String author = sharedPreferences.getString("AUTHOR", "NOT SET");
+//        System.out.println("Shared Preferences Author onCreate " + author);
 
     }
 
@@ -159,13 +154,11 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             memoryCurrent = memoryCurrent.substring(Utils.MEMORY_PREFIX.length());
         }
 
-        if(memoryCurrent == null || memoryCurrent.equals("")){
+        if (memoryCurrent == null || memoryCurrent.equals("")) {
             memoryCurrent = "0";
         }
 
-//        if (memoryCurrent == null || memoryCurrent.equals("")) {
-//            textViewMemory.setText(Utils.MEMORY_PREFIX + resultCurrent);
-//        } else {
+
         if (view.getTag().equals(Utils.MEMORY_ADD)) {
             textViewMemory.setText(Utils.MEMORY_PREFIX +
                     Utils.evalMe(
@@ -183,7 +176,17 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         } else if (view.getTag().equals(Utils.MEMORY_READ)) {
             textViewResult.setText(textViewMemory.getText().toString());
         }
-        //    }
+
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        if (textViewMemory.getText() != null &&
+                textViewMemory.getText().toString().length() > Utils.MEMORY_PREFIX.length()) {
+            editor.putString(Utils.MEMORY_SAVED_VALE,
+                    textViewMemory.getText().toString().substring(Utils.MEMORY_PREFIX.length()));
+        } else {
+            editor.putString(Utils.MEMORY_SAVED_VALE,"");
+        }
+        editor.commit();
     }
 
     public void clearAll(View view) {
