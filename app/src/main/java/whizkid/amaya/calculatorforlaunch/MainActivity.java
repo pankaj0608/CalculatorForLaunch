@@ -151,38 +151,34 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         }
 
         if (memoryCurrent == null || memoryCurrent.equals("")) {
-            memoryCurrent = "0";
+            memoryCurrent = "";
         }
 
 
         if (view.getTag().equals(Utils.MEMORY_ADD)) {
-            textViewMemory.setText(Utils.MEMORY_PREFIX +
-                    Utils.evalMe(
-                            memoryCurrent
-                                    + "+"
-                                    + resultCurrent));
+            memoryCurrent = Utils.evalMe(
+                    memoryCurrent
+                            + "+"
+                            + resultCurrent);
+            textViewMemory.setText(Utils.MEMORY_PREFIX +memoryCurrent);
+
         } else if (view.getTag().equals(Utils.MEMORY_SUBTRACT)) {
-            textViewMemory.setText(Utils.MEMORY_PREFIX +
-                    Utils.evalMe(
-                            memoryCurrent
-                                    + "-"
-                                    + resultCurrent));
+            memoryCurrent = Utils.evalMe(
+                    memoryCurrent
+                            + "-"
+                            + resultCurrent);
+            textViewMemory.setText(Utils.MEMORY_PREFIX + memoryCurrent);
         } else if (view.getTag().equals(Utils.MEMORY_CLEAR)) {
-            textViewMemory.setText("");
+            memoryCurrent = "";
+            textViewMemory.setText(memoryCurrent);
         } else if (view.getTag().equals(Utils.MEMORY_READ)) {
-            textViewResult.setText(textViewMemory.getText().toString());
+            textViewEquation.setText(memoryCurrent);
+            textViewResult.setText(memoryCurrent);
         }
 
+        //save the memotry in preferences
         SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
-        String valueToPutInMemory = "";
-
-        if (textViewMemory.getText() != null &&
-                textViewMemory.getText().toString().length() > Utils.MEMORY_PREFIX.length()) {
-            valueToPutInMemory =
-                    textViewMemory.getText().toString().substring(Utils.MEMORY_PREFIX.length());
-        }
-
-        Utils.putStringInSharedPreference(Utils.MEMORY_SAVED_VALE, valueToPutInMemory, sharedPreferences);
+        Utils.putStringInSharedPreference(Utils.MEMORY_SAVED_VALE, memoryCurrent, sharedPreferences);
 
     }
 
@@ -204,11 +200,14 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 textViewEquation.setText("");
             }
         }
+        else if(Utils.EVALUATE.equals(tag)) {
+            textViewEquation.setText(Utils.evalMe(textViewEquation.getText().toString()));
+        }
         else {
             textViewEquation.setText(textViewEquation.getText().toString() + tag);
         }
 
-        textViewResult.setText(Utils.evalMe(textViewEquation.getText().toString()));
+       // textViewResult.setText(Utils.evalMe(textViewEquation.getText().toString()));
 //
 //        result = null;
 //        String tag = view.getTag().toString();
