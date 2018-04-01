@@ -84,7 +84,6 @@
     </style>
 
 
-
     <style name="PadButtonStyle.Numeric.Operator" parent="PadButtonStyle.Numeric">
         <item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>
         <!--<item name="android:textColor">@color/pankaj_pad_button_text_color</item>-->
@@ -95,6 +94,20 @@
         <item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>
         <!--<item name="android:textColor">@color/pankaj_pad_button_text_color</item>-->
         <item name="android:background">@color/pankaj_pad_color_blue</item>
+    </style>
+
+
+    <style name="TestStyle">
+        <!--&lt;!&ndash;<item name="android:layout_margin">8dip</item>&ndash;&gt;-->
+        <item name="android:textSize">@dimen/_28sdp</item>
+        <item name="fontFamily">sans-serif-light</item>
+        <!--<item name="android:paddingBottom">15dp</item>-->
+        <!--<item name="android:paddingTop">15dp</item>-->
+        <!--<item name="android:layout_margin">0.1dp</item>-->
+        <!--<item name="android:layout_columnWeight">1</item>-->
+        <!--<item name="android:gravity">center</item>-->
+        <!--<item name="android:layout_width">65dp </item>-->
+        <!--<item name="android:layout_height">wrap_content</item>-->
     </style>
 
 

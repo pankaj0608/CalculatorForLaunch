@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Date;
+
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends Activity {
 
@@ -44,6 +46,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     EditText textViewResult;
     EditText textViewEquation;
+    EditText textViewMemory;
+
 
     String result;
     String operand1;
@@ -81,63 +85,10 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void changeMyLayout(View view) {
-        if (true) {
-            return;
-        }
-        setContentView(R.layout.mylayout_phone_changelayout);
-
-        Button buttonMemoryClear = (Button) findViewById(R.id.buttonMemoryClear);
-        buttonMemoryClear.setVisibility(View.INVISIBLE);
-
-        Button buttonMemoryMinus = (Button) findViewById(R.id.buttonMemoryMinus);
-        buttonMemoryMinus.setVisibility(View.INVISIBLE);
-
-        Button buttonMemoryPlus = (Button) findViewById(R.id.buttonMemoryPlus);
-        buttonMemoryPlus.setVisibility(View.INVISIBLE);
-
-        Button buttonMemoryRead = (Button) findViewById(R.id.buttonMemoryRead);
-        buttonMemoryRead.setVisibility(View.INVISIBLE);
-    }
-
-    public void hideMyMemory(View view) {
-        if(true) {
-            return;
-        }
-
-        Button buttonMemoryClear = (Button) findViewById(R.id.buttonMemoryClear);
-        buttonMemoryClear.setVisibility(View.INVISIBLE);
-
-        Button buttonMemoryMinus = (Button) findViewById(R.id.buttonMemoryMinus);
-        buttonMemoryMinus.setVisibility(View.INVISIBLE);
-
-        Button buttonMemoryPlus = (Button) findViewById(R.id.buttonMemoryPlus);
-        buttonMemoryPlus.setVisibility(View.INVISIBLE);
-
-        Button buttonMemoryRead = (Button) findViewById(R.id.buttonMemoryRead);
-        buttonMemoryRead.setVisibility(View.INVISIBLE);
-    }
-
-    public void showMyMemory(View view) {
-
-        if(true) {
-            return;
-        }
-        Button buttonMemoryClear = (Button) findViewById(R.id.buttonMemoryClear);
-        buttonMemoryClear.setVisibility(View.VISIBLE);
-
-        Button buttonMemoryMinus = (Button) findViewById(R.id.buttonMemoryMinus);
-        buttonMemoryMinus.setVisibility(View.VISIBLE);
-
-        Button buttonMemoryPlus = (Button) findViewById(R.id.buttonMemoryPlus);
-        buttonMemoryPlus.setVisibility(View.VISIBLE);
-
-        Button buttonMemoryRead = (Button) findViewById(R.id.buttonMemoryRead);
-        buttonMemoryRead.setVisibility(View.VISIBLE);
-    }
-
-    public void changeMyLayoutToOriginal(View view) {
-        setContentView(R.layout.mylayout_phone);
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString(Utils.MEMORY_SAVED_VALE, textViewMemory.getText().toString());
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -161,7 +112,15 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         textViewResult = (EditText) findViewById(R.id.textViewResult);
         textViewEquation = (EditText) findViewById(R.id.textViewEquation);
+        textViewMemory = (EditText) findViewById(R.id.textViewMemory);
 
+        if (savedInstanceState != null) {
+            if (savedInstanceState.get(Utils.MEMORY_SAVED_VALE) != null) {
+                textViewMemory.setText(savedInstanceState.get(Utils.MEMORY_SAVED_VALE).toString());
+            } else {
+                textViewMemory.setText("");
+            }
+        }
         textViewResult.setTypeface(sansSeifNormal);
 
         for (int i = 0; i < resources.length; i++) {
@@ -189,6 +148,34 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         String author = sharedPreferences.getString("AUTHOR", "NOT SET");
         System.out.println("Shared Preferences Author onCreate " + author);
 
+    }
+
+    public void saveInMemory(View view) {
+
+        if (textViewMemory.getText().toString() == null || textViewMemory.getText().toString().equals("")) {
+            textViewMemory.setText(textViewResult.getText().toString());
+        } else {
+            if (view.getTag().equals(Utils.MEMORY_ADD)) {
+                textViewMemory.setText(
+                        Utils.evalMe(
+                                textViewMemory.getText().toString()
+                                        + "+"
+                                        + textViewResult.getText() == null ? "" : textViewResult.getText().toString()));
+            }
+            else if (view.getTag().equals(Utils.MEMORY_SUBTRACT)) {
+                textViewMemory.setText(
+                        Utils.evalMe(
+                                textViewMemory.getText().toString()
+                                        + "-"
+                                        + textViewResult.getText() == null ? "" : textViewResult.getText().toString()));
+            }
+            else if (view.getTag().equals(Utils.MEMORY_CLEAR)) {
+                textViewMemory.setText("");
+            }
+            else if (view.getTag().equals(Utils.MEMORY_READ)) {
+                textViewResult.setText(textViewMemory.getText().toString());
+            }
+        }
     }
 
     public void clearAll(View view) {

@@ -8,6 +8,12 @@ public class Utils {
     public static final String DIVIDE = "/";
     public static final String ALL_CLEAR = "ALLCLEAR";
     public static final String EVALUATE = "=";
+    public static final String MEMORY_SAVED_VALE = "MEMORY_SAVED_VALE";
+    public static final String MEMORY_ADD = "m+";
+    public static final String MEMORY_SUBTRACT = "m-";
+    public static final String MEMORY_READ = "mr";
+    public static final String MEMORY_CLEAR = "mc";
+
 
     public static boolean isTagOperator(String tag) {
         return ADD.equals(tag) || SUBTRACT.equals(tag)
@@ -58,6 +64,11 @@ public class Utils {
      * @return
      */
     static String evalMe(String equation) {
+
+        if(equation == null || equation.trim().length() == 0) {
+            return "";
+        }
+
         System.out.println("equation " + equation);
 
         double result = 0.0;
