@@ -152,30 +152,38 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     public void saveInMemory(View view) {
 
-        if (textViewMemory.getText().toString() == null || textViewMemory.getText().toString().equals("")) {
-            textViewMemory.setText(textViewResult.getText().toString());
-        } else {
-            if (view.getTag().equals(Utils.MEMORY_ADD)) {
-                textViewMemory.setText(
-                        Utils.evalMe(
-                                textViewMemory.getText().toString()
-                                        + "+"
-                                        + textViewResult.getText() == null ? "" : textViewResult.getText().toString()));
-            }
-            else if (view.getTag().equals(Utils.MEMORY_SUBTRACT)) {
-                textViewMemory.setText(
-                        Utils.evalMe(
-                                textViewMemory.getText().toString()
-                                        + "-"
-                                        + textViewResult.getText() == null ? "" : textViewResult.getText().toString()));
-            }
-            else if (view.getTag().equals(Utils.MEMORY_CLEAR)) {
-                textViewMemory.setText("");
-            }
-            else if (view.getTag().equals(Utils.MEMORY_READ)) {
-                textViewResult.setText(textViewMemory.getText().toString());
-            }
+        String memoryCurrent = textViewMemory.getText().toString();
+        String resultCurrent = Utils.evalMe(textViewResult.getText().toString());
+
+        if (memoryCurrent.startsWith(Utils.MEMORY_PREFIX)) {
+            memoryCurrent = memoryCurrent.substring(Utils.MEMORY_PREFIX.length());
         }
+
+        if(memoryCurrent == null || memoryCurrent.equals("")){
+            memoryCurrent = "0";
+        }
+
+//        if (memoryCurrent == null || memoryCurrent.equals("")) {
+//            textViewMemory.setText(Utils.MEMORY_PREFIX + resultCurrent);
+//        } else {
+        if (view.getTag().equals(Utils.MEMORY_ADD)) {
+            textViewMemory.setText(Utils.MEMORY_PREFIX +
+                    Utils.evalMe(
+                            memoryCurrent
+                                    + "+"
+                                    + resultCurrent));
+        } else if (view.getTag().equals(Utils.MEMORY_SUBTRACT)) {
+            textViewMemory.setText(Utils.MEMORY_PREFIX +
+                    Utils.evalMe(
+                            memoryCurrent
+                                    + "-"
+                                    + resultCurrent));
+        } else if (view.getTag().equals(Utils.MEMORY_CLEAR)) {
+            textViewMemory.setText("");
+        } else if (view.getTag().equals(Utils.MEMORY_READ)) {
+            textViewResult.setText(textViewMemory.getText().toString());
+        }
+        //    }
     }
 
     public void clearAll(View view) {

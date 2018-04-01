@@ -9,6 +9,7 @@ public class Utils {
     public static final String ALL_CLEAR = "ALLCLEAR";
     public static final String EVALUATE = "=";
     public static final String MEMORY_SAVED_VALE = "MEMORY_SAVED_VALE";
+    public static final String MEMORY_PREFIX ="M ";
     public static final String MEMORY_ADD = "m+";
     public static final String MEMORY_SUBTRACT = "m-";
     public static final String MEMORY_READ = "mr";
