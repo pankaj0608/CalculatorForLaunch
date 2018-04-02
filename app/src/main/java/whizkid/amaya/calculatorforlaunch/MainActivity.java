@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.widget.TextViewCompat;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -47,7 +48,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
      */
 
 
-    TextView editTextResult;
+    AppCompatTextView editTextResult;
     EditText editTextEquation;
     EditText editTextMemory;
     final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
@@ -100,7 +101,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         //Pankaj Code Starts
         resetOperators();
 
-        editTextResult = (TextView) findViewById(R.id.editTextResult);
+        editTextResult = (AppCompatTextView) findViewById(R.id.editTextResult);
         editTextEquation = (EditText) findViewById(R.id.editTextEquation);
         editTextMemory = (EditText) findViewById(R.id.editTextMemory);
 
