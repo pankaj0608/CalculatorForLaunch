@@ -205,7 +205,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         } else if (view.getTag().equals(Utils.MEMORY_CLEAR)) {
             memoryCurrent = "";
             textViewMemory.setText(memoryCurrent);
-        } else if (view.getTag().equals(Utils.MEMORY_READ)) {
+        } else if (view.getTag().equals(Utils.MEMORY_READ) && Utils.isNotNullString(memoryCurrent)) {
             textViewEquation.setText(memoryCurrent);
             textViewResult.setText(memoryCurrent);
         }
@@ -226,6 +226,11 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         String tag = view.getTag().toString();
         String currentEquation = textViewEquation.getText().toString();
 
+        if (Utils.INVERSE.equals(tag)
+                || Utils.PERCENTAGE.equals(tag)
+                || Utils.CHANGESIGN.equals(tag)) {
+            return;
+        }
         if (Utils.BACK.equals(tag)) {
             if (currentEquation.length() > 1) {
 

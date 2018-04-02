@@ -218,6 +218,7 @@
         android:id="@+id/buttonSignChange"
         style="@style/PadButtonStyle.Numeric"
         app:layout_columnWeight="1"
+        android:onClick="calculateMe"
         android:tag="+/-"
         android:text="+/-" />
 
