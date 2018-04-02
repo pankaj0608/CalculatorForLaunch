@@ -12,6 +12,7 @@ public class Utils {
     public static final String SUBTRACT = "-";
     public static final String MULTIPLY = "*";
     public static final String DIVIDE = "/";
+    public static final String DECIMAL = ".";
     public static final String INVERSE = "1/x";
     public static final String PERCENTAGE = "%";
     public static final String CHANGESIGN = "+/-";
@@ -116,8 +117,10 @@ public class Utils {
             return "0";
         }
 
-        if (str.endsWith(Utils.DIVIDE) || str.endsWith(Utils.MULTIPLY)
-                || str.endsWith(Utils.ADD) || str.endsWith(Utils.SUBTRACT)) {
+        if (str.endsWith(DIVIDE) || str.endsWith(MULTIPLY)
+                || str.endsWith(ADD) || str.endsWith(SUBTRACT)
+                || str.endsWith(DECIMAL)) {
+
             return evalMe(str.substring(0, str.length() - 1));
         }
 

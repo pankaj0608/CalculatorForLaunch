@@ -46,9 +46,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
      */
 
 
-    EditText textViewResult;
-    EditText textViewEquation;
-    EditText textViewMemory;
+    EditText editTextResult;
+    EditText editTextEquation;
+    EditText editTextMemory;
     final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
     final Typeface sansSeifCondensed = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
 
@@ -99,74 +99,74 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         //Pankaj Code Starts
         resetOperators();
 
-        textViewResult = (EditText) findViewById(R.id.textViewResult);
-        textViewEquation = (EditText) findViewById(R.id.textViewEquation);
-        textViewMemory = (EditText) findViewById(R.id.textViewMemory);
+        editTextResult = (EditText) findViewById(R.id.editTextResult);
+        editTextEquation = (EditText) findViewById(R.id.editTextEquation);
+        editTextMemory = (EditText) findViewById(R.id.editTextMemory);
 
         //TODO remove this option for API15
-        textViewEquation.setShowSoftInputOnFocus(false);
-//        textViewEquation.setLongClickable(false);
-//        textViewEquation.setTextIsSelectable(false);
+        editTextEquation.setShowSoftInputOnFocus(false);
+//        editTextEquation.setLongClickable(false);
+//        editTextEquation.setTextIsSelectable(false);
 
         //Add listener so that we can chek the validity of the equation
-        textViewEquation.addTextChangedListener(new TextWatcher() {
+        editTextEquation.addTextChangedListener(new TextWatcher() {
             int mySelectionValue = 0;
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                mySelectionValue = textViewEquation.getSelectionEnd() - 1;
+                mySelectionValue = editTextEquation.getSelectionEnd() - 1;
 //                System.out.println("text after change -1 " +
-//                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd());
+//                        editTextEquation.getSelectionStart() + " : " + editTextEquation.getSelectionEnd());
 
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 //                System.out.println("text after change 0 " +
-//                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd());
+//                        editTextEquation.getSelectionStart() + " : " + editTextEquation.getSelectionEnd());
                 System.out.println("corrected string 1 " + Utils.correctEquation(s.toString()));
                 String correctedString = Utils.correctEquation(s.toString());
 
                 if (!correctedString.equals(s.toString())) {
-                    textViewEquation.setText(correctedString);
+                    editTextEquation.setText(correctedString);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 //                System.out.println("text after change 1 " +
-//                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd());
+//                        editTextEquation.getSelectionStart() + " : " + editTextEquation.getSelectionEnd());
 //                System.out.println("text for the equation changed " + s.toString());
                 System.out.println("corrected string 2 " + Utils.correctEquation(s.toString()));
 
                 String result = Utils.evalMe(s.toString());
-                textViewResult.setText(result);
+                editTextResult.setText(result);
 
 //                System.out.println("text after change 2 " +
-//                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd()
+//                        editTextEquation.getSelectionStart() + " : " + editTextEquation.getSelectionEnd()
 //                        + " : " + mySelectionValue);
 
                 //if mySelectionValue is less than 0 set it to 0
                 mySelectionValue = mySelectionValue < 0 ? 0 : mySelectionValue;
 
-                textViewEquation.setSelection(mySelectionValue, mySelectionValue);
+                editTextEquation.setSelection(mySelectionValue, mySelectionValue);
             }
         });
 
-        textViewEquation.setText("0");
+        editTextEquation.setText("0");
 
         //get the memory from the Share Preference
         String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE,
                 this.getPreferences(Context.MODE_PRIVATE));
 
         if (Utils.isNotNullString(storedMemory)) {
-            textViewMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
+            editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
         }
 
         //Set the font type for the fields
-        textViewResult.setTypeface(sansSeifNormal);
-        textViewResult.setTypeface(sansSeifNormal);
-        textViewMemory.setTypeface(sansSeifCondensed);
+        editTextResult.setTypeface(sansSeifNormal);
+        editTextResult.setTypeface(sansSeifNormal);
+        editTextMemory.setTypeface(sansSeifCondensed);
 
         for (int i = 0; i < resourcesButton.length; i++) {
             ((Button) findViewById(resourcesButton[i])).setTypeface(sansSeifNormal);
@@ -177,8 +177,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     public void saveInMemory(View view) {
 
-        String memoryCurrent = textViewMemory.getText().toString();
-        String resultCurrent = Utils.evalMe(textViewResult.getText().toString());
+        String memoryCurrent = editTextMemory.getText().toString();
+        String resultCurrent = Utils.evalMe(editTextResult.getText().toString());
 
         if (memoryCurrent.startsWith(Utils.MEMORY_PREFIX)) {
             memoryCurrent = memoryCurrent.substring(Utils.MEMORY_PREFIX.length());
@@ -194,20 +194,20 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                     memoryCurrent
                             + "+"
                             + resultCurrent);
-            textViewMemory.setText(Utils.MEMORY_PREFIX + memoryCurrent);
+            editTextMemory.setText(Utils.MEMORY_PREFIX + memoryCurrent);
 
         } else if (view.getTag().equals(Utils.MEMORY_SUBTRACT)) {
             memoryCurrent = Utils.evalMe(
                     memoryCurrent
                             + "-"
                             + resultCurrent);
-            textViewMemory.setText(Utils.MEMORY_PREFIX + memoryCurrent);
+            editTextMemory.setText(Utils.MEMORY_PREFIX + memoryCurrent);
         } else if (view.getTag().equals(Utils.MEMORY_CLEAR)) {
             memoryCurrent = "";
-            textViewMemory.setText(memoryCurrent);
+            editTextMemory.setText(memoryCurrent);
         } else if (view.getTag().equals(Utils.MEMORY_READ) && Utils.isNotNullString(memoryCurrent)) {
-            textViewEquation.setText(memoryCurrent);
-            textViewResult.setText(memoryCurrent);
+            editTextEquation.setText(memoryCurrent);
+            editTextResult.setText(memoryCurrent);
         }
 
         //save the memotry in preferences
@@ -217,14 +217,14 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     }
 
     public void clearAll(View view) {
-        //textViewResult.setText("0");
-        textViewEquation.setText("0");
+        //editTextResult.setText("0");
+        editTextEquation.setText("0");
 
     }
 
     public void calculateMe(View view) {
         String tag = view.getTag().toString();
-        String currentEquation = textViewEquation.getText().toString();
+        String currentEquation = editTextEquation.getText().toString();
 
         if (Utils.INVERSE.equals(tag)
                 || Utils.PERCENTAGE.equals(tag)
@@ -234,43 +234,43 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         if (Utils.BACK.equals(tag)) {
             if (currentEquation.length() > 1) {
 
-                System.out.println("Back pressed " + textViewEquation.getSelectionEnd());
-                if (!textViewEquation.isFocused()) {//textViewEquation.getSelectionEnd() <= 0
-                    textViewEquation.setText(currentEquation.substring(0, currentEquation.length() - 1));
+                System.out.println("Back pressed " + editTextEquation.getSelectionEnd());
+                if (!editTextEquation.isFocused()) {//editTextEquation.getSelectionEnd() <= 0
+                    editTextEquation.setText(currentEquation.substring(0, currentEquation.length() - 1));
 
-                } else if (textViewEquation.getSelectionEnd() > 0) {
-                    textViewEquation.setText(
-                            currentEquation.substring(0, textViewEquation.getSelectionEnd() - 1)
+                } else if (editTextEquation.getSelectionEnd() > 0) {
+                    editTextEquation.setText(
+                            currentEquation.substring(0, editTextEquation.getSelectionEnd() - 1)
                                     +
-                                    currentEquation.substring(textViewEquation.getSelectionEnd(), currentEquation.length()
+                                    currentEquation.substring(editTextEquation.getSelectionEnd(), currentEquation.length()
                                     ));
                 }
 
             } else {
-                textViewEquation.setText("");
+                editTextEquation.setText("");
             }
         } else if (Utils.EVALUATE.equals(tag)) {
-            textViewEquation.setText(Utils.evalMe(textViewEquation.getText().toString()));
-            textViewEquation.clearFocus();
+            editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
+            editTextEquation.clearFocus();
             evaluationDone = true;
         } else {
 
             if (evaluationDone && Utils.isNumeric(tag)) {
-                textViewEquation.setText(tag);
+                editTextEquation.setText(tag);
             } else {
-                textViewEquation.setText(textViewEquation.getText().toString() + tag);
+                editTextEquation.setText(editTextEquation.getText().toString() + tag);
             }
 
             evaluationDone = false;
 
-            textViewEquation.clearFocus();
+            editTextEquation.clearFocus();
         }
 
-        // textViewResult.setText(Utils.evalMe(textViewEquation.getText().toString()));
+        // editTextResult.setText(Utils.evalMe(editTextEquation.getText().toString()));
 //
 //        result = null;
 //        String tag = view.getTag().toString();
-//        String resultCurrentValue = textViewResult.getText().toString();
+//        String resultCurrentValue = editTextResult.getText().toString();
 //
 //        boolean isItOperatorTag = Utils.isTagOperator(tag);
 //        boolean isItEvaluateTag = Utils.isTagEvaluateOperator(tag);
@@ -288,13 +288,13 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 //        //if it was evaluate tag then set the result
 //        if (isItEvaluateTag) {
 //            setValueToTextResult(result);
-//            textViewEquation.setText(resultCurrentValue);
+//            editTextEquation.setText(resultCurrentValue);
 //        } else {
 //            //if evaluation has already been done then start from scratch
 //            //unless it's a operator
 //            if (evaluationDone && !isItOperatorTag) {
 //                setValueToTextResult(tag);
-//                textViewEquation.setText("");
+//                editTextEquation.setText("");
 //            } else {
 //                setValueToTextResult(resultCurrentValue + tag);
 //            }
@@ -327,7 +327,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             result = result.substring(0, result.length() - 1);
         }
 
-        textViewResult.setText(result);
+        editTextResult.setText(result);
     }
 
     private void resetOperators() {

@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/textViewMemory"
+        android:id="@+id/editTextMemory"
         style="@style/DisplayTextStyle.Memory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:textSize="@dimen/_18sdp" />
 
     <EditText
-        android:id="@+id/textViewResult"
+        android:id="@+id/editTextResult"
         style="@style/DisplayTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         android:textSize="@dimen/_64sdp" />
 
     <EditText
-        android:id="@+id/textViewEquation"
+        android:id="@+id/editTextEquation"
         style="@style/DisplayTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
