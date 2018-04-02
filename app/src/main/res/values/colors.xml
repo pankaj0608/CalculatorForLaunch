@@ -23,7 +23,7 @@
     <color name="pankaj_pad_numeric_background_color_white">#ffffff</color>
     <!--<color name="pankaj_pad_color_blue">#015289</color>-->
     <color name="pankaj_pad_color_blue">#0f487f</color>
-    <color name="pankaj_memory_display_color_blue">#1095bd</color>
+    <color name="pankaj_memory_display_color_blue">#0f7e9e</color>
 
     <!-- Default background color for the status bar. -->
     <color name="calculator_accent_color">#00BCD4</color>

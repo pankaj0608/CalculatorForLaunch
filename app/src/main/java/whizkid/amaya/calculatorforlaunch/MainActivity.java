@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.widget.TextViewCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -105,6 +106,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         //TODO remove this option for API15
         editTextEquation.setShowSoftInputOnFocus(false);
+
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(editTextResult, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+
 //        editTextEquation.setLongClickable(false);
 //        editTextEquation.setTextIsSelectable(false);
 
@@ -134,22 +138,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
             @Override
             public void afterTextChanged(Editable s) {
-//                System.out.println("text after change 1 " +
-//                        editTextEquation.getSelectionStart() + " : " + editTextEquation.getSelectionEnd());
-//                System.out.println("text for the equation changed " + s.toString());
-                System.out.println("corrected string 2 " + Utils.correctEquation(s.toString()));
 
-                System.out.println("editTextResult.getTextSize() " + editTextResult.getTextSize());
-                System.out.println("editTextEquation.getTextSize() " + editTextEquation.getTextSize());
+                System.out.println("corrected string 2 " + Utils.correctEquation(s.toString()));
 
                 String result = Utils.evalMe(s.toString());
                 editTextResult.setText(result);
 
-//                System.out.println("text after change 2 " +
-//                        editTextEquation.getSelectionStart() + " : " + editTextEquation.getSelectionEnd()
-//                        + " : " + mySelectionValue);
-
-                //if mySelectionValue is less than 0 set it to 0
                 mySelectionValue = mySelectionValue < 0 ? 0 : mySelectionValue;
 
                 editTextEquation.setSelection(mySelectionValue, mySelectionValue);
