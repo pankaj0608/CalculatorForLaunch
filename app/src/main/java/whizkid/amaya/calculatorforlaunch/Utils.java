@@ -93,9 +93,19 @@ public class Utils {
         return "";
     }
 
-    public static String evalMe(final String str) {
+    public static String evalMe(String str) {
 
-        return Double.toString(evalMeDouble(str));
+        if (str == null || str.trim().length() == 0) {
+            return "0";
+        }
+
+        if (str.endsWith(Utils.DIVIDE) || str.endsWith(Utils.MULTIPLY)
+                || str.endsWith(Utils.ADD) || str.endsWith(Utils.SUBTRACT)) {
+            return evalMe(str.substring(0, str.length() - 1));
+        }
+
+        double result = evalMeDouble(str);
+        return Double.toString(result);
     }
 
 //    I've written this eval method for arithmetic expressions to answer this question.
@@ -106,6 +116,7 @@ public class Utils {
 //    https://stackoverflow.com/questions/3422673/evaluating-a-math-expression-given-in-string-form
 
     public static double evalMeDouble(final String str) {
+
         return new Object() {
             int pos = -1, ch;
 

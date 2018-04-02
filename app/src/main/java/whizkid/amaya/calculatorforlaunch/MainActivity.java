@@ -138,7 +138,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 //                System.out.println("text for the equation changed " + s.toString());
                 System.out.println("corrected string 2 " + Utils.correctEquation(s.toString()));
 
-                textViewResult.setText(Utils.evalMe(s.toString()));
+                String result = Utils.evalMe(s.toString());
+                textViewResult.setText(result);
 
 //                System.out.println("text after change 2 " +
 //                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd()
