@@ -27,12 +27,10 @@
         android:layout_weight=".8"
         android:background="@color/pankaj_pad_button_text_color_white"
         android:maxLines="1"
-        android:gravity="center"
+        android:gravity="center|end"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:text="0"
-        android:textAlignment="viewEnd"
-        android:textSize="@dimen/_64sdp"/>
+        android:text="0"/>
 
     <EditText
         android:id="@+id/editTextEquation"
@@ -50,9 +48,3 @@
         android:textColor="@color/pankaj_results_text_color"
         android:textSize="@dimen/_30sdp" />
 </LinearLayout>
-
-    <!--<EditText--><!--android:id="@+id/textViewMemory"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:text="M 12345678"--><!--android:textColor="@color/pankaj_results_text_color"--><!--android:textSize="@dimen/12sdp"--><!--android:textAlignment="viewEnd"/>-->
-
-    <!--<EditText--><!--android:id="@+id/textViewResult"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:text="Result"--><!--android:textColor="@color/pankaj_results_text_color"--><!--android:textSize="@dimen/_36sdp"--><!--android:layout_marginBottom="10dp"--><!--android:textAlignment="viewEnd"/>-->
-
-    <!--<EditText--><!--android:id="@+id/textViewProblem"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:text="14+10"--><!--android:textColor="@color/pankaj_results_text_color"--><!--android:textSize="@dimen/_20sdp"--><!--android:editable="false"--><!--android:textAlignment="viewEnd"/>-->
