@@ -89,6 +89,22 @@ public class Utils {
     }
 
 
+    static String correctResult(String result) {
+        //equation = equation.replace("-", "+-");;
+
+        //remove the initil 0s
+        if (result != null && result.trim().length() == 0 ) {
+            return "0";
+        }
+
+
+        if(result.endsWith(".0") && result.length() > ".0".length()) {
+            result = result.substring(0,result.length()-2);
+        }
+        return result;
+    }
+
+
     static String inverselMe(String equation) {
         return "";
     }
@@ -105,7 +121,7 @@ public class Utils {
         }
 
         double result = evalMeDouble(str);
-        return Double.toString(result);
+        return correctResult(Double.toString(result));
     }
 
 //    I've written this eval method for arithmetic expressions to answer this question.

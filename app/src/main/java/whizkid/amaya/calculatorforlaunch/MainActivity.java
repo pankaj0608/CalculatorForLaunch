@@ -105,7 +105,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         //TODO remove this option for API15
         textViewEquation.setShowSoftInputOnFocus(false);
-        textViewEquation.setLongClickable(false);
+//        textViewEquation.setLongClickable(false);
+//        textViewEquation.setTextIsSelectable(false);
 
         //Add listener so that we can chek the validity of the equation
         textViewEquation.addTextChangedListener(new TextWatcher() {
@@ -151,6 +152,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 textViewEquation.setSelection(mySelectionValue, mySelectionValue);
             }
         });
+
+        textViewEquation.setText("0");
 
         //get the memory from the Share Preference
         String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE,
