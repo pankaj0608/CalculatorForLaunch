@@ -74,9 +74,9 @@ public class Utils {
         //equation = equation.replace("-", "+-");;
 
         //remove the initil 0s
-        if(equation != null && equation.length() == 2 &&
+        if (equation != null && equation.length() == 2 &&
                 equation.startsWith("0")
-                && (Utils.isNumeric(equation.substring(1,2)))) {
+                && (Utils.isNumeric(equation.substring(1, 2)))) {
             equation = equation.substring(1, equation.length());
         }
 
@@ -93,7 +93,100 @@ public class Utils {
         return "";
     }
 
-    static String evalMe(String equation) {
+    public static String evalMe(final String str) {
+
+        return Double.toString(evalMeDouble(str));
+    }
+
+//    I've written this eval method for arithmetic expressions to answer this question.
+//    It does addition, subtraction, multiplication, division, exponentiation (using the ^ symbol), a
+//    nd a few basic functions like sqrt. It supports grouping using (...), and it gets the operator
+//    precedence and associativity rules correct.
+//
+//    https://stackoverflow.com/questions/3422673/evaluating-a-math-expression-given-in-string-form
+
+    public static double evalMeDouble(final String str) {
+        return new Object() {
+            int pos = -1, ch;
+
+            void nextChar() {
+                ch = (++pos < str.length()) ? str.charAt(pos) : -1;
+            }
+
+            boolean eat(int charToEat) {
+                while (ch == ' ') nextChar();
+                if (ch == charToEat) {
+                    nextChar();
+                    return true;
+                }
+                return false;
+            }
+
+            double parse() {
+                nextChar();
+                double x = parseExpression();
+                if (pos < str.length()) throw new RuntimeException("Unexpected: " + (char) ch);
+                return x;
+            }
+
+            // Grammar:
+            // expression = term | expression `+` term | expression `-` term
+            // term = factor | term `*` factor | term `/` factor
+            // factor = `+` factor | `-` factor | `(` expression `)`
+            //        | number | functionName factor | factor `^` factor
+
+            double parseExpression() {
+                double x = parseTerm();
+                for (; ; ) {
+                    if (eat('+')) x += parseTerm(); // addition
+                    else if (eat('-')) x -= parseTerm(); // subtraction
+                    else return x;
+                }
+            }
+
+            double parseTerm() {
+                double x = parseFactor();
+                for (; ; ) {
+                    if (eat('*')) x *= parseFactor(); // multiplication
+                    else if (eat('/')) x /= parseFactor(); // division
+                    else return x;
+                }
+            }
+
+            double parseFactor() {
+                if (eat('+')) return parseFactor(); // unary plus
+                if (eat('-')) return -parseFactor(); // unary minus
+
+                double x;
+                int startPos = this.pos;
+                if (eat('(')) { // parentheses
+                    x = parseExpression();
+                    eat(')');
+                } else if ((ch >= '0' && ch <= '9') || ch == '.') { // numbers
+                    while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
+                    x = Double.parseDouble(str.substring(startPos, this.pos));
+                } else if (ch >= 'a' && ch <= 'z') { // functions
+                    while (ch >= 'a' && ch <= 'z') nextChar();
+                    String func = str.substring(startPos, this.pos);
+                    x = parseFactor();
+                    if (func.equals("sqrt")) x = Math.sqrt(x);
+                    else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
+                    else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
+                    else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
+                    else throw new RuntimeException("Unknown function: " + func);
+                } else {
+                    throw new RuntimeException("Unexpected: " + (char) ch);
+                }
+
+                if (eat('^')) x = Math.pow(x, parseFactor()); // exponentiation
+
+                return x;
+            }
+        }.parse();
+    }
+
+
+    static String evalMe_Old_With_Issues(String equation) {
 
         System.out.println("equation " + equation);
 

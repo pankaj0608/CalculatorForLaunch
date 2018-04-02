@@ -105,7 +105,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         //TODO remove this option for API15
         textViewEquation.setShowSoftInputOnFocus(false);
-
+        textViewEquation.setLongClickable(false);
 
         //Add listener so that we can chek the validity of the equation
         textViewEquation.addTextChangedListener(new TextWatcher() {
