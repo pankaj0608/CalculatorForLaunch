@@ -45,7 +45,7 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:text="0"
-        android:textAlignment="viewEnd"
+        android:gravity="center|end"
         android:textColor="@color/pankaj_results_text_color"
         android:textSize="@dimen/_30sdp" />
 </LinearLayout>
