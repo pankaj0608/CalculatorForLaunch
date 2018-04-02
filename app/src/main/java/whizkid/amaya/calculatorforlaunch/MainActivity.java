@@ -46,7 +46,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
      */
 
 
-    EditText editTextResult;
+    TextView editTextResult;
     EditText editTextEquation;
     EditText editTextMemory;
     final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
@@ -99,7 +99,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         //Pankaj Code Starts
         resetOperators();
 
-        editTextResult = (EditText) findViewById(R.id.editTextResult);
+        editTextResult = (TextView) findViewById(R.id.editTextResult);
         editTextEquation = (EditText) findViewById(R.id.editTextEquation);
         editTextMemory = (EditText) findViewById(R.id.editTextMemory);
 
@@ -138,6 +138,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 //                        editTextEquation.getSelectionStart() + " : " + editTextEquation.getSelectionEnd());
 //                System.out.println("text for the equation changed " + s.toString());
                 System.out.println("corrected string 2 " + Utils.correctEquation(s.toString()));
+
+                System.out.println("editTextResult.getTextSize() " + editTextResult.getTextSize());
+                System.out.println("editTextEquation.getTextSize() " + editTextEquation.getTextSize());
 
                 String result = Utils.evalMe(s.toString());
                 editTextResult.setText(result);

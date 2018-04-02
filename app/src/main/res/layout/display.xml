@@ -19,7 +19,7 @@
         android:textAlignment="viewStart"
         android:textSize="@dimen/_18sdp" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextResult"
         style="@style/DisplayTextStyle"
         android:layout_width="match_parent"
@@ -27,9 +27,13 @@
         android:layout_weight=".8"
         android:background="@color/pankaj_pad_button_text_color_white"
         android:editable="false"
-        android:text=""
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="0"
         android:textAlignment="viewEnd"
-        android:textSize="@dimen/_64sdp" />
+        android:textSize="@dimen/_64sdp"/>
 
     <EditText
         android:id="@+id/editTextEquation"
@@ -38,7 +42,11 @@
         android:layout_height="wrap_content"
         android:layout_weight=".2"
         android:background="@color/pankaj_pad_button_text_color_white"
-        android:text=""
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="0"
         android:textAlignment="viewEnd"
         android:textColor="@color/pankaj_results_text_color"
         android:textSize="@dimen/_22sdp" />
