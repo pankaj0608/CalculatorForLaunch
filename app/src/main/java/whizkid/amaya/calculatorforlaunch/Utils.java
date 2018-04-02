@@ -73,6 +73,13 @@ public class Utils {
     static String correctEquation(String equation) {
         //equation = equation.replace("-", "+-");;
 
+        //remove the initil 0s
+        if(equation != null && equation.length() == 2 &&
+                equation.startsWith("0")
+                && (Utils.isNumeric(equation.substring(1,2)))) {
+            equation = equation.substring(1, equation.length());
+        }
+
         equation = equation.replace("**", "*");
         equation = equation.replace("*/", "/");
         equation = equation.replace("/*", "*");
