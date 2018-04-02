@@ -51,10 +51,10 @@
         <item name="android:textColor">@color/pankaj_pad_button_text_color_black</item>
     </style>
 
-    <style name="PadButtonStyle.Numeric.Memory" parent="PadButtonStyle.Numeric">
+    <style name="PadButtonStyle.Numeric.Memory" parent="PadButtonStyle.Numeric.Operator">
 
-        <item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>
-        <item name="android:background">@color/pankaj_light_pink</item>
+        <!--<item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>-->
+        <!--<item name="android:background">@color/pankaj_light_pink</item>-->
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingTop">5dp</item>
         <!--<item name="android:layout_margin">8dip</item>-->
@@ -87,7 +87,7 @@
     <style name="PadButtonStyle.Numeric.Operator" parent="PadButtonStyle.Numeric">
         <item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>
         <!--<item name="android:textColor">@color/pankaj_pad_button_text_color</item>-->
-        <item name="android:background">@color/pankaj_light_pink</item>
+        <item name="android:background">@color/pankaj_dark_brown</item>
     </style>
 
     <style name="PadButtonStyle.Numeric.Equals" parent="PadButtonStyle.Numeric">

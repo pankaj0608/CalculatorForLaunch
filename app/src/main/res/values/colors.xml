@@ -10,6 +10,9 @@
     <!--<color name="pankaj_light_pink">#FF4081</color>-->
     <!--<color name="pankaj_light_pink">#fd4785</color>-->
     <color name="pankaj_light_pink">#fe0073</color>
+    <color name="pankaj_dark_brown">#443d4e</color>
+    <color name="pankaj_dark_yellow">#906b2a</color>
+
 
     <color name="pankaj_results_text_color">#363636</color>
     <!-- Text color for a button in a pad. -->
