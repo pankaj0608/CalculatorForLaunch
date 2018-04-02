@@ -51,24 +51,7 @@
         <item name="android:textColor">@color/pankaj_pad_button_text_color_black</item>
     </style>
 
-    <style name="PadButtonStyle.Numeric.Memory" parent="PadButtonStyle.Numeric.Operator">
 
-        <!--<item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>-->
-        <!--<item name="android:background">@color/pankaj_light_pink</item>-->
-        <item name="android:paddingBottom">5dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <!--<item name="android:layout_margin">8dip</item>-->
-        <!--<item name="android:textSize">24sp</item>-->
-        <!--<item name="android:paddingTop">15dp</item>-->
-        <!--<item name="android:paddingBottom">5dp</item>-->
-        <!--<item name="android:layout_margin">1dp</item>-->
-        <!--<item name="android:layout_marginBottom">0dp</item>-->
-        <!--<item name="android:layout_columnWeight">1</item>-->
-        <!--<item name="android:gravity">center</item>-->
-        <!--<item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>-->
-        <!--&lt;!&ndash;<item name="android:textColor">@color/pankaj_pad_button_memory_text_color</item>&ndash;&gt;-->
-        <!--<item name="android:background">@color/pankaj_light_grey</item>-->
-    </style>
 
     <style name="PadButtonStyle.Numeric" parent="PadButtonStyle">
         <!--<item name="android:layout_margin">8dip</item>-->
@@ -87,7 +70,12 @@
     <style name="PadButtonStyle.Numeric.Operator" parent="PadButtonStyle.Numeric">
         <item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>
         <!--<item name="android:textColor">@color/pankaj_pad_button_text_color</item>-->
-        <item name="android:background">@color/pankaj_dark_brown</item>
+        <item name="android:background">@color/pankaj_dark_orange</item>
+    </style>
+
+    <style name="PadButtonStyle.Numeric.Memory" parent="PadButtonStyle.Numeric.Operator">
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
     </style>
 
     <style name="PadButtonStyle.Numeric.Equals" parent="PadButtonStyle.Numeric">
