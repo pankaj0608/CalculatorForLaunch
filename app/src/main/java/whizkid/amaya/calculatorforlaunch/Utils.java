@@ -12,11 +12,15 @@ public class Utils {
     public static final String SUBTRACT = "-";
     public static final String MULTIPLY = "*";
     public static final String DIVIDE = "/";
+    public static final String INVERSE = "1/x";
+    public static final String PERCENTAGE = "%";
+    public static final String CHANGESIGN = "+/-";
+
     public static final String ALL_CLEAR = "ALLCLEAR";
     public static final String BACK = "BACK";
     public static final String EVALUATE = "=";
     public static final String MEMORY_SAVED_VALE = "MEMORY_SAVED_VALE";
-    public static final String MEMORY_PREFIX ="M ";
+    public static final String MEMORY_PREFIX = "M ";
     public static final String MEMORY_ADD = "m+";
     public static final String MEMORY_SUBTRACT = "m-";
     public static final String MEMORY_READ = "mr";
@@ -66,18 +70,34 @@ public class Utils {
         return false;
     }
 
+    static String correctEquation(String equation) {
+        //equation = equation.replace("-", "+-");;
+
+        equation = equation.replace("**", "*");
+        equation = equation.replace("*/", "/");
+        equation = equation.replace("/*", "*");
+        equation = equation.replace("++", "+");
+
+        return equation;
+    }
+
+
+    static String inverselMe(String equation) {
+        return "";
+    }
+
     static String evalMe(String equation) {
 
         System.out.println("equation " + equation);
 
-        if(equation == null || equation.trim().length() == 0) {
+        if (equation == null || equation.trim().length() == 0) {
             return "";
         }
 
-        if(equation.endsWith(Utils.DIVIDE) || equation.endsWith(Utils.MULTIPLY)
+        if (equation.endsWith(Utils.DIVIDE) || equation.endsWith(Utils.MULTIPLY)
                 || equation.endsWith(Utils.ADD) || equation.endsWith(Utils.SUBTRACT)) {
 
-            return evalMe(equation.substring(0,equation.length()-1));
+            return evalMe(equation.substring(0, equation.length() - 1));
         }
 
         double result = 0.0;
@@ -119,7 +139,6 @@ public class Utils {
     }
 
     /**
-     *
      * @param received
      * @return
      */
@@ -145,9 +164,9 @@ public class Utils {
 
 
     public static void putStringInSharedPreference(final String key, final String value,
-                                                      SharedPreferences sharedPreferences) {
+                                                   SharedPreferences sharedPreferences) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key,value);
+        editor.putString(key, value);
         editor.commit();
     }
 
@@ -167,8 +186,7 @@ public class Utils {
         try {
             Integer.parseInt(val);
             return true;
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }

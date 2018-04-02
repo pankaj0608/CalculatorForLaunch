@@ -123,7 +123,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 //                System.out.println("text after change 0 " +
 //                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd());
+                System.out.println("corrected string 1 " + Utils.correctEquation(s.toString()));
+                String correctedString = Utils.correctEquation(s.toString());
 
+                if (!correctedString.equals(s.toString())) {
+                    textViewEquation.setText(correctedString);
+                }
             }
 
             @Override
@@ -131,6 +136,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 //                System.out.println("text after change 1 " +
 //                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd());
 //                System.out.println("text for the equation changed " + s.toString());
+                System.out.println("corrected string 2 " + Utils.correctEquation(s.toString()));
+
                 textViewResult.setText(Utils.evalMe(s.toString()));
 
 //                System.out.println("text after change 2 " +
@@ -206,8 +213,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     }
 
     public void clearAll(View view) {
-        textViewResult.setText("");
-        textViewEquation.setText("");
+        //textViewResult.setText("0");
+        textViewEquation.setText("0");
 
     }
 
