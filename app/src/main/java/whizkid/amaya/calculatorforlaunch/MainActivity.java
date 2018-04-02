@@ -109,20 +109,38 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         //Add listener so that we can chek the validity of the equation
         textViewEquation.addTextChangedListener(new TextWatcher() {
+            int mySelectionValue = 0;
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                mySelectionValue = textViewEquation.getSelectionEnd() - 1;
+                System.out.println("text after change -1 " +
+                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd());
 
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                System.out.println("text after change 0 " +
+                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd());
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                System.out.println("text after change 1 " +
+                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd());
                 System.out.println("text for the equation changed " + s.toString());
                 textViewResult.setText(Utils.evalMe(s.toString()));
+
+                System.out.println("text after change 2 " +
+                        textViewEquation.getSelectionStart() + " : " + textViewEquation.getSelectionEnd()
+                        + " : " + mySelectionValue);
+
+                //if mySelectionValue is less than 0 set it to 0
+                mySelectionValue = mySelectionValue < 0 ? 0:mySelectionValue;
+
+                textViewEquation.setSelection(mySelectionValue, mySelectionValue);
             }
         });
 
@@ -199,7 +217,19 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         if (Utils.BACK.equals(tag)) {
             if (currentEquation.length() > 1) {
-                textViewEquation.setText(currentEquation.substring(0, currentEquation.length() - 1));
+
+                System.out.println("Back pressed " + textViewEquation.getSelectionEnd());
+                if(textViewEquation.getSelectionEnd() <= 0) {
+                    textViewEquation.setText(currentEquation.substring(0, currentEquation.length() - 1));
+                }
+                else {
+                    textViewEquation.setText(
+                            currentEquation.substring(0,textViewEquation.getSelectionEnd()-1)
+                            +
+                            currentEquation.substring(textViewEquation.getSelectionEnd(), currentEquation.length()
+                            ));
+                }
+
             } else {
                 textViewEquation.setText("");
             }
