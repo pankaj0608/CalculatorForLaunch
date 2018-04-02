@@ -142,12 +142,14 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
                 System.out.println("corrected string 2 " + Utils.correctEquation(s.toString()));
 
-                String result = Utils.evalMe(s.toString());
-                editTextResult.setText(result);
+                String result = "";
 
-                mySelectionValue = mySelectionValue < 0 ? 0 : mySelectionValue;
-
-                editTextEquation.setSelection(mySelectionValue, mySelectionValue);
+                if(!evaluationDone) {
+                    result = Utils.evalMe(s.toString());
+                    editTextResult.setText(result);
+                    mySelectionValue = mySelectionValue < 0 ? 0 : mySelectionValue;
+                    editTextEquation.setSelection(mySelectionValue, mySelectionValue);
+                }
             }
         });
 
@@ -248,18 +250,19 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 editTextEquation.setText("");
             }
         } else if (Utils.EVALUATE.equals(tag)) {
-            editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
-            editTextEquation.clearFocus();
+            //editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
             evaluationDone = true;
+            editTextEquation.setText(editTextResult.getText().toString());
+            editTextEquation.clearFocus();
         } else {
-
             if (evaluationDone && Utils.isNumeric(tag)) {
+                evaluationDone = false;
                 editTextEquation.setText(tag);
             } else {
+                evaluationDone = false;
                 editTextEquation.setText(editTextEquation.getText().toString() + tag);
             }
 
-            evaluationDone = false;
 
             editTextEquation.clearFocus();
         }
