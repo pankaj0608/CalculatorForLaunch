@@ -138,7 +138,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         + " : " + mySelectionValue);
 
                 //if mySelectionValue is less than 0 set it to 0
-                mySelectionValue = mySelectionValue < 0 ? 0:mySelectionValue;
+                mySelectionValue = mySelectionValue < 0 ? 0 : mySelectionValue;
 
                 textViewEquation.setSelection(mySelectionValue, mySelectionValue);
             }
@@ -219,15 +219,14 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             if (currentEquation.length() > 1) {
 
                 System.out.println("Back pressed " + textViewEquation.getSelectionEnd());
-                if(textViewEquation.getSelectionEnd() <= 0) {
-                    textViewEquation.setText(currentEquation.substring(0, currentEquation.length() - 1));
-                }
-                else {
+                if (textViewEquation.getSelectionEnd() <= 0) {
+                    // textViewEquation.setText(currentEquation.substring(0, currentEquation.length() - 1));
+                } else {
                     textViewEquation.setText(
-                            currentEquation.substring(0,textViewEquation.getSelectionEnd()-1)
-                            +
-                            currentEquation.substring(textViewEquation.getSelectionEnd(), currentEquation.length()
-                            ));
+                            currentEquation.substring(0, textViewEquation.getSelectionEnd() - 1)
+                                    +
+                                    currentEquation.substring(textViewEquation.getSelectionEnd(), currentEquation.length()
+                                    ));
                 }
 
             } else {
@@ -235,8 +234,19 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             }
         } else if (Utils.EVALUATE.equals(tag)) {
             textViewEquation.setText(Utils.evalMe(textViewEquation.getText().toString()));
+            textViewEquation.clearFocus();
+            evaluationDone = true;
         } else {
-            textViewEquation.setText(textViewEquation.getText().toString() + tag);
+
+            if (evaluationDone && Utils.isNumeric(tag)) {
+                textViewEquation.setText(tag);
+            } else {
+                textViewEquation.setText(textViewEquation.getText().toString() + tag);
+            }
+
+            evaluationDone = false;
+
+            textViewEquation.clearFocus();
         }
 
         // textViewResult.setText(Utils.evalMe(textViewEquation.getText().toString()));

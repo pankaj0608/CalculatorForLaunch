@@ -157,9 +157,20 @@ public class Utils {
         return val != null && val.trim().length() > 0;
     }
 
-    boolean isEditTextEmpty(EditText editText) {
+    static boolean isEditTextEmpty(EditText editText) {
 
         return false;
+    }
+
+    static boolean isNumeric(String val) {
+
+        try {
+            Integer.parseInt(val);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
     }
 
     /**

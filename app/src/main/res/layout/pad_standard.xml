@@ -83,7 +83,7 @@
         app:layout_columnWeight="1"
         android:onClick="calculateMe"
         android:tag="BACK"
-        android:text="C" />
+        android:text="Bk" />
 
     <Button
         android:id="@+id/buttonAllClear"
