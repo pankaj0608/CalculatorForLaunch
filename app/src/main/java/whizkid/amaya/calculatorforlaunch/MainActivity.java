@@ -144,7 +144,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
                 String result = "";
 
-                if(!evaluationDone) {
+                if (!evaluationDone) {
                     result = Utils.evalMe(s.toString());
                     editTextResult.setText(result);
                     mySelectionValue = mySelectionValue < 0 ? 0 : mySelectionValue;
@@ -217,7 +217,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     }
 
     public void clearAll(View view) {
-        //editTextResult.setText("0");
+        evaluationDone = true;
+        editTextResult.setText("0");
         editTextEquation.setText("0");
 
     }
@@ -235,16 +236,23 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             if (currentEquation.length() > 1) {
 
                 System.out.println("Back pressed " + editTextEquation.getSelectionEnd());
+                //To change 1.1234E78 -> 1.234
                 if (!editTextEquation.isFocused()) {//editTextEquation.getSelectionEnd() <= 0
-                    editTextEquation.setText(currentEquation.substring(0, currentEquation.length() - 1));
 
-                } else if (editTextEquation.getSelectionEnd() > 0) {
-                    editTextEquation.setText(
-                            currentEquation.substring(0, editTextEquation.getSelectionEnd() - 1)
-                                    +
-                                    currentEquation.substring(editTextEquation.getSelectionEnd(), currentEquation.length()
-                                    ));
+                    currentEquation = currentEquation.substring(0, currentEquation.length() - 1);
+                    if(currentEquation.endsWith("E")) {
+                        currentEquation = currentEquation.substring(0, currentEquation.length() - 1);
+                    }
+                    editTextEquation.setText(currentEquation);
+
                 }
+//                else if (editTextEquation.getSelectionEnd() > 0) {
+//                    editTextEquation.setText(
+//                            currentEquation.substring(0, editTextEquation.getSelectionEnd() - 1)
+//                                    +
+//                                    currentEquation.substring(editTextEquation.getSelectionEnd(), currentEquation.length()
+//                                    ));
+//                }
 
             } else {
                 editTextEquation.setText("");
