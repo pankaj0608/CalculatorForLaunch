@@ -74,8 +74,8 @@
         style="@style/PadButtonStyle.Numeric.Operator"
         app:layout_columnWeight="1"
         android:onClick="calculateMe"
-        android:tag="1/x"
-        android:text="1/x" />
+        android:tag="%"
+        android:text="%" />
 
     <Button
         android:id="@+id/buttonBack"
