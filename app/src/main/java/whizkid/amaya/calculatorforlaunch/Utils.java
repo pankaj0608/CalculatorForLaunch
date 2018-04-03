@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import org.javia.arity.Symbols;
 import org.javia.arity.SyntaxException;
+import org.javia.arity.Util;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,17 @@ public class Utils {
     public static final String MEMORY_SUBTRACT = "m-";
     public static final String MEMORY_READ = "mr";
     public static final String MEMORY_CLEAR = "mc";
+
+    /**
+     * The maximum number of significant digits to display.
+     */
+    private static final int MAX_DIGITS = 12;
+
+    /**
+     * A {@link Double} has at least 17 significant digits, we show the first {@link #MAX_DIGITS}
+     * and use the remaining digits as guard digits to hide floating point precision errors.
+     */
+    private static final int ROUNDING_DIGITS = Math.max(17 - MAX_DIGITS, 0);
 
 
     public static boolean isTagOperator(String tag) {
@@ -94,7 +106,7 @@ public class Utils {
     }
 
 
-    static String correctResult(String result) {
+    static String correctResult_NotRequired(String result) {
         //equation = equation.replace("-", "+-");;
 
         //remove the initil 0s
@@ -127,8 +139,13 @@ public class Utils {
             return evalMe(str.substring(0, str.length() - 1));
         }
 
-        double result = evalMeUsingSymbols(str);
-        return correctResult(Double.toString(result));
+        double resultDouble = evalMeUsingSymbols(str);
+
+        String resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);
+
+//        return correctResult(resultString);
+        return resultString;
+
     }
 
     private static double evalMeUsingSymbols(String equation) {
