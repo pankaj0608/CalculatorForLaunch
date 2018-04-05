@@ -233,11 +233,17 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         String currentEquation = editTextEquation.getText().toString();
 
         if (Utils.INVERSE.equals(tag)
-                || Utils.PERCENTAGE.equals(tag)
                 || Utils.CHANGESIGN.equals(tag)) {
             return;
         }
-        if (Utils.BACK.equals(tag)) {
+        else if(Utils.PERCENTAGE.equals(tag)) {
+            //there should be atleas one numeric number to left of % symbol
+            if(currentEquation.length() == 0 ||
+                    !Utils.isNumeric(currentEquation.substring(currentEquation.length() - 1))) {
+                return;
+            }
+        }
+        else if (Utils.BACK.equals(tag)) {
             if (currentEquation.length() > 1) {
 
                 System.out.println("Back pressed " + editTextEquation.getSelectionEnd());
