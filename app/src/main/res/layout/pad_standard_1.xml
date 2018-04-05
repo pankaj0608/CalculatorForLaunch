@@ -63,7 +63,7 @@
 
     <!--<TableRow>-->
     <Button
-        android:id="@+id/buttonInvert"
+        android:id="@+id/buttonPercentage"
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
         android:tag="%"
