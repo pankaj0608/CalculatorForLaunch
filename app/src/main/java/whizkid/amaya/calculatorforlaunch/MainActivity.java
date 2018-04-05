@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -59,6 +60,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     String operand2;
     String operator;
     boolean evaluationDone = false;
+    int[] resourcesImageButton = {R.id.buttonBack};
+
     int[] resourcesButton =
             {R.id.buttonSignChange,
                     R.id.buttonDecimal,
@@ -77,7 +80,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                     R.id.buttonMemoryMinus,
                     R.id.buttonMemoryRead,
                     R.id.buttonInvert,
-                    R.id.buttonBack,
                     R.id.buttonAllClear,
                     R.id.buttonDivide,
                     R.id.buttonMultiply,
@@ -174,7 +176,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         for (int i = 0; i < resourcesButton.length; i++) {
             ((Button) findViewById(resourcesButton[i])).setTypeface(sansSeifNormal);
         }
-
 
     }
 
