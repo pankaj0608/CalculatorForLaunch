@@ -13,7 +13,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //pankaj added
-        setProperty("archivesBaseName", "CalculatorForLaunch")
+        setProperty("archivesBaseName", "CalculatorLaunch")
 
     }
     buildTypes {

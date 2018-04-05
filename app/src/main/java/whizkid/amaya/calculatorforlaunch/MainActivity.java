@@ -107,6 +107,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         //TODO remove this option for API15
         editTextEquation.setShowSoftInputOnFocus(false);
+        editTextEquation.setMarqueeRepeatLimit(-1);
+        editTextEquation.setHorizontallyScrolling(true);
 
         TextViewCompat.setAutoSizeTextTypeWithDefaults(editTextResult, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
 
@@ -145,10 +147,13 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 String result = "";
 
                 //if (!evaluationDone) {
-                    result = Utils.evalMe(s.toString());
-                    editTextResult.setText(result);
-                    mySelectionValue = mySelectionValue < 0 ? 0 : mySelectionValue;
-                    editTextEquation.setSelection(mySelectionValue, mySelectionValue);
+                result = Utils.evalMe(s.toString());
+                editTextResult.setText(result);
+                //mySelectionValue = mySelectionValue < 0 ? 0 : mySelectionValue;
+                //editTextEquation.setSelection(mySelectionValue, mySelectionValue);
+                //check if it works
+                editTextEquation.setSelection(editTextEquation.getText().length());
+
                 //}
             }
         });
@@ -240,11 +245,11 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 if (!editTextEquation.isFocused()) {//editTextEquation.getSelectionEnd() <= 0
 
                     currentEquation = currentEquation.substring(0, currentEquation.length() - 1);
-                    if(currentEquation.endsWith("E")) {
+                    if (currentEquation.endsWith("E")) {
                         currentEquation = currentEquation.substring(0, currentEquation.length() - 1);
                     }
 
-                    if(currentEquation.length() == 0) {
+                    if (currentEquation.length() == 0) {
                         currentEquation = "0";
                     }
                     editTextEquation.setText(currentEquation);
