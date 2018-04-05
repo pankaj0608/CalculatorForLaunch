@@ -145,16 +145,24 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 mySelectionValue = editTextEquation.getSelectionEnd() - 1;
-//                System.out.println("text after change -1 " +
-//                        editTextEquation.getSelectionStart() + " : " + editTextEquation.getSelectionEnd());
+                System.out.println("beforeTextChanged " +
+                        s.toString()
+                        + " : " + start
+                        + " : " + count
+                        + " : " + after);
 
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                System.out.println("text after change 0 " +
-//                        editTextEquation.getSelectionStart() + " : " + editTextEquation.getSelectionEnd());
-                System.out.println("corrected string 1 " + Utils.correctEquation(s.toString()));
+
+                System.out.println("onTextChanged " +
+                        s.toString()
+                        + " : " + start
+                        + " : " + before
+                        + " : " + count);
+
+
                 String correctedString = Utils.correctEquation(s.toString());
 
                 if (!correctedString.equals(s.toString())) {
@@ -165,19 +173,14 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             @Override
             public void afterTextChanged(Editable s) {
 
-                System.out.println("corrected string 2 " + Utils.correctEquation(s.toString()));
+                System.out.println("afterTextChanged " +
+                        s.toString());
 
                 String result = "";
 
-                //if (!evaluationDone) {
                 result = Utils.evalMe(s.toString());
                 editTextResult.setText(result);
-                //mySelectionValue = mySelectionValue < 0 ? 0 : mySelectionValue;
-                //editTextEquation.setSelection(mySelectionValue, mySelectionValue);
-                //check if it works
                 editTextEquation.setSelection(editTextEquation.getText().length());
-
-                //}
             }
         });
 
@@ -200,8 +203,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             try {
                 System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
                 ((Button) findViewById(resourcesButton[i])).setTypeface(sansSeifNormal);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -264,10 +266,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
             //for changesign find the last index of number and change it's sign
             return;
-        }
-        else if (Utils.CHANGESIGN.equals(tag)) {
+        } else if (Utils.CHANGESIGN.equals(tag)) {
 
-            if(currentEquation == null || currentEquation.trim().length() == 0) {
+            if (currentEquation == null || currentEquation.trim().length() == 0) {
                 return;
             }
 
@@ -284,19 +285,18 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             lastOperatorIndex = lastIndexOfSubtract > lastOperatorIndex ? lastIndexOfSubtract : lastOperatorIndex;
 
             //It means no Operators hence put a - infront of the equation
-            if(lastOperatorIndex == -1) {
+            if (lastOperatorIndex == -1) {
                 currentEquation = "-" + currentEquation;
-                if(currentEquation.startsWith("--")) {
+                if (currentEquation.startsWith("--")) {
                     currentEquation = currentEquation.substring(2);
                 }
-            }
-            else {
+            } else {
                 //replace the last operand with sign change 9x123 , lastOperatorIndex = 1
-                String  inital = currentEquation.substring(0, lastOperatorIndex+1);
-                String end = currentEquation.substring(lastOperatorIndex+1);
+                String inital = currentEquation.substring(0, lastOperatorIndex + 1);
+                String end = currentEquation.substring(lastOperatorIndex + 1);
                 currentEquation = inital
-                                    + "-"
-                                    + end;
+                        + "-"
+                        + end;
             }
             //for changesign find the last index of number and change it's sign
 

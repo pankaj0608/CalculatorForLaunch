@@ -89,7 +89,13 @@ public class Utils {
     static String correctEquation(String equation) {
         //equation = equation.replace("-", "+-");;
 
-        //remove the initil 0s
+        //to remove the first +,  +1 -> 1
+        if (equation != null && equation.length() > 1 &&
+                equation.startsWith(ADD)) {
+            equation = equation.substring(1, equation.length());
+        }
+
+        //remove the initil 0s, 09 -> 9
         if (equation != null && equation.length() == 2 &&
                 equation.startsWith("0")
                 && (Utils.isNumeric(equation.substring(1, 2)))) {
