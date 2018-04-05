@@ -96,10 +96,19 @@ public class Utils {
             equation = equation.substring(1, equation.length());
         }
 
-        equation = equation.replace("**", "*");
-        equation = equation.replace("*/", "/");
-        equation = equation.replace("/*", "*");
-        //equation = equation.replace("++", "+");
+//        equation = equation.replace("**", "*");
+//        equation = equation.replace("*/", "/");
+//        equation = equation.replace("/*", "*");
+        equation = equation.replace("xx", "x");
+        equation = equation.replace("x÷", "÷");
+        equation = equation.replace("÷x", "x");
+        equation = equation.replace("++", "+");
+        equation = equation.replace("---", "+-");
+        equation = equation.replace("--", "+");
+
+        equation = equation.replace("..", ".");
+
+
 
         //remove 2 decimals
         return equation;
