@@ -149,7 +149,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         s.toString()
                         + " : " + start
                         + " : " + count
-                        + " : " + after);
+                        + " : " + after
+                        + " : " + editTextEquation.getSelectionStart()
+                        + " : " + editTextEquation.getSelectionEnd());
 
             }
 
@@ -160,7 +162,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         s.toString()
                         + " : " + start
                         + " : " + before
-                        + " : " + count);
+                        + " : " + count
+                        + " : " + editTextEquation.getSelectionStart()
+                        + " : " + editTextEquation.getSelectionEnd());
 
 
                 String correctedString = Utils.correctEquation(s.toString());
@@ -174,7 +178,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             public void afterTextChanged(Editable s) {
 
                 System.out.println("afterTextChanged " +
-                        s.toString());
+                        s.toString()
+                        + " : " + editTextEquation.getSelectionStart()
+                        + " : " + editTextEquation.getSelectionEnd());
 
                 String result = "";
 
