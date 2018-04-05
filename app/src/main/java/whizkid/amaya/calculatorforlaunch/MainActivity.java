@@ -83,6 +83,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                     R.id.buttonMemoryMinus,
                     R.id.buttonMemoryRead,
                     R.id.buttonInverse,
+                    R.id.buttonPercentage,
                     R.id.buttonAllClear,
                     R.id.buttonDivide,
                     R.id.buttonMultiply,
