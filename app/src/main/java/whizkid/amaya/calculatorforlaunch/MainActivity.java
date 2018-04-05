@@ -260,11 +260,50 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         String tag = view.getTag().toString();
         String currentEquation = editTextEquation.getText().toString();
 
-        if (Utils.INVERSE.equals(tag)
-                || Utils.CHANGESIGN.equals(tag)) {
+        if (Utils.INVERSE.equals(tag)) {
 
             //for changesign find the last index of number and change it's sign
             return;
+        }
+        else if (Utils.CHANGESIGN.equals(tag)) {
+
+            if(currentEquation == null || currentEquation.trim().length() == 0) {
+                return;
+            }
+
+            int lastOperatorIndex = -1;
+            int currentEquationLength = currentEquation.length();
+            int lastIndexOfDivide = currentEquation.lastIndexOf("÷");
+            int lastIndexOfMultiply = currentEquation.lastIndexOf("x");
+            int lastIndexOfAdd = currentEquation.lastIndexOf("+");
+            int lastIndexOfSubtract = currentEquation.lastIndexOf("-");
+
+            lastOperatorIndex = lastIndexOfDivide > lastOperatorIndex ? lastIndexOfDivide : lastOperatorIndex;
+            lastOperatorIndex = lastIndexOfMultiply > lastOperatorIndex ? lastIndexOfMultiply : lastOperatorIndex;
+            lastOperatorIndex = lastIndexOfAdd > lastOperatorIndex ? lastIndexOfAdd : lastOperatorIndex;
+            lastOperatorIndex = lastIndexOfSubtract > lastOperatorIndex ? lastIndexOfSubtract : lastOperatorIndex;
+
+            //It means no Operators hence put a - infront of the equation
+            if(lastOperatorIndex == -1) {
+                currentEquation = "-" + currentEquation;
+                if(currentEquation.startsWith("--")) {
+                    currentEquation = currentEquation.substring(2);
+                }
+            }
+            else {
+                //replace the last operand with sign change 9x123 , lastOperatorIndex = 1
+                String  inital = currentEquation.substring(0, lastOperatorIndex+1);
+                String end = currentEquation.substring(lastOperatorIndex+1);
+                currentEquation = inital
+                                    + "-"
+                                    + end;
+            }
+            //for changesign find the last index of number and change it's sign
+
+            editTextEquation.setText(currentEquation);
+
+            return;
+
         } else if (Utils.PERCENTAGE.equals(tag)) {
             //there should be atleas one numeric number to left of % symbol
             if (currentEquation.length() == 0 ||

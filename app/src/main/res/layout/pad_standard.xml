@@ -145,7 +145,7 @@
     <Button
         android:id="@+id/buttonSignChange"
         style="@style/PadButtonStyle.Numeric"
-        android:onClick="clearAll"
+        android:onClick="calculateMe"
         android:textColor="@color/pankaj_dark_orange"
         android:tag="+/-"
         android:text="+/-"

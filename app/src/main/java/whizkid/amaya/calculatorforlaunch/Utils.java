@@ -108,8 +108,6 @@ public class Utils {
 
         equation = equation.replace("..", ".");
 
-
-
         //remove 2 decimals
         return equation;
     }
