@@ -63,6 +63,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     String operator;
     boolean evaluationDone = false;
     int[] resourcesImageButton = {R.id.buttonBack};
+    int mySelectionValueStart = 0;
+    int mySelectionValueEnd = 0;
 
     int[] resourcesButton =
             {R.id.buttonSignChange,
@@ -140,11 +142,13 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         //Add listener so that we can chek the validity of the equation
         editTextEquation.addTextChangedListener(new TextWatcher() {
-            int mySelectionValue = 0;
+
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                mySelectionValue = editTextEquation.getSelectionEnd() - 1;
+                mySelectionValueStart = editTextEquation.getSelectionStart();
+                mySelectionValueEnd = editTextEquation.getSelectionEnd();
+
                 System.out.println("beforeTextChanged " +
                         s.toString()
                         + " : " + start
@@ -186,7 +190,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
                 result = Utils.evalMe(s.toString());
                 editTextResult.setText(result);
-                editTextEquation.setSelection(editTextEquation.getText().length());
+                //editTextEquation.setSelection(editTextEquation.getText().length());
+                editTextEquation.setSelection(mySelectionValueStart);
             }
         });
 
@@ -359,7 +364,28 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 editTextEquation.setText(tag);
             } else {
                 evaluationDone = false;
-                editTextEquation.setText(editTextEquation.getText().toString() + tag);
+
+                int mySelectionValueStart = editTextEquation.getSelectionStart();
+                int mySelectionValueEnd = editTextEquation.getSelectionEnd();
+
+
+                System.out.println("seeMeTextChanged " + mySelectionValueStart
+                        + " : " + mySelectionValueEnd);
+
+                if(mySelectionValueStart > 0) {
+                    String inital = currentEquation.substring(0, mySelectionValueStart);
+                    String end = currentEquation.substring(mySelectionValueStart);
+                    currentEquation = inital
+                            + tag
+                            + end;
+                }
+                else {
+                    currentEquation = currentEquation + tag;
+                }
+
+                editTextEquation.setText(currentEquation);
+
+                //editTextEquation.setText(editTextEquation.getText().toString() + tag);
             }
 
 
