@@ -128,6 +128,9 @@ public class Utils {
 
     public static String evalMe(String str) {
 
+        str = str.replace("÷", "/");
+        str = str.replace("x", "*");
+
         if (str == null || str.trim().length() == 0) {
             return "0";
         }
@@ -138,9 +141,6 @@ public class Utils {
 
             return evalMe(str.substring(0, str.length() - 1));
         }
-
-        str = str.replace("÷", "/");
-        str = str.replace("x", "*");
 
         double resultDouble = evalMeUsingSymbols(str);
 
