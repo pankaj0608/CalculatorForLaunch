@@ -17,8 +17,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SampleTestActivity" />
-
     </application>
 
 </manifest> <!-- android:windowSoftInputMode="stateAlwaysHidden" -->

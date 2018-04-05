@@ -60,13 +60,28 @@
     <!--</TableRow>-->
 
     <!--<TableRow>-->
-    <Button
+    <!--<Button-->
+        <!--android:id="@+id/buttonSettings"-->
+        <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+        <!--android:onClick="changeSettings"-->
+        <!--android:tag="Setting"-->
+        <!--android:text="Stg"-->
+        <!--app:layout_columnWeight="1" />-->
+
+    <ImageButton
         android:id="@+id/buttonSettings"
         style="@style/PadButtonStyle.Numeric.Operator"
-        android:onClick="changeSettings"
-        android:tag="Setting"
-        android:text="Stg"
-        app:layout_columnWeight="1" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="calculateMe"
+        android:src="@drawable/settings_outline_pankaj"
+        android:adjustViewBounds="false"
+        android:scaleType="centerInside"
+        android:paddingBottom="@dimen/_15sdp"
+        android:tag="BACK"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill"
+        app:layout_rowWeight="1" />
 
     <ImageButton
         android:id="@+id/buttonBack"
