@@ -132,7 +132,7 @@
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
         android:tag="/"
-        android:text="/"
+        android:text="÷"
         app:layout_columnWeight="1" />
     <!--</TableRow>-->
 
@@ -169,7 +169,7 @@
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
         android:tag="*"
-        android:text="*"
+        android:text="x"
         app:layout_columnWeight="1" />
 
     <!--</TableRow>-->
