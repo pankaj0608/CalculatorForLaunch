@@ -372,7 +372,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 System.out.println("seeMeTextChanged " + mySelectionValueStart
                         + " : " + mySelectionValueEnd);
 
-                if(mySelectionValueStart > 0) {
+                if(mySelectionValueStart > 0 ) {
                     String inital = currentEquation.substring(0, mySelectionValueStart);
                     String end = currentEquation.substring(mySelectionValueStart);
                     currentEquation = inital

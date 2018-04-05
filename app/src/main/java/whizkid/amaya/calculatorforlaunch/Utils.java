@@ -111,8 +111,12 @@ public class Utils {
         equation = equation.replace("x+", "x");
         equation = equation.replace("÷+", "÷");
         equation = equation.replace("++", "+");
-        equation = equation.replace("---", "+-");
-        equation = equation.replace("--", "+");
+        equation = equation.replace("+÷", "+");
+        equation = equation.replace("+x", "+");
+        equation = equation.replace("---", "-");
+       // equation = equation.replace("--", "+");
+        equation = equation.replace("-÷", "-");
+        equation = equation.replace("-x", "-");
         equation = equation.replace("+-", "-");
         equation = equation.replace("-+", "-");
 
