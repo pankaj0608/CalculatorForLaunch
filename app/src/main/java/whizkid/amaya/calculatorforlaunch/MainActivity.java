@@ -107,8 +107,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         //TODO remove this option for API15
         editTextEquation.setShowSoftInputOnFocus(false);
-        editTextEquation.setMarqueeRepeatLimit(-1);
-        editTextEquation.setHorizontallyScrolling(true);
 
         TextViewCompat.setAutoSizeTextTypeWithDefaults(editTextResult, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
 
@@ -234,6 +232,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         if (Utils.INVERSE.equals(tag)
                 || Utils.CHANGESIGN.equals(tag)) {
+
+            //for changesign find the last index of number and change it's sign
             return;
         }
         else if(Utils.PERCENTAGE.equals(tag)) {
