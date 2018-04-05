@@ -243,7 +243,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 return;
             }
         }
-        else if (Utils.BACK.equals(tag)) {
+
+        if (Utils.BACK.equals(tag)) {
             if (currentEquation.length() > 1) {
 
                 System.out.println("Back pressed " + editTextEquation.getSelectionEnd());
