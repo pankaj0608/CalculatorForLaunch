@@ -139,6 +139,9 @@ public class Utils {
             return evalMe(str.substring(0, str.length() - 1));
         }
 
+        str = str.replace("÷", "/");
+        str = str.replace("x", "*");
+
         double resultDouble = evalMeUsingSymbols(str);
 
         String resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);

@@ -131,7 +131,7 @@
         android:id="@+id/buttonDivide"
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
-        android:tag="/"
+        android:tag="÷"
         android:text="÷"
         app:layout_columnWeight="1" />
     <!--</TableRow>-->
@@ -168,7 +168,7 @@
         android:id="@+id/buttonMultiply"
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
-        android:tag="*"
+        android:tag="x"
         android:text="x"
         app:layout_columnWeight="1" />
 
