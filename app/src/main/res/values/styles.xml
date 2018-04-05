@@ -68,7 +68,7 @@
     <style name="PadButtonStyle.Numeric.Operator" parent="PadButtonStyle.Numeric">
         <item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>
         <!--<item name="android:textColor">@color/pankaj_pad_button_text_color</item>-->
-        <item name="android:background">@color/pankaj_dark_pink</item>
+        <item name="android:background">@color/pankaj_dark_orange</item>
     </style>
 
     <style name="PadButtonStyle.Numeric.Memory" parent="PadButtonStyle.Numeric.Operator">

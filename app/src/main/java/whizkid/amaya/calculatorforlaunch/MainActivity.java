@@ -10,6 +10,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -79,19 +81,38 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                     R.id.buttonMemoryPlus,
                     R.id.buttonMemoryMinus,
                     R.id.buttonMemoryRead,
-                    R.id.buttonInvert,
+                    R.id.buttonInverse,
                     R.id.buttonAllClear,
                     R.id.buttonDivide,
                     R.id.buttonMultiply,
                     R.id.buttonSubtract,
                     R.id.buttonAdd,
-                    R.id.buttonEquals};
+                    R.id.buttonEquals,
+                    R.id.buttonSettings};
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.calculator_menu, menu);
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.MyTheme:
+                System.out.println("clicked " + item.getTitle());
+                return true;
+            case R.id.MyHelp:
+                System.out.println("clicked " + item.getTitle());
+                return true;
+            default:
+                System.out.println("MyTheme clicked" + item.toString());
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +195,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         editTextMemory.setTypeface(sansSeifCondensed);
 
         for (int i = 0; i < resourcesButton.length; i++) {
+            System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
             ((Button) findViewById(resourcesButton[i])).setTypeface(sansSeifNormal);
         }
 
@@ -236,10 +258,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
             //for changesign find the last index of number and change it's sign
             return;
-        }
-        else if(Utils.PERCENTAGE.equals(tag)) {
+        } else if (Utils.PERCENTAGE.equals(tag)) {
             //there should be atleas one numeric number to left of % symbol
-            if(currentEquation.length() == 0 ||
+            if (currentEquation.length() == 0 ||
                     !Utils.isNumeric(currentEquation.substring(currentEquation.length() - 1))) {
                 return;
             }

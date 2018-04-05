@@ -20,7 +20,8 @@
     android:layout_height="wrap_content"
     android:background="@color/pankaj_pad_numeric_background_color_white"
     app:columnCount="4"
-    app:orientation="horizontal">
+    app:orientation="horizontal"
+    app:rowCount="1">
 
     <!--style="@style/PadButtonStyle.Numeric"-->
 
@@ -59,14 +60,42 @@
 
     <!--</TableRow>-->
 
+
     <!--<TableRow>-->
     <Button
-        android:id="@+id/buttonSettings"
+        android:id="@+id/buttonInvert"
         style="@style/PadButtonStyle.Numeric.Operator"
-        android:onClick="changeSettings"
-        android:tag="Setting"
-        android:text="Stg"
+        android:onClick="calculateMe"
+        android:tag="%"
+        android:text="%"
         app:layout_columnWeight="1" />
+
+
+
+    <!--<Button-->
+    <!--android:id="@+id/buttonBack"-->
+    <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+    <!--app:layout_columnWeight="1"-->
+    <!--android:onClick="calculateMe"-->
+    <!--android:tag="BACK"-->
+    <!--android:text="Bk" />-->
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/buttonBack"-->
+        <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+        <!--android:onClick="calculateMe"-->
+        <!--android:src="@drawable/ic_backspace_white_mid_48dp"-->
+        <!--android:adjustViewBounds="false"-->
+        <!--android:padding="0dp"-->
+        <!--android:tag="BACK"-->
+        <!--app:layout_columnWeight="1"-->
+        <!--app:layout_gravity="fill"-->
+        <!--app:layout_rowWeight="1"-->
+        <!--android:layout_width="60dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:scaleType="fitCenter"/>-->
 
     <ImageButton
         android:id="@+id/buttonBack"
@@ -103,45 +132,7 @@
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
         android:tag="/"
-        android:text="÷"
-        app:layout_columnWeight="1" />
-    <!--</TableRow>-->
-
-
-    <!--<TableRow>-->
-    <Button
-        android:id="@+id/buttonPercentage"
-        style="@style/PadButtonStyle.Numeric"
-        android:textColor="@color/pankaj_dark_orange"
-        android:onClick="calculateMe"
-        android:tag="%"
-        android:text="%"
-        app:layout_columnWeight="1" />
-
-    <Button
-        android:id="@+id/buttonInverse"
-        style="@style/PadButtonStyle.Numeric"
-        android:onClick="calculateMe"
-        android:textColor="@color/pankaj_dark_orange"
-        android:tag="1/x%"
-        android:text="1/x"
-        app:layout_columnWeight="1" />
-
-    <Button
-        android:id="@+id/buttonSignChange"
-        style="@style/PadButtonStyle.Numeric"
-        android:onClick="clearAll"
-        android:textColor="@color/pankaj_dark_orange"
-        android:tag="+/-"
-        android:text="+/-"
-        app:layout_columnWeight="1" />
-
-    <Button
-        android:id="@+id/buttonMultiply"
-        style="@style/PadButtonStyle.Numeric.Operator"
-        android:onClick="calculateMe"
-        android:tag="*"
-        android:text="×"
+        android:text="/"
         app:layout_columnWeight="1" />
     <!--</TableRow>-->
 
@@ -174,11 +165,11 @@
         app:layout_columnWeight="1" />
 
     <Button
-        android:id="@+id/buttonSubtract"
+        android:id="@+id/buttonMultiply"
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
-        android:tag="-"
-        android:text="-"
+        android:tag="*"
+        android:text="*"
         app:layout_columnWeight="1" />
 
     <!--</TableRow>-->
@@ -209,11 +200,11 @@
         app:layout_columnWeight="1" />
 
     <Button
-        android:id="@+id/buttonAdd"
+        android:id="@+id/buttonSubtract"
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
-        android:tag="+"
-        android:text="+"
+        android:tag="-"
+        android:text="-"
         app:layout_columnWeight="1" />
 
     <!--<TableRow>-->
@@ -245,27 +236,25 @@
         app:layout_columnWeight="1" />
 
     <Button
-        android:id="@+id/buttonEquals"
-        style="@style/PadButtonStyle.Numeric.Equals"
+        android:id="@+id/buttonAdd"
+        style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
-        android:tag="="
-        android:text="="
-        app:layout_columnWeight="1"
-        app:layout_gravity="fill"
-        app:layout_rowSpan="2"/>
+        android:tag="+"
+        android:text="+"
+        app:layout_columnWeight="1" />
 
 
     <!--<TableRow>-->
 
     <!--<TableRow>-->
 
-    <!--<Button-->
-        <!--android:id="@+id/button00"-->
-        <!--style="@style/PadButtonStyle.Numeric"-->
-        <!--android:onClick="calculateMe"-->
-        <!--android:tag="0"-->
-        <!--android:text="00"-->
-        <!--app:layout_columnWeight="1" />-->
+    <Button
+        android:id="@+id/buttonSignChange"
+        style="@style/PadButtonStyle.Numeric"
+        android:onClick="calculateMe"
+        android:tag="+/-"
+        android:text="+/-"
+        app:layout_columnWeight="1" />
 
     <Button
         android:id="@+id/button0"
@@ -273,8 +262,7 @@
         android:onClick="calculateMe"
         android:tag="0"
         android:text="0"
-        app:layout_columnWeight="1"
-        app:layout_columnSpan="2"/>
+        app:layout_columnWeight="1" />
 
     <Button
         android:id="@+id/buttonDecimal"
@@ -284,12 +272,12 @@
         android:text="."
         app:layout_columnWeight="1" />
 
-    <!--<Button-->
-        <!--android:id="@+id/buttonEquals"-->
-        <!--style="@style/PadButtonStyle.Numeric.Equals"-->
-        <!--android:onClick="calculateMe"-->
-        <!--android:tag="="-->
-        <!--android:text="="-->
-        <!--app:layout_columnWeight="1" />-->
+    <Button
+        android:id="@+id/buttonEquals"
+        style="@style/PadButtonStyle.Numeric.Equals"
+        android:onClick="calculateMe"
+        android:tag="="
+        android:text="="
+        app:layout_columnWeight="1" />
 
 </android.support.v7.widget.GridLayout>
