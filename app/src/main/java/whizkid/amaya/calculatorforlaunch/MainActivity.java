@@ -68,6 +68,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             {R.id.buttonSignChange,
                     R.id.buttonDecimal,
                     R.id.button0,
+                    R.id.button00,
                     R.id.button1,
                     R.id.button2,
                     R.id.button3,
@@ -195,8 +196,13 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         editTextMemory.setTypeface(sansSeifCondensed);
 
         for (int i = 0; i < resourcesButton.length; i++) {
-            System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
-            ((Button) findViewById(resourcesButton[i])).setTypeface(sansSeifNormal);
+            try {
+                System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
+                ((Button) findViewById(resourcesButton[i])).setTypeface(sansSeifNormal);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }
