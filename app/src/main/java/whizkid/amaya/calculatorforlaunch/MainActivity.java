@@ -386,9 +386,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         } else if (Utils.EVALUATE.equals(tag)) {
             //editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
             evaluationDone = true;
+            mySelectionAdjustment = 0;
+            mySelectionValueEnd = 0;
+            mySelectionValueStart = 0;
+            editTextEquation.clearFocus();
             editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
             //editTextResult.setText(editTextEquation.getText().toString());
-            editTextEquation.clearFocus();
         } else {
             if (evaluationDone && Utils.isNumeric(tag)) {
                 evaluationDone = false;
