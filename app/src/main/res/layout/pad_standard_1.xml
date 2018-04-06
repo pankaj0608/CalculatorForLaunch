@@ -124,7 +124,7 @@
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="clearAll"
         android:tag="ALLCLEAR"
-        android:text="AC"
+        android:text="C"
         app:layout_columnWeight="1" />
 
     <Button

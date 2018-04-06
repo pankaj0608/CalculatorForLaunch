@@ -177,11 +177,11 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         + " : " + editTextEquation.getSelectionEnd());
 
 
-                String correctedString = Utils.correctEquation(s.toString());
-
-                if (!correctedString.equals(s.toString())) {
-                    editTextEquation.setText(correctedString);
-                }
+//                String correctedString = Utils.correctEquation(s.toString());
+//
+//                if (!correctedString.equals(s.toString())) {
+//                    editTextEquation.setText(correctedString);
+//                }
             }
 
             @Override
@@ -203,7 +203,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         && (mySelectionValueStart + mySelectionAdjustment >= 0)) {
                     editTextEquation.setSelection(mySelectionValueStart + mySelectionAdjustment);
                 } else {
-                    editTextEquation.setSelection(mySelectionValueStart);
+                    if(editTextEquation.isFocused()) {
+                        editTextEquation.setSelection(mySelectionValueStart);
+                    }
+                    else {
+                        editTextEquation.setSelection(0);
+                    }
                 }
             }
         });
@@ -266,7 +271,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             editTextMemory.setText(memoryCurrent);
         } else if (view.getTag().equals(Utils.MEMORY_READ) && Utils.isNotNullString(memoryCurrent)) {
             editTextEquation.setText(memoryCurrent);
-            editTextResult.setText(memoryCurrent);
         }
 
         //save the memotry in preferences
@@ -277,9 +281,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     public void clearAll(View view) {
         evaluationDone = true;
+        mySelectionAdjustment = 0;
+        mySelectionValueEnd = 0;
+        mySelectionValueStart = 0;
+        editTextEquation.clearFocus();
         editTextResult.setText("0");
         editTextEquation.setText("0");
-        editTextEquation.clearFocus();
     }
 
     public void calculateMe(View view) {
@@ -362,9 +369,11 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                     System.out.println("Back seeMeTextChanged " + mySelectionValueStart
                             + " : " + mySelectionValueEnd);
 
-                    String inital = currentEquation.substring(0, mySelectionValueStart-1);
-                    String end = currentEquation.substring(mySelectionValueStart);
-                    currentEquation = inital + end;
+                    if (mySelectionValueStart > 0) {
+                        String inital = currentEquation.substring(0, mySelectionValueStart - 1);
+                        String end = currentEquation.substring(mySelectionValueStart);
+                        currentEquation = inital + end;
+                    }
 
                     editTextEquation.setText(currentEquation);
                 }
@@ -394,17 +403,22 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 System.out.println("seeMeTextChanged " + mySelectionValueStart
                         + " : " + mySelectionValueEnd);
 
-                if (mySelectionValueStart > 0) {
-                    String inital = currentEquation.substring(0, mySelectionValueStart);
-                    String end = currentEquation.substring(mySelectionValueStart);
-                    currentEquation = inital
-                            + tag
-                            + end;
-                } else {
+                if (!editTextEquation.isFocused()) {
                     currentEquation = currentEquation + tag;
+                } else {
+                    if (mySelectionValueStart > 0) {
+                        String inital = currentEquation.substring(0, mySelectionValueStart);
+                        String end = currentEquation.substring(mySelectionValueStart);
+                        currentEquation = inital
+                                + tag
+                                + end;
+                    } else if (mySelectionValueStart == 0) {
+                        currentEquation = tag + currentEquation;
+                    }
+
                 }
 
-                editTextEquation.setText(currentEquation);
+                editTextEquation.setText(Utils.correctEquation(currentEquation));
 
                 //editTextEquation.setText(editTextEquation.getText().toString() + tag);
             }

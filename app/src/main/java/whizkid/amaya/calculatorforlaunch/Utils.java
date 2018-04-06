@@ -89,20 +89,7 @@ public class Utils {
     static String correctEquation(String equation) {
         //equation = equation.replace("-", "+-");;
 
-        //to remove the first +,  +1 -> 1
-        if (equation != null && equation.length() > 1 &&
-                equation.startsWith(ADD)) {
-            equation = equation.substring(1, equation.length());
-        }
-
-        //remove the initil 0s, 09 -> 9
-        if (equation != null && equation.length() == 2 &&
-                equation.startsWith("0")
-                && (Utils.isNumeric(equation.substring(1, 2)))) {
-            equation = equation.substring(1, equation.length());
-        }
-
-//        equation = equation.replace("**", "*");
+        //        equation = equation.replace("**", "*");
 //        equation = equation.replace("*/", "/");
 //        equation = equation.replace("/*", "*");
         equation = equation.replace("xx", "x");
@@ -114,13 +101,35 @@ public class Utils {
         equation = equation.replace("+÷", "+");
         equation = equation.replace("+x", "+");
         equation = equation.replace("---", "-");
-       // equation = equation.replace("--", "+");
+        // equation = equation.replace("--", "+");
         equation = equation.replace("-÷", "-");
         equation = equation.replace("-x", "-");
         equation = equation.replace("+-", "-");
         equation = equation.replace("-+", "-");
 
         equation = equation.replace("..", ".");
+
+
+
+        //to remove the first +,  +1 -> 1
+        if (equation != null && equation.length() > 1 &&
+                (equation.startsWith("÷") || equation.startsWith("x")
+                        || equation.startsWith("+") || equation.startsWith(PERCENTAGE))) {
+            equation = equation.substring(1, equation.length());
+        }
+
+        //to remove the first --,  --1 -> 1
+        if (equation != null && equation.length() > 2 &&
+                equation.startsWith("--")) {
+            equation = equation.substring(2, equation.length());
+        }
+
+        //remove the initil 0s, 09 -> 9
+        if (equation != null && equation.length() == 2 &&
+                equation.startsWith("0")
+                && (Utils.isNumeric(equation.substring(1, 2)))) {
+            equation = equation.substring(1, equation.length());
+        }
 
         //remove 2 decimals
         return equation;
@@ -131,13 +140,13 @@ public class Utils {
         //equation = equation.replace("-", "+-");;
 
         //remove the initil 0s
-        if (result != null && result.trim().length() == 0 ) {
+        if (result != null && result.trim().length() == 0) {
             return "0";
         }
 
 
-        if(result.endsWith(".0") && result.length() > ".0".length()) {
-            result = result.substring(0,result.length()-2);
+        if (result.endsWith(".0") && result.length() > ".0".length()) {
+            result = result.substring(0, result.length() - 2);
         }
         return result;
     }
@@ -177,8 +186,7 @@ public class Utils {
         try {
             Symbols symbols = new Symbols();
             return symbols.eval(equation);
-        }
-        catch (SyntaxException s) {
+        } catch (SyntaxException s) {
             return Double.valueOf(null);
         }
 
@@ -226,8 +234,6 @@ public class Utils {
      * @param equation
      * @return
      */
-
-
 
 
 /////////////////
