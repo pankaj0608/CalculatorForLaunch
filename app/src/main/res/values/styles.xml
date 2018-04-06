@@ -81,7 +81,7 @@
     <style name="PadButtonStyle.Numeric.Equals" parent="PadButtonStyle.Numeric">
         <item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>
         <!--<item name="android:textColor">@color/pankaj_pad_button_text_color</item>-->
-        <item name="android:background">@color/pankaj_dark_orange</item>
+        <item name="android:background">@color/pankaj_dark_less_bright_orange</item>
     </style>
 
 
