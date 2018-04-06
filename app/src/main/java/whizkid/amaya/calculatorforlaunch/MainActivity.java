@@ -216,10 +216,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         && (mySelectionValueStart + mySelectionAdjustment >= 0)) {
                     editTextEquation.setSelection(mySelectionValueStart + mySelectionAdjustment);
                 } else {
-                    if(editTextEquation.isFocused()) {
+                    if (editTextEquation.isFocused()) {
                         editTextEquation.setSelection(mySelectionValueStart);
-                    }
-                    else {
+                    } else {
                         editTextEquation.setSelection(0);
                     }
                 }
@@ -305,6 +304,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     public void calculateMe(View view) {
         String tag = view.getTag().toString();
         String currentEquation = editTextEquation.getText().toString();
+        String currentEquationCopy = new String(editTextEquation.getText().toString());
 
         if (Utils.INVERSE.equals(tag)) {
 
@@ -343,6 +343,54 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         + end;
             }
             //for changesign find the last index of number and change it's sign
+
+            editTextEquation.setText(Utils.correctEquation(currentEquation));
+
+            return;
+
+        }else if (Utils.DECIMAL.equals(tag) && !editTextEquation.isFocused()) {
+
+            if (currentEquation == null || currentEquation.trim().length() == 0) {
+                return;
+            }
+
+            int lastOperatorIndex = -1;
+            int currentEquationLength = currentEquation.length();
+            int lastIndexOfDivide = currentEquation.lastIndexOf("÷");
+            int lastIndexOfMultiply = currentEquation.lastIndexOf("x");
+            int lastIndexOfAdd = currentEquation.lastIndexOf("+");
+            int lastIndexOfSubtract = currentEquation.lastIndexOf("-");
+            int lastIndexOfPercentage = currentEquation.lastIndexOf("%");
+
+            lastOperatorIndex = lastIndexOfDivide > lastOperatorIndex ? lastIndexOfDivide : lastOperatorIndex;
+            lastOperatorIndex = lastIndexOfMultiply > lastOperatorIndex ? lastIndexOfMultiply : lastOperatorIndex;
+            lastOperatorIndex = lastIndexOfAdd > lastOperatorIndex ? lastIndexOfAdd : lastOperatorIndex;
+            lastOperatorIndex = lastIndexOfSubtract > lastOperatorIndex ? lastIndexOfSubtract : lastOperatorIndex;
+
+            //It means no Operators hence put a - infront of the equation
+            if (lastOperatorIndex == -1) {
+                try{
+                    //if exception in arsing then it means that decimal is illegal
+                    Double.parseDouble(currentEquation + tag);
+                    currentEquation = currentEquation + tag;
+                }
+                catch (Exception  e) {
+                    e.printStackTrace();
+                }
+            } else {
+                //replace the last operand with sign change 9x123 , lastOperatorIndex = 1
+                String inital = currentEquation.substring(0, lastOperatorIndex + 1);
+                String end = currentEquation.substring(lastOperatorIndex + 1);
+
+                try{
+                    //if exception in arsing then it means that decimal is illegal
+                    Double.parseDouble(end + tag);
+                    currentEquation = currentEquation + tag;
+                }
+                catch (Exception  e) {
+                    e.printStackTrace();
+                }
+            }
 
             editTextEquation.setText(Utils.correctEquation(currentEquation));
 
@@ -432,6 +480,14 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         currentEquation = tag + currentEquation;
                     }
 
+                }
+
+                //If there is an issue with the Decimal then keep the old String
+
+                try {
+                    String testResult = Utils.evalMe(currentEquation);
+                } catch (Exception e) {
+                    currentEquation = new String(currentEquationCopy);
                 }
 
                 editTextEquation.setText(Utils.correctEquation(currentEquation));
