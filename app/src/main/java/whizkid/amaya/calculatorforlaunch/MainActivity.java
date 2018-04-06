@@ -65,6 +65,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     int[] resourcesImageButton = {R.id.buttonBack};
     int mySelectionValueStart = 0;
     int mySelectionValueEnd = 0;
+    int mySelectionAdjustment = 0;
 
     int[] resourcesButton =
             {R.id.buttonSignChange,
@@ -148,7 +149,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 mySelectionValueStart = editTextEquation.getSelectionStart();
                 mySelectionValueEnd = editTextEquation.getSelectionEnd();
-
+                mySelectionAdjustment = 0;
+                if (after > count) {
+                    mySelectionAdjustment = 1;
+                } else {
+                    mySelectionAdjustment = -1;
+                }
                 System.out.println("beforeTextChanged " +
                         s.toString()
                         + " : " + start
@@ -191,7 +197,14 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 result = Utils.evalMe(s.toString());
                 editTextResult.setText(result);
                 //editTextEquation.setSelection(editTextEquation.getText().length());
-                editTextEquation.setSelection(mySelectionValueStart);
+
+                //minimum valid value of selctionStart is 0
+                if ((mySelectionValueStart + mySelectionAdjustment) <= s.toString().length()
+                        && (mySelectionValueStart + mySelectionAdjustment >= 0)) {
+                    editTextEquation.setSelection(mySelectionValueStart + mySelectionAdjustment);
+                } else {
+                    editTextEquation.setSelection(mySelectionValueStart);
+                }
             }
         });
 
@@ -266,7 +279,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         evaluationDone = true;
         editTextResult.setText("0");
         editTextEquation.setText("0");
-
+        editTextEquation.clearFocus();
     }
 
     public void calculateMe(View view) {
@@ -340,17 +353,26 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                     }
                     editTextEquation.setText(currentEquation);
 
+                } else if (mySelectionValueStart >= 0) {
+
+                    int mySelectionValueStart = editTextEquation.getSelectionStart();
+                    int mySelectionValueEnd = editTextEquation.getSelectionEnd();
+
+
+                    System.out.println("Back seeMeTextChanged " + mySelectionValueStart
+                            + " : " + mySelectionValueEnd);
+
+                    String inital = currentEquation.substring(0, mySelectionValueStart-1);
+                    String end = currentEquation.substring(mySelectionValueStart);
+                    currentEquation = inital + end;
+
+                    editTextEquation.setText(currentEquation);
                 }
-//                else if (editTextEquation.getSelectionEnd() > 0) {
-//                    editTextEquation.setText(
-//                            currentEquation.substring(0, editTextEquation.getSelectionEnd() - 1)
-//                                    +
-//                                    currentEquation.substring(editTextEquation.getSelectionEnd(), currentEquation.length()
-//                                    ));
-//                }
 
             } else {
                 editTextEquation.setText("0");
+                editTextEquation.clearFocus();
+
             }
         } else if (Utils.EVALUATE.equals(tag)) {
             //editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
@@ -372,14 +394,13 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 System.out.println("seeMeTextChanged " + mySelectionValueStart
                         + " : " + mySelectionValueEnd);
 
-                if(mySelectionValueStart > 0 ) {
+                if (mySelectionValueStart > 0) {
                     String inital = currentEquation.substring(0, mySelectionValueStart);
                     String end = currentEquation.substring(mySelectionValueStart);
                     currentEquation = inital
                             + tag
                             + end;
-                }
-                else {
+                } else {
                     currentEquation = currentEquation + tag;
                 }
 
@@ -389,7 +410,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             }
 
 
-            editTextEquation.clearFocus();
+            //editTextEquation.clearFocus();
         }
 
         // editTextResult.setText(Utils.evalMe(editTextEquation.getText().toString()));
