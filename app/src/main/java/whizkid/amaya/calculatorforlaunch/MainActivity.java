@@ -331,7 +331,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             }
             //for changesign find the last index of number and change it's sign
 
-            editTextEquation.setText(currentEquation);
+            editTextEquation.setText(Utils.correctEquation(currentEquation));
 
             return;
 
