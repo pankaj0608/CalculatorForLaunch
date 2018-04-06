@@ -48,22 +48,13 @@ public class Utils {
                 || MULTIPLY.equals(tag) || DIVIDE.equals(tag);
     }
 
-    public static boolean isTagEvaluateOperator(String tag) {
-        return EVALUATE.equals(tag);
-    }
 
-    public static boolean isItClearTagOperator(String tag) {
-        return ALL_CLEAR.equals(tag);
-    }
-
-
-    public static String[] splitMyString(String problem) {
-        String[] tokens = problem.split("\\+|\\-|\\*|\\/");
-
-        return tokens;
-    }
-
-
+    /**
+     *
+     * @param str
+     * @param searchChars
+     * @return
+     */
     public static boolean containsAnyTagAlready(String str, String searchChars) {
         if (searchChars == null) {
             return false;
@@ -71,6 +62,12 @@ public class Utils {
         return containsAny(str, searchChars.toCharArray());
     }
 
+    /**
+     *
+     * @param str
+     * @param searchChars
+     * @return
+     */
     public static boolean containsAny(String str, char[] searchChars) {
         if (str == null || str.length() == 0 || searchChars == null || searchChars.length == 0) {
             return false;
@@ -86,12 +83,11 @@ public class Utils {
         return false;
     }
 
+    /**
+     * @param equation
+     * @return
+     */
     static String correctEquation(String equation) {
-        //equation = equation.replace("-", "+-");;
-
-        //        equation = equation.replace("**", "*");
-//        equation = equation.replace("*/", "/");
-//        equation = equation.replace("/*", "*");
         equation = equation.replace("xx", "x");
         equation = equation.replace("x÷", "÷");
         equation = equation.replace("÷x", "x");
@@ -108,7 +104,6 @@ public class Utils {
         equation = equation.replace("-+", "-");
 
         equation = equation.replace("..", ".");
-
 
 
         //to remove the first +,  +1 -> 1
@@ -136,26 +131,10 @@ public class Utils {
     }
 
 
-    static String correctResult_NotRequired(String result) {
-        //equation = equation.replace("-", "+-");;
-
-        //remove the initil 0s
-        if (result != null && result.trim().length() == 0) {
-            return "0";
-        }
-
-
-        if (result.endsWith(".0") && result.length() > ".0".length()) {
-            result = result.substring(0, result.length() - 2);
-        }
-        return result;
-    }
-
-
-    static String inverselMe(String equation) {
-        return "";
-    }
-
+    /**
+     * @param str
+     * @return
+     */
     public static String evalMe(String str) {
 
         str = str.replace("÷", "/");
@@ -176,11 +155,14 @@ public class Utils {
 
         String resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);
 
-//        return correctResult(resultString);
         return resultString;
 
     }
 
+    /**
+     * @param equation
+     * @return
+     */
     private static double evalMeUsingSymbols(String equation) {
 
         try {
@@ -193,6 +175,11 @@ public class Utils {
     }
 
 
+    /**
+     * @param key
+     * @param sharedPreferences
+     * @return
+     */
     public static String getValueFromSharedPreference(
             final String key, SharedPreferences sharedPreferences) {
 
@@ -201,6 +188,11 @@ public class Utils {
     }
 
 
+    /**
+     * @param key
+     * @param value
+     * @param sharedPreferences
+     */
     public static void putStringInSharedPreference(final String key, final String value,
                                                    SharedPreferences sharedPreferences) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -209,16 +201,28 @@ public class Utils {
     }
 
 
+    /**
+     * @param val
+     * @return
+     */
     static boolean isNotNullString(String val) {
 
         return val != null && val.trim().length() > 0;
     }
 
+    /**
+     * @param editText
+     * @return
+     */
     static boolean isEditTextEmpty(EditText editText) {
 
         return false;
     }
 
+    /**
+     * @param val
+     * @return
+     */
     static boolean isNumeric(String val) {
 
         try {
@@ -229,207 +233,4 @@ public class Utils {
         }
     }
 
-    /**
-     * Computes the file
-     * @param equation
-     * @return
-     */
-
-
-/////////////////
-
-
-//    I've written this eval method for arithmetic expressions to answer this question.
-//    It does addition, subtraction, multiplication, division, exponentiation (using the ^ symbol), a
-//    nd a few basic functions like sqrt. It supports grouping using (...), and it gets the operator
-//    precedence and associativity rules correct.
-//
-//    https://stackoverflow.com/questions/3422673/evaluating-a-math-expression-given-in-string-form
-
-//    public static double evalMeDouble_This_Also_Has_Issues(final String str) {
-//
-//        return new Object() {
-//            int pos = -1, ch;
-//
-//            void nextChar() {
-//                ch = (++pos < str.length()) ? str.charAt(pos) : -1;
-//            }
-//
-//            boolean eat(int charToEat) {
-//                while (ch == ' ') nextChar();
-//                if (ch == charToEat) {
-//                    nextChar();
-//                    return true;
-//                }
-//                return false;
-//            }
-//
-//            double parse() {
-//                nextChar();
-//                double x = parseExpression();
-//                if (pos < str.length()) throw new RuntimeException("Unexpected: " + (char) ch);
-//                return x;
-//            }
-//
-//            // Grammar:
-//            // expression = term | expression `+` term | expression `-` term
-//            // term = factor | term `*` factor | term `/` factor
-//            // factor = `+` factor | `-` factor | `(` expression `)`
-//            //        | number | functionName factor | factor `^` factor
-//
-//            double parseExpression() {
-//                double x = parseTerm();
-//                for (; ; ) {
-//                    if (eat('+')) x += parseTerm(); // addition
-//                    else if (eat('-')) x -= parseTerm(); // subtraction
-//                    else return x;
-//                }
-//            }
-//
-//            double parseTerm() {
-//                double x = parseFactor();
-//                for (; ; ) {
-//                    if (eat('*')) x *= parseFactor(); // multiplication
-//                    else if (eat('/')) x /= parseFactor(); // division
-//                    else return x;
-//                }
-//            }
-//
-//            double parseFactor() {
-//                if (eat('+')) return parseFactor(); // unary plus
-//                if (eat('-')) return -parseFactor(); // unary minus
-//
-//                double x;
-//                int startPos = this.pos;
-//                if (eat('(')) { // parentheses
-//                    x = parseExpression();
-//                    eat(')');
-//                } else if ((ch >= '0' && ch <= '9') || ch == '.') { // numbers
-//                    while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
-//                    x = Double.parseDouble(str.substring(startPos, this.pos));
-//                } else if (ch >= 'a' && ch <= 'z') { // functions
-//                    while (ch >= 'a' && ch <= 'z') nextChar();
-//                    String func = str.substring(startPos, this.pos);
-//                    x = parseFactor();
-//                    if (func.equals("sqrt")) x = Math.sqrt(x);
-//                    else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
-//                    else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
-//                    else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
-//                    else throw new RuntimeException("Unknown function: " + func);
-//                } else {
-//                    throw new RuntimeException("Unexpected: " + (char) ch);
-//                }
-//
-//                if (eat('^')) x = Math.pow(x, parseFactor()); // exponentiation
-//
-//                return x;
-//            }
-//        }.parse();
-//    }
-//
-//
-//    static String evalMe_Old_With_Issues(String equation) {
-//
-//        System.out.println("equation " + equation);
-//
-//        if (equation == null || equation.trim().length() == 0) {
-//            return "";
-//        }
-//
-//        if (equation.endsWith(Utils.DIVIDE) || equation.endsWith(Utils.MULTIPLY)
-//                || equation.endsWith(Utils.ADD) || equation.endsWith(Utils.SUBTRACT)) {
-//
-//            return evalMe(equation.substring(0, equation.length() - 1));
-//        }
-//
-//        double result = 0.0;
-//
-//        //pankaj added
-//        equation = equation.replace("--", "+");
-//
-//        String noMinus = equation.replace("-", "+-");
-////        String[] byPluses = noMinus.split("\\+");
-//
-//        //pankaj added remove ""
-//        String[] byPluses = removeBlankEnteries(noMinus.split("\\+"));
-//
-//        System.out.println("byPluses.length " + byPluses.length);
-//
-//        for (String multipl : byPluses) {
-//            String[] byMultipl = multipl.split("\\*");
-//            double multiplResult = 1.0;
-//            for (String operand : byMultipl) {
-//                //pankaj added
-//                if (operand == null || operand.trim().equals("")) {
-//                    continue;
-//                }
-//                if (operand.contains("/")) {
-//                    String[] division = operand.split("\\/");
-//                    double divident = Double.parseDouble(division[0]);
-//                    for (int i = 1; i < division.length; i++) {
-//                        divident /= Double.parseDouble(division[i]);
-//                    }
-//                    multiplResult *= divident;
-//                } else {
-//                    multiplResult *= Double.parseDouble(operand);
-//                }
-//            }
-//            result += multiplResult;
-//        }
-//
-//        return Double.toString(result);
-//    }
-//
-//    /**
-//     * @param received
-//     * @return
-//     */
-//    static String[] removeBlankEnteries(String[] received) {
-//        ArrayList<String> validList = new ArrayList<>();
-//
-//        for (int i = 0; i < received.length; i++) {
-//            if (received[i] != null && !received[i].trim().equals("")) {
-//                validList.add(received[i]);
-//            }
-//        }
-//        String result[] = new String[validList.size()];
-//        return validList.toArray(result);
-//    }
-//
-
-//    static String evalMeOriginal(String equation) {
-//
-//        if(equation == null || equation.trim().length() == 0) {
-//            return "";
-//        }
-//
-//        System.out.println("equation " + equation);
-//
-//        double result = 0.0;
-//        String noMinus = equation.replace("-", "+-");
-//        String[] byPluses = noMinus.split("\\+");
-//
-//        for (String multipl : byPluses) {
-//            String[] byMultipl = multipl.split("\\*");
-//            double multiplResult = 1.0;
-//            for (String operand : byMultipl) {
-//                if (operand.contains("/")) {
-//                    String[] division = operand.split("\\/");
-//                    double divident = Double.parseDouble(division[0]);
-//                    for (int i = 1; i < division.length; i++) {
-//                        divident /= Double.parseDouble(division[i]);
-//                    }
-//                    multiplResult *= divident;
-//                } else {
-//                    multiplResult *= Double.parseDouble(operand);
-//                }
-//            }
-//            result += multiplResult;
-//        }
-//
-//        System.out.println("result " + result);
-//        return Double.toString(result);
-//    }
-
 }
-

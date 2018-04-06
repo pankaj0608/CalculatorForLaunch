@@ -144,8 +144,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         TextViewCompat.setAutoSizeTextTypeWithDefaults(editTextResult, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
 
-//        editTextEquation.setLongClickable(false);
-//        editTextEquation.setTextIsSelectable(false);
 
         editTextEquation.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -156,7 +154,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         //Add listener so that we can chek the validity of the equation
         editTextEquation.addTextChangedListener(new TextWatcher() {
-
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -189,12 +186,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         + " : " + editTextEquation.getSelectionStart()
                         + " : " + editTextEquation.getSelectionEnd());
 
-
-//                String correctedString = Utils.correctEquation(s.toString());
-//
-//                if (!correctedString.equals(s.toString())) {
-//                    editTextEquation.setText(correctedString);
-//                }
             }
 
             @Override
@@ -348,7 +339,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
             return;
 
-        }else if (Utils.DECIMAL.equals(tag) && !editTextEquation.isFocused()) {
+        } else if (Utils.DECIMAL.equals(tag) && !editTextEquation.isFocused()) {
 
             if (currentEquation == null || currentEquation.trim().length() == 0) {
                 return;
@@ -369,12 +360,11 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
             //It means no Operators hence put a - infront of the equation
             if (lastOperatorIndex == -1) {
-                try{
+                try {
                     //if exception in arsing then it means that decimal is illegal
                     Double.parseDouble(currentEquation + tag);
                     currentEquation = currentEquation + tag;
-                }
-                catch (Exception  e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
@@ -382,12 +372,11 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 String inital = currentEquation.substring(0, lastOperatorIndex + 1);
                 String end = currentEquation.substring(lastOperatorIndex + 1);
 
-                try{
+                try {
                     //if exception in arsing then it means that decimal is illegal
                     Double.parseDouble(end + tag);
                     currentEquation = currentEquation + tag;
-                }
-                catch (Exception  e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -491,77 +480,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 }
 
                 editTextEquation.setText(Utils.correctEquation(currentEquation));
-
-                //editTextEquation.setText(editTextEquation.getText().toString() + tag);
             }
 
-
-            //editTextEquation.clearFocus();
         }
-
-        // editTextResult.setText(Utils.evalMe(editTextEquation.getText().toString()));
-//
-//        result = null;
-//        String tag = view.getTag().toString();
-//        String resultCurrentValue = editTextResult.getText().toString();
-//
-//        boolean isItOperatorTag = Utils.isTagOperator(tag);
-//        boolean isItEvaluateTag = Utils.isTagEvaluateOperator(tag);
-//        boolean isItClearTag = Utils.isItClearTagOperator(tag);
-//
-//        if (isItClearTag) {
-//            setValueToTextResult("0");
-//            return;
-//        }
-//
-//        if (isItEvaluateTag) {
-//            result = evaluate(resultCurrentValue);
-//        }
-//
-//        //if it was evaluate tag then set the result
-//        if (isItEvaluateTag) {
-//            setValueToTextResult(result);
-//            editTextEquation.setText(resultCurrentValue);
-//        } else {
-//            //if evaluation has already been done then start from scratch
-//            //unless it's a operator
-//            if (evaluationDone && !isItOperatorTag) {
-//                setValueToTextResult(tag);
-//                editTextEquation.setText("");
-//            } else {
-//                setValueToTextResult(resultCurrentValue + tag);
-//            }
-//            evaluationDone = false;
-//        }
 
     }
 
-    private String evaluate(String problem) {
-
-        String result = "";
-        result = Utils.evalMe(problem);
-        evaluationDone = true;
-        resetOperators();
-        return result;
-    }
-
-
-    private void setValueToTextResult(String result) {
-
-        //remove starting 0. 07 -> 7
-        if (result != null && result.length() > 1 && result.startsWith("0")) {
-            result = result.substring(1);
-        }
-
-        //remove trailing operators 78++ -> 78+
-        if (result != null && result.length() > 2
-                && Utils.containsAnyTagAlready(result.substring(0, result.length() - 1), "+-*/")
-                && Utils.isTagOperator(Character.toString(result.charAt(result.length() - 1)))) {
-            result = result.substring(0, result.length() - 1);
-        }
-
-        editTextResult.setText(result);
-    }
 
     private void resetOperators() {
         operand1 = null;
