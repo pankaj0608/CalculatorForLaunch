@@ -9,6 +9,7 @@ import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -143,6 +144,13 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
 //        editTextEquation.setLongClickable(false);
 //        editTextEquation.setTextIsSelectable(false);
+
+        editTextEquation.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return true;
+            }
+        });
 
         //Add listener so that we can chek the validity of the equation
         editTextEquation.addTextChangedListener(new TextWatcher() {
