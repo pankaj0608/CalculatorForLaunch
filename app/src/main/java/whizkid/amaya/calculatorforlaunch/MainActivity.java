@@ -138,7 +138,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         editTextMemory = (EditText) findViewById(R.id.editTextMemory);
 
         editTextResult.setTextIsSelectable(true);
-        
+
         //TODO remove this option for API15
         editTextEquation.setShowSoftInputOnFocus(false);
 
