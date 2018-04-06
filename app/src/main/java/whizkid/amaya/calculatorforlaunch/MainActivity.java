@@ -56,6 +56,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     EditText editTextMemory;
     final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
     final Typeface sansSeifCondensed = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
+    final Typeface sansSeifMonospace = Typeface.create("arial", Typeface.NORMAL);
+    final Typeface sansSeifTest = Typeface.create("sans-serif-thin", Typeface.BOLD);
+
 
     String result;
     String operand1;
@@ -224,8 +227,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         }
 
         //Set the font type for the fields
-        editTextResult.setTypeface(sansSeifNormal);
-        editTextResult.setTypeface(sansSeifNormal);
+        editTextResult.setTypeface(sansSeifTest);
+        editTextEquation.setTypeface(sansSeifMonospace);
         editTextMemory.setTypeface(sansSeifCondensed);
 
         for (int i = 0; i < resourcesButton.length; i++) {

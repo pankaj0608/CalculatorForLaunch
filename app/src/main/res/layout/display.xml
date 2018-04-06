@@ -49,7 +49,7 @@
         android:paddingRight="5dp"
         android:text="0"
         android:textColor="@color/pankaj_results_text_color"
-        android:textSize="@dimen/_30sdp"
+        android:textSize="@dimen/_28sdp"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         />
