@@ -22,6 +22,7 @@
             android:background="@color/pankaj_pad_numeric_background_color_white"
             android:gravity="center_horizontal"
             android:text="..."
+            android:onClick="changeMySettings"
             android:textColor="@color/pankaj_dark_orange"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />

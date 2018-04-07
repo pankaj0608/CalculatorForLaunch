@@ -1,6 +1,7 @@
 package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -330,6 +331,14 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         Utils.putStringInSharedPreference(Utils.MEMORY_SAVED_VALE, memoryCurrent, sharedPreferences);
 
     }
+
+
+    public void changeMySettings(View view) {
+
+        Intent  intent = new Intent(this, CalculatorSettings.class);
+        startActivity(intent);
+    }
+
 
     public void clearAll(View view) {
         evaluationDone = true;
