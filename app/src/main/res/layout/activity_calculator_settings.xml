@@ -11,6 +11,32 @@
         android:columnCount="3"
         android:orientation="horizontal">
 
+
+        <!-- Row 0 starts -->
+
+        <ImageButton
+            style="@style/PadButtonStyle.Numeric.Operator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:padding="0dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_backspace_pankaj"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
+
+
+        <TextView
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:text="Vibrate on Touch"
+            app:layout_columnWeight="1" />
+
+        <CheckBox app:layout_columnWeight="1" />
+        <!-- Row 0 ends -->
+
+
         <!-- Row 1 starts -->
 
         <ImageButton
@@ -79,5 +105,57 @@
         <TextView app:layout_columnWeight="1" />
         <!-- Row 3 ends -->
 
+        <!-- Row 3 starts -->
+        <ImageButton
+            style="@style/PadButtonStyle.Numeric.Operator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:padding="0dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_backspace_pankaj"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:text="Result Display Format"
+            app:layout_columnWeight="1" />
+
+        <TextView app:layout_columnWeight="1" />
+        <!-- Row 3 ends -->
+
     </GridLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Others"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share this Appp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Feedback"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rate this app"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upgrade (Ad-free version)"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About"/>
 </LinearLayout>
