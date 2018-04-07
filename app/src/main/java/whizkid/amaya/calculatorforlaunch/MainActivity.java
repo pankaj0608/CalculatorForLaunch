@@ -5,8 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.TextViewCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -17,13 +23,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import java.util.Date;
 
 //public class MainActivity extends AppCompatActivity {
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     /*
     Steps for commit
@@ -49,9 +53,14 @@ git push -u origin master
 
 https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-numeric-keypad-with-gridlayout--mobile-8677
  https://github.com/intuit/sdp/blob/master/sdp-android/src/main/res/layout/sdp_example.xml
+
+     Sliding Menu
+
+     https://developer.android.com/training/implementing-navigation/nav-drawer.html
+
      */
 
-
+    private DrawerLayout mDrawerLayout;
     AppCompatTextView editTextResult;
     EditText editTextEquation;
     EditText editTextMemory;
@@ -101,35 +110,97 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.calculator_menu, menu);
+//        super.onCreateOptionsMenu(menu);
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.calculator_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
         switch (item.getItemId()) {
-            case R.id.MyTheme:
-                System.out.println("clicked " + item.getTitle());
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.MyHelp:
-                System.out.println("clicked " + item.getTitle());
-                return true;
-            default:
-                System.out.println("MyTheme clicked" + item.toString());
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
+        // Handle item selection
+//        switch (item.getItemId()) {
+//            case R.id.MyTheme:
+//                System.out.println("clicked " + item.getTitle());
+//                return true;
+//            case R.id.MyHelp:
+//                System.out.println("clicked " + item.getTitle());
+//                return true;
+//            default:
+//                System.out.println("MyTheme clicked" + item.toString());
+//                return super.onOptionsItemSelected(item);
+//        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        //TODO original
         setContentView(R.layout.mylayout_phone);
+//         setContentView(R.layout.mylayout_phone_with_drawer);
 
+
+        //For sliding menu starts
+//        mDrawerLayout = findViewById(R.id.drawer_layout);
+//
+//
+//        mDrawerLayout.addDrawerListener(
+//                new DrawerLayout.DrawerListener() {
+//                    @Override
+//                    public void onDrawerSlide(View drawerView, float slideOffset) {
+//                        // Respond when the drawer's position changes
+//                    }
+//
+//                    @Override
+//                    public void onDrawerOpened(View drawerView) {
+//                        // Respond when the drawer is opened
+//                    }
+//
+//                    @Override
+//                    public void onDrawerClosed(View drawerView) {
+//                        // Respond when the drawer is closed
+//                    }
+//
+//                    @Override
+//                    public void onDrawerStateChanged(int newState) {
+//                        // Respond when the drawer motion state changes
+//                    }
+//                }
+//        );
+//
+//        NavigationView navigationView = findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(
+//                new NavigationView.OnNavigationItemSelectedListener() {
+//                    @Override
+//                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                        // set item as selected to persist highlight
+//                        menuItem.setChecked(true);
+//                        // close drawer when item is tapped
+//                        mDrawerLayout.closeDrawers();
+//
+//                        // Add code here to update the UI based on the item selected
+//                        // For example, swap UI fragments here
+//
+//                        return true;
+//                    }
+//                });
+//
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        ActionBar actionbar = getSupportActionBar();
+//        actionbar.setDisplayHomeAsUpEnabled(true);
+//        actionbar.setHomeAsUpIndicator(R.drawable.ic_backspace_pankaj); //ic_menu
+
+        //For sliding menu ends
         //Pankaj Code Starts
         resetOperators();
 
@@ -172,7 +243,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                         + " : " + after
                         + " : " + editTextEquation.getSelectionStart()
                         + " : " + editTextEquation.getSelectionEnd());
-
             }
 
             @Override

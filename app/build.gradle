@@ -36,4 +36,10 @@ dependencies {
     compile 'com.intuit.sdp:sdp-android:1.0.5'
     compile 'com.android.support:gridlayout-v7:27+'
     compile 'com.android.support:appcompat-v7:27+'
+
+    //pankaj added for slidingmenu
+    implementation 'com.android.support:appcompat-v7:27+'
+    implementation 'com.android.support:design:27+'
+//    implementation 'com.android.support:appcompat-v7:27.1.1'
+//    implementation 'com.android.support:design:27.1.1'
 }
