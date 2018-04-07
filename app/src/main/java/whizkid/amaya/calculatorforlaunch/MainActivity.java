@@ -1,31 +1,21 @@
 package whizkid.amaya.calculatorforlaunch;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.TextViewCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.Date;
 
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends AppCompatActivity {
@@ -111,32 +101,35 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        super.onCreateOptionsMenu(menu);
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.calculator_menu, menu);
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.calculator_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
         // Handle item selection
-//        switch (item.getItemId()) {
-//            case R.id.MyTheme:
-//                System.out.println("clicked " + item.getTitle());
-//                return true;
-//            case R.id.MyHelp:
-//                System.out.println("clicked " + item.getTitle());
-//                return true;
-//            default:
-//                System.out.println("MyTheme clicked" + item.toString());
-//                return super.onOptionsItemSelected(item);
-//        }
+        switch (item.getItemId()) {
+            case R.id.Material_Orange:
+                System.out.println("clicked " + item.getTitle());
+                return true;
+            case R.id.Material_Blue:
+                System.out.println("clicked " + item.getTitle());
+                return true;
+            case R.id.Material_Green:
+                System.out.println("clicked " + item.getTitle());
+                return true;
+            case R.id.Material_Pink:
+                System.out.println("clicked " + item.getTitle());
+                return true;
+            case R.id.Material_Red:
+                System.out.println("clicked " + item.getTitle());
+                return true;
+            default:
+                System.out.println("MyTheme clicked" + item.toString());
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -150,56 +143,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
 
         //For sliding menu starts
-//        mDrawerLayout = findViewById(R.id.drawer_layout);
-//
-//
-//        mDrawerLayout.addDrawerListener(
-//                new DrawerLayout.DrawerListener() {
-//                    @Override
-//                    public void onDrawerSlide(View drawerView, float slideOffset) {
-//                        // Respond when the drawer's position changes
-//                    }
-//
-//                    @Override
-//                    public void onDrawerOpened(View drawerView) {
-//                        // Respond when the drawer is opened
-//                    }
-//
-//                    @Override
-//                    public void onDrawerClosed(View drawerView) {
-//                        // Respond when the drawer is closed
-//                    }
-//
-//                    @Override
-//                    public void onDrawerStateChanged(int newState) {
-//                        // Respond when the drawer motion state changes
-//                    }
-//                }
-//        );
-//
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(
-//                new NavigationView.OnNavigationItemSelectedListener() {
-//                    @Override
-//                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                        // set item as selected to persist highlight
-//                        menuItem.setChecked(true);
-//                        // close drawer when item is tapped
-//                        mDrawerLayout.closeDrawers();
-//
-//                        // Add code here to update the UI based on the item selected
-//                        // For example, swap UI fragments here
-//
-//                        return true;
-//                    }
-//                });
-//
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.setDisplayHomeAsUpEnabled(true);
-//        actionbar.setHomeAsUpIndicator(R.drawable.ic_backspace_pankaj); //ic_menu
 
         //For sliding menu ends
         //Pankaj Code Starts
@@ -312,12 +255,41 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         }
 
     }
-
-    public void openMymenu(View v){
-//        toast.setText("To be Implemented");
-        (Toast.makeText(this, "To be Implemented", Toast.LENGTH_SHORT)).show();
-//        toast.show();
-    }
+//
+//    public void openMymenu(View v) {
+////        toast.setText("To be Implemented");
+////        (Toast.makeText(this, "To be Implemented", Toast.LENGTH_SHORT)).show();
+////        toast.show();
+//        PopupMenu popup = new PopupMenu(this, v);
+//        MenuInflater inflater = popup.getMenuInflater();
+//        inflater.inflate(R.menu.calculator_menu, popup.getMenu());
+//        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.Material_Orange:
+//                        System.out.println("clicked popup " + item.getTitle());
+//                        return true;
+//                    case R.id.Material_Blue:
+//                        System.out.println("clicked popup " + item.getTitle());
+//                        return true;
+//                    case R.id.Material_Green:
+//                        System.out.println("clicked popup " + item.getTitle());
+//                        return true;
+//                    case R.id.Material_Pink:
+//                        System.out.println("clicked popup " + item.getTitle());
+//                        return true;
+//                    case R.id.Material_Red:
+//                        System.out.println("clicked popup " + item.getTitle());
+//                        return true;
+//                    default:
+//                        System.out.println("Unknown clicked popup" + item.toString());
+//                        return true;
+//                }
+//            }
+//        });
+//        popup.show();
+//    }
 
     public void saveInMemory(View view) {
 

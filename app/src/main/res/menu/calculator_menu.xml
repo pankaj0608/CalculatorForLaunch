@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="import" />
+            android:id="@+id/Material-Green"
+            android:title="Material-Green" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="gallery" />
+            android:id="@+id/Material-Blue"
+            android:title="Material-Blue" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="slideshow" />
+            android:id="@+id/Material-Red"
+            android:title="Material-Red" />
         <item
-            android:id="@+id/nav_manage"
-            android:title="tools" />
+            android:id="@+id/Material-Pink"
+            android:title="Material-Pink" />
+        <item
+            android:id="@+id/Material-Orange"
+            android:title="Material-Orange" />
     </group>
-</menu>
-    <!--android:icon="@drawable/ic_menu_camera"-->
+</menu><!--android:icon="@drawable/ic_menu_camera"-->
