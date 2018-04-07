@@ -11,19 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
+        android:layout_weight="0.2"
         android:orientation="horizontal"
-        android:paddingBottom="0dp"
-        android:layout_weight="0.2">
+        android:paddingBottom="0dp">
 
         <Button
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:text="..."
-            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_25sdp"
             android:background="@color/pankaj_pad_numeric_background_color_white"
+            android:gravity="center_horizontal"
+            android:text="..."
+            android:onClick="openMymenu"
             android:textColor="@color/pankaj_dark_orange"
-            android:textStyle="bold"
-            android:textSize="@dimen/_25sdp"/>
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editTextMemory"
@@ -32,6 +33,7 @@
             android:layout_height="wrap_content"
             android:background="@color/pankaj_pad_button_text_color_white"
             android:editable="false"
+            android:gravity="center_horizontal"
             android:text="M 123"
             android:textAlignment="viewStart"
             android:textSize="@dimen/_18sdp" />

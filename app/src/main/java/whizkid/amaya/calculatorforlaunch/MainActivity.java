@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -310,6 +311,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
             }
         }
 
+    }
+
+    public void openMymenu(View v){
+//        toast.setText("To be Implemented");
+        (Toast.makeText(this, "To be Implemented", Toast.LENGTH_SHORT)).show();
+//        toast.show();
     }
 
     public void saveInMemory(View view) {
