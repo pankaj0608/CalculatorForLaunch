@@ -227,11 +227,10 @@ public class Utils {
     /**
      * @param key
      * @param value
-     * @param sharedPreferences
      */
-    public static void putStringInSharedPreference(final String key, final String value,
-                                                   SharedPreferences sharedPreferences) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void putStringInSharedPreference(final String key, final String value) {
+
+        SharedPreferences.Editor editor = getDefaultSharedPreference().edit();
         editor.putString(key, value);
         editor.commit();
     }

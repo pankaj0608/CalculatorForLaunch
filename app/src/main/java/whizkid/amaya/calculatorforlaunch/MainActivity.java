@@ -2,6 +2,8 @@ package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -50,6 +52,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
      https://developer.android.com/training/implementing-navigation/nav-drawer.html
 
+
+https://guides.codepath.com/android/developing-custom-themes
+
      */
 
     private DrawerLayout mDrawerLayout;
@@ -73,6 +78,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     int mySelectionValueStart = 0;
     int mySelectionValueEnd = 0;
     int mySelectionAdjustment = 0;
+
+    private CalculatorResources calculatorResources;
 
     int[] resourcesButton =
             {R.id.buttonSignChange,
@@ -101,6 +108,21 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                     R.id.buttonAdd,
                     R.id.buttonEquals,
                     R.id.buttonSettings};
+
+    int[] operatorButtons =
+            {R.id.buttonBack,
+                    R.id.buttonMemoryClear,
+                    R.id.buttonMemoryPlus,
+                    R.id.buttonMemoryMinus,
+                    R.id.buttonMemoryRead,
+                    R.id.buttonInverse,
+                    R.id.buttonPercentage,
+                    R.id.buttonAllClear,
+                    R.id.buttonDivide,
+                    R.id.buttonMultiply,
+                    R.id.buttonSubtract,
+                    R.id.buttonAdd,
+                    R.id.buttonEquals};
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -139,6 +161,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(R.style.Theme_GOLDEN_COLOR);
+
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -157,7 +181,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         //Pankaj Code Starts
         resetOperators();
 
-        this.setTheme(R.style.Theme.GOLDEN_COLOR);
 
         editTextResult = (AppCompatTextView) findViewById(R.id.editTextResult);
         editTextEquation = (EditText) findViewById(R.id.editTextEquation);
@@ -263,7 +286,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                 System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
                 Button button = ((Button) findViewById(resourcesButton[i]));
                 button.setTypeface(sansSeifNormal);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -311,6 +333,22 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     protected void onResume() {
         super.onResume();
         editTextEquation.setText(editTextEquation.getText().toString());
+
+        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME);
+
+        if(preferenceColour != null && preferenceColour.length() > 0) {
+            for (int i = 0; i < operatorButtons.length; i++) {
+                try {
+                    View button = findViewById(operatorButtons[i]);
+                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
     }
 
     public void saveInMemory(View view) {
@@ -350,24 +388,22 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         }
 
         //save the memotry in preferences
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Utils.putStringInSharedPreference(Utils.MEMORY_SAVED_VALE, memoryCurrent, sharedPreferences);
+        Utils.putStringInSharedPreference(Utils.MEMORY_SAVED_VALE, memoryCurrent);
 
     }
 
 
     public void showHistory(View view) {
-        if(true)
+        if (true)
             return;
 
         View historyView = findViewById(R.id.editTextHistory);
         View padView = findViewById(R.id.padTestId);
 
-        if(historyView.isShown()) {
+        if (historyView.isShown()) {
             padView.setVisibility(View.VISIBLE);
             historyView.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             padView.setVisibility(View.GONE);
             historyView.setVisibility(View.VISIBLE);
         }

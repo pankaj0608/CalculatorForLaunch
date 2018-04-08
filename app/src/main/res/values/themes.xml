@@ -12,16 +12,16 @@
         <!--&lt;!&ndash;<item name="actionBarStyle">@style/action_bar_wh</item>&ndash;&gt;-->
     <!--</style>-->
 
-    <style name="Theme.PINK_COLOR" parent="Theme.AppCompat.Light">
+    <style name="Theme.PINK_COLOR" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Define styles for YOUR_CUSTOM_THEME here. -->
         <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory</item>
         <item name="buttonNumeric">@style/PadButtonStyle.Numeric</item>
-        <item name="buttonOperator">@style/PadButtonStyle.Numeric.Operator</item>
+        <item name="buttonOperator">@style/PadButtonStyle.Numeric.Operator.Pink</item>
         <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Equals</item>
 
     </style>
 
-    <style name="Theme.GOLDEN_COLOR" parent="Theme.AppCompat.Light">
+    <style name="Theme.GOLDEN_COLOR" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Define styles for YOUR_CUSTOM_THEME here. -->
         <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory</item>
         <item name="buttonNumeric">@style/PadButtonStyle.Numeric</item>

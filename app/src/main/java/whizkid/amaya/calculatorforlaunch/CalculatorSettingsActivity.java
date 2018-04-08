@@ -47,26 +47,23 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
     public void setCalculatorSettings(View view) {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_VIBRATE_ON_TOUCH,
-                Boolean.toString(settingsVibrateOnTouch.isChecked()), sharedPreferences);
+                Boolean.toString(settingsVibrateOnTouch.isChecked()));
 
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_PRECISSION_TWO_DIGIT,
-                Boolean.toString(settingsPrecisionTwoDigits.isChecked()), sharedPreferences);
+                Boolean.toString(settingsPrecisionTwoDigits.isChecked()));
 
         Utils.putStringInSharedPreference(
-                Utils.SETTINGS_COLOR_THEME, "SETTINGS_THEME", sharedPreferences);
+                Utils.SETTINGS_COLOR_THEME, "SETTINGS_THEME");
 
         Utils.putStringInSharedPreference(
-                Utils.SETTINGS_KEYPAD_LAYOUT, "SETTINGS_KEYPAD_LAYOUT", sharedPreferences);
+                Utils.SETTINGS_KEYPAD_LAYOUT, "SETTINGS_KEYPAD_LAYOUT");
 
         Utils.putStringInSharedPreference(
-                Utils.SETTINGS_DISPLAY_FORMAT, "SETTINGS_DISPLAY_FORMAT", sharedPreferences);
+                Utils.SETTINGS_DISPLAY_FORMAT, "SETTINGS_DISPLAY_FORMAT");
     }
-
 
 
     public void openThemeSettings(View v) {
@@ -76,19 +73,15 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
 
-        if(v.getId() == R.id.settingsTheme) {
+        if (v.getId() == R.id.settingsTheme) {
             inflater.inflate(R.menu.calculator_theme, popup.getMenu());
-        }
-        else if(v.getId() == R.id.settingsFontType) {
+        } else if (v.getId() == R.id.settingsFontType) {
             inflater.inflate(R.menu.calculator_font_style, popup.getMenu());
-        }
-        else if(v.getId() == R.id.settingsKeypadLayout) {
+        } else if (v.getId() == R.id.settingsKeypadLayout) {
             inflater.inflate(R.menu.calculator_keypad_style, popup.getMenu());
-        }
-        else if(v.getId() == R.id.settingsDisplayFormat) {
+        } else if (v.getId() == R.id.settingsDisplayFormat) {
             inflater.inflate(R.menu.calculator_display_format, popup.getMenu());
-        }
-        else {
+        } else {
             return;
         }
 
@@ -96,19 +89,34 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.Material_Golden:
+                        System.out.println("clicked popup " + item.getTitle());
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.amaya_favourite_color));
+                        return true;
                     case R.id.Material_Orange:
                         System.out.println("clicked popup " + item.getTitle());
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_dark_orange));
                         return true;
                     case R.id.Material_Blue:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_dark_blue));
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     case R.id.Material_Green:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_dark_green));
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     case R.id.Material_Pink:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_dark_pink));
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     case R.id.Material_Red:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_dark_red));
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     case R.id.Font_Thin:
