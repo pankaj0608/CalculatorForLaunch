@@ -61,10 +61,14 @@ https://guides.codepath.com/android/developing-custom-themes
     AppCompatTextView editTextResult;
     EditText editTextEquation;
     EditText editTextMemory;
-    final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
+//    final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
     final Typeface sansSeifCondensed = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
     final Typeface sansSeifMonospace = Typeface.create("arial", Typeface.NORMAL);
     final Typeface sansSeifTest = Typeface.create("sans-serif-thin", Typeface.BOLD);
+
+    final Typeface sansSeifNormal_Thin = Typeface.create("sans-serif-thin", Typeface.NORMAL);
+    final Typeface sansSeifNormal_Normal = Typeface.create("sans-serif-light", Typeface.NORMAL);
+    final Typeface sansSeifNormal_Bold = Typeface.create("sans-serif-light", Typeface.BOLD);
 
 
     String result;
@@ -285,7 +289,7 @@ https://guides.codepath.com/android/developing-custom-themes
             try {
                 System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
                 Button button = ((Button) findViewById(resourcesButton[i]));
-                button.setTypeface(sansSeifNormal);
+                button.setTypeface(sansSeifNormal_Normal);
             } catch (Exception e) {
                 e.printStackTrace();
             }
