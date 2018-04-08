@@ -42,7 +42,7 @@ public class Utils {
     public static final String SETTINGS_COMMA_AFTER_THOUSAND = "SETTINGS_COMMA_AFTER_THOUSAND";
 
     private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###"); //
-    private static final DecimalFormat decimalFormatWithCommaOnly = new DecimalFormat("#,###.0000000");
+    private static final DecimalFormat decimalFormatWithCommaOnly = new DecimalFormat("#,###.#######");
     private static final DecimalFormat decimalFormatWithPrecisionOnly = new DecimalFormat("#0.###");
     private static final DecimalFormat decimalFormatWithCommaAndPrecision = new DecimalFormat("#,###.###");
 

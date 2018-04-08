@@ -63,7 +63,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_COMMA_AFTER_THOUSAND,
-                Boolean.toString(settingsPrecisionTwoDigits.isChecked()));
+                Boolean.toString(settingsCommaAfterThousand.isChecked()));
 
 
 
