@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.TextViewCompat;
@@ -12,7 +13,6 @@ import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -73,6 +73,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     int mySelectionValueStart = 0;
     int mySelectionValueEnd = 0;
     int mySelectionAdjustment = 0;
+    private static Vibrator vibrator;
 
     int[] resourcesButton =
             {R.id.buttonSignChange,
@@ -144,6 +145,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         setContentView(R.layout.mylayout_phone);
         Utils.setMyContext(getApplicationContext());
+
+        vibrator = (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE) ;
+
 //         setContentView(R.layout.mylayout_phone_with_drawer);
 
 
@@ -255,7 +259,9 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         for (int i = 0; i < resourcesButton.length; i++) {
             try {
                 System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
-                ((Button) findViewById(resourcesButton[i])).setTypeface(sansSeifNormal);
+                Button button = ((Button) findViewById(resourcesButton[i]));
+                button.setTypeface(sansSeifNormal);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -348,7 +354,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     public void changeMySettings(View view) {
 
-        Intent intent = new Intent(this, CalculatorSettings.class);
+        Intent intent = new Intent(this, CalculatorSettingsActivity.class);
         startActivity(intent);
     }
 
@@ -369,6 +375,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         String tag = view.getTag().toString();
         String currentEquation = editTextEquation.getText().toString();
         String currentEquationCopy = new String(editTextEquation.getText().toString());
+
+        //vibrate if vibation set in the settings
+        if("true".equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_VIBRATE_ON_TOUCH))) {
+            vibrator.vibrate(Utils.VIBRATION_DURATION);
+        }
+
 
         if (Utils.INVERSE.equals(tag)) {
 

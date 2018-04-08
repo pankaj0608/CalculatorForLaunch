@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
-public class CalculatorSettings extends AppCompatActivity {
+public class CalculatorSettingsActivity extends AppCompatActivity {
 
     private CheckBox settingsVibrateOnTouch;
     private CheckBox settingsPrecisionTwoDigits;

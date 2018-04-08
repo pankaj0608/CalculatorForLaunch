@@ -41,6 +41,7 @@ public class Utils {
 
     private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###");
 
+    public static final long VIBRATION_DURATION = 25;
     public static Context contextOfApplication;
 
 
