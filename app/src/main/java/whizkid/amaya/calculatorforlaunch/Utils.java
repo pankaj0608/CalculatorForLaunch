@@ -172,13 +172,11 @@ public class Utils {
 
         double resultDouble = evalMeUsingSymbols(str);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(contextOfApplication);
-        String twoDigitPrecission = getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT,
-                prefs);
+        String twoDigitPrecission = getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT);
 
         String resultString = "";
 
-        if(twoDigitPrecission != null &&  "yes".equals(twoDigitPrecission)) {
+        if(twoDigitPrecission != null &&  "true".equals(twoDigitPrecission)) {
             resultString = Util.doubleToString(resultDouble, MAX_DIGITS_TWO_PRECISSION, ROUNDING_DIGITS_TWO_PRECISSION);
         }
         else {
@@ -189,6 +187,11 @@ public class Utils {
 
         return resultString;
 
+    }
+
+
+    private static SharedPreferences getDefaultSharedPreference() {
+        return PreferenceManager.getDefaultSharedPreferences(contextOfApplication);
     }
 
     /**
@@ -209,13 +212,11 @@ public class Utils {
 
     /**
      * @param key
-     * @param sharedPreferences
      * @return
      */
     public static String getValueFromSharedPreference(
-            final String key, SharedPreferences sharedPreferences) {
-
-        return sharedPreferences.getString(key, "");
+            final String key) {
+        return getDefaultSharedPreference().getString(key, "");
 
     }
 

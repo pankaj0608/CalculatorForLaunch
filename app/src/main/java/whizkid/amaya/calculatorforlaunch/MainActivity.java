@@ -235,8 +235,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         editTextEquation.setText("0");
 
         //get the memory from the Share Preference
-        String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE,
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
+        String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE);
 
         if (Utils.isNotNullString(storedMemory)) {
             editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);

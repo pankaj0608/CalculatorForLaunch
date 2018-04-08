@@ -24,6 +24,12 @@ public class CalculatorSettings extends AppCompatActivity {
 
         settingsVibrateKeys = (CheckBox) findViewById(R.id.settingsVibrateKeys);
         settingsPrecisionTwoDigits = (CheckBox) findViewById(R.id.settingsPrecisionTwoDigits);
+
+        settingsPrecisionTwoDigits.setChecked(
+                Boolean.valueOf(
+                    Utils.getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT)));
+
+
 //        private CheckBox settingsKeyPadLayout;
 //        private CheckBox settingsTheme;
 //        private CheckBox settingsDisplayFormat;
