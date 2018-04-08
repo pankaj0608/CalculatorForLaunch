@@ -274,7 +274,7 @@
 
     <Button
         android:id="@+id/buttonEquals"
-        style="@style/PadButtonStyle.Numeric.Equals"
+        style="@style/PadButtonStyle.Numeric.Evaluate"
         android:onClick="calculateMe"
         android:tag="="
         android:text="="

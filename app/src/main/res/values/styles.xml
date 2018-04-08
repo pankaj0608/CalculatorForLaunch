@@ -100,10 +100,10 @@
         <item name="android:paddingTop">5dp</item>
     </style>
 
-    <style name="PadButtonStyle.Numeric.Equals" parent="PadButtonStyle.Numeric">
+    <style name="PadButtonStyle.Numeric.Evaluate" parent="PadButtonStyle.Numeric">
         <item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>
         <!--<item name="android:textColor">@color/pankaj_pad_button_text_color</item>-->
-        <item name="android:background">@color/pankaj_dark_less_bright_orange</item>
+        <item name="android:background">@color/amaya_favourite_color</item>
     </style>
 
 

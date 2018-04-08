@@ -17,7 +17,7 @@
         <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory</item>
         <item name="buttonNumeric">@style/PadButtonStyle.Numeric</item>
         <item name="buttonOperator">@style/PadButtonStyle.Numeric.Operator.Pink</item>
-        <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Equals</item>
+        <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Evaluate</item>
 
     </style>
 
@@ -26,7 +26,7 @@
         <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory</item>
         <item name="buttonNumeric">@style/PadButtonStyle.Numeric</item>
         <item name="buttonOperator">@style/PadButtonStyle.Numeric.Operator</item>
-        <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Equals</item>
+        <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Evaluate</item>
 
     </style>
 
