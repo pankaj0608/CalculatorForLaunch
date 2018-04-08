@@ -81,9 +81,11 @@
             app:layout_rowWeight="1" />
 
         <TextView
+            android:id="@+id/settingsKeypadLayout"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:text="Keypad Layout"
+            android:onClick="openThemeSettings"
             app:layout_columnWeight="1" />
 
         <TextView app:layout_columnWeight="1" />
@@ -103,9 +105,11 @@
             app:layout_rowWeight="1" />
 
         <TextView
+            android:id="@+id/settingsTheme"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:text="Theme"
+            android:onClick="openThemeSettings"
             app:layout_columnWeight="1" />
 
         <TextView app:layout_columnWeight="1" />
@@ -125,6 +129,30 @@
             app:layout_rowWeight="1" />
 
         <TextView
+            android:id="@+id/settingsDisplayFormat"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:text="Font Type"
+            app:layout_columnWeight="1" />
+
+        <TextView app:layout_columnWeight="1" />
+        <!-- Row 3 ends -->
+
+        <!-- Row 3 starts -->
+        <ImageButton
+            style="@style/PadButtonStyle.Numeric.Operator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:padding="0dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_backspace_pankaj"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/settingsFontType"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:text="Result Display Format"

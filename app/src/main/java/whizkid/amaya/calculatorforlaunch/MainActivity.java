@@ -104,35 +104,37 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.calculator_menu, menu);
         return true;
+//        super.onCreateOptionsMenu(menu);
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.calculator_menu, menu);
+//        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.Material_Orange:
-                System.out.println("clicked " + item.getTitle());
-                return true;
-            case R.id.Material_Blue:
-                System.out.println("clicked " + item.getTitle());
-                return true;
-            case R.id.Material_Green:
-                System.out.println("clicked " + item.getTitle());
-                return true;
-            case R.id.Material_Pink:
-                System.out.println("clicked " + item.getTitle());
-                return true;
-            case R.id.Material_Red:
-                System.out.println("clicked " + item.getTitle());
-                return true;
-            default:
-                System.out.println("MyTheme clicked" + item.toString());
-                return super.onOptionsItemSelected(item);
-        }
+        return true;
+//        // Handle item selection
+//        switch (item.getItemId()) {
+//            case R.id.Material_Orange:
+//                System.out.println("clicked " + item.getTitle());
+//                return true;
+//            case R.id.Material_Blue:
+//                System.out.println("clicked " + item.getTitle());
+//                return true;
+//            case R.id.Material_Green:
+//                System.out.println("clicked " + item.getTitle());
+//                return true;
+//            case R.id.Material_Pink:
+//                System.out.println("clicked " + item.getTitle());
+//                return true;
+//            case R.id.Material_Red:
+//                System.out.println("clicked " + item.getTitle());
+//                return true;
+//            default:
+//                System.out.println("MyTheme clicked" + item.toString());
+//                return super.onOptionsItemSelected(item);
+//        }
     }
 
     @Override

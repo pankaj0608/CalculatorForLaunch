@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -27,7 +30,7 @@ public class CalculatorSettings extends AppCompatActivity {
 
         settingsPrecisionTwoDigits.setChecked(
                 Boolean.valueOf(
-                    Utils.getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT)));
+                        Utils.getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT)));
 
         settingsVibrateOnTouch.setChecked(
                 Boolean.valueOf(
@@ -43,7 +46,7 @@ public class CalculatorSettings extends AppCompatActivity {
 
 
     public void setCalculatorSettings(View view) {
-        
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         Utils.putStringInSharedPreference(
@@ -63,4 +66,42 @@ public class CalculatorSettings extends AppCompatActivity {
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_DISPLAY_FORMAT, "SETTINGS_DISPLAY_FORMAT", sharedPreferences);
     }
+
+
+
+    public void openThemeSettings(View v) {
+//        toast.setText("To be Implemented");
+//        (Toast.makeText(this, "To be Implemented", Toast.LENGTH_SHORT)).show();
+//        toast.show();
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.calculator_theme, popup.getMenu());
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.Material_Orange:
+                        System.out.println("clicked popup " + item.getTitle());
+                        return true;
+                    case R.id.Material_Blue:
+                        System.out.println("clicked popup " + item.getTitle());
+                        return true;
+                    case R.id.Material_Green:
+                        System.out.println("clicked popup " + item.getTitle());
+                        return true;
+                    case R.id.Material_Pink:
+                        System.out.println("clicked popup " + item.getTitle());
+                        return true;
+                    case R.id.Material_Red:
+                        System.out.println("clicked popup " + item.getTitle());
+                        return true;
+                    default:
+                        System.out.println("Unknown clicked popup" + item.toString());
+                        return true;
+                }
+            }
+        });
+        popup.show();
+    }
+
 }
