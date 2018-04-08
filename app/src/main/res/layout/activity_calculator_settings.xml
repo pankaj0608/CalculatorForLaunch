@@ -133,6 +133,7 @@
             android:id="@+id/settingsFontType"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
+            android:onClick="openThemeSettings"
             android:text="Font Type"
             app:layout_columnWeight="1" />
 
