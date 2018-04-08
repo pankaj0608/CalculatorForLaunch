@@ -9,6 +9,7 @@ import org.javia.arity.Symbols;
 import org.javia.arity.SyntaxException;
 import org.javia.arity.Util;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Utils {
@@ -37,6 +38,8 @@ public class Utils {
     public static final String SETTINGS_COLOR_THEME = "SETTINGS_COLOR_THEME";
     public static final String SETTINGS_KEYPAD_LAYOUT = "SETTINGS_KEYPAD_LAYOUT";
     public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
+
+    private static final DecimalFormat decimalFormat = new DecimalFormat("#0.000");
 
     public static Context contextOfApplication;
 
@@ -69,7 +72,6 @@ public class Utils {
 
 
     /**
-     *
      * @param str
      * @param searchChars
      * @return
@@ -82,7 +84,6 @@ public class Utils {
     }
 
     /**
-     *
      * @param str
      * @param searchChars
      * @return
@@ -176,13 +177,11 @@ public class Utils {
 
         String resultString = "";
 
-        if(twoDigitPrecission != null &&  "true".equals(twoDigitPrecission)) {
-            resultString = Util.doubleToString(resultDouble, MAX_DIGITS_TWO_PRECISSION, ROUNDING_DIGITS_TWO_PRECISSION);
-        }
-        else {
+        if (twoDigitPrecission != null && "true".equals(twoDigitPrecission)) {
+            resultString = decimalFormat.format(resultDouble);
+        } else {
             resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);
         }
-
 
 
         return resultString;

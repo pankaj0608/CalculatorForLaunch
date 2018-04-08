@@ -58,7 +58,7 @@
         <TextView
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:text="Limit Precision to 2 digis"
+            android:text="Limit Precision to 3 digis"
             app:layout_columnWeight="1" />
 
         <CheckBox

@@ -68,6 +68,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     String operand2;
     String operator;
     boolean evaluationDone = false;
+    boolean clearDone = false;
+
     int[] resourcesImageButton = {R.id.buttonBack};
     int mySelectionValueStart = 0;
     int mySelectionValueEnd = 0;
@@ -214,8 +216,11 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
                 String result = "";
 
-                result = Utils.evalMe(s.toString());
-                editTextResult.setText(result);
+                if(!clearDone) {
+                    result = Utils.evalMe(s.toString());
+                    editTextResult.setText(result);
+                    clearDone = false;
+                }
                 //editTextEquation.setSelection(editTextEquation.getText().length());
 
                 //minimum valid value of selctionStart is 0
@@ -349,6 +354,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     public void clearAll(View view) {
         evaluationDone = true;
+        clearDone = true;
         mySelectionAdjustment = 0;
         mySelectionValueEnd = 0;
         mySelectionValueStart = 0;
