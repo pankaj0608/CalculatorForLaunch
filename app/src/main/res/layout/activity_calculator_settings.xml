@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="3"
+        style="@style/PadButtonStyle.Settings"
         android:orientation="horizontal">
 
 
@@ -129,7 +130,7 @@
             app:layout_rowWeight="1" />
 
         <TextView
-            android:id="@+id/settingsDisplayFormat"
+            android:id="@+id/settingsFontType"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:text="Font Type"
@@ -152,10 +153,11 @@
             app:layout_rowWeight="1" />
 
         <TextView
-            android:id="@+id/settingsFontType"
+            android:id="@+id/settingsDisplayFormat"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:text="Result Display Format"
+            android:onClick="openThemeSettings"
+            android:text="Display Format"
             app:layout_columnWeight="1" />
 
         <TextView app:layout_columnWeight="1" />

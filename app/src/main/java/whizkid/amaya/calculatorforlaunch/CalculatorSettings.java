@@ -82,6 +82,12 @@ public class CalculatorSettings extends AppCompatActivity {
         else if(v.getId() == R.id.settingsFontType) {
             inflater.inflate(R.menu.calculator_font_style, popup.getMenu());
         }
+        else if(v.getId() == R.id.settingsKeypadLayout) {
+            inflater.inflate(R.menu.calculator_keypad_style, popup.getMenu());
+        }
+        else {
+            return;
+        }
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
