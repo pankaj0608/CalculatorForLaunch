@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -138,8 +139,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        //TODO original
         setContentView(R.layout.mylayout_phone);
+        Utils.setMyContext(getApplicationContext());
 //         setContentView(R.layout.mylayout_phone_with_drawer);
 
 
@@ -235,7 +236,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
         //get the memory from the Share Preference
         String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE,
-                this.getPreferences(Context.MODE_PRIVATE));
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
 
         if (Utils.isNotNullString(storedMemory)) {
             editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
@@ -327,7 +328,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         }
 
         //save the memotry in preferences
-        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Utils.putStringInSharedPreference(Utils.MEMORY_SAVED_VALE, memoryCurrent, sharedPreferences);
 
     }

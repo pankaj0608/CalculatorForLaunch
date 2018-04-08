@@ -2,6 +2,7 @@ package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.EditText;
 
 import org.javia.arity.Symbols;
@@ -37,17 +38,28 @@ public class Utils {
     public static final String SETTINGS_KEYPAD_LAYOUT = "SETTINGS_KEYPAD_LAYOUT";
     public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
 
+    public static Context contextOfApplication;
+
+
+    public static void setMyContext(Context context) {
+        contextOfApplication = context;
+    }
+
 
     /**
      * The maximum number of significant digits to display.
      */
     private static final int MAX_DIGITS = 12;
 
+    private static final int MAX_DIGITS_TWO_PRECISSION = 5;
+
+
     /**
      * A {@link Double} has at least 17 significant digits, we show the first {@link #MAX_DIGITS}
      * and use the remaining digits as guard digits to hide floating point precision errors.
      */
     private static final int ROUNDING_DIGITS = Math.max(17 - MAX_DIGITS, 0);
+    private static final int ROUNDING_DIGITS_TWO_PRECISSION = Math.max(17 - MAX_DIGITS_TWO_PRECISSION, 0);
 
 
     public static boolean isTagOperator(String tag) {
@@ -160,7 +172,20 @@ public class Utils {
 
         double resultDouble = evalMeUsingSymbols(str);
 
-        String resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(contextOfApplication);
+        String twoDigitPrecission = getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT,
+                prefs);
+
+        String resultString = "";
+
+        if(twoDigitPrecission != null &&  "yes".equals(twoDigitPrecission)) {
+            resultString = Util.doubleToString(resultDouble, MAX_DIGITS_TWO_PRECISSION, ROUNDING_DIGITS_TWO_PRECISSION);
+        }
+        else {
+            resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);
+        }
+
+
 
         return resultString;
 

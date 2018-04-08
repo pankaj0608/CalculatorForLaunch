@@ -1,7 +1,9 @@
 package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -29,28 +31,27 @@ public class CalculatorSettings extends AppCompatActivity {
 
     }
 
+
     public void setCalculatorSettings(View view) {
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_VIBRATE_ON_TOUCH,
-                Boolean.toString(settingsVibrateKeys.isChecked()),
-                this.getPreferences(Context.MODE_PRIVATE));
+                Boolean.toString(settingsVibrateKeys.isChecked()), sharedPreferences);
 
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_PRECISSION_TWO_DIGIT,
-                Boolean.toString(settingsPrecisionTwoDigits.isChecked()),
-                this.getPreferences(Context.MODE_PRIVATE));
+                Boolean.toString(settingsPrecisionTwoDigits.isChecked()), sharedPreferences);
 
         Utils.putStringInSharedPreference(
-                Utils.SETTINGS_COLOR_THEME, "SETTINGS_THEME",
-                this.getPreferences(Context.MODE_PRIVATE));
+                Utils.SETTINGS_COLOR_THEME, "SETTINGS_THEME", sharedPreferences);
 
         Utils.putStringInSharedPreference(
-                Utils.SETTINGS_KEYPAD_LAYOUT, "SETTINGS_KEYPAD_LAYOUT",
-                this.getPreferences(Context.MODE_PRIVATE));
+                Utils.SETTINGS_KEYPAD_LAYOUT, "SETTINGS_KEYPAD_LAYOUT", sharedPreferences);
 
         Utils.putStringInSharedPreference(
-                Utils.SETTINGS_DISPLAY_FORMAT, "SETTINGS_DISPLAY_FORMAT",
-                this.getPreferences(Context.MODE_PRIVATE));
+                Utils.SETTINGS_DISPLAY_FORMAT, "SETTINGS_DISPLAY_FORMAT", sharedPreferences);
     }
 }
