@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <include
+    <include android:id="@+id/padTestId"
         layout="@layout/pad_standard_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

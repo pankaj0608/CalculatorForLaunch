@@ -354,6 +354,24 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     }
 
 
+    public void showHistory(View view) {
+        if(true)
+            return;
+
+        View historyView = findViewById(R.id.editTextHistory);
+        View padView = findViewById(R.id.padTestId);
+
+        if(historyView.isShown()) {
+            padView.setVisibility(View.VISIBLE);
+            historyView.setVisibility(View.GONE);
+        }
+        else {
+            padView.setVisibility(View.GONE);
+            historyView.setVisibility(View.VISIBLE);
+        }
+
+    }
+
     public void changeMySettings(View view) {
 
         Utils.vibrateMe();
