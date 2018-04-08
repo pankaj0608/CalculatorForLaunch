@@ -73,7 +73,6 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     int mySelectionValueStart = 0;
     int mySelectionValueEnd = 0;
     int mySelectionAdjustment = 0;
-    private static Vibrator vibrator;
 
     int[] resourcesButton =
             {R.id.buttonSignChange,
@@ -144,9 +143,10 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.mylayout_phone);
-        Utils.setMyContext(getApplicationContext());
 
-        vibrator = (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE) ;
+        Utils.setBaseEssentials(getApplicationContext(),
+                (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
+
 
 //         setContentView(R.layout.mylayout_phone_with_drawer);
 
@@ -313,6 +313,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     public void saveInMemory(View view) {
 
+        Utils.vibrateMe();
+
         String memoryCurrent = editTextMemory.getText().toString();
         String resultCurrent = Utils.evalMe(editTextResult.getText().toString());
 
@@ -354,12 +356,16 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     public void changeMySettings(View view) {
 
+        Utils.vibrateMe();
+
         Intent intent = new Intent(this, CalculatorSettingsActivity.class);
         startActivity(intent);
     }
 
 
     public void clearAll(View view) {
+        Utils.vibrateMe();
+
         evaluationDone = true;
 //        clearDone = true;
         mySelectionAdjustment = 0;
@@ -371,15 +377,12 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     }
 
     public void calculateMe(View view) {
-//        clearDone = false;
+
+        Utils.vibrateMe();
+
         String tag = view.getTag().toString();
         String currentEquation = editTextEquation.getText().toString();
         String currentEquationCopy = new String(editTextEquation.getText().toString());
-
-        //vibrate if vibation set in the settings
-        if("true".equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_VIBRATE_ON_TOUCH))) {
-            vibrator.vibrate(Utils.VIBRATION_DURATION);
-        }
 
 
         if (Utils.INVERSE.equals(tag)) {

@@ -2,6 +2,7 @@ package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.widget.EditText;
 
@@ -10,7 +11,6 @@ import org.javia.arity.SyntaxException;
 import org.javia.arity.Util;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public class Utils {
 
@@ -42,11 +42,13 @@ public class Utils {
     private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###");
 
     public static final long VIBRATION_DURATION = 25;
+    private static Vibrator vibrator;
     public static Context contextOfApplication;
 
 
-    public static void setMyContext(Context context) {
+    public static void setBaseEssentials(Context context, Vibrator aVibrator) {
         contextOfApplication = context;
+        vibrator = aVibrator;
     }
 
 
@@ -263,6 +265,14 @@ public class Utils {
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+
+    static void vibrateMe() {
+        //vibrate if vibation set in the settings
+        if ("true".equals(getValueFromSharedPreference(Utils.SETTINGS_VIBRATE_ON_TOUCH))) {
+            vibrator.vibrate(Utils.VIBRATION_DURATION);
         }
     }
 

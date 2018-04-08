@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:paddingBottom="0dp">
 
-        <Button
+        <TextView
             android:id="@+id/slidingMenuButton"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_25sdp"
