@@ -34,7 +34,7 @@
             app:layout_columnWeight="1" />
 
         <CheckBox
-            android:id="@+id/settingsVibrateKeys"
+            android:id="@+id/settingsVibrateOnTouch"
             android:onClick="setCalculatorSettings"
             app:layout_columnWeight="1" />
         <!-- Row 0 ends -->

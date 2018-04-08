@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 
 public class CalculatorSettings extends AppCompatActivity {
 
-    private CheckBox settingsVibrateKeys;
+    private CheckBox settingsVibrateOnTouch;
     private CheckBox settingsPrecisionTwoDigits;
 //    private CheckBox settingsKeyPadLayout;
 //    private CheckBox settingsTheme;
@@ -22,12 +22,16 @@ public class CalculatorSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_settings);
 
-        settingsVibrateKeys = (CheckBox) findViewById(R.id.settingsVibrateKeys);
+        settingsVibrateOnTouch = (CheckBox) findViewById(R.id.settingsVibrateOnTouch);
         settingsPrecisionTwoDigits = (CheckBox) findViewById(R.id.settingsPrecisionTwoDigits);
 
         settingsPrecisionTwoDigits.setChecked(
                 Boolean.valueOf(
                     Utils.getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT)));
+
+        settingsVibrateOnTouch.setChecked(
+                Boolean.valueOf(
+                        Utils.getValueFromSharedPreference(Utils.SETTINGS_VIBRATE_ON_TOUCH)));
 
 
 //        private CheckBox settingsKeyPadLayout;
@@ -39,13 +43,12 @@ public class CalculatorSettings extends AppCompatActivity {
 
 
     public void setCalculatorSettings(View view) {
-
-
+        
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_VIBRATE_ON_TOUCH,
-                Boolean.toString(settingsVibrateKeys.isChecked()), sharedPreferences);
+                Boolean.toString(settingsVibrateOnTouch.isChecked()), sharedPreferences);
 
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_PRECISSION_TWO_DIGIT,
