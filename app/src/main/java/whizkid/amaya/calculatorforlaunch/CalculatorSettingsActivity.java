@@ -120,12 +120,18 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     case R.id.Font_Thin:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
+                                Integer.toString(R.id.Font_Thin));
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     case R.id.Font_Normal:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
+                                Integer.toString(R.id.Font_Normal));
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     case R.id.Font_Bold:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
+                                Integer.toString(R.id.Font_Bold));
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     default:

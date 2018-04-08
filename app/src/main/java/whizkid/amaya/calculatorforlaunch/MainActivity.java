@@ -339,6 +339,7 @@ https://guides.codepath.com/android/developing-custom-themes
         editTextEquation.setText(editTextEquation.getText().toString());
 
         String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME);
+        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE);
 
         if(preferenceColour != null && preferenceColour.length() > 0) {
             for (int i = 0; i < operatorButtons.length; i++) {
@@ -352,6 +353,27 @@ https://guides.codepath.com/android/developing-custom-themes
             }
         }
 
+        if(preferenceFont != null && preferenceFont.length() > 0) {
+            for (int i = 0; i < resourcesButton.length; i++) {
+                try {
+                    System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
+                    Button button = ((Button) findViewById(resourcesButton[i]));
+                    if(preferenceFont.equals(Integer.toString(R.id.Font_Thin))) {
+                        button.setTypeface(sansSeifNormal_Thin);
+                    }
+                    else if(preferenceFont.equals(Integer.toString(R.id.Font_Normal))) {
+                        button.setTypeface(sansSeifNormal_Normal);
+
+                    }
+                    else if(preferenceFont.equals(Integer.toString(R.id.Font_Bold))) {
+                        button.setTypeface(sansSeifNormal_Bold);
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
     }
 

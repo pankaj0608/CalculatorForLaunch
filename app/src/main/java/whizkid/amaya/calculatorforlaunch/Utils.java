@@ -38,6 +38,7 @@ public class Utils {
     public static final String SETTINGS_COLOR_THEME = "SETTINGS_COLOR_THEME";
     public static final String SETTINGS_KEYPAD_LAYOUT = "SETTINGS_KEYPAD_LAYOUT";
     public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
+    public static final String SETTINGS_FONT_STYLE = "SETTINGS_FONT_STYLE";
 
     private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###");
 
