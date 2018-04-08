@@ -292,6 +292,13 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 //        popup.show();
 //    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        editTextEquation.setText(editTextEquation.getText().toString());
+    }
+
     public void saveInMemory(View view) {
 
         String memoryCurrent = editTextMemory.getText().toString();
