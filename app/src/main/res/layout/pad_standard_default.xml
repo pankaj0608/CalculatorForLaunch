@@ -28,7 +28,7 @@
     <!--<TableRow>-->
     <Button
         android:id="@+id/buttonMemoryClear"
-        style="@style/PadButtonStyle.Numeric.Memory"
+        style="?buttonMemory"
         android:onClick="saveInMemory"
         android:tag="mc"
         android:text="mc"
@@ -36,7 +36,7 @@
 
     <Button
         android:id="@+id/buttonMemoryPlus"
-        style="@style/PadButtonStyle.Numeric.Memory"
+        style="?buttonMemory"
         android:onClick="saveInMemory"
         android:tag="m+"
         android:text="m+"
@@ -44,7 +44,7 @@
 
     <Button
         android:id="@+id/buttonMemoryMinus"
-        style="@style/PadButtonStyle.Numeric.Memory"
+        style="?buttonMemory"
         android:onClick="saveInMemory"
         android:tag="m-"
         android:text="m-"
@@ -52,7 +52,7 @@
 
     <Button
         android:id="@+id/buttonMemoryRead"
-        style="@style/PadButtonStyle.Numeric.Memory"
+        style="?buttonMemory"
         android:onClick="saveInMemory"
         android:tag="mr"
         android:text="mr"
@@ -64,7 +64,7 @@
     <!--<TableRow>-->
     <Button
         android:id="@+id/buttonPercentage"
-        style="@style/PadButtonStyle.Numeric.Operator"
+        style="?buttonOperator"
         android:onClick="calculateMe"
         android:tag="%"
         android:text="%"
@@ -74,7 +74,7 @@
 
     <!--<Button-->
     <!--android:id="@+id/buttonBack"-->
-    <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+    <!--style="?buttonOperator"-->
     <!--app:layout_columnWeight="1"-->
     <!--android:onClick="calculateMe"-->
     <!--android:tag="BACK"-->
@@ -82,7 +82,7 @@
 
     <!--<ImageButton-->
         <!--android:id="@+id/buttonBack"-->
-        <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+        <!--style="?buttonOperator"-->
         <!--android:onClick="calculateMe"-->
         <!--android:src="@drawable/ic_backspace_white_mid_48dp"-->
         <!--android:adjustViewBounds="false"-->
@@ -99,7 +99,7 @@
 
     <ImageButton
         android:id="@+id/buttonBack"
-        style="@style/PadButtonStyle.Numeric.Operator"
+        style="?buttonOperator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="calculateMe"
@@ -114,14 +114,14 @@
 
 
     <!--<ImageButton android:id="@+id/previous"-->
-    <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+    <!--style="?buttonOperator"-->
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"-->
     <!--android:src="@drawable/ic_backspace_white_48dp"</ImageButton>-->
 
     <Button
         android:id="@+id/buttonAllClear"
-        style="@style/PadButtonStyle.Numeric.Operator"
+        style="?buttonOperator"
         android:onClick="clearAll"
         android:tag="ALLCLEAR"
         android:text="C"
@@ -129,7 +129,7 @@
 
     <Button
         android:id="@+id/buttonDivide"
-        style="@style/PadButtonStyle.Numeric.Operator"
+        style="?buttonOperator"
         android:onClick="calculateMe"
         android:tag="÷"
         android:text="÷"
@@ -142,7 +142,7 @@
     <!--<TableRow>-->
     <Button
         android:id="@+id/button7"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="7"
         android:text="7"
@@ -150,7 +150,7 @@
 
     <Button
         android:id="@+id/button8"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="8"
         android:text="8"
@@ -158,7 +158,7 @@
 
     <Button
         android:id="@+id/button9"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="9"
         android:text="9"
@@ -166,7 +166,7 @@
 
     <Button
         android:id="@+id/buttonMultiply"
-        style="@style/PadButtonStyle.Numeric.Operator"
+        style="?buttonOperator"
         android:onClick="calculateMe"
         android:tag="x"
         android:text="x"
@@ -177,7 +177,7 @@
     <!--<TableRow>-->
     <Button
         android:id="@+id/button4"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="4"
         android:text="4"
@@ -185,7 +185,7 @@
 
     <Button
         android:id="@+id/button5"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="5"
         android:text="5"
@@ -193,7 +193,7 @@
 
     <Button
         android:id="@+id/button6"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="6"
         android:text="6"
@@ -201,7 +201,7 @@
 
     <Button
         android:id="@+id/buttonSubtract"
-        style="@style/PadButtonStyle.Numeric.Operator"
+        style="?buttonOperator"
         android:onClick="calculateMe"
         android:tag="-"
         android:text="-"
@@ -213,7 +213,7 @@
     <!--<TableRow>-->
     <Button
         android:id="@+id/button1"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="1"
         android:text="1"
@@ -221,7 +221,7 @@
 
     <Button
         android:id="@+id/button2"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="2"
         android:text="2"
@@ -229,7 +229,7 @@
 
     <Button
         android:id="@+id/button3"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="3"
         android:text="3"
@@ -237,7 +237,7 @@
 
     <Button
         android:id="@+id/buttonAdd"
-        style="@style/PadButtonStyle.Numeric.Operator"
+        style="?buttonOperator"
         android:onClick="calculateMe"
         android:tag="+"
         android:text="+"
@@ -250,7 +250,7 @@
 
     <Button
         android:id="@+id/buttonSignChange"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="+/-"
         android:text="+/-"
@@ -258,7 +258,7 @@
 
     <Button
         android:id="@+id/button0"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="0"
         android:text="0"
@@ -266,7 +266,7 @@
 
     <Button
         android:id="@+id/buttonDecimal"
-        style="@style/PadButtonStyle.Numeric"
+        style="?buttonNumeric"
         android:onClick="calculateMe"
         android:tag="."
         android:text="."
@@ -274,7 +274,7 @@
 
     <Button
         android:id="@+id/buttonEquals"
-        style="@style/PadButtonStyle.Numeric.Equals"
+        style="?buttonEvaluate"
         android:onClick="calculateMe"
         android:tag="="
         android:text="="

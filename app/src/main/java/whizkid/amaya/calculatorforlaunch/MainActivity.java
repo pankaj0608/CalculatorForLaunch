@@ -157,6 +157,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
         //Pankaj Code Starts
         resetOperators();
 
+        this.setTheme(R.style.Theme.GOLDEN_COLOR);
+
         editTextResult = (AppCompatTextView) findViewById(R.id.editTextResult);
         editTextEquation = (EditText) findViewById(R.id.editTextEquation);
         editTextMemory = (EditText) findViewById(R.id.editTextMemory);
