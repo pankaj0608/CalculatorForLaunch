@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/Diplay-Comma"
-            android:title="Diplay Comma" />
-        <item
             android:id="@+id/Diplay-No-Comma"
+            android:title="Diplay No Comma" />
+        <item
+            android:id="@+id/Diplay-Comma"
             android:title="Diplay Comma" />
         <item
             android:id="@+id/Diplay-Others"
