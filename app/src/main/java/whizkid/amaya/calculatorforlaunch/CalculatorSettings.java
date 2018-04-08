@@ -75,7 +75,14 @@ public class CalculatorSettings extends AppCompatActivity {
 //        toast.show();
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.calculator_theme, popup.getMenu());
+
+        if(v.getId() == R.id.settingsTheme) {
+            inflater.inflate(R.menu.calculator_theme, popup.getMenu());
+        }
+        else if(v.getId() == R.id.settingsFontType) {
+            inflater.inflate(R.menu.calculator_font_style, popup.getMenu());
+        }
+
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -93,6 +100,15 @@ public class CalculatorSettings extends AppCompatActivity {
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     case R.id.Material_Red:
+                        System.out.println("clicked popup " + item.getTitle());
+                        return true;
+                    case R.id.Font_Thin:
+                        System.out.println("clicked popup " + item.getTitle());
+                        return true;
+                    case R.id.Font_Normal:
+                        System.out.println("clicked popup " + item.getTitle());
+                        return true;
+                    case R.id.Font_Bold:
                         System.out.println("clicked popup " + item.getTitle());
                         return true;
                     default:
