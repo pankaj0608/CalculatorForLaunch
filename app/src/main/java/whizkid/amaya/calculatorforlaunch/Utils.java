@@ -39,7 +39,7 @@ public class Utils {
     public static final String SETTINGS_KEYPAD_LAYOUT = "SETTINGS_KEYPAD_LAYOUT";
     public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
 
-    private static final DecimalFormat decimalFormat = new DecimalFormat("#0.000");
+    private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###");
 
     public static Context contextOfApplication;
 

@@ -1,6 +1,5 @@
 package whizkid.amaya.calculatorforlaunch;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -68,7 +67,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     String operand2;
     String operator;
     boolean evaluationDone = false;
-    boolean clearDone = false;
+//    boolean clearDone = false;
 
     int[] resourcesImageButton = {R.id.buttonBack};
     int mySelectionValueStart = 0;
@@ -216,11 +215,11 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
                 String result = "";
 
-                if(!clearDone) {
-                    result = Utils.evalMe(s.toString());
-                    editTextResult.setText(result);
-                    clearDone = false;
-                }
+//                if (!clearDone) {
+                result = Utils.evalMe(s.toString());
+                editTextResult.setText(result);
+//                    clearDone = false;
+//                }
                 //editTextEquation.setSelection(editTextEquation.getText().length());
 
                 //minimum valid value of selctionStart is 0
@@ -347,14 +346,14 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
     public void changeMySettings(View view) {
 
-        Intent  intent = new Intent(this, CalculatorSettings.class);
+        Intent intent = new Intent(this, CalculatorSettings.class);
         startActivity(intent);
     }
 
 
     public void clearAll(View view) {
         evaluationDone = true;
-        clearDone = true;
+//        clearDone = true;
         mySelectionAdjustment = 0;
         mySelectionValueEnd = 0;
         mySelectionValueStart = 0;
@@ -364,6 +363,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
     }
 
     public void calculateMe(View view) {
+//        clearDone = false;
         String tag = view.getTag().toString();
         String currentEquation = editTextEquation.getText().toString();
         String currentEquationCopy = new String(editTextEquation.getText().toString());
@@ -479,6 +479,7 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
                     if (currentEquation.length() == 0) {
                         currentEquation = "0";
                     }
+
                     editTextEquation.setText(currentEquation);
 
                 } else if (mySelectionValueStart >= 0) {
