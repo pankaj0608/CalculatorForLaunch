@@ -187,7 +187,7 @@ public class Utils {
         double resultDouble = evalMeUsingSymbols(str);
 
         String twoDigitPrecission = getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT);
-        String commaAfterThoursand = getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND);
+        String commaAfterThousand = getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND);
 
         String resultString = "";
 
@@ -196,13 +196,13 @@ public class Utils {
 //        decimalFormatWithCommaAndPrecision
 //
 
-        if ("true".equals(twoDigitPrecission) && "true".equals(commaAfterThoursand)) {
+        if ("true".equals(twoDigitPrecission) && "true".equals(commaAfterThousand)) {
             resultString = decimalFormatWithCommaAndPrecision.format(resultDouble);
         }
-        else if("true".equals(twoDigitPrecission) && !"true".equals(commaAfterThoursand)) {
+        else if("true".equals(twoDigitPrecission) && !"true".equals(commaAfterThousand)) {
             resultString = decimalFormatWithPrecisionOnly.format(resultDouble);
         }
-        else if(!"true".equals(twoDigitPrecission) && "true".equals(commaAfterThoursand)) {
+        else if(!"true".equals(twoDigitPrecission) && "true".equals(commaAfterThousand)) {
             resultString = decimalFormatWithCommaOnly.format(resultDouble);
         }
         else {
