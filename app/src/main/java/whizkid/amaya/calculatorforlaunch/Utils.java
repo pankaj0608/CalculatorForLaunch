@@ -39,8 +39,15 @@ public class Utils {
     public static final String SETTINGS_KEYPAD_LAYOUT = "SETTINGS_KEYPAD_LAYOUT";
     public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
     public static final String SETTINGS_FONT_STYLE = "SETTINGS_FONT_STYLE";
+    public static final String SETTINGS_COMMA_AFTER_THOUSAND = "SETTINGS_COMMA_AFTER_THOUSAND";
 
-    private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###");
+    private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###"); //
+    private static final DecimalFormat decimalFormatWithCommaOnly = new DecimalFormat("#,###.0000000");
+    private static final DecimalFormat decimalFormatWithPrecisionOnly = new DecimalFormat("#0.###");
+    private static final DecimalFormat decimalFormatWithCommaAndPrecision = new DecimalFormat("#,###.###");
+
+//    private static final DecimalFormat decimalFormatWithComma = new DecimalFormat("#,###.###");
+
 
     public static final long VIBRATION_DURATION = 25;
     private static Vibrator vibrator;
@@ -164,6 +171,7 @@ public class Utils {
 
         str = str.replace("÷", "/");
         str = str.replace("x", "*");
+        str = str.replace(",", "");
 
         if (str == null || str.trim().length() == 0) {
             return "0";
@@ -179,12 +187,25 @@ public class Utils {
         double resultDouble = evalMeUsingSymbols(str);
 
         String twoDigitPrecission = getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT);
+        String commaAfterThoursand = getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND);
 
         String resultString = "";
 
-        if (twoDigitPrecission != null && "true".equals(twoDigitPrecission)) {
-            resultString = decimalFormat.format(resultDouble);
-        } else {
+//        decimalFormatWithCommaOnly
+//        decimalFormatWithPrecisionOnly
+//        decimalFormatWithCommaAndPrecision
+//
+
+        if ("true".equals(twoDigitPrecission) && "true".equals(commaAfterThoursand)) {
+            resultString = decimalFormatWithCommaAndPrecision.format(resultDouble);
+        }
+        else if("true".equals(twoDigitPrecission) && !"true".equals(commaAfterThoursand)) {
+            resultString = decimalFormatWithPrecisionOnly.format(resultDouble);
+        }
+        else if(!"true".equals(twoDigitPrecission) && "true".equals(commaAfterThoursand)) {
+            resultString = decimalFormatWithCommaOnly.format(resultDouble);
+        }
+        else {
             resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);
         }
 

@@ -15,6 +15,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
     private CheckBox settingsVibrateOnTouch;
     private CheckBox settingsPrecisionTwoDigits;
+    private CheckBox settingsCommaAfterThousand;
 //    private CheckBox settingsKeyPadLayout;
 //    private CheckBox settingsTheme;
 //    private CheckBox settingsDisplayFormat;
@@ -27,6 +28,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
         settingsVibrateOnTouch = (CheckBox) findViewById(R.id.settingsVibrateOnTouch);
         settingsPrecisionTwoDigits = (CheckBox) findViewById(R.id.settingsPrecisionTwoDigits);
+        settingsCommaAfterThousand = (CheckBox) findViewById(R.id.settingsCommaAfterThousand);
 
         settingsPrecisionTwoDigits.setChecked(
                 Boolean.valueOf(
@@ -35,6 +37,10 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         settingsVibrateOnTouch.setChecked(
                 Boolean.valueOf(
                         Utils.getValueFromSharedPreference(Utils.SETTINGS_VIBRATE_ON_TOUCH)));
+
+        settingsCommaAfterThousand.setChecked(
+                Boolean.valueOf(
+                        Utils.getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND)));
 
 
 //        private CheckBox settingsKeyPadLayout;
@@ -54,6 +60,13 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_PRECISSION_TWO_DIGIT,
                 Boolean.toString(settingsPrecisionTwoDigits.isChecked()));
+
+        Utils.putStringInSharedPreference(
+                Utils.SETTINGS_COMMA_AFTER_THOUSAND,
+                Boolean.toString(settingsPrecisionTwoDigits.isChecked()));
+
+
+
 
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_COLOR_THEME, "SETTINGS_THEME");

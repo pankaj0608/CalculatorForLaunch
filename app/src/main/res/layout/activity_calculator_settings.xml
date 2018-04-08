@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <GridLayout
+        style="@style/PadButtonStyle.Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="3"
-        style="@style/PadButtonStyle.Settings"
         android:orientation="horizontal">
 
 
@@ -29,6 +29,7 @@
 
 
         <TextView
+            style="@style/PadButtonStyle.Settings"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:text="Vibrate on Touch"
@@ -36,6 +37,7 @@
 
         <CheckBox
             android:id="@+id/settingsVibrateOnTouch"
+            style="@style/PadButtonStyle.Settings"
             android:onClick="setCalculatorSettings"
             app:layout_columnWeight="1" />
         <!-- Row 0 ends -->
@@ -57,16 +59,48 @@
 
 
         <TextView
+            style="@style/PadButtonStyle.Settings"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:text="Limit Precision to 3 digis"
+            android:text="Precision to 3 digis"
             app:layout_columnWeight="1" />
 
         <CheckBox
             android:id="@+id/settingsPrecisionTwoDigits"
+            style="@style/PadButtonStyle.Settings"
             android:onClick="setCalculatorSettings"
             app:layout_columnWeight="1" />
         <!-- Row 1 ends -->
+
+        <!-- Row 0 starts -->
+
+        <ImageButton
+            style="@style/PadButtonStyle.Numeric.Operator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:padding="0dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_backspace_pankaj"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
+
+
+        <TextView
+            style="@style/PadButtonStyle.Settings"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:text="Comma after thousand place"
+            app:layout_columnWeight="1" />
+
+        <CheckBox
+            android:id="@+id/settingsCommaAfterThousand"
+            style="@style/PadButtonStyle.Settings"
+            android:onClick="setCalculatorSettings"
+            app:layout_columnWeight="1" />
+        <!-- Row 0 ends -->
+
 
         <!-- Row 2 starts -->
         <ImageButton
@@ -83,13 +117,16 @@
 
         <TextView
             android:id="@+id/settingsKeypadLayout"
+            style="@style/PadButtonStyle.Settings"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:text="Keypad Layout"
             android:onClick="openThemeSettings"
+            android:text="Keypad Layout"
             app:layout_columnWeight="1" />
 
-        <TextView app:layout_columnWeight="1" />
+        <TextView
+            style="@style/PadButtonStyle.Settings"
+            app:layout_columnWeight="1" />
         <!-- Row 2 ends -->
 
         <!-- Row 3 starts -->
@@ -107,13 +144,16 @@
 
         <TextView
             android:id="@+id/settingsTheme"
+            style="@style/PadButtonStyle.Settings"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:text="Theme"
             android:onClick="openThemeSettings"
+            android:text="Theme"
             app:layout_columnWeight="1" />
 
-        <TextView app:layout_columnWeight="1" />
+        <TextView
+            style="@style/PadButtonStyle.Settings"
+            app:layout_columnWeight="1" />
         <!-- Row 3 ends -->
 
         <!-- Row 3 starts -->
@@ -131,13 +171,16 @@
 
         <TextView
             android:id="@+id/settingsFontType"
+            style="@style/PadButtonStyle.Settings"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:onClick="openThemeSettings"
             android:text="Font Type"
             app:layout_columnWeight="1" />
 
-        <TextView app:layout_columnWeight="1" />
+        <TextView
+            style="@style/PadButtonStyle.Settings"
+            app:layout_columnWeight="1" />
         <!-- Row 3 ends -->
 
         <!-- Row 3 starts -->
@@ -155,13 +198,16 @@
 
         <TextView
             android:id="@+id/settingsDisplayFormat"
+            style="@style/PadButtonStyle.Settings"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:onClick="openThemeSettings"
             android:text="Display Format"
             app:layout_columnWeight="1" />
 
-        <TextView app:layout_columnWeight="1" />
+        <TextView
+            style="@style/PadButtonStyle.Settings"
+            app:layout_columnWeight="1" />
         <!-- Row 3 ends -->
 
     </GridLayout>
