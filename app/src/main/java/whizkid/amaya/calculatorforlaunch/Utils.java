@@ -31,6 +31,13 @@ public class Utils {
     public static final String MEMORY_READ = "mr";
     public static final String MEMORY_CLEAR = "mc";
 
+    public static final String SETTINGS_VIBRATE_ON_TOUCH = "SETTINGS_VIBRATE_ON_TOUCH";
+    public static final String SETTINGS_PRECISSION_TWO_DIGIT = "SETTINGS_PRECISSION_TWO_DIGIT";
+    public static final String SETTINGS_COLOR_THEME = "SETTINGS_COLOR_THEME";
+    public static final String SETTINGS_KEYPAD_LAYOUT = "SETTINGS_KEYPAD_LAYOUT";
+    public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
+
+
     /**
      * The maximum number of significant digits to display.
      */
