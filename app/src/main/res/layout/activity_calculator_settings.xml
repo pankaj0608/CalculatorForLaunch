@@ -66,23 +66,6 @@
             app:layout_columnWeight="1" />
         <!-- Row 0 ends -->
 
-
-        <!-- Row 2 starts -->
-
-        <TextView
-            android:id="@+id/settingsKeypadLayout"
-            style="@style/PadButtonStyle.Settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="openThemeSettings"
-            android:text="Keypad Layout"
-            app:layout_columnWeight="1" />
-
-        <TextView
-            style="@style/PadButtonStyle.Settings"
-            app:layout_columnWeight="1" />
-        <!-- Row 2 ends -->
-
         <!-- Row 3 starts -->
 
         <TextView
@@ -91,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="openThemeSettings"
-            android:text="Theme\nCurrent Theme"
+            android:text="Theme"
             app:layout_columnWeight="1" />
 
         <TextView
@@ -102,7 +85,7 @@
         <!-- Row 3 starts -->
 
         <TextView
-            android:id="@+id/settingsFontType"
+            android:id="@+id/settingsFontTypeTextView"
             style="@style/PadButtonStyle.Settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,6 +97,22 @@
             style="@style/PadButtonStyle.Settings"
             app:layout_columnWeight="1" />
         <!-- Row 3 ends -->
+
+
+        <!-- Row 2 starts -->
+
+        <TextView
+            android:id="@+id/settingsKeypadLayout"
+            style="@style/PadButtonStyle.Settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keypad Layout - To be done"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            style="@style/PadButtonStyle.Settings"
+            app:layout_columnWeight="1" />
+        <!-- Row 2 ends -->
 
         <!-- Row 3 starts -->
 
@@ -133,33 +132,33 @@
 
     </GridLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Others" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Others" />-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Share this Appp" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Share this Appp" />-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Send Feedback" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Send Feedback" />-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rate this app" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Rate this app" />-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Upgrade (Ad-free version)" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Upgrade (Ad-free version)" />-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="About" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="About" />-->
 </LinearLayout>

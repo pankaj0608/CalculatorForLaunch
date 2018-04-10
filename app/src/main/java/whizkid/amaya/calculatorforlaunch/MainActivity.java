@@ -180,6 +180,16 @@ https://guides.codepath.com/android/developing-custom-themes
                     Integer.toString(R.color.amaya_favourite_color_golden));
         }
 
+
+        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE);
+
+        if(preferenceFont == null || preferenceFont.length() == 0
+                || preferenceFont.equals(Utils.SETTINGS_FONT_STYLE)) {
+            Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
+                    Integer.toString(R.id.Font_Normal));
+        }
+
+
         if(preferenceColour != null && preferenceColour.length() > 0) {
             for (int i = 0; i < operatorButtons.length; i++) {
                 try {

@@ -61,13 +61,27 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     }
 
     private void setTextvaluesColourful() {
-        String strText = "Theme\n";
-        String colour =
-                (getResources().getResourceName(
-                        Integer.parseInt(Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME))));
+        try {
+            String strText = "Theme\n";
+            String colour =
+                    (getResources().getResourceName(
+                            Integer.parseInt(Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME))));
 
-        colour = colour.substring(colour.lastIndexOf("_") + 1);
-        createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText + colour);
+            colour = colour.substring(colour.lastIndexOf("_") + 1);
+            createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText + colour);
+
+
+            strText = "Font Type\n";
+            colour =
+                    (getResources().getResourceName(
+                            Integer.parseInt(Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE))));
+
+            colour = colour.substring(colour.lastIndexOf("/") + 1).toLowerCase();
+            createDifferentFonts((TextView) findViewById(R.id.settingsFontTypeTextView), strText + colour);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -106,7 +120,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
         SpannableStringBuilder SS = new SpannableStringBuilder(strText);
 
-        SS.setSpan(new CustomTypefaceSpan("", sansSeifNormal_Bold),
+        SS.setSpan(new CustomTypefaceSpan("", sansSeifNormal_Normal),
                 0, strText.indexOf("\n"),
                 Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 
@@ -116,10 +130,6 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         textView.setText(SS);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     public void openThemeSettings(View v) {
 //        toast.setText("To be Implemented");
@@ -130,7 +140,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
         if (v.getId() == R.id.settingsThemeTextView) {
             inflater.inflate(R.menu.calculator_theme, popup.getMenu());
-        } else if (v.getId() == R.id.settingsFontType) {
+        } else if (v.getId() == R.id.settingsFontTypeTextView) {
             inflater.inflate(R.menu.calculator_font_style, popup.getMenu());
         } else if (v.getId() == R.id.settingsKeypadLayout) {
             inflater.inflate(R.menu.calculator_keypad_style, popup.getMenu());
