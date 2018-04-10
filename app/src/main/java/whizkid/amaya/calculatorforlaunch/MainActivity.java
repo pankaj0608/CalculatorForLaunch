@@ -176,6 +176,19 @@ https://guides.codepath.com/android/developing-custom-themes
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
 
+        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME);
+
+        if(preferenceColour != null && preferenceColour.length() > 0) {
+            for (int i = 0; i < operatorButtons.length; i++) {
+                try {
+                    View button = findViewById(operatorButtons[i]);
+                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 //         setContentView(R.layout.mylayout_phone_with_drawer);
 
 

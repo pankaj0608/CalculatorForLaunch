@@ -9,30 +9,30 @@
         style="@style/PadButtonStyle.Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="3"
+        android:columnCount="2"
         android:orientation="horizontal">
 
 
         <!-- Row 0 starts -->
 
-        <ImageButton
-            style="@style/PadButtonStyle.Numeric.Operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="false"
-            android:padding="0dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_backspace_pankaj"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+        <!--<ImageButton-->
+            <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:adjustViewBounds="false"-->
+            <!--android:padding="0dp"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@drawable/ic_backspace_pankaj"-->
+            <!--app:layout_columnWeight="1"-->
+            <!--app:layout_gravity="fill"-->
+            <!--app:layout_rowWeight="1" />-->
 
 
         <TextView
             style="@style/PadButtonStyle.Settings"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:text="Vibrate on Touch"
+            android:text="Vibration on key touch"
             app:layout_columnWeight="1" />
 
         <CheckBox
@@ -45,24 +45,24 @@
 
         <!-- Row 1 starts -->
 
-        <ImageButton
-            style="@style/PadButtonStyle.Numeric.Operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="false"
-            android:padding="0dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_backspace_pankaj"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+        <!--<ImageButton-->
+            <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:adjustViewBounds="false"-->
+            <!--android:padding="0dp"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@drawable/ic_backspace_pankaj"-->
+            <!--app:layout_columnWeight="1"-->
+            <!--app:layout_gravity="fill"-->
+            <!--app:layout_rowWeight="1" />-->
 
 
         <TextView
             style="@style/PadButtonStyle.Settings"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:text="Precision to 3 digis"
+            android:text="Limit precision 2 digits"
             app:layout_columnWeight="1" />
 
         <CheckBox
@@ -74,24 +74,24 @@
 
         <!-- Row 0 starts -->
 
-        <ImageButton
-            style="@style/PadButtonStyle.Numeric.Operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="false"
-            android:padding="0dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_backspace_pankaj"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+        <!--<ImageButton-->
+            <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:adjustViewBounds="false"-->
+            <!--android:padding="0dp"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@drawable/ic_backspace_pankaj"-->
+            <!--app:layout_columnWeight="1"-->
+            <!--app:layout_gravity="fill"-->
+            <!--app:layout_rowWeight="1" />-->
 
 
         <TextView
             style="@style/PadButtonStyle.Settings"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:text="Comma after thousand place"
+            android:text="Thousand's seperator"
             app:layout_columnWeight="1" />
 
         <CheckBox
@@ -103,17 +103,17 @@
 
 
         <!-- Row 2 starts -->
-        <ImageButton
-            style="@style/PadButtonStyle.Numeric.Operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="false"
-            android:padding="0dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_backspace_pankaj"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+        <!--<ImageButton-->
+            <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:adjustViewBounds="false"-->
+            <!--android:padding="0dp"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@drawable/ic_backspace_pankaj"-->
+            <!--app:layout_columnWeight="1"-->
+            <!--app:layout_gravity="fill"-->
+            <!--app:layout_rowWeight="1" />-->
 
         <TextView
             android:id="@+id/settingsKeypadLayout"
@@ -130,17 +130,17 @@
         <!-- Row 2 ends -->
 
         <!-- Row 3 starts -->
-        <ImageButton
-            style="@style/PadButtonStyle.Numeric.Operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="false"
-            android:padding="0dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_backspace_pankaj"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+        <!--<ImageButton-->
+            <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:adjustViewBounds="false"-->
+            <!--android:padding="0dp"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@drawable/ic_backspace_pankaj"-->
+            <!--app:layout_columnWeight="1"-->
+            <!--app:layout_gravity="fill"-->
+            <!--app:layout_rowWeight="1" />-->
 
         <TextView
             android:id="@+id/settingsTheme"
@@ -157,17 +157,17 @@
         <!-- Row 3 ends -->
 
         <!-- Row 3 starts -->
-        <ImageButton
-            style="@style/PadButtonStyle.Numeric.Operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="false"
-            android:padding="0dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_backspace_pankaj"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+        <!--<ImageButton-->
+            <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:adjustViewBounds="false"-->
+            <!--android:padding="0dp"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@drawable/ic_backspace_pankaj"-->
+            <!--app:layout_columnWeight="1"-->
+            <!--app:layout_gravity="fill"-->
+            <!--app:layout_rowWeight="1" />-->
 
         <TextView
             android:id="@+id/settingsFontType"
@@ -184,17 +184,17 @@
         <!-- Row 3 ends -->
 
         <!-- Row 3 starts -->
-        <ImageButton
-            style="@style/PadButtonStyle.Numeric.Operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="false"
-            android:padding="0dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_backspace_pankaj"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+        <!--<ImageButton-->
+            <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:adjustViewBounds="false"-->
+            <!--android:padding="0dp"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@drawable/ic_backspace_pankaj"-->
+            <!--app:layout_columnWeight="1"-->
+            <!--app:layout_gravity="fill"-->
+            <!--app:layout_rowWeight="1" />-->
 
         <TextView
             android:id="@+id/settingsDisplayFormat"
