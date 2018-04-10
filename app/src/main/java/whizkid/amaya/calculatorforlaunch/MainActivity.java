@@ -178,6 +178,12 @@ https://guides.codepath.com/android/developing-custom-themes
 
         String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME);
 
+        if(preferenceColour == null || preferenceColour.length() == 0
+                || preferenceColour.equals(Utils.SETTINGS_COLOR_THEME)) {
+            Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                    Integer.toString(R.color.amaya_favourite_color));
+        }
+
         if(preferenceColour != null && preferenceColour.length() > 0) {
             for (int i = 0; i < operatorButtons.length; i++) {
                 try {

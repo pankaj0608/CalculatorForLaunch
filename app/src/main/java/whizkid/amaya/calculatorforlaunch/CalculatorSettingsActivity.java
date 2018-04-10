@@ -2,20 +2,30 @@ package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 public class CalculatorSettingsActivity extends AppCompatActivity {
 
     private CheckBox settingsVibrateOnTouch;
     private CheckBox settingsPrecisionTwoDigits;
     private CheckBox settingsCommaAfterThousand;
+    private TextView settingsThemeTextView;
+
+    final Typeface sansSeifNormal_Thin = Typeface.create("sans-serif-thin", Typeface.NORMAL);
+    final Typeface sansSeifNormal_Normal = Typeface.create("sans-serif-light", Typeface.NORMAL);
+    final Typeface sansSeifNormal_Bold = Typeface.create("sans-serif-light", Typeface.BOLD);
+
 //    private CheckBox settingsKeyPadLayout;
 //    private CheckBox settingsTheme;
 //    private CheckBox settingsDisplayFormat;
@@ -30,6 +40,8 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         settingsPrecisionTwoDigits = (CheckBox) findViewById(R.id.settingsPrecisionTwoDigits);
         settingsCommaAfterThousand = (CheckBox) findViewById(R.id.settingsCommaAfterThousand);
 
+        settingsThemeTextView = (TextView) findViewById(R.id.settingsThemeTextView);
+
         settingsPrecisionTwoDigits.setChecked(
                 Boolean.valueOf(
                         Utils.getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT)));
@@ -42,12 +54,20 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 Boolean.valueOf(
                         Utils.getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND)));
 
+        setTextvaluesColourful();
 
 //        private CheckBox settingsKeyPadLayout;
 //        private CheckBox settingsTheme;
 //        private CheckBox settingsDisplayFormat;
 
 
+    }
+
+    private void setTextvaluesColourful() {
+        String strText = "Theme\n" + getResources().getResourceName(
+                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME)));
+
+        createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText);
     }
 
 
@@ -76,6 +96,30 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 Utils.SETTINGS_DISPLAY_FORMAT, "SETTINGS_DISPLAY_FORMAT");
     }
 
+    private void createDifferentFonts(TextView textView, String strText) {
+
+//        TextView txt = (TextView) findViewById(R.id.custom_fonts);
+//        txt.setTextSize(30);
+//        Typeface font = Typeface.createFromAsset(getAssets(), "Akshar.ttf");
+//        Typeface font2 = Typeface.createFromAsset(getAssets(), "bangla.ttf");
+//        SpannableStringBuilder SS = new SpannableStringBuilder("আমারநல்வரவு");
+
+        SpannableStringBuilder SS = new SpannableStringBuilder(strText);
+
+        SS.setSpan(new CustomTypefaceSpan("", sansSeifNormal_Bold),
+                0, strText.indexOf("\n"),
+                Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        SS.setSpan(new CustomTypefaceSpan("", sansSeifNormal_Thin),
+                strText.indexOf("\n"), strText.length(),
+                Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        textView.setText(SS);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     public void openThemeSettings(View v) {
 //        toast.setText("To be Implemented");
@@ -84,7 +128,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
 
-        if (v.getId() == R.id.settingsTheme) {
+        if (v.getId() == R.id.settingsThemeTextView) {
             inflater.inflate(R.menu.calculator_theme, popup.getMenu());
         } else if (v.getId() == R.id.settingsFontType) {
             inflater.inflate(R.menu.calculator_font_style, popup.getMenu());
@@ -149,6 +193,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
         popup.show();
     }
 
