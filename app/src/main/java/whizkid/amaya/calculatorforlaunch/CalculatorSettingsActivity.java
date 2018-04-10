@@ -1,10 +1,7 @@
 package whizkid.amaya.calculatorforlaunch;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.text.SpannableStringBuilder;
@@ -64,10 +61,13 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     }
 
     private void setTextvaluesColourful() {
-        String strText = "Theme\n" + getResources().getResourceName(
-                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME)));
+        String strText = "Theme\n";
+        String colour =
+                (getResources().getResourceName(
+                        Integer.parseInt(Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME))));
 
-        createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText);
+        colour = colour.substring(colour.lastIndexOf("_") + 1);
+        createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText + colour);
     }
 
 
@@ -145,7 +145,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                     case R.id.Material_Golden:
                         System.out.println("clicked popup " + item.getTitle());
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.amaya_favourite_color));
+                                Integer.toString(R.color.amaya_favourite_color_golden));
                         break;
 //                        return true;
 

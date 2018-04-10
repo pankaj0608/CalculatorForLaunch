@@ -1,13 +1,9 @@
 package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -181,7 +177,7 @@ https://guides.codepath.com/android/developing-custom-themes
         if(preferenceColour == null || preferenceColour.length() == 0
                 || preferenceColour.equals(Utils.SETTINGS_COLOR_THEME)) {
             Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                    Integer.toString(R.color.amaya_favourite_color));
+                    Integer.toString(R.color.amaya_favourite_color_golden));
         }
 
         if(preferenceColour != null && preferenceColour.length() > 0) {
