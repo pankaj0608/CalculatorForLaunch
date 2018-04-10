@@ -41,10 +41,11 @@ public class Utils {
     public static final String SETTINGS_FONT_STYLE = "SETTINGS_FONT_STYLE";
     public static final String SETTINGS_COMMA_AFTER_THOUSAND = "SETTINGS_COMMA_AFTER_THOUSAND";
 
-    private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###"); //
-    private static final DecimalFormat decimalFormatWithCommaOnly = new DecimalFormat("#,###.#######");
+    //    private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###"); //
+    private static final DecimalFormat decimalFormatWithCommaOnly = new DecimalFormat("#,###.#########");
     private static final DecimalFormat decimalFormatWithPrecisionOnly = new DecimalFormat("#0.###");
-    private static final DecimalFormat decimalFormatWithCommaAndPrecision = new DecimalFormat("#,###.###");
+    private static final DecimalFormat decimalFormatCommaAndFormat = new DecimalFormat("##,###.###");
+    private static final double MAX_VALUE_FOR_START_OF_EXPONENT = 99999999998d;
 
 //    private static final DecimalFormat decimalFormatWithComma = new DecimalFormat("#,###.###");
 
@@ -196,19 +197,20 @@ public class Utils {
 //        decimalFormatWithCommaAndPrecision
 //
 
+        resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);
+
         if ("true".equals(twoDigitPrecission) && "true".equals(commaAfterThousand)) {
-            resultString = decimalFormatWithCommaAndPrecision.format(resultDouble);
-        }
-        else if("true".equals(twoDigitPrecission) && !"true".equals(commaAfterThousand)) {
+            resultString = decimalFormatCommaAndFormat.format(resultDouble);
+        } else if ("true".equals(twoDigitPrecission) && !"true".equals(commaAfterThousand)) {
             resultString = decimalFormatWithPrecisionOnly.format(resultDouble);
-        }
-        else if(!"true".equals(twoDigitPrecission) && "true".equals(commaAfterThousand)) {
+        } else if (!"true".equals(twoDigitPrecission) && "true".equals(commaAfterThousand)) {
             resultString = decimalFormatWithCommaOnly.format(resultDouble);
         }
-        else {
+
+        //if the result is too long then change it into Exponential form
+        if (resultDouble > MAX_VALUE_FOR_START_OF_EXPONENT) {
             resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);
         }
-
 
         return resultString;
 
