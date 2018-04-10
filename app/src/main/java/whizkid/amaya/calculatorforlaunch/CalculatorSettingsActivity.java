@@ -66,8 +66,6 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 Boolean.toString(settingsCommaAfterThousand.isChecked()));
 
 
-
-
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_COLOR_THEME, "SETTINGS_THEME");
 
@@ -92,8 +90,6 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
             inflater.inflate(R.menu.calculator_font_style, popup.getMenu());
         } else if (v.getId() == R.id.settingsKeypadLayout) {
             inflater.inflate(R.menu.calculator_keypad_style, popup.getMenu());
-        } else if (v.getId() == R.id.settingsDisplayFormat) {
-            inflater.inflate(R.menu.calculator_display_format, popup.getMenu());
         } else {
             return;
         }

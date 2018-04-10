@@ -43,8 +43,8 @@ public class Utils {
 
     //    private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###"); //
     private static final DecimalFormat decimalFormatWithCommaOnly = new DecimalFormat("#,###.#########");
-    private static final DecimalFormat decimalFormatWithPrecisionOnly = new DecimalFormat("#0.###");
-    private static final DecimalFormat decimalFormatCommaAndFormat = new DecimalFormat("##,###.###");
+    private static final DecimalFormat decimalFormatWithPrecisionOnly = new DecimalFormat("#0.##");
+    private static final DecimalFormat decimalFormatCommaAndFormat = new DecimalFormat("##,###.##");
     private static final double MAX_VALUE_FOR_START_OF_EXPONENT = 99999999998d;
 
 //    private static final DecimalFormat decimalFormatWithComma = new DecimalFormat("#,###.###");
