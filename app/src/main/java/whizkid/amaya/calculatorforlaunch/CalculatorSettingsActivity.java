@@ -146,51 +146,66 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                         System.out.println("clicked popup " + item.getTitle());
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.amaya_favourite_color));
-                        return true;
+                        break;
+//                        return true;
+
                     case R.id.Material_Orange:
                         System.out.println("clicked popup " + item.getTitle());
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_dark_orange));
-                        return true;
+                        break;
+//                        return true;
+
                     case R.id.Material_Blue:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_dark_blue));
                         System.out.println("clicked popup " + item.getTitle());
-                        return true;
+                        break;
+//                        return true;
                     case R.id.Material_Green:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_dark_green));
                         System.out.println("clicked popup " + item.getTitle());
-                        return true;
+                        break;
+//                        return true;
                     case R.id.Material_Pink:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_dark_pink));
                         System.out.println("clicked popup " + item.getTitle());
-                        return true;
+                        break;
+//                        return true;
                     case R.id.Material_Red:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_dark_red));
                         System.out.println("clicked popup " + item.getTitle());
-                        return true;
+                        break;
+//                        return true;
                     case R.id.Font_Thin:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
                                 Integer.toString(R.id.Font_Thin));
                         System.out.println("clicked popup " + item.getTitle());
-                        return true;
+                        break;
+//                        return true;
                     case R.id.Font_Normal:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
                                 Integer.toString(R.id.Font_Normal));
                         System.out.println("clicked popup " + item.getTitle());
-                        return true;
+                        break;
+//                        return true;
                     case R.id.Font_Bold:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
                                 Integer.toString(R.id.Font_Bold));
                         System.out.println("clicked popup " + item.getTitle());
-                        return true;
+                        break;
+//                        return true;
                     default:
                         System.out.println("Unknown clicked popup" + item.toString());
-                        return true;
+                        break;
+//                        return true;
                 }
+
+                setTextvaluesColourful();
+                return true;
             }
         });
 
