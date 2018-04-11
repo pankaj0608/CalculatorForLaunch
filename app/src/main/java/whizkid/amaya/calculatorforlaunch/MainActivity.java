@@ -546,7 +546,8 @@ https://guides.codepath.com/android/developing-custom-themes
         } else if (Utils.DECIMAL.equals(tag) && !editTextEquation.isFocused()) {
 
             if (currentEquation == null || currentEquation.trim().length() == 0) {
-                return;
+                editTextEquation.setText(Utils.correctEquation("0" + tag));
+                return ;
             }
 
             int lastOperatorIndex = -1;
@@ -578,8 +579,15 @@ https://guides.codepath.com/android/developing-custom-themes
 
                 try {
                     //if exception in arsing then it means that decimal is illegal
-                    Double.parseDouble(end + tag);
-                    currentEquation = currentEquation + tag;
+                    if(Utils.EMPTY_STRING.equals(end)) {
+                        end = "0";
+                        Double.parseDouble(end + tag);
+                        currentEquation = currentEquation + end + tag;
+                    }
+                    else {
+                        currentEquation = currentEquation + tag;
+
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
