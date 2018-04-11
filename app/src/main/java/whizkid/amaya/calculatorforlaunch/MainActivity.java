@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -57,7 +58,7 @@ https://guides.codepath.com/android/developing-custom-themes
     AppCompatTextView editTextResult;
     EditText editTextEquation;
     EditText editTextMemory;
-//    final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
+    //    final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
     final Typeface sansSeifCondensed = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
     final Typeface sansSeifMonospace = Typeface.create("arial", Typeface.NORMAL);
     final Typeface sansSeifTest = Typeface.create("sans-serif-thin", Typeface.BOLD);
@@ -174,7 +175,7 @@ https://guides.codepath.com/android/developing-custom-themes
 
         String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME);
 
-        if(preferenceColour == null || preferenceColour.length() == 0
+        if (preferenceColour == null || preferenceColour.length() == 0
                 || preferenceColour.equals(Utils.SETTINGS_COLOR_THEME)) {
             Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                     Integer.toString(R.color.amaya_favourite_color_golden));
@@ -183,14 +184,14 @@ https://guides.codepath.com/android/developing-custom-themes
 
         String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE);
 
-        if(preferenceFont == null || preferenceFont.length() == 0
+        if (preferenceFont == null || preferenceFont.length() == 0
                 || preferenceFont.equals(Utils.SETTINGS_FONT_STYLE)) {
             Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
                     Integer.toString(R.id.Font_Normal));
         }
 
 
-        if(preferenceColour != null && preferenceColour.length() > 0) {
+        if (preferenceColour != null && preferenceColour.length() > 0) {
             for (int i = 0; i < operatorButtons.length; i++) {
                 try {
                     View button = findViewById(operatorButtons[i]);
@@ -214,6 +215,7 @@ https://guides.codepath.com/android/developing-custom-themes
         editTextResult = (AppCompatTextView) findViewById(R.id.editTextResult);
         editTextEquation = (EditText) findViewById(R.id.editTextEquation);
         editTextMemory = (EditText) findViewById(R.id.editTextMemory);
+
 
         editTextResult.setTextIsSelectable(true);
 
@@ -366,7 +368,7 @@ https://guides.codepath.com/android/developing-custom-themes
         String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME);
         String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE);
 
-        if(preferenceColour != null && preferenceColour.length() > 0) {
+        if (preferenceColour != null && preferenceColour.length() > 0) {
             for (int i = 0; i < operatorButtons.length; i++) {
                 try {
                     View button = findViewById(operatorButtons[i]);
@@ -378,19 +380,17 @@ https://guides.codepath.com/android/developing-custom-themes
             }
         }
 
-        if(preferenceFont != null && preferenceFont.length() > 0) {
+        if (preferenceFont != null && preferenceFont.length() > 0) {
             for (int i = 0; i < resourcesButton.length; i++) {
                 try {
                     System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
                     Button button = ((Button) findViewById(resourcesButton[i]));
-                    if(preferenceFont.equals(Integer.toString(R.id.Font_Thin))) {
+                    if (preferenceFont.equals(Integer.toString(R.id.Font_Thin))) {
                         button.setTypeface(sansSeifNormal_Thin);
-                    }
-                    else if(preferenceFont.equals(Integer.toString(R.id.Font_Normal))) {
+                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Normal))) {
                         button.setTypeface(sansSeifNormal_Normal);
 
-                    }
-                    else if(preferenceFont.equals(Integer.toString(R.id.Font_Bold))) {
+                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Bold))) {
                         button.setTypeface(sansSeifNormal_Bold);
 
                     }
@@ -479,8 +479,14 @@ https://guides.codepath.com/android/developing-custom-themes
         mySelectionValueEnd = 0;
         mySelectionValueStart = 0;
         editTextEquation.clearFocus();
-        editTextResult.setText("0");
-        editTextEquation.setText("0");
+//        editTextResult.setText("0");
+//        editTextEquation.setText("0");
+
+        editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+        editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+        //        editTextResult.clearAnimation();
+        editTextEquation.setText(Utils.evalMe("0"));
+
     }
 
     public void calculateMe(View view) {
@@ -636,6 +642,9 @@ https://guides.codepath.com/android/developing-custom-themes
             mySelectionValueEnd = 0;
             mySelectionValueStart = 0;
             editTextEquation.clearFocus();
+            editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+            editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+            //        editTextResult.clearAnimation();
             editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
             //editTextResult.setText(editTextEquation.getText().toString());
         } else {
