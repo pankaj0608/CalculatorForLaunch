@@ -5,21 +5,47 @@
             android:id="@+id/Material-Golden"
             android:title="Amaya Favourite" />
         <item
+            android:id="@+id/Material-Pink"
+            android:title="Material-Pink" />
+        <item
+            android:id="@+id/Material-Purple"
+            android:title="Material-Purple" />
+        <item
             android:id="@+id/Material-Blue"
             android:title="Material-Blue" />
+        <item
+            android:id="@+id/Material-Indigo"
+            android:title="Material-Indigo" />
+        <item
+            android:id="@+id/Material-Cyan"
+            android:title="Material-Cyan" />
+        <item
+            android:id="@+id/Material-Teal"
+            android:title="Material-Teal" />
         <item
             android:id="@+id/Material-Green"
             android:title="Material-Green" />
         <item
+            android:id="@+id/Material-Lime"
+            android:title="Material-Lime" />
+        <item
+            android:id="@+id/Material-Yellow"
+            android:title="Material-Yellow" />
+        <item
             android:id="@+id/Material-Orange"
             android:title="Material-Orange" />
         <item
-            android:id="@+id/Material-Pink"
-            android:title="Material-Pink" />
+            android:id="@+id/Material-Deep_Brown"
+            android:title="Material-Deep Brown" />
         <item
-            android:id="@+id/Material-Red"
-            android:title="Material-Red" />
-
+            android:id="@+id/Material-Grey"
+            android:title="Material-Grey" />
+        <item
+            android:id="@+id/Material-Blue-Grey"
+            android:title="Material-Blue Grey" />
+        <item
+            android:id="@+id/Material-Black"
+            android:title="Material-Black" />
 
     </group>
 </menu><!--android:icon="@drawable/ic_menu_camera"-->
