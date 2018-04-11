@@ -53,6 +53,11 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 Boolean.valueOf(
                         Utils.getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND, Utils.FALSE)));
 
+        settingsAnimation.setChecked(
+                Boolean.valueOf(
+                        Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION, Utils.FALSE)));
+
+
         setTextvaluesColourful();
 
 //        private CheckBox settingsKeyPadLayout;
