@@ -17,6 +17,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.javia.arity.Util;
+
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends AppCompatActivity {
 
@@ -173,7 +175,7 @@ https://guides.codepath.com/android/developing-custom-themes
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
 
-        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME);
+        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
 
         if (preferenceColour == null || preferenceColour.length() == 0
                 || preferenceColour.equals(Utils.SETTINGS_COLOR_THEME)) {
@@ -182,7 +184,7 @@ https://guides.codepath.com/android/developing-custom-themes
         }
 
 
-        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE);
+        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
 
         if (preferenceFont == null || preferenceFont.length() == 0
                 || preferenceFont.equals(Utils.SETTINGS_FONT_STYLE)) {
@@ -301,11 +303,10 @@ https://guides.codepath.com/android/developing-custom-themes
         editTextEquation.setText("0");
 
         //get the memory from the Share Preference
-        String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE);
+        String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE, Utils.EMPTY_STRING);
 
-        if (Utils.isNotNullString(storedMemory)) {
-            editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
-        }
+        editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
+
 
         //Set the font type for the fields
         editTextResult.setTypeface(sansSeifTest);
@@ -365,8 +366,8 @@ https://guides.codepath.com/android/developing-custom-themes
         super.onResume();
         editTextEquation.setText(editTextEquation.getText().toString());
 
-        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME);
-        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE);
+        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
+        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
 
         if (preferenceColour != null && preferenceColour.length() > 0) {
             for (int i = 0; i < operatorButtons.length; i++) {

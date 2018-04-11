@@ -41,15 +41,15 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
         settingsPrecisionTwoDigits.setChecked(
                 Boolean.valueOf(
-                        Utils.getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT)));
+                        Utils.getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT, Utils.FALSE)));
 
         settingsVibrateOnTouch.setChecked(
                 Boolean.valueOf(
-                        Utils.getValueFromSharedPreference(Utils.SETTINGS_VIBRATE_ON_TOUCH)));
+                        Utils.getValueFromSharedPreference(Utils.SETTINGS_VIBRATE_ON_TOUCH, Utils.FALSE)));
 
         settingsCommaAfterThousand.setChecked(
                 Boolean.valueOf(
-                        Utils.getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND)));
+                        Utils.getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND, Utils.FALSE)));
 
         setTextvaluesColourful();
 
@@ -65,7 +65,8 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
             String strText = "Theme\n";
             String colour =
                     (getResources().getResourceName(
-                            Integer.parseInt(Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME))));
+                            Integer.parseInt(
+                                    Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING))));
 
             colour = colour.substring(colour.lastIndexOf("_") + 1);
             createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText + colour);
@@ -74,7 +75,8 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
             strText = "Font Type\n";
             colour =
                     (getResources().getResourceName(
-                            Integer.parseInt(Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE))));
+                            Integer.parseInt(
+                                    Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING))));
 
             colour = colour.substring(colour.lastIndexOf("/") + 1).toLowerCase();
             createDifferentFonts((TextView) findViewById(R.id.settingsFontTypeTextView), strText + colour);
