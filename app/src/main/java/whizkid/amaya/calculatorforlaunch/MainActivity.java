@@ -305,7 +305,7 @@ https://guides.codepath.com/android/developing-custom-themes
         //get the memory from the Share Preference
         String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE, Utils.EMPTY_STRING);
 
-        if(storedMemory.length() > 0) {
+        if (storedMemory.length() > 0) {
             editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
         }
 
@@ -485,8 +485,10 @@ https://guides.codepath.com/android/developing-custom-themes
 //        editTextResult.setText("0");
 //        editTextEquation.setText("0");
 
-        editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
-        editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+        if(Utils.TRUE.equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION,Utils.FALSE))) {
+            editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+            editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+        }
         //        editTextResult.clearAnimation();
         editTextEquation.setText(Utils.evalMe("0"));
 
@@ -508,6 +510,10 @@ https://guides.codepath.com/android/developing-custom-themes
         } else if (Utils.CHANGESIGN.equals(tag)) {
 
             if (currentEquation == null || currentEquation.trim().length() == 0) {
+                return;
+            }
+
+            if(currentEquation.length() == 1 && "0".equals(currentEquation)) {
                 return;
             }
 
@@ -539,6 +545,7 @@ https://guides.codepath.com/android/developing-custom-themes
             }
             //for changesign find the last index of number and change it's sign
 
+
             editTextEquation.setText(Utils.correctEquation(currentEquation));
 
             return;
@@ -547,7 +554,7 @@ https://guides.codepath.com/android/developing-custom-themes
 
             if (currentEquation == null || currentEquation.trim().length() == 0) {
                 editTextEquation.setText(Utils.correctEquation("0" + tag));
-                return ;
+                return;
             }
 
             int lastOperatorIndex = -1;
@@ -579,12 +586,11 @@ https://guides.codepath.com/android/developing-custom-themes
 
                 try {
                     //if exception in arsing then it means that decimal is illegal
-                    if(Utils.EMPTY_STRING.equals(end)) {
+                    if (Utils.EMPTY_STRING.equals(end)) {
                         end = "0";
                         Double.parseDouble(end + tag);
                         currentEquation = currentEquation + end + tag;
-                    }
-                    else {
+                    } else {
                         currentEquation = currentEquation + tag;
 
                     }
@@ -653,8 +659,10 @@ https://guides.codepath.com/android/developing-custom-themes
             mySelectionValueEnd = 0;
             mySelectionValueStart = 0;
             editTextEquation.clearFocus();
-            editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
-            editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+            if(Utils.TRUE.equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION,Utils.FALSE))) {
+                editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+                editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+            }
             //        editTextResult.clearAnimation();
             editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
             //editTextResult.setText(editTextEquation.getText().toString());

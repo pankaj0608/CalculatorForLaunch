@@ -66,6 +66,24 @@
             app:layout_columnWeight="1" />
         <!-- Row 0 ends -->
 
+        <!-- Row 0 starts -->
+
+
+        <TextView
+            style="@style/PadButtonStyle.Settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable Animation"
+            app:layout_columnWeight="1" />
+
+        <CheckBox
+            android:id="@+id/settingsAnimation"
+            style="@style/PadButtonStyle.Settings"
+            android:onClick="setCalculatorSettings"
+            android:layout_gravity="center"
+            app:layout_columnWeight="1" />
+        <!-- Row 0 ends -->
+
         <!-- Row 3 starts -->
 
         <TextView

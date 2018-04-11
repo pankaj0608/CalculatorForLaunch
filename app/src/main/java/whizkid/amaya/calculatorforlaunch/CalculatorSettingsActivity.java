@@ -17,6 +17,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     private CheckBox settingsVibrateOnTouch;
     private CheckBox settingsPrecisionTwoDigits;
     private CheckBox settingsCommaAfterThousand;
+    private CheckBox settingsAnimation;
     private TextView settingsThemeTextView;
 
     final Typeface sansSeifNormal_Thin = Typeface.create("sans-serif-thin", Typeface.NORMAL);
@@ -36,6 +37,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         settingsVibrateOnTouch = (CheckBox) findViewById(R.id.settingsVibrateOnTouch);
         settingsPrecisionTwoDigits = (CheckBox) findViewById(R.id.settingsPrecisionTwoDigits);
         settingsCommaAfterThousand = (CheckBox) findViewById(R.id.settingsCommaAfterThousand);
+        settingsAnimation =  (CheckBox) findViewById(R.id.settingsAnimation);
 
         settingsThemeTextView = (TextView) findViewById(R.id.settingsThemeTextView);
 
@@ -101,6 +103,9 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 Utils.SETTINGS_COMMA_AFTER_THOUSAND,
                 Boolean.toString(settingsCommaAfterThousand.isChecked()));
 
+        Utils.putStringInSharedPreference(
+                Utils.SETTINGS_ANIMATION,
+                Boolean.toString(settingsAnimation.isChecked()));
 
         Utils.putStringInSharedPreference(
                 Utils.SETTINGS_COLOR_THEME, "SETTINGS_THEME");

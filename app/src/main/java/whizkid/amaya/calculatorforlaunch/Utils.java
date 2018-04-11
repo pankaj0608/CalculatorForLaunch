@@ -43,6 +43,7 @@ public class Utils {
     public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
     public static final String SETTINGS_FONT_STYLE = "SETTINGS_FONT_STYLE";
     public static final String SETTINGS_COMMA_AFTER_THOUSAND = "SETTINGS_COMMA_AFTER_THOUSAND";
+    public static final String SETTINGS_ANIMATION = "SETTINGS_ANIMATION";
 
     //    private static final DecimalFormat decimalFormat = new DecimalFormat("#0.###"); //
     private static final DecimalFormat decimalFormatWithCommaOnly = new DecimalFormat("#,###.#########");
