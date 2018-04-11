@@ -192,9 +192,14 @@ public class Utils {
 
         if (str.endsWith(DIVIDE) || str.endsWith(MULTIPLY)
                 || str.endsWith(ADD) || str.endsWith(SUBTRACT)
-                || str.endsWith(DECIMAL)) {
+                || str.endsWith(DECIMAL) || str.startsWith(PERCENTAGE)) {
 
-            return evalMe(str.substring(0, str.length() - 1));
+            if(str.length() <= 1) {
+                return "0";
+            }
+            else {
+                return evalMe(str.substring(0, str.length() - 1));
+            }
         }
 
         double resultDouble = evalMeUsingSymbols(str);
