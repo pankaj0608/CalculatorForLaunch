@@ -124,6 +124,14 @@ public class Utils {
      * @return
      */
     static String correctEquation(String equation) {
+        equation = equation.replace("÷%", "÷");
+        equation = equation.replace("x%", "x");
+        equation = equation.replace("+%", "+");
+        equation = equation.replace("-%", "-");
+
+        equation = equation.replace("%%", "%");
+
+        equation = equation.replace("xx", "x");
         equation = equation.replace("xx", "x");
         equation = equation.replace("x÷", "÷");
         equation = equation.replace("÷x", "x");
