@@ -3,7 +3,6 @@ package whizkid.amaya.calculatorforlaunch;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Vibrator;
-import android.preference.PreferenceManager;
 import android.widget.EditText;
 
 import org.javia.arity.Symbols;
@@ -53,6 +52,7 @@ public class Utils {
     public static final long VIBRATION_DURATION = 25;
     private static Vibrator vibrator;
     public static Context contextOfApplication;
+    private static final String MY_SHARED_PREFERENCE = "MY_SHARED_PREFERENCE";
 
 
     public static void setBaseEssentials(Context context, Vibrator aVibrator) {
@@ -217,8 +217,12 @@ public class Utils {
     }
 
 
-    private static SharedPreferences getDefaultSharedPreference() {
-        return PreferenceManager.getDefaultSharedPreferences(contextOfApplication);
+    private static SharedPreferences getSharedPreference() {
+//        return PreferenceManager.getDefaultSharedPreferences(contextOfApplication);
+
+        return contextOfApplication.getSharedPreferences(
+                MY_SHARED_PREFERENCE, Context.MODE_PRIVATE);
+
     }
 
     /**
@@ -242,8 +246,9 @@ public class Utils {
      * @return
      */
     public static String getValueFromSharedPreference(
-            final String key) {
-        return getDefaultSharedPreference().getString(key, "");
+            final String key, String defaultValue) {
+
+        return getSharedPreference().getString(key, defaultValue);
 
     }
 
@@ -254,7 +259,7 @@ public class Utils {
      */
     public static void putStringInSharedPreference(final String key, final String value) {
 
-        SharedPreferences.Editor editor = getDefaultSharedPreference().edit();
+        SharedPreferences.Editor editor = getSharedPreference().edit();
         editor.putString(key, value);
         editor.commit();
     }
