@@ -305,7 +305,9 @@ https://guides.codepath.com/android/developing-custom-themes
         //get the memory from the Share Preference
         String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE, Utils.EMPTY_STRING);
 
-        editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
+        if(storedMemory.length() > 0) {
+            editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
+        }
 
 
         //Set the font type for the fields
