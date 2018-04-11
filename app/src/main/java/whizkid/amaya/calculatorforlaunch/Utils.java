@@ -13,6 +13,10 @@ import java.text.DecimalFormat;
 
 public class Utils {
 
+    public static final String EMPTY_STRING = "";
+    public static final String FALSE = "false";
+    public static final String TRUE = "true";
+
     public static final String ADD = "+";
     public static final String SUBTRACT = "-";
     public static final String MULTIPLY = "*";
@@ -187,8 +191,10 @@ public class Utils {
 
         double resultDouble = evalMeUsingSymbols(str);
 
-        String twoDigitPrecission = getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT);
-        String commaAfterThousand = getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND);
+        String twoDigitPrecission =
+                getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT, FALSE );
+        String commaAfterThousand =
+                getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND, FALSE);
 
         String resultString = "";
 
@@ -199,11 +205,11 @@ public class Utils {
 
         resultString = Util.doubleToString(resultDouble, MAX_DIGITS, ROUNDING_DIGITS);
 
-        if ("true".equals(twoDigitPrecission) && "true".equals(commaAfterThousand)) {
+        if (TRUE.equals(twoDigitPrecission) && TRUE.equals(commaAfterThousand)) {
             resultString = decimalFormatCommaAndFormat.format(resultDouble);
-        } else if ("true".equals(twoDigitPrecission) && !"true".equals(commaAfterThousand)) {
+        } else if (TRUE.equals(twoDigitPrecission) && !TRUE.equals(commaAfterThousand)) {
             resultString = decimalFormatWithPrecisionOnly.format(resultDouble);
-        } else if (!"true".equals(twoDigitPrecission) && "true".equals(commaAfterThousand)) {
+        } else if (!TRUE.equals(twoDigitPrecission) && TRUE.equals(commaAfterThousand)) {
             resultString = decimalFormatWithCommaOnly.format(resultDouble);
         }
 
@@ -300,7 +306,7 @@ public class Utils {
 
     static void vibrateMe() {
         //vibrate if vibation set in the settings
-        if ("true".equals(getValueFromSharedPreference(Utils.SETTINGS_VIBRATE_ON_TOUCH))) {
+        if (TRUE.equals(getValueFromSharedPreference(Utils.SETTINGS_VIBRATE_ON_TOUCH, FALSE))) {
             vibrator.vibrate(Utils.VIBRATION_DURATION);
         }
     }
