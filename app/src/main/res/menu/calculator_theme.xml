@@ -5,7 +5,7 @@
             android:id="@+id/Material-Golden"
             android:title="Amaya Favourite" />
         <item
-            android:id="@+id/Material-Pink"
+            android:id="@+id/pankaj_theme_dark_extra_pink"
             android:title="Material-Pink" />
         <item
             android:id="@+id/Material-Purple"
