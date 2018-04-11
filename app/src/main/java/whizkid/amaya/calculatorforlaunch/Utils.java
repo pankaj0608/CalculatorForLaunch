@@ -56,12 +56,14 @@ public class Utils {
 
     public static final long VIBRATION_DURATION = 25;
     private static Vibrator vibrator;
-    public static Context contextOfApplication;
-    private static final String MY_SHARED_PREFERENCE = "MY_SHARED_PREFERENCE";
+    public static Context contextOfApplication_NotUse;
+    public static SharedPreferences mySharedPreferences;
+    public static final String MY_SHARED_PREFERENCE = "MY_SHARED_PREFERENCE";
 
 
-    public static void setBaseEssentials(Context context, Vibrator aVibrator) {
-        contextOfApplication = context;
+    public static void setBaseEssentials(Context context, SharedPreferences sharedPreferences, Vibrator aVibrator) {
+        contextOfApplication_NotUse = context;
+        mySharedPreferences = sharedPreferences;
         vibrator = aVibrator;
     }
 
@@ -195,10 +197,9 @@ public class Utils {
                 || str.endsWith(ADD) || str.endsWith(SUBTRACT)
                 || str.endsWith(DECIMAL) || str.startsWith(PERCENTAGE)) {
 
-            if(str.length() <= 1) {
+            if (str.length() <= 1) {
                 return "0";
-            }
-            else {
+            } else {
                 return evalMe(str.substring(0, str.length() - 1));
             }
         }
@@ -206,7 +207,7 @@ public class Utils {
         double resultDouble = evalMeUsingSymbols(str);
 
         String twoDigitPrecission =
-                getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT, FALSE );
+                getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT, FALSE);
         String commaAfterThousand =
                 getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND, FALSE);
 
@@ -240,8 +241,9 @@ public class Utils {
     private static SharedPreferences getSharedPreference() {
 //        return PreferenceManager.getDefaultSharedPreferences(contextOfApplication);
 
-        return contextOfApplication.getSharedPreferences(
-                MY_SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        return mySharedPreferences;
+//        return contextOfApplication.getSharedPreferences(
+//                MY_SHARED_PREFERENCE, Context.MODE_PRIVATE);
 
     }
 
@@ -278,8 +280,8 @@ public class Utils {
      * @param value
      */
     public static void putStringInSharedPreference(final String key, final String value) {
-
-        SharedPreferences.Editor editor = getSharedPreference().edit();
+        SharedPreferences sharedPreferences = getSharedPreference();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         editor.commit();
     }

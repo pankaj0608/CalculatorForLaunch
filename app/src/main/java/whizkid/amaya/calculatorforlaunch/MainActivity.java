@@ -1,5 +1,6 @@
 package whizkid.amaya.calculatorforlaunch;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -172,6 +173,8 @@ https://guides.codepath.com/android/developing-custom-themes
         setContentView(R.layout.mylayout_phone);
 
         Utils.setBaseEssentials(getApplicationContext(),
+                getApplicationContext().getSharedPreferences(
+                        Utils.MY_SHARED_PREFERENCE, Context.MODE_PRIVATE),
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
 
@@ -366,6 +369,12 @@ https://guides.codepath.com/android/developing-custom-themes
     @Override
     protected void onResume() {
         super.onResume();
+
+        Utils.setBaseEssentials(getApplicationContext(),
+                getApplicationContext().getSharedPreferences(
+                        Utils.MY_SHARED_PREFERENCE, Context.MODE_PRIVATE),
+                (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
+
         editTextEquation.setText(editTextEquation.getText().toString());
 
         String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
