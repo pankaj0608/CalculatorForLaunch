@@ -187,22 +187,22 @@ https://guides.codepath.com/android/developing-custom-themes
 
         String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
 
-        if(Utils.EMPTY_STRING.equals(preferenceColour)) {
-            editTextMemory.setText("V : empty :");
-        }
-        else {
-
-            try {
-                editTextMemory.setText("V : "
-                        +  getResources().getResourceName(Integer.parseInt(preferenceColour)).
-                        substring(getResources().getResourceName(Integer.parseInt(preferenceColour)).lastIndexOf("/"))
-                        + " :");
-            }
-            catch (Exception e) {
-                editTextMemory.setText("V : " + e.getMessage());
-            }
-
-        }
+//        if(Utils.EMPTY_STRING.equals(preferenceColour)) {
+//            editTextMemory.setText("V : empty :");
+//        }
+//        else {
+//
+//            try {
+//                editTextMemory.setText("V : "
+//                        +  getResources().getResourceName(Integer.parseInt(preferenceColour)).
+//                        substring(getResources().getResourceName(Integer.parseInt(preferenceColour)).lastIndexOf("/"))
+//                        + " :");
+//            }
+//            catch (Exception e) {
+//                editTextMemory.setText("V : " + e.getMessage());
+//            }
+//
+//        }
 
         if (Utils.EMPTY_STRING.equals(preferenceColour.equals(Utils.SETTINGS_COLOR_THEME))) {
             Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
@@ -325,7 +325,7 @@ https://guides.codepath.com/android/developing-custom-themes
         //get the memory from the Share Preference
         String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE, Utils.EMPTY_STRING);
 
-        if (storedMemory.length() > 0 && false) {
+        if (storedMemory.length() > 0) {
             editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
         }
 
