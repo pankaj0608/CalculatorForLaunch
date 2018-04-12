@@ -163,7 +163,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item. getItemId()) {
+                switch (item.getItemId()) {
                     case R.id.Material_Golden:
                         System.out.println("clicked popup " + item.getTitle());
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,

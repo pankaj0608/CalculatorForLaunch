@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/Material-Golden"
+            android:id="@+id/amaya_favourite_color_golden"
             android:title="Amaya Favourite" />
         <item
             android:id="@+id/pankaj_theme_dark_pink"
