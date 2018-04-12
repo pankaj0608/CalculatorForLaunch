@@ -7,15 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import whizkid.amaya.calculatorforlaunch.R;
+
+
 public class FB_Fragment extends Fragment {
 
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-////        return super.onCreateView(inflater, container, savedInstanceState);
-//
-//        View rootView = inflater.inflate(R.layout.fb_fragement, container, false);
-//
-//        return rootView;
-//    }
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+//        return super.onCreateView(inflater, container, savedInstanceState);
+
+        View rootView = inflater.inflate(R.layout.fb_fragment,
+                            container, false);
+
+        return rootView;
+    }
 }
