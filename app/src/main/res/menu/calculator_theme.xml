@@ -5,46 +5,46 @@
             android:id="@+id/Material-Golden"
             android:title="Amaya Favourite" />
         <item
-            android:id="@+id/pankaj_theme_dark_extra_pink"
+            android:id="@+id/pankaj_theme_dark_pink"
             android:title="Material-Pink" />
         <item
-            android:id="@+id/Material-Purple"
+            android:id="@+id/pankaj_theme_dark_purple"
             android:title="Material-Purple" />
         <item
-            android:id="@+id/Material-Blue"
+            android:id="@+id/pankaj_theme_dark_blue"
             android:title="Material-Blue" />
         <item
-            android:id="@+id/Material-Indigo"
+            android:id="@+id/pankaj_theme_dark_indigo"
             android:title="Material-Indigo" />
         <item
-            android:id="@+id/Material-Cyan"
+            android:id="@+id/pankaj_theme_dark_cyan"
             android:title="Material-Cyan" />
         <item
-            android:id="@+id/Material-Teal"
+            android:id="@+id/pankaj_theme_dark_teal"
             android:title="Material-Teal" />
         <item
-            android:id="@+id/Material-Green"
+            android:id="@+id/pankaj_theme_dark_green"
             android:title="Material-Green" />
         <item
-            android:id="@+id/Material-Lime"
+            android:id="@+id/pankaj_theme_dark_lime"
             android:title="Material-Lime" />
         <item
-            android:id="@+id/Material-Yellow"
+            android:id="@+id/pankaj_theme_dark_yellow"
             android:title="Material-Yellow" />
         <item
-            android:id="@+id/Material-Orange"
+            android:id="@+id/pankaj_theme_dark_orange"
             android:title="Material-Orange" />
         <item
-            android:id="@+id/Material-Deep_Brown"
+            android:id="@+id/pankaj_theme_dark_deep_brown"
             android:title="Material-Deep Brown" />
         <item
-            android:id="@+id/Material-Grey"
+            android:id="@+id/pankaj_theme_dark_grey"
             android:title="Material-Grey" />
         <item
-            android:id="@+id/Material-Blue-Grey"
+            android:id="@+id/pankaj_theme_blue_grey"
             android:title="Material-Blue Grey" />
         <item
-            android:id="@+id/Material-Black"
+            android:id="@+id/pankaj_theme_dark_black"
             android:title="Material-Black" />
 
     </group>
