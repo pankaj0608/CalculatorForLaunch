@@ -11,8 +11,14 @@
             android:id="@+id/pankaj_theme_dark_purple"
             android:title="Material-Purple" />
         <item
+            android:id="@+id/pankaj_theme_dark__dark_purple"
+            android:title="Material-Dark Purple" />
+        <item
             android:id="@+id/pankaj_theme_dark_blue"
             android:title="Material-Blue" />
+        <item
+            android:id="@+id/pankaj_theme_dark_light_blue"
+            android:title="Material-Light Blue" />
         <item
             android:id="@+id/pankaj_theme_dark_indigo"
             android:title="Material-Indigo" />
@@ -34,6 +40,9 @@
         <item
             android:id="@+id/pankaj_theme_dark_orange"
             android:title="Material-Orange" />
+        <item
+            android:id="@+id/pankaj_theme_dark_deep_orange"
+            android:title="Material-Deep Orange" />
         <item
             android:id="@+id/pankaj_theme_dark_deep_brown"
             android:title="Material-Deep Brown" />

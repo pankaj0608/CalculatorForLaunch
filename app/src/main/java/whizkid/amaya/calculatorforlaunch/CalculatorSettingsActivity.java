@@ -176,6 +176,10 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_theme_dark_blue));
                         break;
+                    case R.id.pankaj_theme_dark_light_blue:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_light_blue));
+                        break;
                     case R.id.pankaj_theme_dark_blue_grey:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_theme_dark_blue_grey));
@@ -208,6 +212,10 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_theme_dark_orange));
                         break;
+                    case R.id.pankaj_theme_dark_deep_orange:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_deep_brown));
+                        break;
                     case R.id.pankaj_theme_dark_pink:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_theme_dark_pink));
@@ -215,6 +223,10 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                     case R.id.pankaj_theme_dark_purple:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.pankaj_theme_dark_purple));
+                        break;
+                    case R.id.pankaj_theme_dark__dark_purple:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_dark_purple));
                         break;
                     case R.id.pankaj_theme_dark_teal:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
