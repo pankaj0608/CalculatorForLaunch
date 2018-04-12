@@ -178,10 +178,26 @@ https://guides.codepath.com/android/developing-custom-themes
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
 
+        resetOperators();
+
+        editTextResult = (AppCompatTextView) findViewById(R.id.editTextResult);
+        editTextEquation = (EditText) findViewById(R.id.editTextEquation);
+        editTextMemory = (EditText) findViewById(R.id.editTextMemory);
+
+
         String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
 
-        if (preferenceColour == null || preferenceColour.length() == 0
-                || preferenceColour.equals(Utils.SETTINGS_COLOR_THEME)) {
+        if(Utils.EMPTY_STRING.equals(preferenceColour)) {
+            editTextMemory.setText("V : empty :");
+        }
+        else {
+            editTextMemory.setText("V : "
+                    +  getResources().getResourceName(Integer.parseInt(preferenceColour)).
+                            substring(getResources().getResourceName(Integer.parseInt(preferenceColour)).lastIndexOf("/"))
+                    + " :");
+        }
+
+        if (Utils.EMPTY_STRING.equals(preferenceColour.equals(Utils.SETTINGS_COLOR_THEME))) {
             Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                     Integer.toString(R.color.amaya_favourite_color_golden));
         }
@@ -189,14 +205,13 @@ https://guides.codepath.com/android/developing-custom-themes
 
         String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
 
-        if (preferenceFont == null || preferenceFont.length() == 0
-                || preferenceFont.equals(Utils.SETTINGS_FONT_STYLE)) {
+        if (Utils.EMPTY_STRING.equals(preferenceFont)) {
             Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
                     Integer.toString(R.id.Font_Normal));
         }
 
 
-        if (preferenceColour != null && preferenceColour.length() > 0) {
+        if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
             for (int i = 0; i < operatorButtons.length; i++) {
                 try {
                     View button = findViewById(operatorButtons[i]);
@@ -207,6 +222,8 @@ https://guides.codepath.com/android/developing-custom-themes
                 }
             }
         }
+
+
 //         setContentView(R.layout.mylayout_phone_with_drawer);
 
 
@@ -214,13 +231,6 @@ https://guides.codepath.com/android/developing-custom-themes
 
         //For sliding menu ends
         //Pankaj Code Starts
-        resetOperators();
-
-
-        editTextResult = (AppCompatTextView) findViewById(R.id.editTextResult);
-        editTextEquation = (EditText) findViewById(R.id.editTextEquation);
-        editTextMemory = (EditText) findViewById(R.id.editTextMemory);
-
 
         editTextResult.setTextIsSelectable(true);
 
@@ -308,7 +318,7 @@ https://guides.codepath.com/android/developing-custom-themes
         //get the memory from the Share Preference
         String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE, Utils.EMPTY_STRING);
 
-        if (storedMemory.length() > 0) {
+        if (storedMemory.length() > 0 && false) {
             editTextMemory.setText(Utils.MEMORY_PREFIX + storedMemory);
         }
 
