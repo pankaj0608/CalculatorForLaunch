@@ -29,17 +29,17 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return rowItems.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return rowItems.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return rowItems.indexOf(getItem(position));
     }
 
     @Override
