@@ -41,7 +41,7 @@
             android:id="@+id/pankaj_theme_dark_grey"
             android:title="Material-Grey" />
         <item
-            android:id="@+id/pankaj_theme_blue_grey"
+            android:id="@+id/pankaj_theme_dark_blue_grey"
             android:title="Material-Blue Grey" />
         <item
             android:id="@+id/pankaj_theme_dark_black"

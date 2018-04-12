@@ -37,7 +37,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         settingsVibrateOnTouch = (CheckBox) findViewById(R.id.settingsVibrateOnTouch);
         settingsPrecisionTwoDigits = (CheckBox) findViewById(R.id.settingsPrecisionTwoDigits);
         settingsCommaAfterThousand = (CheckBox) findViewById(R.id.settingsCommaAfterThousand);
-        settingsAnimation =  (CheckBox) findViewById(R.id.settingsAnimation);
+        settingsAnimation = (CheckBox) findViewById(R.id.settingsAnimation);
 
         settingsThemeTextView = (TextView) findViewById(R.id.settingsThemeTextView);
 
@@ -164,44 +164,67 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.Material_Golden:
-                        System.out.println("clicked popup " + item.getTitle());
+                    case R.id.amaya_favourite_color_golden:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                                 Integer.toString(R.color.amaya_favourite_color_golden));
                         break;
-//                        return true;
+                    case R.id.pankaj_theme_dark_black:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_black));
+                        break;
+                    case R.id.pankaj_theme_dark_blue:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_blue));
+                        break;
+                    case R.id.pankaj_theme_dark_blue_grey:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_blue_grey));
+                        break;
+                    case R.id.pankaj_theme_dark_cyan:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_cyan));
+                        break;
+                    case R.id.pankaj_theme_dark_deep_brown:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_deep_brown));
+                        break;
+                    case R.id.pankaj_theme_dark_green:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_green));
+                        break;
+                    case R.id.pankaj_theme_dark_grey:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_grey));
+                        break;
+                    case R.id.pankaj_theme_dark_indigo:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_indigo));
+                        break;
+                    case R.id.pankaj_theme_dark_lime:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_lime));
+                        break;
+                    case R.id.pankaj_theme_dark_orange:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_orange));
+                        break;
+                    case R.id.pankaj_theme_dark_pink:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_pink));
+                        break;
+                    case R.id.pankaj_theme_dark_purple:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_purple));
+                        break;
+                    case R.id.pankaj_theme_dark_teal:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_teal));
+                        break;
+                    case R.id.pankaj_theme_dark_yellow:
+                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                                Integer.toString(R.color.pankaj_theme_dark_yellow));
+                        break;
 
-                    case R.id.Material_Orange:
-                        System.out.println("clicked popup " + item.getTitle());
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_dark_orange));
-                        break;
-//                        return true;
-
-                    case R.id.Material_Blue:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_dark_blue));
-                        System.out.println("clicked popup " + item.getTitle());
-                        break;
-//                        return true;
-                    case R.id.Material_Green:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_dark_green));
-                        System.out.println("clicked popup " + item.getTitle());
-                        break;
-//                        return true;
-                    case R.id.Material_Pink:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_dark_pink));
-                        System.out.println("clicked popup " + item.getTitle());
-                        break;
-//                        return true;
-                    case R.id.Material_Red:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_dark_red));
-                        System.out.println("clicked popup " + item.getTitle());
-                        break;
-//                        return true;
                     case R.id.Font_Thin:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
                                 Integer.toString(R.id.Font_Thin));
