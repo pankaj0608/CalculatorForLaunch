@@ -113,13 +113,16 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 Boolean.toString(settingsAnimation.isChecked()));
 
         Utils.putStringInSharedPreference(
-                Utils.SETTINGS_COLOR_THEME, "SETTINGS_THEME");
+                Utils.SETTINGS_COLOR_THEME,
+                Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING));
 
         Utils.putStringInSharedPreference(
-                Utils.SETTINGS_KEYPAD_LAYOUT, "SETTINGS_KEYPAD_LAYOUT");
+                Utils.SETTINGS_KEYPAD_LAYOUT,
+                Utils.getValueFromSharedPreference(Utils.SETTINGS_KEYPAD_LAYOUT, Utils.EMPTY_STRING));
 
         Utils.putStringInSharedPreference(
-                Utils.SETTINGS_DISPLAY_FORMAT, "SETTINGS_DISPLAY_FORMAT");
+                Utils.SETTINGS_DISPLAY_FORMAT,
+                Utils.getValueFromSharedPreference(Utils.SETTINGS_DISPLAY_FORMAT, Utils.EMPTY_STRING));
     }
 
     private void createDifferentFonts(TextView textView, String strText) {

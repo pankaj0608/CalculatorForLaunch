@@ -191,10 +191,17 @@ https://guides.codepath.com/android/developing-custom-themes
             editTextMemory.setText("V : empty :");
         }
         else {
-            editTextMemory.setText("V : "
-                    +  getResources().getResourceName(Integer.parseInt(preferenceColour)).
-                            substring(getResources().getResourceName(Integer.parseInt(preferenceColour)).lastIndexOf("/"))
-                    + " :");
+
+            try {
+                editTextMemory.setText("V : "
+                        +  getResources().getResourceName(Integer.parseInt(preferenceColour)).
+                        substring(getResources().getResourceName(Integer.parseInt(preferenceColour)).lastIndexOf("/"))
+                        + " :");
+            }
+            catch (Exception e) {
+                editTextMemory.setText("V : " + e.getMessage());
+            }
+
         }
 
         if (Utils.EMPTY_STRING.equals(preferenceColour.equals(Utils.SETTINGS_COLOR_THEME))) {
