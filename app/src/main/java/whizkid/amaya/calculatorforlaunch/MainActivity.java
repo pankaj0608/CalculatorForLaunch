@@ -55,6 +55,8 @@ https://code.tutsplus.com/tutorials/android-user-interface-design-creating-a-num
 
 https://guides.codepath.com/android/developing-custom-themes
 
+http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
+
      */
 
     private DrawerLayout mDrawerLayout;
