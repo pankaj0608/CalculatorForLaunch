@@ -162,7 +162,6 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         } else {
             return;
         }
-
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -263,7 +262,18 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                         break;
 //                        return true;
                 }
+//
+                if(!Utils.TRUE.equals(
+                        Utils.getValueFromSharedPreference(Utils.PINK_THEME, Utils.EMPTY_STRING))) {
+                    setTheme(R.style.Theme_PINK_COLOR);
+                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.TRUE);
+                }
+                else {
+                    setTheme(R.style.Theme_LIGHT_BLUE);
+                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.FALSE);
+                }
 
+                setContentView(R.layout.activity_calculator_settings);
                 setTextvaluesColourful();
                 return true;
             }

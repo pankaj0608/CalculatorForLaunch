@@ -12,16 +12,25 @@
         <!--&lt;!&ndash;<item name="actionBarStyle">@style/action_bar_wh</item>&ndash;&gt;-->
     <!--</style>-->
 
-    <style name="Theme.PINK_COLOR" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.PINK_COLOR" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Define styles for YOUR_CUSTOM_THEME here. -->
-        <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory</item>
+        <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory.Pink</item>
         <item name="buttonNumeric">@style/PadButtonStyle.Numeric</item>
         <item name="buttonOperator">@style/PadButtonStyle.Numeric.Operator.Pink</item>
         <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Evaluate</item>
 
     </style>
 
-    <style name="Theme.GOLDEN_COLOR" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.LIGHT_BLUE" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <!-- Define styles for YOUR_CUSTOM_THEME here. -->
+        <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory.LightBlue</item>
+        <item name="buttonNumeric">@style/PadButtonStyle.Numeric</item>
+        <item name="buttonOperator">@style/PadButtonStyle.Numeric.Operator</item>
+        <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Evaluate</item>
+
+    </style>
+
+    <style name="Theme_GOLDEN_COLOR" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Define styles for YOUR_CUSTOM_THEME here. -->
         <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory</item>
         <item name="buttonNumeric">@style/PadButtonStyle.Numeric</item>

@@ -101,7 +101,7 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
                     R.id.button7,
                     R.id.button8,
                     R.id.button9,
-                    R.id.buttonMemoryClear,
+                    //R.id.buttonMemoryClear,
                     R.id.buttonMemoryPlus,
                     R.id.buttonMemoryMinus,
                     R.id.buttonMemoryRead,
@@ -117,7 +117,7 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 
     int[] operatorButtons =
             {R.id.buttonBack,
-                    R.id.buttonMemoryClear,
+//                    R.id.buttonMemoryClear,
                     R.id.buttonMemoryPlus,
                     R.id.buttonMemoryMinus,
                     R.id.buttonMemoryRead,
@@ -167,18 +167,21 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.setTheme(R.style.Theme_GOLDEN_COLOR);
-
-        super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        setContentView(R.layout.mylayout_phone);
 
         Utils.setBaseEssentials(getApplicationContext(),
                 getApplicationContext().getSharedPreferences(
                         Utils.MY_SHARED_PREFERENCE, Context.MODE_PRIVATE),
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
+
+        this.setTheme(R.style.Theme_GOLDEN_COLOR);
+
+        setPinkTheme();
+
+        super.onCreate(savedInstanceState);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        setContentView(R.layout.mylayout_phone);
 
         resetOperators();
 
@@ -385,6 +388,18 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 //    }
 
 
+    private void setPinkTheme() {
+        if (Utils.TRUE.equals(
+                Utils.getValueFromSharedPreference(Utils.PINK_THEME, Utils.EMPTY_STRING))
+                ||
+                Utils.EMPTY_STRING.equals(
+                        Utils.getValueFromSharedPreference(Utils.PINK_THEME, Utils.EMPTY_STRING))) {
+            setTheme(R.style.Theme_PINK_COLOR);
+        } else {
+            setTheme(R.style.Theme_LIGHT_BLUE);
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -393,6 +408,13 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
                 getApplicationContext().getSharedPreferences(
                         Utils.MY_SHARED_PREFERENCE, Context.MODE_PRIVATE),
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
+
+        setPinkTheme();
+
+        setContentView(R.layout.mylayout_phone);
+
+        System.out.println("getTheme " + getTheme());
+
 
         editTextEquation.setText(editTextEquation.getText().toString());
 
@@ -513,7 +535,7 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 //        editTextResult.setText("0");
 //        editTextEquation.setText("0");
 
-        if(Utils.TRUE.equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION,Utils.FALSE))) {
+        if (Utils.TRUE.equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION, Utils.FALSE))) {
             editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
             editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
         }
@@ -541,7 +563,7 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
                 return;
             }
 
-            if(currentEquation.length() == 1 && "0".equals(currentEquation)) {
+            if (currentEquation.length() == 1 && "0".equals(currentEquation)) {
                 return;
             }
 
@@ -687,7 +709,7 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
             mySelectionValueEnd = 0;
             mySelectionValueStart = 0;
             editTextEquation.clearFocus();
-            if(Utils.TRUE.equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION,Utils.FALSE))) {
+            if (Utils.TRUE.equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION, Utils.FALSE))) {
                 editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
                 editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
             }

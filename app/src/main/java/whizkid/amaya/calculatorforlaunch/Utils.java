@@ -13,6 +13,7 @@ import java.text.DecimalFormat;
 
 public class Utils {
 
+    public static String PINK_THEME =  "false";
     public static final String EMPTY_STRING = "";
     public static final String FALSE = "false";
     public static final String TRUE = "true";
