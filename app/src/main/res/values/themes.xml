@@ -14,19 +14,19 @@
 
     <style name="Theme.PINK_COLOR" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Define styles for YOUR_CUSTOM_THEME here. -->
-        <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory.Pink</item>
+        <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory</item>
         <item name="buttonNumeric">@style/PadButtonStyle.Numeric</item>
         <item name="buttonOperator">@style/PadButtonStyle.Numeric.Operator.Pink</item>
-        <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Evaluate</item>
+        <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Evaluate.Pink</item>
 
     </style>
 
     <style name="Theme.LIGHT_BLUE" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Define styles for YOUR_CUSTOM_THEME here. -->
-        <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory.LightBlue</item>
+        <item name="buttonMemory">@style/PadButtonStyle.Numeric.Memory</item>
         <item name="buttonNumeric">@style/PadButtonStyle.Numeric</item>
         <item name="buttonOperator">@style/PadButtonStyle.Numeric.Operator</item>
-        <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Evaluate</item>
+        <item name="buttonEvaluate">@style/PadButtonStyle.Numeric.Evaluate.LightBlue</item>
 
     </style>
 

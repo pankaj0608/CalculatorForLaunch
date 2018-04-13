@@ -101,7 +101,7 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
                     R.id.button7,
                     R.id.button8,
                     R.id.button9,
-                    //R.id.buttonMemoryClear,
+                    R.id.buttonMemoryClear,
                     R.id.buttonMemoryPlus,
                     R.id.buttonMemoryMinus,
                     R.id.buttonMemoryRead,
@@ -112,12 +112,12 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
                     R.id.buttonMultiply,
                     R.id.buttonSubtract,
                     R.id.buttonAdd,
-                    R.id.buttonEquals,
+//                    R.id.buttonEquals,
                     R.id.buttonSettings};
 
     int[] operatorButtons =
             {R.id.buttonBack,
-//                    R.id.buttonMemoryClear,
+                    R.id.buttonMemoryClear,
                     R.id.buttonMemoryPlus,
                     R.id.buttonMemoryMinus,
                     R.id.buttonMemoryRead,
@@ -128,7 +128,8 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
                     R.id.buttonMultiply,
                     R.id.buttonSubtract,
                     R.id.buttonAdd,
-                    R.id.buttonEquals};
+//                    R.id.buttonEquals
+            };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

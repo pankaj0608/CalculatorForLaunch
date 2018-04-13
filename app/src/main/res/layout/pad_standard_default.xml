@@ -28,10 +28,10 @@
     <!--<TableRow>-->
     <Button
         android:id="@+id/buttonMemoryClear"
-        style="?buttonMemory"
+        style="@style/PadButtonStyle.Numeric.Memory"
         android:onClick="saveInMemory"
         android:tag="mc"
-        android:text="mct"
+        android:text="mc"
         app:layout_columnWeight="1" />
 
     <Button
@@ -274,7 +274,7 @@
 
     <Button
         android:id="@+id/buttonEquals"
-        style="@style/PadButtonStyle.Numeric.Evaluate"
+        style="?buttonEvaluate"
         android:onClick="calculateMe"
         android:tag="="
         android:text="="

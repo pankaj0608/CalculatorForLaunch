@@ -101,14 +101,13 @@
     <style name="PadButtonStyle.Numeric.Memory" parent="PadButtonStyle.Numeric.Operator">
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingTop">5dp</item>
-        <item name="android:background">@color/pankaj_theme_dark_green</item>
     </style>
 
-    <style name="PadButtonStyle.Numeric.Memory.Pink" parent="PadButtonStyle.Numeric.Memory">
+    <style name="PadButtonStyle.Numeric.Evaluate.Pink" parent="PadButtonStyle.Numeric">
         <item name="android:background">@color/pankaj_theme_dark_pink</item>
     </style>
 
-    <style name="PadButtonStyle.Numeric.Memory.LightBlue" parent="PadButtonStyle.Numeric.Memory">
+    <style name="PadButtonStyle.Numeric.Evaluate.LightBlue" parent="PadButtonStyle.Numeric">
         <item name="android:background">@color/pankaj_theme_dark_light_blue</item>
     </style>
 
