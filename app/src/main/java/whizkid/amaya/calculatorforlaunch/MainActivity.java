@@ -245,9 +245,11 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             for (int i = 0; i < operatorButtons.length; i++) {
                 try {
                     Button button = findViewById(operatorButtons[i]);
-//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setTypeface(sansSeifNormal_Bold);
+                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
+
+                    button.setTypeface(sansSeifNormal_Normal);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -259,8 +261,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             for (int i = 0; i < imageButtons.length; i++) {
                 try {
                     ImageButton button = findViewById(imageButtons[i]);
-//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -486,9 +488,26 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             for (int i = 0; i < operatorButtons.length; i++) {
                 try {
                     Button button = findViewById(operatorButtons[i]);
-//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setTypeface(sansSeifNormal_Bold);
+                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
+
+                    button.setTypeface(sansSeifNormal_Normal);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
+            for (int i = 0; i < imageButtons.length; i++) {
+                try {
+                    ImageButton button = findViewById(imageButtons[i]);
+                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
