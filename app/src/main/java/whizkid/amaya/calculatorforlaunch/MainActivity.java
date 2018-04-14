@@ -59,6 +59,7 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 
      */
 
+    public static boolean recreateMe = false;
     private DrawerLayout mDrawerLayout;
     AppCompatTextView editTextResult;
     EditText editTextEquation;
@@ -168,6 +169,8 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+//        recreateMe = true;
 
         Utils.setBaseEssentials(getApplicationContext(),
                 getApplicationContext().getSharedPreferences(
@@ -326,7 +329,17 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
             }
         });
 
-        editTextEquation.setText("0");
+        if(Utils.getValueFromSharedPreference(
+                Utils.LAST_EQUATION, Utils.EMPTY_STRING).length() > 0) {
+            editTextEquation.setText(Utils.getValueFromSharedPreference(
+                    Utils.LAST_EQUATION, Utils.EMPTY_STRING));
+
+            Utils.putStringInSharedPreference(Utils.LAST_EQUATION, Utils.EMPTY_STRING);
+        }
+        else {
+            editTextEquation.setText("0");
+        }
+
 
         //get the memory from the Share Preference
         String storedMemory = Utils.getValueFromSharedPreference(Utils.MEMORY_SAVED_VALE, Utils.EMPTY_STRING);
@@ -412,44 +425,51 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 
         setPinkTheme();
 
-        System.out.println("getTheme " + getTheme());
+//        System.out.println("getTheme " + getTheme());
+//
+//
+//        editTextEquation.setText(editTextEquation.getText().toString());
+//
+//        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
+//        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
+//
+//        if (preferenceColour != null && preferenceColour.length() > 0) {
+//            for (int i = 0; i < operatorButtons.length; i++) {
+//                try {
+//                    View button = findViewById(operatorButtons[i]);
+//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//        if (preferenceFont != null && preferenceFont.length() > 0) {
+//            for (int i = 0; i < resourcesButton.length; i++) {
+//                try {
+//                    System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
+//                    Button button = ((Button) findViewById(resourcesButton[i]));
+//                    if (preferenceFont.equals(Integer.toString(R.id.Font_Thin))) {
+//                        button.setTypeface(sansSeifNormal_Thin);
+//                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Normal))) {
+//                        button.setTypeface(sansSeifNormal_Normal);
+//
+//                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Bold))) {
+//                        button.setTypeface(sansSeifNormal_Bold);
+//
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
 
-
-        editTextEquation.setText(editTextEquation.getText().toString());
-
-        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
-        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
-
-        if (preferenceColour != null && preferenceColour.length() > 0) {
-            for (int i = 0; i < operatorButtons.length; i++) {
-                try {
-                    View button = findViewById(operatorButtons[i]);
-                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        if (preferenceFont != null && preferenceFont.length() > 0) {
-            for (int i = 0; i < resourcesButton.length; i++) {
-                try {
-                    System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
-                    Button button = ((Button) findViewById(resourcesButton[i]));
-                    if (preferenceFont.equals(Integer.toString(R.id.Font_Thin))) {
-                        button.setTypeface(sansSeifNormal_Thin);
-                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Normal))) {
-                        button.setTypeface(sansSeifNormal_Normal);
-
-                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Bold))) {
-                        button.setTypeface(sansSeifNormal_Bold);
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+        if(recreateMe) {
+            recreateMe = false;
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
     }
@@ -517,6 +537,7 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 
         Utils.vibrateMe();
 
+        Utils.putStringInSharedPreference(Utils.LAST_EQUATION, editTextEquation.getText().toString());
         Intent intent = new Intent(this, CalculatorSettingsActivity.class);
         startActivity(intent);
     }

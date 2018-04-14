@@ -14,6 +14,8 @@ import java.text.DecimalFormat;
 public class Utils {
 
     public static String PINK_THEME =  "false";
+    public static String LAST_EQUATION =  "LAST_EQUATION";
+
     public static final String EMPTY_STRING = "";
     public static final String FALSE = "false";
     public static final String TRUE = "true";

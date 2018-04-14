@@ -273,6 +273,8 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                     Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.FALSE);
                 }
 
+                MainActivity.recreateMe = true;
+
                 setContentView(R.layout.activity_calculator_settings);
                 setTextvaluesColourful();
                 return true;
