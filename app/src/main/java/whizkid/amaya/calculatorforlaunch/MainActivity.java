@@ -66,9 +66,13 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
     EditText editTextEquation;
     EditText editTextMemory;
     //    final Typeface sansSeifNormal = Typeface.create("sans-serif-light", Typeface.NORMAL);
+//    Typeface face = Typeface.createFromAsset(getAssets(),"fonts/opansans.ttfe");
+
     final Typeface sansSeifCondensed = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
     final Typeface sansSeifMonospace = Typeface.create("arial", Typeface.NORMAL);
     final Typeface sansSeifTest = Typeface.create("sans-serif-thin", Typeface.BOLD);
+
+//    Typeface sansSeifNormal_Normal = Typeface.createFromAsset(getAssets(), "fonts/droid_sans.ttf");
 
     final Typeface sansSeifNormal_Thin = Typeface.create("sans-serif-thin", Typeface.NORMAL);
     final Typeface sansSeifNormal_Normal = Typeface.create("sans-serif-light", Typeface.NORMAL);
@@ -265,8 +269,6 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         }
 
 
-
-
 //         setContentView(R.layout.mylayout_phone_with_drawer);
 
 
@@ -356,14 +358,13 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             }
         });
 
-        if(Utils.getValueFromSharedPreference(
+        if (Utils.getValueFromSharedPreference(
                 Utils.LAST_EQUATION_FOR_THEME_CHANGE, Utils.EMPTY_STRING).length() > 0) {
             editTextEquation.setText(Utils.getValueFromSharedPreference(
                     Utils.LAST_EQUATION_FOR_THEME_CHANGE, Utils.EMPTY_STRING));
 
             Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_THEME_CHANGE, Utils.EMPTY_STRING);
-        }
-        else {
+        } else {
             editTextEquation.setText("0");
         }
 
@@ -461,7 +462,6 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
 
 
-
         if (preferenceFont != null && preferenceFont.length() > 0) {
             for (int i = 0; i < resourcesButton.length; i++) {
                 try {
@@ -495,7 +495,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             }
         }
 
-        if(recreateMe) {
+        if (recreateMe) {
             recreateMe = false;
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -603,14 +603,11 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         String currentEquationCopy = new String(editTextEquation.getText().toString());
 
 
-
-
         if (Utils.INVERSE.equals(tag)) {
 
             //for changesign find the last index of number and change it's sign
             return;
-        }
-        else if (Utils.UNDO_LAST_EVALUATE.equals(tag)) {
+        } else if (Utils.UNDO_LAST_EVALUATE.equals(tag)) {
 
             if (Utils.TRUE.equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION, Utils.FALSE))) {
                 editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
@@ -621,10 +618,9 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             editTextEquation.setText(Utils.getValueFromSharedPreference(
                     Utils.LAST_EQUATION_FOR_UNDO, Utils.EMPTY_STRING));
 
-            ((Button)findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
+            ((Button) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
             return;
-        }
-        else if (Utils.CHANGESIGN.equals(tag)) {
+        } else if (Utils.CHANGESIGN.equals(tag)) {
 
             if (currentEquation == null || currentEquation.trim().length() == 0) {
                 return;

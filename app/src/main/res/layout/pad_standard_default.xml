@@ -18,7 +18,7 @@
     android:id="@+id/pad_standard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/pankaj_pad_numeric_background_color_white"
+    android:background="@color/pankaj_theme_grid_line_color"
     app:columnCount="4"
     app:orientation="horizontal"
     app:rowCount="1">
@@ -128,13 +128,25 @@
         <!--app:layout_gravity="fill"-->
         <!--app:layout_rowWeight="1" />-->
 
+    <!--<ImageButton-->
+        <!--android:id="@+id/buttonBack"-->
+        <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="0.1dp"-->
+        <!--android:adjustViewBounds="false"-->
+        <!--android:onClick="calculateMe"-->
+        <!--android:scaleType="centerInside"-->
+        <!--android:src="@drawable/ic_backspace_pankaj"-->
+        <!--android:tag="BACK"-->
+        <!--app:layout_columnWeight="1"-->
+        <!--app:layout_gravity="fill"-->
+        <!--app:layout_rowWeight="1" />-->
+
+
     <ImageButton
         android:id="@+id/buttonBack"
         style="@style/PadButtonStyle.Numeric.Operator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="0.1dp"
-        android:adjustViewBounds="false"
         android:onClick="calculateMe"
         android:scaleType="centerInside"
         android:src="@drawable/ic_backspace_pankaj"
@@ -142,8 +154,6 @@
         app:layout_columnWeight="1"
         app:layout_gravity="fill"
         app:layout_rowWeight="1" />
-
-
 
     <Button
         android:id="@+id/buttonAllClear"

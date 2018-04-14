@@ -103,4 +103,10 @@
             android:textSize="@dimen/_30sdp"/>
     </LinearLayout>
 
+    <View
+        android:id="@+id/myTopLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/pankaj_theme_grid_line_color" />
+
 </LinearLayout>
