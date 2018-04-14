@@ -57,6 +57,8 @@ https://guides.codepath.com/android/developing-custom-themes
 
 http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 
+https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-eed7755da586
+
      */
 
     public static boolean recreateMe = false;
