@@ -412,8 +412,6 @@ http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 
         setPinkTheme();
 
-        setContentView(R.layout.mylayout_phone);
-
         System.out.println("getTheme " + getTheme());
 
 
