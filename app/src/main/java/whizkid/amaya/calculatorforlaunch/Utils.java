@@ -14,7 +14,8 @@ import java.text.DecimalFormat;
 public class Utils {
 
     public static String PINK_THEME =  "false";
-    public static String LAST_EQUATION =  "LAST_EQUATION";
+    public static String LAST_EQUATION_FOR_THEME_CHANGE =  "LAST_EQUATION_FOR_THEME_CHANGE";
+    public static String LAST_EQUATION_FOR_UNDO =  "LAST_EQUATION_FOR_UNDO";
 
     public static final String EMPTY_STRING = "";
     public static final String FALSE = "false";
@@ -28,6 +29,8 @@ public class Utils {
     public static final String INVERSE = "1/x";
     public static final String PERCENTAGE = "%";
     public static final String CHANGESIGN = "+/-";
+    public static final String UNDO_LAST_EVALUATE = "UNDO";
+
 
     public static final String ALL_CLEAR = "ALLCLEAR";
     public static final String BACK = "BACK";

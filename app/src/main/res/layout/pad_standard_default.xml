@@ -27,9 +27,47 @@
 
     <!--<TableRow>-->
     <Button
+        android:id="@+id/buttonTBD1"
+        style="@style/PadButtonStyle.Numeric"
+        android:visibility="gone"
+        android:tag="TBD"
+        android:text="TBD"
+        app:layout_columnWeight="1" />
+
+    <Button
+        android:id="@+id/buttonTBD2"
+        style="@style/PadButtonStyle.Numeric"
+        android:visibility="gone"
+        android:tag="TBD"
+        android:text="TBD"
+        app:layout_columnWeight="1" />
+
+    <Button
+        android:id="@+id/buttonUndolastEval"
+        style="@style/PadButtonStyle.Numeric.Operator"
+        android:onClick="calculateMe"
+        android:visibility="gone"
+        android:tag="UNDO"
+        android:text="UNDO"
+        app:layout_columnWeight="1" />
+
+    <Button
+        android:id="@+id/buttonTBD4"
+        style="@style/PadButtonStyle.Numeric.Operator"
+        android:visibility="gone"
+        android:tag="TBD"
+        android:text="TBD"
+        app:layout_columnWeight="1" />
+
+    <!--</TableRow>-->
+
+
+    <!--<TableRow>-->
+    <Button
         android:id="@+id/buttonMemoryClear"
         style="@style/PadButtonStyle.Numeric.Memory"
         android:onClick="saveInMemory"
+        android:visibility="gone"
         android:tag="mc"
         android:text="mc"
         app:layout_columnWeight="1" />
@@ -38,6 +76,7 @@
         android:id="@+id/buttonMemoryPlus"
         style="@style/PadButtonStyle.Numeric.Memory"
         android:onClick="saveInMemory"
+        android:visibility="gone"
         android:tag="m+"
         android:text="m+"
         app:layout_columnWeight="1" />
@@ -46,6 +85,7 @@
         android:id="@+id/buttonMemoryMinus"
         style="@style/PadButtonStyle.Numeric.Memory"
         android:onClick="saveInMemory"
+        android:visibility="gone"
         android:tag="m-"
         android:text="m-"
         app:layout_columnWeight="1" />
@@ -54,6 +94,7 @@
         android:id="@+id/buttonMemoryRead"
         style="@style/PadButtonStyle.Numeric.Memory"
         android:onClick="saveInMemory"
+        android:visibility="gone"
         android:tag="mr"
         android:text="mr"
         app:layout_columnWeight="1" />
@@ -71,32 +112,6 @@
         app:layout_columnWeight="1" />
 
 
-
-    <!--<Button-->
-    <!--android:id="@+id/buttonBack"-->
-    <!--style="@style/PadButtonStyle.Numeric.Operator"-->
-    <!--app:layout_columnWeight="1"-->
-    <!--android:onClick="calculateMe"-->
-    <!--android:tag="BACK"-->
-    <!--android:text="Bk" />-->
-
-    <!--<ImageButton-->
-        <!--android:id="@+id/buttonBack"-->
-        <!--style="@style/PadButtonStyle.Numeric.Operator"-->
-        <!--android:onClick="calculateMe"-->
-        <!--android:src="@drawable/ic_backspace_white_mid_48dp"-->
-        <!--android:adjustViewBounds="false"-->
-        <!--android:padding="0dp"-->
-        <!--android:tag="BACK"-->
-        <!--app:layout_columnWeight="1"-->
-        <!--app:layout_gravity="fill"-->
-        <!--app:layout_rowWeight="1"-->
-        <!--android:layout_width="60dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:scaleType="fitCenter"/>-->
-
     <ImageButton
         android:id="@+id/buttonBack"
         style="@style/PadButtonStyle.Numeric.Operator"
@@ -113,11 +128,7 @@
         app:layout_rowWeight="1" />
 
 
-    <!--<ImageButton android:id="@+id/previous"-->
-    <!--style="@style/PadButtonStyle.Numeric.Operator"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:src="@drawable/ic_backspace_white_48dp"</ImageButton>-->
+
 
     <Button
         android:id="@+id/buttonAllClear"
@@ -272,12 +283,21 @@
         android:text="."
         app:layout_columnWeight="1" />
 
+
     <Button
         android:id="@+id/buttonEquals"
-        style="?buttonEvaluate"
+        style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
         android:tag="="
         android:text="="
         app:layout_columnWeight="1" />
+    <!---->
+    <!--<Button-->
+        <!--android:id="@+id/buttonEquals"-->
+        <!--style="?buttonEvaluate"-->
+        <!--android:onClick="calculateMe"-->
+        <!--android:tag="="-->
+        <!--android:text="="-->
+        <!--app:layout_columnWeight="1" />-->
 
 </android.support.v7.widget.GridLayout>

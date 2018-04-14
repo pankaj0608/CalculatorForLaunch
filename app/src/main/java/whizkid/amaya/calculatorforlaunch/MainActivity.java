@@ -17,8 +17,7 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-
-import org.javia.arity.Util;
+import android.widget.ImageButton;
 
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends AppCompatActivity {
@@ -83,7 +82,6 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
     boolean evaluationDone = false;
 //    boolean clearDone = false;
 
-    int[] resourcesImageButton = {R.id.buttonBack};
     int mySelectionValueStart = 0;
     int mySelectionValueEnd = 0;
     int mySelectionAdjustment = 0;
@@ -115,11 +113,13 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                     R.id.buttonMultiply,
                     R.id.buttonSubtract,
                     R.id.buttonAdd,
-//                    R.id.buttonEquals,
+                    R.id.buttonEquals,
+                    R.id.buttonUndolastEval,
                     R.id.buttonSettings};
 
     int[] operatorButtons =
-            {R.id.buttonBack,
+            {
+//                    R.id.buttonBack,
                     R.id.buttonMemoryClear,
                     R.id.buttonMemoryPlus,
                     R.id.buttonMemoryMinus,
@@ -131,7 +131,13 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                     R.id.buttonMultiply,
                     R.id.buttonSubtract,
                     R.id.buttonAdd,
-//                    R.id.buttonEquals
+                    R.id.buttonEquals,
+                    R.id.buttonUndolastEval
+            };
+
+    int[] imageButtons =
+            {
+                    R.id.buttonBack
             };
 
     @Override
@@ -187,6 +193,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_UNDO, Utils.EMPTY_STRING);
+
         setContentView(R.layout.mylayout_phone);
 
         resetOperators();
@@ -232,14 +240,31 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
             for (int i = 0; i < operatorButtons.length; i++) {
                 try {
-                    View button = findViewById(operatorButtons[i]);
-                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    Button button = findViewById(operatorButtons[i]);
+//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setTypeface(sansSeifNormal_Bold);
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
+
+        if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
+            for (int i = 0; i < imageButtons.length; i++) {
+                try {
+                    ImageButton button = findViewById(imageButtons[i]);
+//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
 
 
 //         setContentView(R.layout.mylayout_phone_with_drawer);
@@ -332,11 +357,11 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         });
 
         if(Utils.getValueFromSharedPreference(
-                Utils.LAST_EQUATION, Utils.EMPTY_STRING).length() > 0) {
+                Utils.LAST_EQUATION_FOR_THEME_CHANGE, Utils.EMPTY_STRING).length() > 0) {
             editTextEquation.setText(Utils.getValueFromSharedPreference(
-                    Utils.LAST_EQUATION, Utils.EMPTY_STRING));
+                    Utils.LAST_EQUATION_FOR_THEME_CHANGE, Utils.EMPTY_STRING));
 
-            Utils.putStringInSharedPreference(Utils.LAST_EQUATION, Utils.EMPTY_STRING);
+            Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_THEME_CHANGE, Utils.EMPTY_STRING);
         }
         else {
             editTextEquation.setText("0");
@@ -427,45 +452,48 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         setPinkTheme();
 
-//        System.out.println("getTheme " + getTheme());
-//
-//
-//        editTextEquation.setText(editTextEquation.getText().toString());
-//
-//        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
-//        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
-//
-//        if (preferenceColour != null && preferenceColour.length() > 0) {
-//            for (int i = 0; i < operatorButtons.length; i++) {
-//                try {
-//                    View button = findViewById(operatorButtons[i]);
+        System.out.println("getTheme " + getTheme());
+
+
+        editTextEquation.setText(editTextEquation.getText().toString());
+
+        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
+        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
+
+
+
+        if (preferenceFont != null && preferenceFont.length() > 0) {
+            for (int i = 0; i < resourcesButton.length; i++) {
+                try {
+                    System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
+                    Button button = ((Button) findViewById(resourcesButton[i]));
+                    if (preferenceFont.equals(Integer.toString(R.id.Font_Thin))) {
+                        button.setTypeface(sansSeifNormal_Thin);
+                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Normal))) {
+                        button.setTypeface(sansSeifNormal_Normal);
+
+                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Bold))) {
+                        button.setTypeface(sansSeifNormal_Bold);
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (preferenceColour != null && preferenceColour.length() > 0) {
+            for (int i = 0; i < operatorButtons.length; i++) {
+                try {
+                    Button button = findViewById(operatorButtons[i]);
 //                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//
-//        if (preferenceFont != null && preferenceFont.length() > 0) {
-//            for (int i = 0; i < resourcesButton.length; i++) {
-//                try {
-//                    System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
-//                    Button button = ((Button) findViewById(resourcesButton[i]));
-//                    if (preferenceFont.equals(Integer.toString(R.id.Font_Thin))) {
-//                        button.setTypeface(sansSeifNormal_Thin);
-//                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Normal))) {
-//                        button.setTypeface(sansSeifNormal_Normal);
-//
-//                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Bold))) {
-//                        button.setTypeface(sansSeifNormal_Bold);
-//
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
+                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setTypeface(sansSeifNormal_Bold);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         if(recreateMe) {
             recreateMe = false;
@@ -539,7 +567,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         Utils.vibrateMe();
 
-        Utils.putStringInSharedPreference(Utils.LAST_EQUATION, editTextEquation.getText().toString());
+        Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_THEME_CHANGE, editTextEquation.getText().toString());
         Intent intent = new Intent(this, CalculatorSettingsActivity.class);
         startActivity(intent);
     }
@@ -575,11 +603,28 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         String currentEquationCopy = new String(editTextEquation.getText().toString());
 
 
+
+
         if (Utils.INVERSE.equals(tag)) {
 
             //for changesign find the last index of number and change it's sign
             return;
-        } else if (Utils.CHANGESIGN.equals(tag)) {
+        }
+        else if (Utils.UNDO_LAST_EVALUATE.equals(tag)) {
+
+            if (Utils.TRUE.equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION, Utils.FALSE))) {
+                editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+                editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
+            }
+
+            //for changesign find the last index of number and change it's sign
+            editTextEquation.setText(Utils.getValueFromSharedPreference(
+                    Utils.LAST_EQUATION_FOR_UNDO, Utils.EMPTY_STRING));
+
+            ((Button)findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
+            return;
+        }
+        else if (Utils.CHANGESIGN.equals(tag)) {
 
             if (currentEquation == null || currentEquation.trim().length() == 0) {
                 return;
@@ -735,8 +780,12 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                 editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
                 editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
             }
+            Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_UNDO, editTextEquation.getText().toString());
             //        editTextResult.clearAnimation();
             editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
+
+//            ((Button)findViewById(R.id.buttonUndolastEval)).setVisibility(View.VISIBLE);
+
             //editTextResult.setText(editTextEquation.getText().toString());
         } else {
             if (evaluationDone && Utils.isNumeric(tag)) {

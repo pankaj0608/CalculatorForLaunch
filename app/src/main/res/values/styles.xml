@@ -60,7 +60,8 @@
     <style name="PadButtonStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/pad_button_background</item>
+        <!--<item name="android:background">@drawable/pad_button_background</item>-->
+        <item name="android:background">@color/pankaj_pad_button_text_color_white</item>
         <item name="fontFamily">sans-serif-light</item>
         <item name="android:gravity">center</item>
         <item name="android:includeFontPadding">false</item>
@@ -89,7 +90,7 @@
     <style name="PadButtonStyle.Numeric.Operator" parent="PadButtonStyle.Numeric">
         <item name="android:textColor">@color/pankaj_pad_button_text_color_white</item>
         <!--<item name="android:textColor">@color/pankaj_pad_button_text_color</item>-->
-        <item name="android:background">@color/amaya_favourite_color_golden</item>
+        <item name="android:background">@color/pankaj_pad_button_text_color_white</item>
     </style>
 
     <style name="PadButtonStyle.Numeric.Operator.Pink" parent="PadButtonStyle.Numeric">
