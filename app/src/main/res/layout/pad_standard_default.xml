@@ -252,7 +252,7 @@
         style="@style/PadButtonStyle.Numeric"
         android:onClick="calculateMe"
         android:tag="1"
-        android:text="1"
+        android:text=" 1 "
         app:layout_columnWeight="1" />
 
     <Button
@@ -260,7 +260,7 @@
         style="@style/PadButtonStyle.Numeric"
         android:onClick="calculateMe"
         android:tag="2"
-        android:text="2"
+        android:text=" 2 "
         app:layout_columnWeight="1" />
 
     <Button
@@ -268,7 +268,7 @@
         style="@style/PadButtonStyle.Numeric"
         android:onClick="calculateMe"
         android:tag="3"
-        android:text="3"
+        android:text=" 3 "
         app:layout_columnWeight="1" />
 
     <Button
@@ -276,7 +276,7 @@
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
         android:tag="+"
-        android:text="+"
+        android:text=" + "
         app:layout_columnWeight="1" />
 
 
@@ -290,7 +290,7 @@
         android:onClick="calculateMe"
         android:tag="+/-"
         android:text="+/-"
-        app:layout_columnWeight="1" />
+        app:layout_columnWeight="1"/>
 
     <Button
         android:id="@+id/button0"
