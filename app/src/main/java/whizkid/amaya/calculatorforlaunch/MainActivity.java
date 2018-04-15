@@ -686,6 +686,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         } else if (Utils.DECIMAL.equals(tag) && !editTextEquation.isFocused()) {
 
+            evaluationDone = false;
+
             if (currentEquation == null || currentEquation.trim().length() == 0) {
                 editTextEquation.setText(Utils.correctEquation("0" + tag));
                 return;
