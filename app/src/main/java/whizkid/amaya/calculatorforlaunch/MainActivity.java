@@ -119,7 +119,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                     R.id.buttonSubtract,
                     R.id.buttonAdd,
                     R.id.buttonEquals,
-                    R.id.buttonUndolastEval,
+//                    R.id.buttonUndolastEval,
                     R.id.buttonSettings};
 
     int[] operatorButtons =
@@ -137,12 +137,13 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                     R.id.buttonSubtract,
                     R.id.buttonAdd,
                     R.id.buttonToPowerOf,
-                    R.id.buttonEquals,
-                    R.id.buttonUndolastEval
+//                    R.id.buttonUndolastEval,
+                    R.id.buttonEquals
             };
 
     int[] imageButtons =
             {
+                    R.id.buttonUndolastEval,
                     R.id.buttonBack
             };
 
@@ -263,8 +264,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             for (int i = 0; i < imageButtons.length; i++) {
                 try {
                     ImageButton button = findViewById(imageButtons[i]);
-                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-//                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -507,8 +508,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             for (int i = 0; i < imageButtons.length; i++) {
                 try {
                     ImageButton button = findViewById(imageButtons[i]);
-                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-//                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -639,7 +640,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             editTextEquation.setText(Utils.getValueFromSharedPreference(
                     Utils.LAST_EQUATION_FOR_UNDO, Utils.EMPTY_STRING));
 
-            ((Button) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
+//            ((Button) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
             return;
         } else if (Utils.CHANGESIGN.equals(tag)) {
 

@@ -46,6 +46,11 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
+    <include android:id="@+id/padTestIdHeader"
+        layout="@layout/pad_standard_default_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <include android:id="@+id/padTestId"
         layout="@layout/pad_standard_default"
         android:layout_width="match_parent"

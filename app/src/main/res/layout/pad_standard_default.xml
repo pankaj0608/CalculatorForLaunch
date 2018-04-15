@@ -11,7 +11,6 @@
   limitations under the License.
   --><!--<com.android.calculator2.CalculatorNumericPadLayout--><!--<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:id="@+id/pad_numeric_ergonomic"--><!--style="@style/PadButtonStyle.Numeric"--><!--android:layout_width="match_parent"--><!--android:background="@color/pad_numeric_background_color"--><!--android:layout_height="match_parent"--><!--android:columnWidth="90dp"--><!--android:numColumns="auto_fit"--><!--android:verticalSpacing="10dp"--><!--android:horizontalSpacing="10dp"--><!--android:stretchMode="columnWidth"--><!--android:gravity="center">-->
 
-<!--<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:id="@+id/pad_numeric"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:background="@color/pankaj_pad_numeric_background_color_white"--><!--android:columnCount="4"--><!--android:orientation="horizontal"--><!--android:rowCount="6">-->
 
 <android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,80 +22,42 @@
     app:orientation="horizontal"
     app:rowCount="1">
 
-    <!--style="@style/PadButtonStyle.Numeric"-->
-
-    <!--<TableRow>-->
-    <Button
-        android:id="@+id/buttonTBD1"
-        style="@style/PadButtonStyle.Numeric"
-        android:visibility="gone"
-        android:tag="TBD"
-        android:text="TBD"
-        app:layout_columnWeight="1" />
-
-    <Button
-        android:id="@+id/buttonTBD2"
-        style="@style/PadButtonStyle.Numeric"
-        android:visibility="gone"
-        android:tag="TBD"
-        android:text="TBD"
-        app:layout_columnWeight="1" />
-
-    <Button
-        android:id="@+id/buttonUndolastEval"
-        style="@style/PadButtonStyle.Numeric.Operator"
-        android:onClick="calculateMe"
-        android:visibility="gone"
-        android:tag="UNDO"
-        android:text="UNDO"
-        app:layout_columnWeight="1" />
-
-    <Button
-        android:id="@+id/buttonTBD4"
-        style="@style/PadButtonStyle.Numeric.Operator"
-        android:visibility="gone"
-        android:tag="TBD"
-        android:text="TBD"
-        app:layout_columnWeight="1" />
-
-    <!--</TableRow>-->
-
 
     <!--<TableRow>-->
     <Button
         android:id="@+id/buttonMemoryClear"
         style="@style/PadButtonStyle.Numeric.Memory"
         android:onClick="saveInMemory"
-        android:visibility="gone"
         android:tag="mc"
         android:text="mc"
+        android:visibility="gone"
         app:layout_columnWeight="1" />
 
     <Button
         android:id="@+id/buttonMemoryPlus"
         style="@style/PadButtonStyle.Numeric.Memory"
         android:onClick="saveInMemory"
-        android:visibility="gone"
         android:tag="m+"
         android:text="m+"
+        android:visibility="gone"
         app:layout_columnWeight="1" />
 
     <Button
         android:id="@+id/buttonMemoryMinus"
         style="@style/PadButtonStyle.Numeric.Memory"
         android:onClick="saveInMemory"
-        android:visibility="gone"
         android:tag="m-"
         android:text="m-"
+        android:visibility="gone"
         app:layout_columnWeight="1" />
 
     <Button
         android:id="@+id/buttonMemoryRead"
         style="@style/PadButtonStyle.Numeric.Memory"
         android:onClick="saveInMemory"
-        android:visibility="gone"
         android:tag="mr"
         android:text="mr"
+        android:visibility="gone"
         app:layout_columnWeight="1" />
 
     <!--</TableRow>-->
@@ -113,31 +74,31 @@
 
 
     <!--<ImageButton-->
-        <!--android:id="@+id/buttonBack"-->
-        <!--style="@style/PadButtonStyle.Numeric.Operator"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="0.1dp"-->
-        <!--android:adjustViewBounds="false"-->
-        <!--android:onClick="calculateMe"-->
-        <!--android:scaleType="centerInside"-->
-        <!--android:src="@drawable/ic_backspace_pankaj"-->
-        <!--android:tag="BACK"-->
-        <!--app:layout_columnWeight="1"-->
-        <!--app:layout_gravity="fill"-->
-        <!--app:layout_rowWeight="1" />-->
+    <!--android:id="@+id/buttonBack"-->
+    <!--style="@style/PadButtonStyle.Numeric.Operator"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="0.1dp"-->
+    <!--android:adjustViewBounds="false"-->
+    <!--android:onClick="calculateMe"-->
+    <!--android:scaleType="centerInside"-->
+    <!--android:src="@drawable/ic_backspace_pankaj"-->
+    <!--android:tag="BACK"-->
+    <!--app:layout_columnWeight="1"-->
+    <!--app:layout_gravity="fill"-->
+    <!--app:layout_rowWeight="1" />-->
 
 
     <!--<ImageButton-->
-        <!--android:id="@+id/buttonBack"-->
-        <!--style="@style/PadButtonStyle.Numeric.Operator.ExtraPadding"-->
-        <!--android:onClick="calculateMe"-->
-        <!--android:scaleType="centerInside"-->
-        <!--android:src="@drawable/ic_backspace_pankaj"-->
-        <!--android:tag="BACK"-->
-        <!--app:layout_columnWeight="1"-->
-        <!--app:layout_gravity="fill"-->
-        <!--app:layout_rowWeight="1" />-->
+    <!--android:id="@+id/buttonBack"-->
+    <!--style="@style/PadButtonStyle.Numeric.Operator.ExtraPadding"-->
+    <!--android:onClick="calculateMe"-->
+    <!--android:scaleType="centerInside"-->
+    <!--android:src="@drawable/ic_backspace_pankaj"-->
+    <!--android:tag="BACK"-->
+    <!--app:layout_columnWeight="1"-->
+    <!--app:layout_gravity="fill"-->
+    <!--app:layout_rowWeight="1" />-->
 
     <Button
         android:id="@+id/buttonToPowerOf"
@@ -282,7 +243,7 @@
         android:onClick="calculateMe"
         android:tag="+/-"
         android:text="+/-"
-        app:layout_columnWeight="1"/>
+        app:layout_columnWeight="1" />
 
     <Button
         android:id="@+id/button0"
@@ -310,11 +271,11 @@
         app:layout_columnWeight="1" />
     <!---->
     <!--<Button-->
-        <!--android:id="@+id/buttonEquals"-->
-        <!--style="?buttonEvaluate"-->
-        <!--android:onClick="calculateMe"-->
-        <!--android:tag="="-->
-        <!--android:text="="-->
-        <!--app:layout_columnWeight="1" />-->
+    <!--android:id="@+id/buttonEquals"-->
+    <!--style="?buttonEvaluate"-->
+    <!--android:onClick="calculateMe"-->
+    <!--android:tag="="-->
+    <!--android:text="="-->
+    <!--app:layout_columnWeight="1" />-->
 
 </android.support.v7.widget.GridLayout>
