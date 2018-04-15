@@ -75,6 +75,7 @@
         android:scrollHorizontally="true"
         android:text="0"
         android:textColor="@color/pankaj_results_text_color"
+        android:textCursorDrawable="@drawable/pankaj_cursor_drawable"
         android:textSize="@dimen/_28sdp" />
 
     <LinearLayout
