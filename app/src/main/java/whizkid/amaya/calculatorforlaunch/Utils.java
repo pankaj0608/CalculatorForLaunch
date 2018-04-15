@@ -30,7 +30,7 @@ public class Utils {
     public static final String INVERSE = "1/x";
     public static final String PERCENTAGE = "%";
     public static final String CHANGESIGN = "+/-";
-    public static final String UNDO_LAST_EVALUATE = "UNDO";
+    public static final String UNDO_LAST_EVALUATE = "UNDOLASTEVALUATE";
 
 
     public static final String ALL_CLEAR = "ALLCLEAR";
