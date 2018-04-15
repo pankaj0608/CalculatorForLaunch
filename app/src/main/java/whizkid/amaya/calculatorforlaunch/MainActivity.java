@@ -699,12 +699,14 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             int lastIndexOfMultiply = currentEquation.lastIndexOf("x");
             int lastIndexOfAdd = currentEquation.lastIndexOf("+");
             int lastIndexOfSubtract = currentEquation.lastIndexOf("-");
+            int lastIndexOfToPowerOf = currentEquation.lastIndexOf("^");
             int lastIndexOfPercentage = currentEquation.lastIndexOf("%");
 
             lastOperatorIndex = lastIndexOfDivide > lastOperatorIndex ? lastIndexOfDivide : lastOperatorIndex;
             lastOperatorIndex = lastIndexOfMultiply > lastOperatorIndex ? lastIndexOfMultiply : lastOperatorIndex;
             lastOperatorIndex = lastIndexOfAdd > lastOperatorIndex ? lastIndexOfAdd : lastOperatorIndex;
             lastOperatorIndex = lastIndexOfSubtract > lastOperatorIndex ? lastIndexOfSubtract : lastOperatorIndex;
+            lastOperatorIndex = lastIndexOfToPowerOf > lastOperatorIndex ? lastIndexOfToPowerOf : lastOperatorIndex;
 
             //It means no Operators hence put a - infront of the equation
             if (lastOperatorIndex == -1) {
