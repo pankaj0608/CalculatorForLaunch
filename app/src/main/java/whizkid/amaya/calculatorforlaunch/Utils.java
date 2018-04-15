@@ -25,6 +25,7 @@ public class Utils {
     public static final String SUBTRACT = "-";
     public static final String MULTIPLY = "*";
     public static final String DIVIDE = "/";
+    public static final String TOPOWEROF = "^";
     public static final String DECIMAL = ".";
     public static final String INVERSE = "1/x";
     public static final String PERCENTAGE = "%";
@@ -92,7 +93,7 @@ public class Utils {
 
     public static boolean isTagOperator(String tag) {
         return ADD.equals(tag) || SUBTRACT.equals(tag)
-                || MULTIPLY.equals(tag) || DIVIDE.equals(tag);
+                || MULTIPLY.equals(tag) || DIVIDE.equals(tag) || DIVIDE.equals(TOPOWEROF);
     }
 
 
@@ -133,6 +134,11 @@ public class Utils {
      * @return
      */
     static String correctEquation(String equation) {
+
+        equation = equation.replace("^^", "^");
+        equation = equation.replace("^%", "^");
+        equation = equation.replace("^x", "^");
+
         equation = equation.replace("÷%", "÷");
         equation = equation.replace("x%", "x");
         equation = equation.replace("+%", "+");
@@ -201,7 +207,8 @@ public class Utils {
 
         if (str.endsWith(DIVIDE) || str.endsWith(MULTIPLY)
                 || str.endsWith(ADD) || str.endsWith(SUBTRACT)
-                || str.endsWith(DECIMAL) || str.startsWith(PERCENTAGE)) {
+                || str.endsWith(DECIMAL) || str.endsWith(TOPOWEROF)
+                || str.startsWith(PERCENTAGE)) {
 
             if (str.length() <= 1) {
                 return "0";

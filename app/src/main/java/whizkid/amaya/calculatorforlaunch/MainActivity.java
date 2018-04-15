@@ -112,6 +112,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                     R.id.buttonMemoryRead,
                     R.id.buttonInverse,
                     R.id.buttonPercentage,
+                    R.id.buttonToPowerOf,
                     R.id.buttonAllClear,
                     R.id.buttonDivide,
                     R.id.buttonMultiply,
@@ -135,6 +136,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                     R.id.buttonMultiply,
                     R.id.buttonSubtract,
                     R.id.buttonAdd,
+                    R.id.buttonToPowerOf,
                     R.id.buttonEquals,
                     R.id.buttonUndolastEval
             };
