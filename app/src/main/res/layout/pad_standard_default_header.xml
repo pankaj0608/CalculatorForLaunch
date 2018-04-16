@@ -1,10 +1,9 @@
-
 <android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/pad_standard_header"
+    style="@style/PadButtonStyle.Numeric.Operator.NoMargin"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/PadButtonStyle.Numeric.Operator.NoMargin"
     android:background="@color/pankaj_theme_dark_white"
     app:columnCount="4"
     app:orientation="horizontal"
@@ -14,58 +13,52 @@
 
     <!--<TableRow>-->
     <!--<Button-->
-        <!--android:id="@+id/buttonTBD1"-->
-        <!--style="@style/PadButtonStyle.Numeric.Operator.NoMargin"-->
-        <!--android:tag="TBD"-->
-        <!--android:text="   "-->
-        <!--android:visibility="visible"-->
-        <!--app:layout_columnWeight="1" />-->
+    <!--android:id="@+id/buttonTBD1"-->
+    <!--style="@style/PadButtonStyle.Numeric.Operator.NoMargin"-->
+    <!--android:tag="TBD"-->
+    <!--android:text="   "-->
+    <!--android:visibility="visible"-->
+    <!--app:layout_columnWeight="1" />-->
 
     <!--<Button-->
-        <!--android:id="@+id/buttonTBD2"-->
-        <!--style="@style/PadButtonStyle.Numeric.Operator.NoMargin"-->
-        <!--android:tag="TBD"-->
-        <!--android:text="   "-->
-        <!--android:visibility="visible"-->
-        <!--app:layout_columnWeight="1" />-->
+    <!--android:id="@+id/buttonTBD2"-->
+    <!--style="@style/PadButtonStyle.Numeric.Operator.NoMargin"-->
+    <!--android:tag="TBD"-->
+    <!--android:text="   "-->
+    <!--android:visibility="visible"-->
+    <!--app:layout_columnWeight="1" />-->
 
     <!--<Button-->
-        <!--android:id="@+id/buttonUndolastEval"-->
-        <!--style="@style/PadButtonStyle.Numeric.Operator.NoMargin"-->
-        <!--android:tag="TBD"-->
-        <!--android:text="   "-->
-        <!--android:visibility="visible"-->
-        <!--app:layout_columnWeight="1" />-->
+    <!--android:id="@+id/buttonUndolastEval"-->
+    <!--style="@style/PadButtonStyle.Numeric.Operator.NoMargin"-->
+    <!--android:tag="TBD"-->
+    <!--android:text="   "-->
+    <!--android:visibility="visible"-->
+    <!--app:layout_columnWeight="1" />-->
 
     <!--<Button-->
-        <!--android:id="@+id/buttonBack"-->
-        <!--style="@style/PadButtonStyle.Numeric.Operator.NoMargin"-->
-        <!--android:tag="TBD"-->
-        <!--android:text="   "-->
-        <!--android:visibility="visible"-->
-        <!--app:layout_columnWeight="1" />-->
+    <!--android:id="@+id/buttonBack"-->
+    <!--style="@style/PadButtonStyle.Numeric.Operator.NoMargin"-->
+    <!--android:tag="TBD"-->
+    <!--android:text="   "-->
+    <!--android:visibility="visible"-->
+    <!--app:layout_columnWeight="1" />-->
 
-    <ImageButton
-        android:id="@+id/buttonTBD1"
-        style="@style/PadButtonStyle.Numeric.Operator.NoMargin"
+    <Button
+        android:id="@+id/buttonBracketStart"
+        style="@style/PadButtonStyle.Borderless"
         android:onClick="calculateMe"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_backspace_pankaj"
-        android:tag="BACK"
-        app:layout_columnWeight="1"
-        app:layout_gravity="fill"
-        app:layout_rowWeight="1" />
+        android:tag="BRACKET_START"
+        android:text="("
+        app:layout_columnWeight="1" />
 
-    <ImageButton
-        android:id="@+id/buttonTBD2"
-        style="@style/PadButtonStyle.Numeric.Operator.NoMargin"
+    <Button
+        android:id="@+id/buttonBracketEnd"
+        style="@style/PadButtonStyle.Borderless"
         android:onClick="calculateMe"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_backspace_pankaj"
-        android:tag="BACK"
-        app:layout_columnWeight="1"
-        app:layout_gravity="fill"
-        app:layout_rowWeight="1" />
+        android:tag="BRACKET_END"
+        android:text=")"
+        app:layout_columnWeight="1" />
 
     <ImageButton
         android:id="@+id/buttonUndolastEval"
@@ -76,8 +69,7 @@
         android:tag="UNDOLASTEVALUATE"
         android:visibility="invisible"
         app:layout_columnWeight="1"
-        app:layout_gravity="fill"
-        app:layout_rowWeight="1" />
+        app:layout_gravity="fill" />
 
 
     <ImageButton
@@ -88,8 +80,7 @@
         android:src="@drawable/ic_backspace_pankaj"
         android:tag="BACK"
         app:layout_columnWeight="1"
-        app:layout_gravity="fill"
-        app:layout_rowWeight="1" />
+        app:layout_gravity="fill" />
 
     <!--</TableRow>-->
 

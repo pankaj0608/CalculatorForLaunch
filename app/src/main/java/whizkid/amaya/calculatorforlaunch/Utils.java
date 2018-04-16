@@ -26,6 +26,8 @@ public class Utils {
     public static final String MULTIPLY = "*";
     public static final String DIVIDE = "/";
     public static final String TOPOWEROF = "^";
+    public static final String BRACKET_START = "(";
+    public static final String BRACKET_END = ")";
     public static final String DECIMAL = ".";
     public static final String INVERSE = "1/x";
     public static final String PERCENTAGE = "%";
@@ -97,43 +99,26 @@ public class Utils {
     }
 
 
-    /**
-     * @param str
-     * @param searchChars
-     * @return
-     */
-    public static boolean containsAnyTagAlready(String str, String searchChars) {
-        if (searchChars == null) {
-            return false;
-        }
-        return containsAny(str, searchChars.toCharArray());
-    }
-
-    /**
-     * @param str
-     * @param searchChars
-     * @return
-     */
-    public static boolean containsAny(String str, char[] searchChars) {
-        if (str == null || str.length() == 0 || searchChars == null || searchChars.length == 0) {
-            return false;
-        }
-        for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-            for (int j = 0; j < searchChars.length; j++) {
-                if (searchChars[j] == ch) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     /**
      * @param equation
      * @return
      */
     static String correctEquation(String equation) {
+
+        if(equation.startsWith("%") ||
+                equation.startsWith("^") ||
+                equation.startsWith("÷") ||
+                equation.startsWith("x")) {
+
+            if(equation.length() > 1) {
+                equation = equation.substring(1);
+            }
+            else {
+                equation = "0";
+            }
+        }
+
 
         equation = equation.replace("^^", "^");
         equation = equation.replace("^%", "^");
@@ -208,7 +193,8 @@ public class Utils {
         if (str.endsWith(DIVIDE) || str.endsWith(MULTIPLY)
                 || str.endsWith(ADD) || str.endsWith(SUBTRACT)
                 || str.endsWith(DECIMAL) || str.endsWith(TOPOWEROF)
-                || str.startsWith(PERCENTAGE)) {
+                || str.endsWith(BRACKET_START)
+                || str.startsWith(PERCENTAGE) ) {
 
             if (str.length() <= 1) {
                 return "0";
@@ -217,12 +203,17 @@ public class Utils {
             }
         }
 
+        if(!containsAny(str,"0123456789")){
+            return str;
+        }
+
         double resultDouble = evalMeUsingSymbols(str);
 
         String twoDigitPrecission =
                 getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT, FALSE);
         String commaAfterThousand =
                 getValueFromSharedPreference(Utils.SETTINGS_COMMA_AFTER_THOUSAND, FALSE);
+
 
         String resultString = "";
 
@@ -339,5 +330,81 @@ public class Utils {
             vibrator.vibrate(Utils.VIBRATION_DURATION);
         }
     }
+
+
+    /**
+     *
+     * Checks if the String contains any character in the given set of characters.
+     *
+     *
+     *
+     * A <code>null</code> String will return <code>false</code>. A <code>null</code> search string will return
+     * <code>false</code>.
+     *
+     *
+     * <pre>
+     * StringUtils.containsAny(null, *)            = false
+     * StringUtils.containsAny("", *)              = false
+     * StringUtils.containsAny(*, null)            = false
+     * StringUtils.containsAny(*, "")              = false
+     * StringUtils.containsAny("zzabyycdxx", "za") = true
+     * StringUtils.containsAny("zzabyycdxx", "by") = true
+     * StringUtils.containsAny("aba","z")          = false
+     * </pre>
+     *
+     * @param str
+     *            the String to check, may be null
+     * @param searchChars
+     *            the chars to search for, may be null
+     * @return the <code>true</code> if any of the chars are found, <code>false</code> if no match or null input
+     * @since 2.4
+     */
+    public static boolean containsAny(String str, String searchChars) {
+        if (searchChars == null) {
+            return false;
+        }
+        return containsAny(str, searchChars.toCharArray());
+    }
+
+    // ContainsAny
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if the String contains any character in the given
+     * set of characters.
+     *
+     * A <code>null</code> String will return <code>false</code>.
+     * A <code>null</code> or zero length search array will return <code>false</code>.
+     *
+     * <pre>
+     * StringUtils.containsAny(null, *)                = false
+     * StringUtils.containsAny("", *)                  = false
+     * StringUtils.containsAny(*, null)                = false
+     * StringUtils.containsAny(*, [])                  = false
+     * StringUtils.containsAny("zzabyycdxx",['z','a']) = true
+     * StringUtils.containsAny("zzabyycdxx",['b','y']) = true
+     * StringUtils.containsAny("aba", ['z'])           = false
+     * </pre>
+     *
+     * @param str  the String to check, may be null
+     * @param searchChars  the chars to search for, may be null
+     * @return the <code>true</code> if any of the chars are found,
+     * <code>false</code> if no match or null input
+     * @since 2.4
+     */
+    private static boolean containsAny(String str, char[] searchChars) {
+        if (str == null || str.length() == 0 || searchChars == null || searchChars.length == 0) {
+            return false;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            for (int j = 0; j < searchChars.length; j++) {
+                if (searchChars[j] == ch) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
 }

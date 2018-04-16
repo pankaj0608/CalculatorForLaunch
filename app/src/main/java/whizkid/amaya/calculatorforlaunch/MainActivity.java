@@ -139,6 +139,12 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                     R.id.buttonEquals
             };
 
+    int[] operatorButtonsNoFill =
+            {
+                    R.id.buttonBracketStart,
+                    R.id.buttonBracketEnd
+            };
+
     int[] imageButtons =
             {
                     R.id.buttonUndolastEval,
@@ -259,6 +265,22 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         }
 
         if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
+            for (int i = 0; i < operatorButtonsNoFill.length; i++) {
+                try {
+                    Button button = findViewById(operatorButtonsNoFill[i]);
+//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
+
+                    button.setTypeface(sansSeifNormal_Normal);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
             for (int i = 0; i < imageButtons.length; i++) {
                 try {
                     ImageButton button = findViewById(imageButtons[i]);
@@ -270,6 +292,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                 }
             }
         }
+
 
 
 //         setContentView(R.layout.mylayout_phone_with_drawer);
@@ -501,6 +524,21 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             }
         }
 
+        if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
+            for (int i = 0; i < operatorButtonsNoFill.length; i++) {
+                try {
+                    Button button = findViewById(operatorButtonsNoFill[i]);
+//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
+
+                    button.setTypeface(sansSeifNormal_Normal);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
             for (int i = 0; i < imageButtons.length; i++) {
@@ -631,7 +669,34 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
             //for changesign find the last index of number and change it's sign
             return;
-        } else if (Utils.UNDO_LAST_EVALUATE.equals(tag)) {
+        }
+        else if(Utils.BRACKET_START.equals(tag)) {
+
+            if (evaluationDone) {
+                evaluationDone = false;
+                currentEquation = Utils.BRACKET_START;
+            }
+            else {
+                currentEquation = currentEquation + Utils.BRACKET_START;
+            }
+
+            editTextEquation.setText(currentEquation);
+
+        }
+        else if(Utils.BRACKET_END.equals(tag)) {
+
+            //we can't start with BRACKET_END
+            if (evaluationDone) {
+                return;
+            }
+            else {
+                currentEquation = currentEquation + Utils.BRACKET_END;
+            }
+
+            editTextEquation.setText(currentEquation);
+
+        }
+        else if (Utils.UNDO_LAST_EVALUATE.equals(tag)) {
 
             evaluationDone = false;
 
