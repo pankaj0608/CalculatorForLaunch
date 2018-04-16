@@ -332,6 +332,30 @@ public class Utils {
     }
 
 
+    public static int containsCountOfAny(String str, String searchChars) {
+        if (str == null || searchChars == null) {
+            return 0;
+        }
+        return containsCountOfAny(str, searchChars.toCharArray());
+    }
+
+    private static int containsCountOfAny(String str, char[] searchChars) {
+        int totalCount = 0;
+
+        if (str == null || str.length() == 0 || searchChars == null || searchChars.length == 0) {
+            return 0;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            for (int j = 0; j < searchChars.length; j++) {
+                if (searchChars[j] == ch) {
+                    ++totalCount;
+                }
+            }
+        }
+        return totalCount;
+    }
+
     /**
      *
      * Checks if the String contains any character in the given set of characters.

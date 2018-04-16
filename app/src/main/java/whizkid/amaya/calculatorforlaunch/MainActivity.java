@@ -294,7 +294,6 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         }
 
 
-
 //         setContentView(R.layout.mylayout_phone_with_drawer);
 
 
@@ -669,28 +668,30 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
             //for changesign find the last index of number and change it's sign
             return;
-        }
-        else if(Utils.BRACKET_START.equals(tag)) {
+        } else if (Utils.BRACKET_START.equals(tag)) {
 
             if (evaluationDone) {
                 evaluationDone = false;
                 currentEquation = Utils.BRACKET_START;
-            }
-            else {
+            } else {
                 currentEquation = currentEquation + Utils.BRACKET_START;
             }
 
             editTextEquation.setText(currentEquation);
 
             return;
-        }
-        else if(Utils.BRACKET_END.equals(tag)) {
+        } else if (Utils.BRACKET_END.equals(tag)) {
 
             //we can't start with BRACKET_END
-            if (evaluationDone) {
+
+            //if no start bracket then no end brackets !!!
+            if (Utils.containsCountOfAny(currentEquation, Utils.BRACKET_START) == 0) {
                 return;
             }
-            else {
+
+            if (evaluationDone) {
+                return;
+            } else {
                 currentEquation = currentEquation + Utils.BRACKET_END;
             }
 
@@ -698,8 +699,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
             return;
 
-        }
-        else if (Utils.UNDO_LAST_EVALUATE.equals(tag)) {
+        } else if (Utils.UNDO_LAST_EVALUATE.equals(tag)) {
 
             evaluationDone = false;
 
