@@ -682,6 +682,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
             editTextEquation.setText(currentEquation);
 
+            return;
         }
         else if(Utils.BRACKET_END.equals(tag)) {
 
@@ -694,6 +695,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             }
 
             editTextEquation.setText(currentEquation);
+
+            return;
 
         }
         else if (Utils.UNDO_LAST_EVALUATE.equals(tag)) {

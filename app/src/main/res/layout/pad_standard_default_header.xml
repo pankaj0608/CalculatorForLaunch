@@ -48,7 +48,7 @@
         android:id="@+id/buttonBracketStart"
         style="@style/PadButtonStyle.Borderless"
         android:onClick="calculateMe"
-        android:tag="BRACKET_START"
+        android:tag="("
         android:text="("
         app:layout_columnWeight="1" />
 
@@ -56,7 +56,7 @@
         android:id="@+id/buttonBracketEnd"
         style="@style/PadButtonStyle.Borderless"
         android:onClick="calculateMe"
-        android:tag="BRACKET_END"
+        android:tag=")"
         android:text=")"
         app:layout_columnWeight="1" />
 
