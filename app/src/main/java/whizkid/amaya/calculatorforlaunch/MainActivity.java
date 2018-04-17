@@ -147,7 +147,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
     int[] imageButtons =
             {
-                    R.id.buttonUndolastEval,
+//                    R.id.buttonUndolastEval,
                     R.id.buttonBack
             };
 
@@ -197,9 +197,9 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
 
-        this.setTheme(R.style.Theme_GOLDEN_COLOR);
+//        this.setTheme(R.style.Theme_GOLDEN_COLOR);
 
-        setPinkTheme();
+//        setPinkTheme();
 
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -476,7 +476,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                         Utils.MY_SHARED_PREFERENCE, Context.MODE_PRIVATE),
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
-        setPinkTheme();
+//        setPinkTheme();
 
         System.out.println("getTheme " + getTheme());
 
@@ -642,7 +642,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 //        editTextResult.setText("0");
 //        editTextEquation.setText("0");
 
-        ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
+//        ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
 
         if (Utils.TRUE.equals(Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION, Utils.FALSE))) {
             editTextResult.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
@@ -657,7 +657,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         Utils.vibrateMe();
 
-        ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
+//        ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
 
         String tag = view.getTag().toString();
         String currentEquation = editTextEquation.getText().toString();
@@ -712,7 +712,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             editTextEquation.setText(Utils.getValueFromSharedPreference(
                     Utils.LAST_EQUATION_FOR_UNDO, Utils.EMPTY_STRING));
 
-            ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
+//            ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
             return;
         } else if (Utils.CHANGESIGN.equals(tag)) {
 
@@ -878,7 +878,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             //        editTextResult.clearAnimation();
             editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
 
-            ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.VISIBLE);
+//            ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.VISIBLE);
 
             //editTextResult.setText(editTextEquation.getText().toString());
         } else {
