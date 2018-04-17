@@ -284,8 +284,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             for (int i = 0; i < imageButtons.length; i++) {
                 try {
                     ImageButton button = findViewById(imageButtons[i]);
-//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -543,8 +543,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             for (int i = 0; i < imageButtons.length; i++) {
                 try {
                     ImageButton button = findViewById(imageButtons[i]);
-//                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -608,7 +608,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             return;
 
         View historyView = findViewById(R.id.editTextHistory);
-        View padView = findViewById(R.id.padTestId);
+        View padView = findViewById(R.id.keyPadKeys);
 
         if (historyView.isShown()) {
             padView.setVisibility(View.VISIBLE);
