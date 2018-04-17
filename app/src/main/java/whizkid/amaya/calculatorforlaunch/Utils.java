@@ -16,6 +16,7 @@ public class Utils {
     public static String PINK_THEME =  "false";
     public static String LAST_EQUATION_FOR_THEME_CHANGE =  "LAST_EQUATION_FOR_THEME_CHANGE";
     public static String LAST_EQUATION_FOR_UNDO =  "LAST_EQUATION_FOR_UNDO";
+    public static final int DEFAULT_THEME = R.color.pankaj_theme_dark_light_blue;
 
     public static final String EMPTY_STRING = "";
     public static final String FALSE = "false";

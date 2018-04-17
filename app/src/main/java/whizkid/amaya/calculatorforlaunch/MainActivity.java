@@ -197,6 +197,12 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
 
+        if(Utils.EMPTY_STRING.equals(
+                Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING))) {
+            Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+                    Integer.toString(Utils.DEFAULT_THEME));
+        }
+
 //        this.setTheme(R.style.Theme_GOLDEN_COLOR);
 
 //        setPinkTheme();
