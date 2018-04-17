@@ -72,6 +72,14 @@
         android:text="%"
         app:layout_columnWeight="1" />
 
+    <Button
+        android:id="@+id/buttonAllClear"
+        style="@style/PadButtonStyle.Numeric.Operator.ExtraPadding"
+        android:onClick="clearAll"
+        android:tag="ALLCLEAR"
+        android:text="C"
+        app:layout_columnWeight="1" />
+
 
     <!--<ImageButton-->
     <!--android:id="@+id/buttonBack"-->
@@ -108,14 +116,6 @@
         <!--android:text="^"-->
         <!--app:layout_columnWeight="1"-->
         <!--android:visibility="gone"/>-->
-
-    <Button
-        android:id="@+id/buttonAllClear"
-        style="@style/PadButtonStyle.Numeric.Operator.ExtraPadding"
-        android:onClick="clearAll"
-        android:tag="ALLCLEAR"
-        android:text="C"
-        app:layout_columnWeight="1" />
 
     <Button
         android:id="@+id/buttonDivide"
