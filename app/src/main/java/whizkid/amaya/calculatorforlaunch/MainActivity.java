@@ -206,7 +206,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_UNDO, Utils.EMPTY_STRING);
 
-        setContentView(R.layout.mylayout_phone);
+        setContentView(R.layout.mylayout_phone_standard);
 
         resetOperators();
 

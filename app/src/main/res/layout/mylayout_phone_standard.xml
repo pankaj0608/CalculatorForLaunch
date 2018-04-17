@@ -41,18 +41,19 @@
     <!--android:background="#00000000"-->
 
     <include
+        android:id="@+id/keyPadDisplay"
         layout="@layout/display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <include android:id="@+id/padTestIdHeader"
+    <include android:id="@+id/keyPadHeader"
         layout="@layout/pad_standard_default_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <include android:id="@+id/padTestId"
-        layout="@layout/pad_standard_default"
+    <include android:id="@+id/keyPadKeys"
+        layout="@layout/keypad_standard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
