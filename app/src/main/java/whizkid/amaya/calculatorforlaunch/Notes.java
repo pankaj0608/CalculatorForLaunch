@@ -15,5 +15,5 @@ public class Notes {
 
 //    String newValue = String.format("%d", (int)d);
 
-
+//    https://www.uplabs.com/posts/calculator-icon-inspiration
 }
