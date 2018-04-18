@@ -1,7 +1,9 @@
 package whizkid.amaya.calculatorforlaunch;
 
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.text.SpannableStringBuilder;
@@ -14,6 +16,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class CalculatorSettingsActivity extends AppCompatActivity {
 
@@ -151,7 +155,50 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     }
 
 
+    public void openThemeSettings_Dialog(View v) {
+
+        final ArrayList mSelectedItems = new ArrayList();  // Where we track the selected items
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Set the dialog title
+        builder.setTitle(R.string.pick_toppings)
+                // Specify the list array, the items to be selected by default (null for none),
+                // and the listener through which to receive callbacks when items are selected
+                .setSingleChoiceItems(R.array.toppings, -1,
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                // Set the action buttons
+//                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        // User clicked OK, so save the mSelectedItems results somewhere
+//                        // or return them to the component that opened the dialog
+//                    }
+//                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+
+        builder.show();
+        //.create();
+    }
+
+
     public void openThemeSettings(View v) {
+
+        openThemeSettings_Dialog(v);
+
+        if (true) {
+            return;
+        }
+
 
 //        toast.setText("To be Implemented");
 //        (Toast.makeText(this, "To be Implemented", Toast.LENGTH_SHORT)).show();

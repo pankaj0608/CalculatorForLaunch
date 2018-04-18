@@ -34,5 +34,17 @@
     <string name="desc_clr" msgid="8357371663749541924">"clear"</string>
     <string name="desc_del" msgid="1866733601083210032">"delete"</string>
     <string name="desc_eq" msgid="8068773095462472408">"equals"</string>
-    
+
+
+    <string name="pick_toppings">Pick your Toppings</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
+    <string-array
+        name="toppings">
+        <item>Onion</item>
+        <item>Letuce</item>
+        <item>Tomato</item>
+    </string-array>
+
 </resources>
