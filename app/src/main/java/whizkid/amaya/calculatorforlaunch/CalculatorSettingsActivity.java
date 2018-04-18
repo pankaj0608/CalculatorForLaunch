@@ -156,7 +156,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 //        toast.setText("To be Implemented");
 //        (Toast.makeText(this, "To be Implemented", Toast.LENGTH_SHORT)).show();
 //        toast.show();
-        PopupMenu popupMenu = new PopupMenu(this, v, Gravity.FILL);
+        PopupMenu popupMenu = new PopupMenu(this, findViewById(R.id.vibrationTextView), Gravity.CENTER_HORIZONTAL);
         MenuInflater inflater = popupMenu.getMenuInflater();
 
         if (v.getId() == R.id.settingsThemeTextView) {
@@ -165,6 +165,9 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
             menuGettingCreated = Utils.THEME_ITEM_SELECTED;
 
         } else if (v.getId() == R.id.settingsFontTypeTextView) {
+
+            popupMenu = new PopupMenu(this, findViewById(R.id.settingsThemeTextView), Gravity.LEFT);
+            inflater = popupMenu.getMenuInflater();
 
             inflater.inflate(R.menu.calculator_font_style, popupMenu.getMenu());
             menuGettingCreated = Utils.FONT_ITEM_SELECTED;

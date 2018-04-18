@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <GridLayout
+        android:id="@+id/SettingsMainLayout"
         style="@style/PadButtonStyle.Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +17,7 @@
         <!-- Row 0 starts -->
 
         <TextView
+            android:id="@+id/vibrationTextView"
             style="@style/PadButtonStyle.Settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
