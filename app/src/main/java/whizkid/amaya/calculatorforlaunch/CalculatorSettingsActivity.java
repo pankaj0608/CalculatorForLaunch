@@ -202,7 +202,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
         if (v.getId() == R.id.settingsThemeTextView) {
 
-            openThemeSettings_Dialog(v, R.string.pick_themes,
+            openThemeSettings_Dialog(v, R.string.pick_theme,
                     R.array.pankaj_themes, Utils.THEME_ITEM_SELECTED_FROM_DIALOG);
 
         } else if (v.getId() == R.id.settingsFontTypeTextView) {
