@@ -168,7 +168,8 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                System.out.println("which " + which);
+                                dialog.cancel();
                             }
                         })
                 // Set the action buttons
