@@ -37,14 +37,41 @@
 
 
     <string name="pick_toppings">Pick your Toppings</string>
+    <string name="pick_theme">Choose your Theme</string>
+    <string name="pick_font">Choose your Font</string>
+    <string name="pick_keypad">Choose your Keypad</string>
+
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
 
-    <string-array
-        name="toppings">
+    <string-array name="toppings">
         <item>Onion</item>
         <item>Letuce</item>
         <item>Tomato</item>
+    </string-array>
+
+    <string-array name="pankaj_themes">
+        <item>Amaya Gold</item>
+        <item>Material-Pink</item>
+        <item>Material-Purple</item>
+        <item>Material-Light Blue</item>
+        <item>Material-Purple</item>
+        <item>Material-Green</item>
+        <item>Material-Orange</item>
+        <item>Material-Blue Grey</item>
+        <item>Material-Grey</item>
+        <item>Material-Black</item>
+    </string-array>
+
+    <string-array name="pankaj_font_type">
+        <item>Thin</item>
+        <item>Regular</item>
+        <item>Bold</item>
+    </string-array>
+
+    <string-array name="pankaj_keypad_type">
+        <item>Basic</item>
+        <item>Scientific</item>
     </string-array>
 
 </resources>

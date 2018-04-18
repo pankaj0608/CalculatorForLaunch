@@ -155,20 +155,25 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     }
 
 
-    public void openThemeSettings_Dialog(View v) {
+    public void openThemeSettings_Dialog(View v, final int arrayResource, final int title, final String preferenceString) {
 
         final ArrayList mSelectedItems = new ArrayList();  // Where we track the selected items
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         // Set the dialog title
-        builder.setTitle(R.string.pick_toppings)
+        builder.setTitle(title)
                 // Specify the list array, the items to be selected by default (null for none),
                 // and the listener through which to receive callbacks when items are selected
-                .setSingleChoiceItems(R.array.toppings, -1,
+                .setSingleChoiceItems(arrayResource, Integer.parseInt(Utils.getValueFromSharedPreference(
+                        preferenceString, "-1")),
                         new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 System.out.println("which " + which);
+                                Utils.putStringInSharedPreference(
+                                        preferenceString,
+                                        Integer.toString(which));
+
                                 dialog.cancel();
                             }
                         })
@@ -194,7 +199,24 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
     public void openThemeSettings(View v) {
 
-        openThemeSettings_Dialog(v);
+
+        if (v.getId() == R.id.settingsThemeTextView) {
+
+            openThemeSettings_Dialog(v, R.string.pick_themes,
+                    R.array.pankaj_themes, Utils.THEME_ITEM_SELECTED_FROM_DIALOG);
+
+        } else if (v.getId() == R.id.settingsFontTypeTextView) {
+
+            openThemeSettings_Dialog(v, R.string.pick_font,
+                    R.array.pankaj_font_type, Utils.FONT_ITEM_SELECTED_FROM_DIALOG);
+
+        } else if (v.getId() == R.id.settingsKeypadLayout) {
+            openThemeSettings_Dialog(v, R.string.pick_keypad,
+                    R.array.pankaj_keypad_type, Utils.KEYPAD_ITEM_SELECTED_FROM_DIALOG);
+
+        } else {
+            return;
+        }
 
         if (true) {
             return;

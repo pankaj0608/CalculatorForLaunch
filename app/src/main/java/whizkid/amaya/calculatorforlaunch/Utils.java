@@ -22,6 +22,11 @@ public class Utils {
     public static final String FONT_ITEM_SELECTED = "FONT_ITEM_SELECTED";
     public static final String KEYPAD_ITEM_SELECTED = "KEYPAD_ITEM_SELECTED";
 
+    public static final String THEME_ITEM_SELECTED_FROM_DIALOG = "THEME_ITEM_SELECTED_FROM_DIALOG";
+    public static final String FONT_ITEM_SELECTED_FROM_DIALOG = "FONT_ITEM_SELECTED_FROM_DIALOG";
+    public static final String KEYPAD_ITEM_SELECTED_FROM_DIALOG = "KEYPAD_ITEM_SELECTED_FROM_DIALOG";
+
+
     public static final String EMPTY_STRING = "";
     public static final String FALSE = "false";
     public static final String TRUE = "true";
