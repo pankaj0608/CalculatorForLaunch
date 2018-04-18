@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 public class CalculatorSettingsActivity extends AppCompatActivity {
 
+    private MenuItem menuItem = null;
+    private String menuGettingCreated = null;
     private CheckBox settingsVibrateOnTouch;
     private CheckBox settingsPrecisionTwoDigits;
     private CheckBox settingsCommaAfterThousand;
@@ -147,24 +149,37 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
 
     public void openThemeSettings(View v) {
+
 //        toast.setText("To be Implemented");
 //        (Toast.makeText(this, "To be Implemented", Toast.LENGTH_SHORT)).show();
 //        toast.show();
-        PopupMenu popup = new PopupMenu(this, v);
-        MenuInflater inflater = popup.getMenuInflater();
+        PopupMenu popupMenu = new PopupMenu(this, v);
+        MenuInflater inflater = popupMenu.getMenuInflater();
 
         if (v.getId() == R.id.settingsThemeTextView) {
-            inflater.inflate(R.menu.calculator_theme, popup.getMenu());
+
+            inflater.inflate(R.menu.calculator_theme, popupMenu.getMenu());
+            menuGettingCreated = Utils.THEME_ITEM_SELECTED;
+
         } else if (v.getId() == R.id.settingsFontTypeTextView) {
-            inflater.inflate(R.menu.calculator_font_style, popup.getMenu());
+
+            inflater.inflate(R.menu.calculator_font_style, popupMenu.getMenu());
+            menuGettingCreated = Utils.FONT_ITEM_SELECTED;
+
         } else if (v.getId() == R.id.settingsKeypadLayout) {
-            inflater.inflate(R.menu.calculator_keypad_style, popup.getMenu());
+            inflater.inflate(R.menu.calculator_keypad_style, popupMenu.getMenu());
+            menuGettingCreated = Utils.KEYPAD_ITEM_SELECTED;
+
         } else {
             return;
         }
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                menuItem = item;
+
                 switch (item.getItemId()) {
                     case R.id.amaya_favourite_color_golden:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
@@ -242,46 +257,88 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                     case R.id.Font_Thin:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
                                 Integer.toString(R.id.Font_Thin));
-                        System.out.println("clicked popup " + item.getTitle());
+                        System.out.println("clicked popupMenu " + item.getTitle());
                         break;
 //                        return true;
                     case R.id.Font_Normal:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
                                 Integer.toString(R.id.Font_Normal));
-                        System.out.println("clicked popup " + item.getTitle());
+                        System.out.println("clicked popupMenu " + item.getTitle());
                         break;
 //                        return true;
                     case R.id.Font_Bold:
                         Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
                                 Integer.toString(R.id.Font_Bold));
-                        System.out.println("clicked popup " + item.getTitle());
+                        System.out.println("clicked popupMenu " + item.getTitle());
                         break;
 //                        return true;
                     default:
-                        System.out.println("Unknown clicked popup" + item.toString());
+                        System.out.println("Unknown clicked popupMenu" + item.toString());
                         break;
 //                        return true;
                 }
+
+                if (Utils.THEME_ITEM_SELECTED.equals(menuGettingCreated)) {
+                    Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED,
+                            Integer.toString(menuItem.getItemId()));
+                }
 //
-                if(!Utils.TRUE.equals(
-                        Utils.getValueFromSharedPreference(Utils.PINK_THEME, Utils.EMPTY_STRING))) {
-                    setTheme(R.style.Theme_PINK_COLOR);
-                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.TRUE);
-                }
-                else {
-                    setTheme(R.style.Theme_LIGHT_BLUE);
-                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.FALSE);
-                }
+//                To change Themes dynamically
+//                if(!Utils.TRUE.equals(
+//                        Utils.getValueFromSharedPreference(Utils.PINK_THEME, Utils.EMPTY_STRING))) {
+//                    setTheme(R.style.Theme_PINK_COLOR);
+//                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.TRUE);
+//                }
+//                else {
+//                    setTheme(R.style.Theme_LIGHT_BLUE);
+//                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.FALSE);
+//                }
+//
+//                MainActivity.recreateMe = true;
 
-                MainActivity.recreateMe = true;
+//                setContentView(R.layout.activity_calculator_settings);
 
-                setContentView(R.layout.activity_calculator_settings);
+                System.out.println("before " + item.isChecked());
+
+//                if (item.isCheckable()) {
+//                    item.setChecked(true);
+//                }
+//                System.out.println("after " + item.isChecked());
+
                 setTextvaluesColourful();
-                return true;
+
+//                if (menuItem != null) {
+//                    menuItem.setChecked(true);
+//                    menuItem.setTitle("Hello Me");
+//                }
+
+                return false;
             }
         });
 
-        popup.show();
+//        if (!Utils.EMPTY_STRING.equals(
+//                Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME,""))) {
+//            (popupMenu.getMenu().findItem(
+//                    Integer.parseInt(
+//                    Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME,"")))).setChecked(true);
+//        }
+
+        if (Utils.THEME_ITEM_SELECTED.equals(menuGettingCreated)) {
+            if (!Utils.EMPTY_STRING.equals(
+                    Utils.getValueFromSharedPreference(
+                            Utils.THEME_ITEM_SELECTED, Utils.EMPTY_STRING))) {
+                (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
+                        Utils.THEME_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
+            }
+        }
+
+
+        popupMenu.show();
+
+//        if (menuItem != null) {
+//            menuItem.setChecked(true);
+//        }
+
     }
 
 }

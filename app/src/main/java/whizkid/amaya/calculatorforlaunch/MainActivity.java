@@ -201,6 +201,9 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                 Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING))) {
             Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
                     Integer.toString(Utils.DEFAULT_THEME));
+
+            Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED,
+                    Integer.toString(Utils.DEFAULT_THEME_ITEM));
         }
 
 //        this.setTheme(R.style.Theme_GOLDEN_COLOR);

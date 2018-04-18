@@ -13,10 +13,14 @@ import java.text.DecimalFormat;
 
 public class Utils {
 
-    public static String PINK_THEME =  "false";
-    public static String LAST_EQUATION_FOR_THEME_CHANGE =  "LAST_EQUATION_FOR_THEME_CHANGE";
-    public static String LAST_EQUATION_FOR_UNDO =  "LAST_EQUATION_FOR_UNDO";
+    public static String PINK_THEME = "false";
+    public static String LAST_EQUATION_FOR_THEME_CHANGE = "LAST_EQUATION_FOR_THEME_CHANGE";
+    public static String LAST_EQUATION_FOR_UNDO = "LAST_EQUATION_FOR_UNDO";
     public static final int DEFAULT_THEME = R.color.pankaj_theme_dark_light_blue;
+    public static final int DEFAULT_THEME_ITEM = R.id.pankaj_theme_dark_light_blue;
+    public static final String THEME_ITEM_SELECTED = "THEME_ITEM_SELECTED";
+    public static final String FONT_ITEM_SELECTED = "FONT_ITEM_SELECTED";
+    public static final String KEYPAD_ITEM_SELECTED = "KEYPAD_ITEM_SELECTED";
 
     public static final String EMPTY_STRING = "";
     public static final String FALSE = "false";
@@ -100,22 +104,20 @@ public class Utils {
     }
 
 
-
     /**
      * @param equation
      * @return
      */
     static String correctEquation(String equation) {
 
-        if(equation.startsWith("%") ||
+        if (equation.startsWith("%") ||
                 equation.startsWith("^") ||
                 equation.startsWith("÷") ||
                 equation.startsWith("x")) {
 
-            if(equation.length() > 1) {
+            if (equation.length() > 1) {
                 equation = equation.substring(1);
-            }
-            else {
+            } else {
                 equation = "0";
             }
         }
@@ -195,7 +197,7 @@ public class Utils {
                 || str.endsWith(ADD) || str.endsWith(SUBTRACT)
                 || str.endsWith(DECIMAL) || str.endsWith(TOPOWEROF)
                 || str.endsWith(BRACKET_START)
-                || str.startsWith(PERCENTAGE) ) {
+                || str.startsWith(PERCENTAGE)) {
 
             if (str.length() <= 1) {
                 return "0";
@@ -204,7 +206,7 @@ public class Utils {
             }
         }
 
-        if(!containsAny(str,"0123456789")){
+        if (!containsAny(str, "0123456789")) {
             return str;
         }
 
@@ -358,15 +360,14 @@ public class Utils {
     }
 
     /**
-     *
      * Checks if the String contains any character in the given set of characters.
-     *
-     *
-     *
+     * <p>
+     * <p>
+     * <p>
      * A <code>null</code> String will return <code>false</code>. A <code>null</code> search string will return
      * <code>false</code>.
-     *
-     *
+     * <p>
+     * <p>
      * <pre>
      * StringUtils.containsAny(null, *)            = false
      * StringUtils.containsAny("", *)              = false
@@ -377,10 +378,8 @@ public class Utils {
      * StringUtils.containsAny("aba","z")          = false
      * </pre>
      *
-     * @param str
-     *            the String to check, may be null
-     * @param searchChars
-     *            the chars to search for, may be null
+     * @param str         the String to check, may be null
+     * @param searchChars the chars to search for, may be null
      * @return the <code>true</code> if any of the chars are found, <code>false</code> if no match or null input
      * @since 2.4
      */
@@ -393,13 +392,14 @@ public class Utils {
 
     // ContainsAny
     //-----------------------------------------------------------------------
+
     /**
      * Checks if the String contains any character in the given
      * set of characters.
-     *
+     * <p>
      * A <code>null</code> String will return <code>false</code>.
      * A <code>null</code> or zero length search array will return <code>false</code>.
-     *
+     * <p>
      * <pre>
      * StringUtils.containsAny(null, *)                = false
      * StringUtils.containsAny("", *)                  = false
@@ -410,8 +410,8 @@ public class Utils {
      * StringUtils.containsAny("aba", ['z'])           = false
      * </pre>
      *
-     * @param str  the String to check, may be null
-     * @param searchChars  the chars to search for, may be null
+     * @param str         the String to check, may be null
+     * @param searchChars the chars to search for, may be null
      * @return the <code>true</code> if any of the chars are found,
      * <code>false</code> if no match or null input
      * @since 2.4
