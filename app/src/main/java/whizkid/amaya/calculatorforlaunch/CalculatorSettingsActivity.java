@@ -155,7 +155,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     }
 
 
-    public void openThemeSettings_Dialog(View v, final int arrayResource, final int title, final String preferenceString) {
+    public void openThemeSettings_Dialog(View v, final int title, final int arrayResource,  final String preferenceString) {
 
         final ArrayList mSelectedItems = new ArrayList();  // Where we track the selected items
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

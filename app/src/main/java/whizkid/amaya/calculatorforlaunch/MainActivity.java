@@ -196,6 +196,15 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                         Utils.MY_SHARED_PREFERENCE, Context.MODE_PRIVATE),
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
+        if(Utils.EMPTY_STRING.equals(
+                Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG, Utils.EMPTY_STRING))) {
+            Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
+                    Utils.DEFAULT_THEME_FROM_DIALOG);
+
+//            Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED,
+//                    Integer.toString(Utils.DEFAULT_THEME_ITEM));
+        }
+
 
         if(Utils.EMPTY_STRING.equals(
                 Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING))) {

@@ -13,6 +13,17 @@ import java.text.DecimalFormat;
 
 public class Utils {
 
+    final int themeColors[] =
+            {R.color.amaya_favourite_color_golden,
+                    R.color.pankaj_theme_dark_pink,
+                    R.color.pankaj_theme_dark_purple,
+                    R.color.pankaj_theme_dark_light_blue,
+                    R.color.pankaj_theme_dark_green,
+                    R.color.pankaj_theme_dark_orange,
+                    R.color.pankaj_theme_dark_blue_grey,
+                    R.color.pankaj_theme_dark_grey,
+                    R.color.pankaj_theme_dark_black
+            };
     public static String PINK_THEME = "false";
     public static String LAST_EQUATION_FOR_THEME_CHANGE = "LAST_EQUATION_FOR_THEME_CHANGE";
     public static String LAST_EQUATION_FOR_UNDO = "LAST_EQUATION_FOR_UNDO";
@@ -25,6 +36,7 @@ public class Utils {
     public static final String THEME_ITEM_SELECTED_FROM_DIALOG = "THEME_ITEM_SELECTED_FROM_DIALOG";
     public static final String FONT_ITEM_SELECTED_FROM_DIALOG = "FONT_ITEM_SELECTED_FROM_DIALOG";
     public static final String KEYPAD_ITEM_SELECTED_FROM_DIALOG = "KEYPAD_ITEM_SELECTED_FROM_DIALOG";
+    public static final String DEFAULT_THEME_FROM_DIALOG = "3";
 
 
     public static final String EMPTY_STRING = "";
