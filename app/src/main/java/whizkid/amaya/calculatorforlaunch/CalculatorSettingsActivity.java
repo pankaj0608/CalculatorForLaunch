@@ -282,6 +282,16 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                     Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED,
                             Integer.toString(menuItem.getItemId()));
                 }
+
+                if (Utils.FONT_ITEM_SELECTED.equals(menuGettingCreated)) {
+                    Utils.putStringInSharedPreference(Utils.FONT_ITEM_SELECTED,
+                            Integer.toString(menuItem.getItemId()));
+                }
+
+                if (Utils.KEYPAD_ITEM_SELECTED.equals(menuGettingCreated)) {
+                    Utils.putStringInSharedPreference(Utils.KEYPAD_ITEM_SELECTED,
+                            Integer.toString(menuItem.getItemId()));
+                }
 //
 //                To change Themes dynamically
 //                if(!Utils.TRUE.equals(
@@ -329,6 +339,25 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                             Utils.THEME_ITEM_SELECTED, Utils.EMPTY_STRING))) {
                 (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
                         Utils.THEME_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
+            }
+        }
+
+        if (Utils.FONT_ITEM_SELECTED.equals(menuGettingCreated)) {
+            if (!Utils.EMPTY_STRING.equals(
+                    Utils.getValueFromSharedPreference(
+                            Utils.FONT_ITEM_SELECTED, Utils.EMPTY_STRING))) {
+                (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
+                        Utils.FONT_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
+            }
+        }
+
+
+        if (Utils.KEYPAD_ITEM_SELECTED.equals(menuGettingCreated)) {
+            if (!Utils.EMPTY_STRING.equals(
+                    Utils.getValueFromSharedPreference(
+                            Utils.KEYPAD_ITEM_SELECTED, Utils.EMPTY_STRING))) {
+                (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
+                        Utils.KEYPAD_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
             }
         }
 
