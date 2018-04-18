@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -153,7 +156,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 //        toast.setText("To be Implemented");
 //        (Toast.makeText(this, "To be Implemented", Toast.LENGTH_SHORT)).show();
 //        toast.show();
-        PopupMenu popupMenu = new PopupMenu(this, v);
+        PopupMenu popupMenu = new PopupMenu(this, v, Gravity.FILL);
         MenuInflater inflater = popupMenu.getMenuInflater();
 
         if (v.getId() == R.id.settingsThemeTextView) {
