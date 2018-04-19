@@ -470,13 +470,9 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
     private void resetThemeColoursAndFonts() {
 
-        int preferenceColour = Utils.themeColors[
-                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
-                        Utils.DEFAULT_THEME_FROM_DIALOG))];
+        int preferenceColour = Utils.getPreferenceColor();
 
-        int preferenceFont = Utils.themeFonts[
-                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG,
-                        Utils.DEFAULT_FONT_FROM_DIALOG))];
+        int preferenceFont = Utils.getPreferenceFont();
 
 //        if (preferenceFont != null && preferenceFont.length() > 0) {
         for (int i = 0; i < resourcesButton.length; i++) {

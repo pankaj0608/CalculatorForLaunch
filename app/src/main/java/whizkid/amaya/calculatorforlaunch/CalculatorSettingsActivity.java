@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,6 +19,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import org.javia.arity.Util;
 
 import java.util.ArrayList;
 
@@ -34,6 +37,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     private TextView precisionTextView;
     private TextView thousandSeperatorTextView;
     private TextView enableAnimationTextView;
+    private TextView settingsKeypadLayout;
 
     final Typeface sansSeifNormal_Thin = Typeface.create("sans-serif-thin", Typeface.NORMAL);
     final Typeface sansSeifNormal_Normal = Typeface.create("sans-serif-light", Typeface.NORMAL);
@@ -59,7 +63,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         precisionTextView = (TextView) findViewById(R.id.precisionTextView);
         thousandSeperatorTextView = (TextView) findViewById(R.id.thousandSeperatorTextView);
         enableAnimationTextView = (TextView) findViewById(R.id.enableAnimationTextView);
-
+        settingsKeypadLayout = (TextView) findViewById(R.id.settingsKeypadLayout);
 
         settingsPrecisionTwoDigits.setChecked(
                 Boolean.valueOf(
@@ -110,7 +114,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                             Utils.DEFAULT_THEME_FROM_DIALOG))];
 
             createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView),
-                    strText + colour.toLowerCase());
+                    strText + colour.toLowerCase(), Utils.getPreferenceColor());
 
             //names to be displayed for fonts
             strText = getResources().getString(R.string.FontType) + "\n";
@@ -121,7 +125,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                             Utils.DEFAULT_FONT_FROM_DIALOG))];
 
             createDifferentFonts((TextView) findViewById(R.id.settingsFontTypeTextView),
-                    strText + colour.toLowerCase());
+                    strText + colour.toLowerCase(), -1);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -161,13 +165,15 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 //                Utils.getValueFromSharedPreference(Utils.SETTINGS_DISPLAY_FORMAT, Utils.EMPTY_STRING));
     }
 
-    private void createDifferentFonts(TextView textView, String strText) {
+    private void createDifferentFonts(TextView textView, String strText, int preferenceColour) {
 
 //        TextView txt = (TextView) findViewById(R.id.custom_fonts);
 //        txt.setTextSize(30);
 //        Typeface font = Typeface.createFromAsset(getAssets(), "Akshar.ttf");
 //        Typeface font2 = Typeface.createFromAsset(getAssets(), "bangla.ttf");
 //        SpannableStringBuilder SS = new SpannableStringBuilder("আমারநல்வரவு");
+//
+
 
         SpannableStringBuilder SS = new SpannableStringBuilder(strText);
 
@@ -179,12 +185,18 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 strText.indexOf("\n"), strText.length(),
                 Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 
+        if (preferenceColour != -1) {
+            SS.setSpan(new ForegroundColorSpan(getResources().getColor(preferenceColour)),
+                    strText.indexOf("\n"), strText.length(),
+                    Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        }
+
         textView.setText(SS);
     }
 
 
     public void openThemeSettings_Dialog(View v, final int title,
-                                         final int arrayResource,  final String preferenceString) {
+                                         final int arrayResource, final String preferenceString) {
 
         final ArrayList mSelectedItems = new ArrayList();  // Where we track the selected items
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -232,7 +244,6 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
 
     private void resetThemeColoursAndFonts() {
-
         settingsVibrateOnTouch.setTypeface(sansSeifNormal_Normal);
         settingsPrecisionTwoDigits.setTypeface(sansSeifNormal_Normal);
         settingsCommaAfterThousand.setTypeface(sansSeifNormal_Normal);
@@ -242,6 +253,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         precisionTextView.setTypeface(sansSeifNormal_Normal);
         thousandSeperatorTextView.setTypeface(sansSeifNormal_Normal);
         enableAnimationTextView.setTypeface(sansSeifNormal_Normal);
+        settingsKeypadLayout.setTypeface(sansSeifNormal_Normal);
     }
 
 

@@ -356,6 +356,19 @@ public class Utils {
     }
 
 
+    static int getPreferenceColor() {
+        return  Utils.themeColors[
+                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
+                        Utils.DEFAULT_THEME_FROM_DIALOG))];
+    }
+
+    static int getPreferenceFont() {
+        return  Utils.themeFonts[
+                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG,
+                        Utils.DEFAULT_FONT_FROM_DIALOG))];
+    }
+
+
     public static int containsCountOfAny(String str, String searchChars) {
         if (str == null || searchChars == null) {
             return 0;
