@@ -254,7 +254,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
         AlertDialog alertDialogObject = builder.create();//DialogBuilder.create();
         ListView listView = alertDialogObject.getListView();
-        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_light_grey)));
+        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_very_light_grey)));
         listView.setDividerHeight(1);
 
         alertDialogObject.show();
