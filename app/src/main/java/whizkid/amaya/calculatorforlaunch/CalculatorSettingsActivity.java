@@ -108,10 +108,12 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
             //names to be displayed for themes
             String strText = getResources().getString(R.string.ColorTheme) + "\n";
 
-            //name of the color selected setting
+            //name of the color selected setting, since the random theme has value of 1000, hence
+            // min funtion for the random theme
             String colour =
-                    themes[Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
-                            Utils.DEFAULT_THEME_FROM_DIALOG))];
+                    themes[Math.min(Integer.parseInt(
+                            Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
+                                    Utils.DEFAULT_THEME_FROM_DIALOG)), themes.length - 1)];
 
             createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView),
                     strText + colour.toLowerCase(), Utils.getPreferenceColor());
@@ -212,15 +214,14 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 System.out.println("which " + which);
 
-                                if(arrayResource == R.array.pankaj_color_themes
+                                if (arrayResource == R.array.pankaj_color_themes
                                         &&
-                                        which == getResources().getStringArray(R.array.pankaj_color_themes).length-1) {
+                                        which == getResources().getStringArray(R.array.pankaj_color_themes).length - 1) {
                                     //store the value selected in the prefrence
                                     Utils.putStringInSharedPreference(
                                             preferenceString,
                                             Utils.RANDOM_THEME_FROM_DIALOG);
-                                }
-                                else {
+                                } else {
                                     //store the value selected in the prefrence
                                     Utils.putStringInSharedPreference(
                                             preferenceString,
