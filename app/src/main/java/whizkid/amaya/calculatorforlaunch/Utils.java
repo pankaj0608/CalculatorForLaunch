@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 
 public class Utils {
 
-    final int themeColors[] =
+    public static final int themeColors[] =
             {R.color.amaya_favourite_color_golden,
                     R.color.pankaj_theme_dark_pink,
                     R.color.pankaj_theme_dark_purple,
@@ -24,20 +24,24 @@ public class Utils {
                     R.color.pankaj_theme_dark_grey,
                     R.color.pankaj_theme_dark_black
             };
+
+    public static final int themeFonts[] =
+            {R.id.Font_Thin, R.id.Font_Normal, R.id.Font_Bold};
+
     public static String PINK_THEME = "false";
     public static String LAST_EQUATION_FOR_THEME_CHANGE = "LAST_EQUATION_FOR_THEME_CHANGE";
     public static String LAST_EQUATION_FOR_UNDO = "LAST_EQUATION_FOR_UNDO";
     public static final int DEFAULT_THEME = R.color.pankaj_theme_dark_light_blue;
-    public static final int DEFAULT_THEME_ITEM = R.id.pankaj_theme_dark_light_blue;
-    public static final String THEME_ITEM_SELECTED = "THEME_ITEM_SELECTED";
-    public static final String FONT_ITEM_SELECTED = "FONT_ITEM_SELECTED";
-    public static final String KEYPAD_ITEM_SELECTED = "KEYPAD_ITEM_SELECTED";
+//    public static final int DEFAULT_THEME_ITEM = R.id.pankaj_theme_dark_light_blue;
+//    public static final String THEME_ITEM_SELECTED = "THEME_ITEM_SELECTED";
+//    public static final String FONT_ITEM_SELECTED = "FONT_ITEM_SELECTED";
+//    public static final String KEYPAD_ITEM_SELECTED = "KEYPAD_ITEM_SELECTED";
 
     public static final String THEME_ITEM_SELECTED_FROM_DIALOG = "THEME_ITEM_SELECTED_FROM_DIALOG";
     public static final String FONT_ITEM_SELECTED_FROM_DIALOG = "FONT_ITEM_SELECTED_FROM_DIALOG";
     public static final String KEYPAD_ITEM_SELECTED_FROM_DIALOG = "KEYPAD_ITEM_SELECTED_FROM_DIALOG";
     public static final String DEFAULT_THEME_FROM_DIALOG = "3";
-
+    public static final String DEFAULT_FONT_FROM_DIALOG = "1";
 
     public static final String EMPTY_STRING = "";
     public static final String FALSE = "false";
@@ -69,10 +73,10 @@ public class Utils {
 
     public static final String SETTINGS_VIBRATE_ON_TOUCH = "SETTINGS_VIBRATE_ON_TOUCH";
     public static final String SETTINGS_PRECISSION_TWO_DIGIT = "SETTINGS_PRECISSION_TWO_DIGIT";
-    public static final String SETTINGS_COLOR_THEME = "SETTINGS_COLOR_THEME";
-    public static final String SETTINGS_KEYPAD_LAYOUT = "SETTINGS_KEYPAD_LAYOUT";
-    public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
-    public static final String SETTINGS_FONT_STYLE = "SETTINGS_FONT_STYLE";
+//    public static final String SETTINGS_COLOR_THEME = "SETTINGS_COLOR_THEME";
+//    public static final String SETTINGS_KEYPAD_LAYOUT = "SETTINGS_KEYPAD_LAYOUT";
+//    public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
+//    public static final String SETTINGS_FONT_STYLE = "SETTINGS_FONT_STYLE";
     public static final String SETTINGS_COMMA_AFTER_THOUSAND = "SETTINGS_COMMA_AFTER_THOUSAND";
     public static final String SETTINGS_ANIMATION = "SETTINGS_ANIMATION";
 

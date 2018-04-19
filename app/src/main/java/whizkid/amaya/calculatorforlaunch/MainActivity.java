@@ -191,29 +191,35 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
 //        recreateMe = true;
 
+        //set the context and vibrator in the Utils
         Utils.setBaseEssentials(getApplicationContext(),
                 getApplicationContext().getSharedPreferences(
                         Utils.MY_SHARED_PREFERENCE, Context.MODE_PRIVATE),
                 (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE));
 
-        if(Utils.EMPTY_STRING.equals(
+        //set the default theme
+        if (Utils.EMPTY_STRING.equals(
                 Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG, Utils.EMPTY_STRING))) {
             Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
                     Utils.DEFAULT_THEME_FROM_DIALOG);
+        }
 
+        //set the default font
+        if (Utils.EMPTY_STRING.equals(
+                Utils.getValueFromSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG, Utils.EMPTY_STRING))) {
+            Utils.putStringInSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG,
+                    Utils.DEFAULT_FONT_FROM_DIALOG);
+        }
+
+
+//        if(Utils.EMPTY_STRING.equals(
+//                Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING))) {
+//            Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                    Integer.toString(Utils.DEFAULT_THEME));
+//
 //            Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED,
 //                    Integer.toString(Utils.DEFAULT_THEME_ITEM));
-        }
-
-
-        if(Utils.EMPTY_STRING.equals(
-                Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING))) {
-            Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                    Integer.toString(Utils.DEFAULT_THEME));
-
-            Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED,
-                    Integer.toString(Utils.DEFAULT_THEME_ITEM));
-        }
+//        }
 
 //        this.setTheme(R.style.Theme_GOLDEN_COLOR);
 
@@ -233,7 +239,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         editTextMemory = (EditText) findViewById(R.id.editTextMemory);
 
 
-        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
+//        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
 
 //        if(Utils.EMPTY_STRING.equals(preferenceColour)) {
 //            editTextMemory.setText("V : empty :");
@@ -252,42 +258,47 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 //
 //        }
 
-        if (Utils.EMPTY_STRING.equals(preferenceColour.equals(Utils.SETTINGS_COLOR_THEME))) {
-            Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                    Integer.toString(R.color.amaya_favourite_color_golden));
-        }
+//        if (Utils.EMPTY_STRING.equals(preferenceColour.equals(Utils.SETTINGS_COLOR_THEME))) {
+//            Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                    Integer.toString(R.color.amaya_favourite_color_golden));
+//        }
+
+        int preferenceColour = Utils.themeColors[
+                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
+                        Utils.DEFAULT_THEME_FROM_DIALOG))];
+
+        int preferenceFont = Utils.themeFonts[
+                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG,
+                        Utils.DEFAULT_FONT_FROM_DIALOG))];
+
+//        if (Utils.EMPTY_STRING.equals(preferenceFont)) {
+//            Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
+//                    Integer.toString(R.id.Font_Normal));
+//        }
 
 
-        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
-
-        if (Utils.EMPTY_STRING.equals(preferenceFont)) {
-            Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
-                    Integer.toString(R.id.Font_Normal));
-        }
-
-
-        if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
-            for (int i = 0; i < operatorButtons.length; i++) {
-                try {
-                    Button button = findViewById(operatorButtons[i]);
-                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+//        if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
+        for (int i = 0; i < operatorButtons.length; i++) {
+            try {
+                Button button = findViewById(operatorButtons[i]);
+                button.setBackgroundColor(getResources().getColor(preferenceColour));
 //                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
+                button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
 
-                    button.setTypeface(sansSeifNormal_Normal);
+                button.setTypeface(sansSeifNormal_Normal);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
+//        }
 
         if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
             for (int i = 0; i < operatorButtonsNoFill.length; i++) {
                 try {
                     Button button = findViewById(operatorButtonsNoFill[i]);
 //                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setTextColor(getResources().getColor(preferenceColour));
 //                    button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
 
                     button.setTypeface(sansSeifNormal_Normal);
@@ -302,7 +313,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             for (int i = 0; i < imageButtons.length; i++) {
                 try {
                     ImageButton button = findViewById(imageButtons[i]);
-                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setBackgroundColor(getResources().getColor(preferenceColour));
 //                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
 
                 } catch (Exception e) {
@@ -501,52 +512,56 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         editTextEquation.setText(editTextEquation.getText().toString());
 
-        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
-        String preferenceFont = Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING);
+        int preferenceColour = Utils.themeColors[
+                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
+                        Utils.DEFAULT_THEME_FROM_DIALOG))];
 
+        int preferenceFont = Utils.themeFonts[
+                Integer.parseInt(Utils.getValueFromSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG,
+                        Utils.DEFAULT_FONT_FROM_DIALOG))];
 
-        if (preferenceFont != null && preferenceFont.length() > 0) {
-            for (int i = 0; i < resourcesButton.length; i++) {
-                try {
-                    System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
-                    Button button = ((Button) findViewById(resourcesButton[i]));
-                    if (preferenceFont.equals(Integer.toString(R.id.Font_Thin))) {
-                        button.setTypeface(sansSeifNormal_Thin);
-                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Normal))) {
-                        button.setTypeface(sansSeifNormal_Normal);
-
-                    } else if (preferenceFont.equals(Integer.toString(R.id.Font_Bold))) {
-                        button.setTypeface(sansSeifNormal_Bold);
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        if (preferenceColour != null && preferenceColour.length() > 0) {
-            for (int i = 0; i < operatorButtons.length; i++) {
-                try {
-                    Button button = findViewById(operatorButtons[i]);
-                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-//                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
-
+//        if (preferenceFont != null && preferenceFont.length() > 0) {
+        for (int i = 0; i < resourcesButton.length; i++) {
+            try {
+                System.out.println("resourcesButton[i] " + i + " : " + resourcesButton[i]);
+                Button button = ((Button) findViewById(resourcesButton[i]));
+                if (preferenceFont == R.id.Font_Thin) {
+                    button.setTypeface(sansSeifNormal_Thin);
+                } else if (preferenceFont == R.id.Font_Normal) {
                     button.setTypeface(sansSeifNormal_Normal);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } else if (preferenceFont == R.id.Font_Bold) {
+                    button.setTypeface(sansSeifNormal_Bold);
+
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
+//        }
+
+//        if (preferenceColour != null && preferenceColour.length() > 0) {
+        for (int i = 0; i < operatorButtons.length; i++) {
+            try {
+                Button button = findViewById(operatorButtons[i]);
+                button.setBackgroundColor(getResources().getColor(preferenceColour));
+//                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
+
+                button.setTypeface(sansSeifNormal_Normal);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+//        }
 
         if (!Utils.EMPTY_STRING.equals(preferenceColour)) {
             for (int i = 0; i < operatorButtonsNoFill.length; i++) {
                 try {
                     Button button = findViewById(operatorButtonsNoFill[i]);
 //                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
-                    button.setTextColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setTextColor(getResources().getColor(preferenceColour));
 //                    button.setTextColor(getResources().getColor(R.color.pankaj_pad_button_text_color_white));
 
                     button.setTypeface(sansSeifNormal_Normal);
@@ -561,7 +576,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             for (int i = 0; i < imageButtons.length; i++) {
                 try {
                     ImageButton button = findViewById(imageButtons[i]);
-                    button.setBackgroundColor(getResources().getColor(Integer.parseInt(preferenceColour)));
+                    button.setBackgroundColor(getResources().getColor(preferenceColour));
 //                    button.setColorFilter(getResources().getColor(Integer.parseInt(preferenceColour)));
 
                 } catch (Exception e) {
@@ -642,8 +657,11 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         Utils.vibrateMe();
 
-        Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_THEME_CHANGE, editTextEquation.getText().toString());
+        Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_THEME_CHANGE,
+                editTextEquation.getText().toString());
+
         Intent intent = new Intent(this, CalculatorSettingsActivity.class);
+
         startActivity(intent);
     }
 

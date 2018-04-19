@@ -77,28 +77,28 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     }
 
     private void setTextvaluesColourful() {
-        try {
-            String strText = "Theme\n";
-            String colour =
-                    (getResources().getResourceName(
-                            Integer.parseInt(
-                                    Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING))));
-
-            colour = colour.substring(colour.lastIndexOf("_") + 1);
-            createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText + colour);
-
-
-            strText = "Font Type\n";
-            colour =
-                    (getResources().getResourceName(
-                            Integer.parseInt(
-                                    Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING))));
-
-            colour = colour.substring(colour.lastIndexOf("/") + 1).toLowerCase();
-            createDifferentFonts((TextView) findViewById(R.id.settingsFontTypeTextView), strText + colour);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String strText = "Theme\n";
+//            String colour =
+//                    (getResources().getResourceName(
+//                            Integer.parseInt(
+//                                    Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING))));
+//
+//            colour = colour.substring(colour.lastIndexOf("_") + 1);
+//            createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText + colour);
+//
+//
+//            strText = "Font Type\n";
+//            colour =
+//                    (getResources().getResourceName(
+//                            Integer.parseInt(
+//                                    Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING))));
+//
+//            colour = colour.substring(colour.lastIndexOf("/") + 1).toLowerCase();
+//            createDifferentFonts((TextView) findViewById(R.id.settingsFontTypeTextView), strText + colour);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -121,17 +121,17 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 Utils.SETTINGS_ANIMATION,
                 Boolean.toString(settingsAnimation.isChecked()));
 
-        Utils.putStringInSharedPreference(
-                Utils.SETTINGS_COLOR_THEME,
-                Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING));
-
-        Utils.putStringInSharedPreference(
-                Utils.SETTINGS_KEYPAD_LAYOUT,
-                Utils.getValueFromSharedPreference(Utils.SETTINGS_KEYPAD_LAYOUT, Utils.EMPTY_STRING));
-
-        Utils.putStringInSharedPreference(
-                Utils.SETTINGS_DISPLAY_FORMAT,
-                Utils.getValueFromSharedPreference(Utils.SETTINGS_DISPLAY_FORMAT, Utils.EMPTY_STRING));
+//        Utils.putStringInSharedPreference(
+//                Utils.SETTINGS_COLOR_THEME,
+//                Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING));
+//
+//        Utils.putStringInSharedPreference(
+//                Utils.SETTINGS_KEYPAD_LAYOUT,
+//                Utils.getValueFromSharedPreference(Utils.SETTINGS_KEYPAD_LAYOUT, Utils.EMPTY_STRING));
+//
+//        Utils.putStringInSharedPreference(
+//                Utils.SETTINGS_DISPLAY_FORMAT,
+//                Utils.getValueFromSharedPreference(Utils.SETTINGS_DISPLAY_FORMAT, Utils.EMPTY_STRING));
     }
 
     private void createDifferentFonts(TextView textView, String strText) {
@@ -228,221 +228,221 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 //        toast.show();
         PopupMenu popupMenu = new PopupMenu(this, findViewById(R.id.vibrationTextView), Gravity.CENTER_HORIZONTAL);
         MenuInflater inflater = popupMenu.getMenuInflater();
-
-        if (v.getId() == R.id.settingsThemeTextView) {
-
-            inflater.inflate(R.menu.calculator_theme, popupMenu.getMenu());
-            menuGettingCreated = Utils.THEME_ITEM_SELECTED;
-
-        } else if (v.getId() == R.id.settingsFontTypeTextView) {
-
-            popupMenu = new PopupMenu(this, findViewById(R.id.settingsThemeTextView), Gravity.LEFT);
-            inflater = popupMenu.getMenuInflater();
-
-            inflater.inflate(R.menu.calculator_font_style, popupMenu.getMenu());
-            menuGettingCreated = Utils.FONT_ITEM_SELECTED;
-
-        } else if (v.getId() == R.id.settingsKeypadLayout) {
-            inflater.inflate(R.menu.calculator_keypad_style, popupMenu.getMenu());
-            menuGettingCreated = Utils.KEYPAD_ITEM_SELECTED;
-
-        } else {
-            return;
-        }
-
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                menuItem = item;
-
-                switch (item.getItemId()) {
-                    case R.id.amaya_favourite_color_golden:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.amaya_favourite_color_golden));
-                        break;
-                    case R.id.pankaj_theme_dark_black:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_black));
-                        break;
-                    case R.id.pankaj_theme_dark_blue:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_blue));
-                        break;
-                    case R.id.pankaj_theme_dark_light_blue:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_light_blue));
-                        break;
-                    case R.id.pankaj_theme_dark_blue_grey:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_blue_grey));
-                        break;
-                    case R.id.pankaj_theme_dark_cyan:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_cyan));
-                        break;
-                    case R.id.pankaj_theme_dark_deep_brown:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_deep_brown));
-                        break;
-                    case R.id.pankaj_theme_dark_green:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_green));
-                        break;
-                    case R.id.pankaj_theme_dark_grey:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_grey));
-                        break;
-                    case R.id.pankaj_theme_dark_indigo:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_indigo));
-                        break;
-                    case R.id.pankaj_theme_dark_lime:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_lime));
-                        break;
-                    case R.id.pankaj_theme_dark_orange:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_orange));
-                        break;
-                    case R.id.pankaj_theme_dark_deep_orange:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_deep_brown));
-                        break;
-                    case R.id.pankaj_theme_dark_pink:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_pink));
-                        break;
-                    case R.id.pankaj_theme_dark_purple:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_purple));
-                        break;
-                    case R.id.pankaj_theme_dark__dark_purple:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_dark_purple));
-                        break;
-                    case R.id.pankaj_theme_dark_teal:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_teal));
-                        break;
-                    case R.id.pankaj_theme_dark_yellow:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
-                                Integer.toString(R.color.pankaj_theme_dark_yellow));
-                        break;
-
-                    case R.id.Font_Thin:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
-                                Integer.toString(R.id.Font_Thin));
-                        System.out.println("clicked popupMenu " + item.getTitle());
-                        break;
-//                        return true;
-                    case R.id.Font_Normal:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
-                                Integer.toString(R.id.Font_Normal));
-                        System.out.println("clicked popupMenu " + item.getTitle());
-                        break;
-//                        return true;
-                    case R.id.Font_Bold:
-                        Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
-                                Integer.toString(R.id.Font_Bold));
-                        System.out.println("clicked popupMenu " + item.getTitle());
-                        break;
-//                        return true;
-                    default:
-                        System.out.println("Unknown clicked popupMenu" + item.toString());
-                        break;
-//                        return true;
-                }
-
-                if (Utils.THEME_ITEM_SELECTED.equals(menuGettingCreated)) {
-                    Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED,
-                            Integer.toString(menuItem.getItemId()));
-                }
-
-                if (Utils.FONT_ITEM_SELECTED.equals(menuGettingCreated)) {
-                    Utils.putStringInSharedPreference(Utils.FONT_ITEM_SELECTED,
-                            Integer.toString(menuItem.getItemId()));
-                }
-
-                if (Utils.KEYPAD_ITEM_SELECTED.equals(menuGettingCreated)) {
-                    Utils.putStringInSharedPreference(Utils.KEYPAD_ITEM_SELECTED,
-                            Integer.toString(menuItem.getItemId()));
-                }
 //
-//                To change Themes dynamically
-//                if(!Utils.TRUE.equals(
-//                        Utils.getValueFromSharedPreference(Utils.PINK_THEME, Utils.EMPTY_STRING))) {
-//                    setTheme(R.style.Theme_PINK_COLOR);
-//                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.TRUE);
-//                }
-//                else {
-//                    setTheme(R.style.Theme_LIGHT_BLUE);
-//                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.FALSE);
+//        if (v.getId() == R.id.settingsThemeTextView) {
+//
+//            inflater.inflate(R.menu.calculator_theme, popupMenu.getMenu());
+//            menuGettingCreated = Utils.THEME_ITEM_SELECTED;
+//
+//        } else if (v.getId() == R.id.settingsFontTypeTextView) {
+//
+//            popupMenu = new PopupMenu(this, findViewById(R.id.settingsThemeTextView), Gravity.LEFT);
+//            inflater = popupMenu.getMenuInflater();
+//
+//            inflater.inflate(R.menu.calculator_font_style, popupMenu.getMenu());
+//            menuGettingCreated = Utils.FONT_ITEM_SELECTED;
+//
+//        } else if (v.getId() == R.id.settingsKeypadLayout) {
+//            inflater.inflate(R.menu.calculator_keypad_style, popupMenu.getMenu());
+//            menuGettingCreated = Utils.KEYPAD_ITEM_SELECTED;
+//
+//        } else {
+//            return;
+//        }
+//
+//        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                menuItem = item;
+//
+//                switch (item.getItemId()) {
+//                    case R.id.amaya_favourite_color_golden:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.amaya_favourite_color_golden));
+//                        break;
+//                    case R.id.pankaj_theme_dark_black:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_black));
+//                        break;
+//                    case R.id.pankaj_theme_dark_blue:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_blue));
+//                        break;
+//                    case R.id.pankaj_theme_dark_light_blue:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_light_blue));
+//                        break;
+//                    case R.id.pankaj_theme_dark_blue_grey:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_blue_grey));
+//                        break;
+//                    case R.id.pankaj_theme_dark_cyan:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_cyan));
+//                        break;
+//                    case R.id.pankaj_theme_dark_deep_brown:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_deep_brown));
+//                        break;
+//                    case R.id.pankaj_theme_dark_green:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_green));
+//                        break;
+//                    case R.id.pankaj_theme_dark_grey:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_grey));
+//                        break;
+//                    case R.id.pankaj_theme_dark_indigo:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_indigo));
+//                        break;
+//                    case R.id.pankaj_theme_dark_lime:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_lime));
+//                        break;
+//                    case R.id.pankaj_theme_dark_orange:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_orange));
+//                        break;
+//                    case R.id.pankaj_theme_dark_deep_orange:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_deep_brown));
+//                        break;
+//                    case R.id.pankaj_theme_dark_pink:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_pink));
+//                        break;
+//                    case R.id.pankaj_theme_dark_purple:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_purple));
+//                        break;
+//                    case R.id.pankaj_theme_dark__dark_purple:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_dark_purple));
+//                        break;
+//                    case R.id.pankaj_theme_dark_teal:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_teal));
+//                        break;
+//                    case R.id.pankaj_theme_dark_yellow:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_COLOR_THEME,
+//                                Integer.toString(R.color.pankaj_theme_dark_yellow));
+//                        break;
+//
+//                    case R.id.Font_Thin:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
+//                                Integer.toString(R.id.Font_Thin));
+//                        System.out.println("clicked popupMenu " + item.getTitle());
+//                        break;
+////                        return true;
+//                    case R.id.Font_Normal:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
+//                                Integer.toString(R.id.Font_Normal));
+//                        System.out.println("clicked popupMenu " + item.getTitle());
+//                        break;
+////                        return true;
+//                    case R.id.Font_Bold:
+//                        Utils.putStringInSharedPreference(Utils.SETTINGS_FONT_STYLE,
+//                                Integer.toString(R.id.Font_Bold));
+//                        System.out.println("clicked popupMenu " + item.getTitle());
+//                        break;
+////                        return true;
+//                    default:
+//                        System.out.println("Unknown clicked popupMenu" + item.toString());
+//                        break;
+////                        return true;
 //                }
 //
-//                MainActivity.recreateMe = true;
-
-//                setContentView(R.layout.activity_calculator_settings);
-
-                System.out.println("before " + item.isChecked());
-
-//                if (item.isCheckable()) {
-//                    item.setChecked(true);
+//                if (Utils.THEME_ITEM_SELECTED.equals(menuGettingCreated)) {
+//                    Utils.putStringInSharedPreference(Utils.THEME_ITEM_SELECTED,
+//                            Integer.toString(menuItem.getItemId()));
 //                }
-//                System.out.println("after " + item.isChecked());
-
-                setTextvaluesColourful();
-
-//                if (menuItem != null) {
-//                    menuItem.setChecked(true);
-//                    menuItem.setTitle("Hello Me");
+//
+//                if (Utils.FONT_ITEM_SELECTED.equals(menuGettingCreated)) {
+//                    Utils.putStringInSharedPreference(Utils.FONT_ITEM_SELECTED,
+//                            Integer.toString(menuItem.getItemId()));
 //                }
-
-                return false;
-            }
-        });
-
-//        if (!Utils.EMPTY_STRING.equals(
-//                Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME,""))) {
-//            (popupMenu.getMenu().findItem(
-//                    Integer.parseInt(
-//                    Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME,"")))).setChecked(true);
+//
+//                if (Utils.KEYPAD_ITEM_SELECTED.equals(menuGettingCreated)) {
+//                    Utils.putStringInSharedPreference(Utils.KEYPAD_ITEM_SELECTED,
+//                            Integer.toString(menuItem.getItemId()));
+//                }
+////
+////                To change Themes dynamically
+////                if(!Utils.TRUE.equals(
+////                        Utils.getValueFromSharedPreference(Utils.PINK_THEME, Utils.EMPTY_STRING))) {
+////                    setTheme(R.style.Theme_PINK_COLOR);
+////                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.TRUE);
+////                }
+////                else {
+////                    setTheme(R.style.Theme_LIGHT_BLUE);
+////                    Utils.putStringInSharedPreference(Utils.PINK_THEME,Utils.FALSE);
+////                }
+////
+////                MainActivity.recreateMe = true;
+//
+////                setContentView(R.layout.activity_calculator_settings);
+//
+//                System.out.println("before " + item.isChecked());
+//
+////                if (item.isCheckable()) {
+////                    item.setChecked(true);
+////                }
+////                System.out.println("after " + item.isChecked());
+//
+//                setTextvaluesColourful();
+//
+////                if (menuItem != null) {
+////                    menuItem.setChecked(true);
+////                    menuItem.setTitle("Hello Me");
+////                }
+//
+//                return false;
+//            }
+//        });
+//
+////        if (!Utils.EMPTY_STRING.equals(
+////                Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME,""))) {
+////            (popupMenu.getMenu().findItem(
+////                    Integer.parseInt(
+////                    Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME,"")))).setChecked(true);
+////        }
+//
+//        if (Utils.THEME_ITEM_SELECTED.equals(menuGettingCreated)) {
+//            if (!Utils.EMPTY_STRING.equals(
+//                    Utils.getValueFromSharedPreference(
+//                            Utils.THEME_ITEM_SELECTED, Utils.EMPTY_STRING))) {
+//                (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
+//                        Utils.THEME_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
+//            }
 //        }
-
-        if (Utils.THEME_ITEM_SELECTED.equals(menuGettingCreated)) {
-            if (!Utils.EMPTY_STRING.equals(
-                    Utils.getValueFromSharedPreference(
-                            Utils.THEME_ITEM_SELECTED, Utils.EMPTY_STRING))) {
-                (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
-                        Utils.THEME_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
-            }
-        }
-
-        if (Utils.FONT_ITEM_SELECTED.equals(menuGettingCreated)) {
-            if (!Utils.EMPTY_STRING.equals(
-                    Utils.getValueFromSharedPreference(
-                            Utils.FONT_ITEM_SELECTED, Utils.EMPTY_STRING))) {
-                (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
-                        Utils.FONT_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
-            }
-        }
-
-
-        if (Utils.KEYPAD_ITEM_SELECTED.equals(menuGettingCreated)) {
-            if (!Utils.EMPTY_STRING.equals(
-                    Utils.getValueFromSharedPreference(
-                            Utils.KEYPAD_ITEM_SELECTED, Utils.EMPTY_STRING))) {
-                (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
-                        Utils.KEYPAD_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
-            }
-        }
-
-
-        popupMenu.show();
-
-//        if (menuItem != null) {
-//            menuItem.setChecked(true);
+//
+//        if (Utils.FONT_ITEM_SELECTED.equals(menuGettingCreated)) {
+//            if (!Utils.EMPTY_STRING.equals(
+//                    Utils.getValueFromSharedPreference(
+//                            Utils.FONT_ITEM_SELECTED, Utils.EMPTY_STRING))) {
+//                (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
+//                        Utils.FONT_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
+//            }
 //        }
+//
+//
+//        if (Utils.KEYPAD_ITEM_SELECTED.equals(menuGettingCreated)) {
+//            if (!Utils.EMPTY_STRING.equals(
+//                    Utils.getValueFromSharedPreference(
+//                            Utils.KEYPAD_ITEM_SELECTED, Utils.EMPTY_STRING))) {
+//                (popupMenu.getMenu().findItem(Integer.parseInt(Utils.getValueFromSharedPreference(
+//                        Utils.KEYPAD_ITEM_SELECTED, Utils.EMPTY_STRING)))).setChecked(true);
+//            }
+//        }
+//
+//
+//        popupMenu.show();
+//
+////        if (menuItem != null) {
+////            menuItem.setChecked(true);
+////        }
 
     }
 
