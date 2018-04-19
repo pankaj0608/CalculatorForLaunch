@@ -28,4 +28,9 @@ public class HistoryTasks {
     public void setEquation(String equation) {
         this.equation = equation;
     }
+
+    @Override
+    public String toString() {
+        return "Pankaj \n" + this.equation;
+    }
 }

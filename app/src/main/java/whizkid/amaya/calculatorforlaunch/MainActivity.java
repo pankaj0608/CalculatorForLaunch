@@ -1,12 +1,14 @@
 package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.TextViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
@@ -15,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -607,19 +610,50 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
 
     public void showHistory(View view) {
-        if (true)
+        if (false)
             return;
 
-        View historyView = findViewById(R.id.editTextHistory);
-        View padView = findViewById(R.id.keyPadKeys);
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+//        builderSingle.setIcon(R.drawable.ic_launcher);
+        builderSingle.setTitle("Select One Name:-");
 
-        if (historyView.isShown()) {
-            padView.setVisibility(View.VISIBLE);
-            historyView.setVisibility(View.GONE);
-        } else {
-            padView.setVisibility(View.GONE);
-            historyView.setVisibility(View.VISIBLE);
-        }
+        final ArrayAdapter<HistoryTasks> arrayAdapter = new ArrayAdapter<HistoryTasks>(this,
+                android.R.layout.select_dialog_item);
+
+        arrayAdapter.addAll(getHistoryData());
+
+//        arrayAdapter.add("Hardik");
+//        arrayAdapter.add("Archit");
+//        arrayAdapter.add("Jignesh");
+//        arrayAdapter.add("Umang");
+//        arrayAdapter.add("Gatti");
+
+        builderSingle.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String strName = arrayAdapter.getItem(which).getEquation();
+                editTextEquation.setText(Utils.correctEquation(strName));
+//                AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
+//                builderInner.setMessage(strName);
+//                builderInner.setTitle("Your Selected Item is ");
+//                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog,int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//
+//                builderInner.show();
+            }
+        });
+        builderSingle.show();
 
     }
 
@@ -931,6 +965,23 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         }
 
+    }
+
+
+    private ArrayList<HistoryTasks> getHistoryData() {
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<List<HistoryTasks>>() {}.getType();
+
+        String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+
+        ArrayList<HistoryTasks> historyTasks = new ArrayList<>();
+
+        if (Utils.isNotNullString(historyJson)) {
+            historyTasks = gson.fromJson(historyJson, type);
+        }
+
+        return historyTasks;
     }
 
 

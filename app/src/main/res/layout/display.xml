@@ -20,18 +20,21 @@
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_25sdp"
             android:background="@color/pankaj_pad_numeric_background_color_white"
-            android:gravity="center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
             android:onClick="changeMySettings"
             android:text="..."
+            android:textAlignment="center"
             android:textColor="@color/pankaj_theme_dark_pink"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
 
+
         <EditText
             android:id="@+id/editTextMemory"
             style="@style/DisplayTextStyle.Memory"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@color/pankaj_pad_button_text_color_white"
             android:editable="false"
             android:gravity="center_horizontal"
@@ -39,6 +42,17 @@
             android:textAlignment="viewStart"
             android:textSize="@dimen/_18sdp" />
 
+
+        <ImageButton
+            android:id="@+id/historyMenuButton"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:adjustViewBounds="false"
+            android:background="@color/pankaj_pad_numeric_background_color_white"
+            android:onClick="showHistory"
+            android:scaleType="centerInside"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/ic_history_black_48px" />
 
     </LinearLayout>
 
@@ -101,13 +115,13 @@
             android:scrollHorizontally="true"
             android:text="I am History"
             android:textColor="@color/pankaj_results_text_color"
-            android:textSize="@dimen/_30sdp"/>
+            android:textSize="@dimen/_30sdp" />
     </LinearLayout>
 
     <!--<View-->
-        <!--android:id="@+id/myTopLine"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:background="@color/pankaj_theme_grid_line_color" />-->
+    <!--android:id="@+id/myTopLine"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="@color/pankaj_theme_grid_line_color" />-->
 
 </LinearLayout>
