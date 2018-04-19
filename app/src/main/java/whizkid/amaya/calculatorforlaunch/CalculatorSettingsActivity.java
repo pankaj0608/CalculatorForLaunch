@@ -14,7 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,6 +30,10 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     private CheckBox settingsCommaAfterThousand;
     private CheckBox settingsAnimation;
     private TextView settingsThemeTextView;
+    private TextView vibrationTextView;
+    private TextView precisionTextView;
+    private TextView thousandSeperatorTextView;
+    private TextView enableAnimationTextView;
 
     final Typeface sansSeifNormal_Thin = Typeface.create("sans-serif-thin", Typeface.NORMAL);
     final Typeface sansSeifNormal_Normal = Typeface.create("sans-serif-light", Typeface.NORMAL);
@@ -49,6 +55,11 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         settingsAnimation = (CheckBox) findViewById(R.id.settingsAnimation);
 
         settingsThemeTextView = (TextView) findViewById(R.id.settingsThemeTextView);
+        vibrationTextView = (TextView) findViewById(R.id.vibrationTextView);
+        precisionTextView = (TextView) findViewById(R.id.precisionTextView);
+        thousandSeperatorTextView = (TextView) findViewById(R.id.thousandSeperatorTextView);
+        enableAnimationTextView = (TextView) findViewById(R.id.enableAnimationTextView);
+
 
         settingsPrecisionTwoDigits.setChecked(
                 Boolean.valueOf(
@@ -66,6 +77,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                 Boolean.valueOf(
                         Utils.getValueFromSharedPreference(Utils.SETTINGS_ANIMATION, Utils.FALSE)));
 
+        resetThemeColoursAndFonts();
 
         setTextvaluesColourful();
 
@@ -74,6 +86,13 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 //        private CheckBox settingsDisplayFormat;
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        resetThemeColoursAndFonts();
+        setTextvaluesColourful();
     }
 
     private void setTextvaluesColourful() {
@@ -90,7 +109,8 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                     themes[Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
                             Utils.DEFAULT_THEME_FROM_DIALOG))];
 
-            createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText + colour);
+            createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView),
+                    strText + colour.toLowerCase());
 
             //names to be displayed for fonts
             strText = getResources().getString(R.string.FontType) + "\n";
@@ -100,7 +120,8 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                     fonts[Integer.parseInt(Utils.getValueFromSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG,
                             Utils.DEFAULT_FONT_FROM_DIALOG))];
 
-            createDifferentFonts((TextView) findViewById(R.id.settingsFontTypeTextView), strText + colour);
+            createDifferentFonts((TextView) findViewById(R.id.settingsFontTypeTextView),
+                    strText + colour.toLowerCase());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -207,6 +228,20 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
 
         builder.show();
         //.create();
+    }
+
+
+    private void resetThemeColoursAndFonts() {
+
+        settingsVibrateOnTouch.setTypeface(sansSeifNormal_Normal);
+        settingsPrecisionTwoDigits.setTypeface(sansSeifNormal_Normal);
+        settingsCommaAfterThousand.setTypeface(sansSeifNormal_Normal);
+        settingsAnimation.setTypeface(sansSeifNormal_Normal);
+        settingsThemeTextView.setTypeface(sansSeifNormal_Normal);
+        vibrationTextView.setTypeface(sansSeifNormal_Normal);
+        precisionTextView.setTypeface(sansSeifNormal_Normal);
+        thousandSeperatorTextView.setTypeface(sansSeifNormal_Normal);
+        enableAnimationTextView.setTypeface(sansSeifNormal_Normal);
     }
 
 
