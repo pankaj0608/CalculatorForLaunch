@@ -2,6 +2,7 @@ package whizkid.amaya.calculatorforlaunch;
 
 import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -251,7 +252,13 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                     }
                 });
 
-        builder.show();
+        AlertDialog alertDialogObject = builder.create();//DialogBuilder.create();
+        ListView listView = alertDialogObject.getListView();
+        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_light_grey)));
+        listView.setDividerHeight(1);
+
+        alertDialogObject.show();
+//        builder.show();
         //.create();
     }
 

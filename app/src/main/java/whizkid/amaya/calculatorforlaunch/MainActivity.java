@@ -638,6 +638,13 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             }
         });
 
+        builderSingle.setPositiveButton(R.string.ClearHistory, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+            }
+        });
+
         builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -661,9 +668,10 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         AlertDialog alertDialogObject = builderSingle.create();//DialogBuilder.create();
         ListView listView = alertDialogObject.getListView();
-        listView.setDivider(new ColorDrawable(getResources().getColor(Utils.getPreferenceColor())));
+        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_light_grey)));
         listView.setDividerHeight(1);
 
+//        listView.
         alertDialogObject.show();
         // set color listView.setDividerHeight(2);
         // set height alertDialogObject.show();

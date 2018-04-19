@@ -43,6 +43,8 @@
 
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
+    <string name="ClearHistory">Clear History</string>
+
 
     <string name="ColorTheme">Color Theme</string>
     <string name="FontType">Font Type</string>
