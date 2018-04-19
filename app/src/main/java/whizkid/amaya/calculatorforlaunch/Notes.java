@@ -16,4 +16,6 @@ public class Notes {
 //    String newValue = String.format("%d", (int)d);
 
 //    https://www.uplabs.com/posts/calculator-icon-inspiration
+
+//    https://stackoverflow.com/questions/3282940/set-color-of-textview-span-in-android
 }
