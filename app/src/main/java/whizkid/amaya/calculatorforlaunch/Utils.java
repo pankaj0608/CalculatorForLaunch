@@ -3,7 +3,11 @@ package whizkid.amaya.calculatorforlaunch;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Vibrator;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.javia.arity.Symbols;
 import org.javia.arity.SyntaxException;
@@ -73,7 +77,7 @@ public class Utils {
 
     public static final String SETTINGS_VIBRATE_ON_TOUCH = "SETTINGS_VIBRATE_ON_TOUCH";
     public static final String SETTINGS_PRECISSION_TWO_DIGIT = "SETTINGS_PRECISSION_TWO_DIGIT";
-//    public static final String SETTINGS_COLOR_THEME = "SETTINGS_COLOR_THEME";
+    //    public static final String SETTINGS_COLOR_THEME = "SETTINGS_COLOR_THEME";
 //    public static final String SETTINGS_KEYPAD_LAYOUT = "SETTINGS_KEYPAD_LAYOUT";
 //    public static final String SETTINGS_DISPLAY_FORMAT = "SETTINGS_DISPLAY_FORMAT";
 //    public static final String SETTINGS_FONT_STYLE = "SETTINGS_FONT_STYLE";
@@ -125,11 +129,37 @@ public class Utils {
     }
 
 
+
+    private static SpannableStringBuilder createDifferentFonts(String strText, int preferenceColour) {
+
+        SpannableStringBuilder SS = new SpannableStringBuilder(strText);
+        char operators[] = {'÷', 'x', '+', '-', '%', '^'};
+
+        if (preferenceColour != -1) {
+
+            for (int i = 0; i < operators.length; i++) {
+                for (int j = 0; j < strText.length(); j++) {
+
+                    if (strText.charAt(j) == operators[i]) {
+                        SS.setSpan(new ForegroundColorSpan(
+                                        contextOfApplication_NotUse.getResources().getColor(preferenceColour)),
+                                j, j + 1,
+                                Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+                    }
+
+                }
+            }
+        }
+
+        return SS;
+    }
+
     /**
      * @param equation
      * @return
      */
-    static String correctEquation(String equation) {
+    static SpannableStringBuilder correctEquation(String equation) {
+
 
         if (equation.startsWith("%") ||
                 equation.startsWith("^") ||
@@ -196,7 +226,7 @@ public class Utils {
         }
 
         //remove 2 decimals
-        return equation;
+        return createDifferentFonts(equation, getPreferenceColor());
     }
 
 
@@ -357,13 +387,13 @@ public class Utils {
 
 
     static int getPreferenceColor() {
-        return  Utils.themeColors[
+        return Utils.themeColors[
                 Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
                         Utils.DEFAULT_THEME_FROM_DIALOG))];
     }
 
     static int getPreferenceFont() {
-        return  Utils.themeFonts[
+        return Utils.themeFonts[
                 Integer.parseInt(Utils.getValueFromSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG,
                         Utils.DEFAULT_FONT_FROM_DIALOG))];
     }

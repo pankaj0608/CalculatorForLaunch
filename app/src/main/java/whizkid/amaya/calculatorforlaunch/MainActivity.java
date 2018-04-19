@@ -455,8 +455,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         resetThemeColoursAndFonts();
 
-        editTextEquation.setText(editTextEquation.getText().toString());
-
+        editTextEquation.setText(Utils.correctEquation(editTextEquation.getText().toString()));
 
         if (recreateMe) {
             recreateMe = false;
