@@ -177,10 +177,15 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 System.out.println("which " + which);
+
+                                //store the value selected in the prefrence
                                 Utils.putStringInSharedPreference(
                                         preferenceString,
                                         Integer.toString(which));
 
+                                //set the colourful values
+                                setTextvaluesColourful();
+                                
                                 dialog.cancel();
                             }
                         })
