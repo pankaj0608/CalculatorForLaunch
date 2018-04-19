@@ -20,6 +20,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends AppCompatActivity {
 
@@ -339,10 +349,9 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                 result = Utils.evalMe(s.toString());
 
                 //colour only if evaluation has been done and not on All Clear
-                if(evaluationDone && !editTextEquation.getText().toString().equals("0")) {
+                if (evaluationDone && !editTextEquation.getText().toString().equals("0")) {
                     editTextResult.setText(Utils.colourMyText(result, Utils.getPreferenceColorForRandomLayout()));
-                }
-                else {
+                } else {
                     editTextResult.setText(result);
 
                 }
@@ -551,9 +560,10 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             }
         }
 
-        ((TextView)findViewById(R.id.slidingMenuButton)).setTextColor(getResources().getColor(preferenceColour));
+        ((TextView) findViewById(R.id.slidingMenuButton)).setTextColor(getResources().getColor(preferenceColour));
 
     }
+
     public void saveInMemory(View view) {
 
         Utils.vibrateMe();
@@ -871,6 +881,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                 editTextEquation.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_in_left));
             }
             Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_UNDO, editTextEquation.getText().toString());
+
+            saveHistoryData(editTextEquation.getText().toString());
             //        editTextResult.clearAnimation();
             editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
 
@@ -921,6 +933,39 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
     }
 
+
+    private void saveHistoryData(String historyEquation) {
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<List<HistoryTasks>>() {}.getType();
+
+        String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+
+        List<HistoryTasks> historyTasks = new ArrayList<>();
+
+        if (Utils.isNotNullString(historyJson)) {
+            historyTasks = gson.fromJson(historyJson, type);
+        }
+
+        historyTasks.add(new HistoryTasks(new Date(), historyEquation));
+
+        String json = gson.toJson(historyTasks);
+        Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, json);
+
+        System.out.println(historyTasks);
+
+        Collections.sort(historyTasks, new Comparator<HistoryTasks>() {
+            @Override
+            public int compare(HistoryTasks lhs, HistoryTasks rhs) {
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                return lhs.getDate().getTime() > rhs.getDate().getTime() ?
+                        -1 : (lhs.getDate().getTime() < rhs.getDate().getTime()) ? 1 : 0;
+            }
+        });
+
+        System.out.println(historyTasks);
+
+    }
 
     private void resetOperators() {
         operand1 = null;

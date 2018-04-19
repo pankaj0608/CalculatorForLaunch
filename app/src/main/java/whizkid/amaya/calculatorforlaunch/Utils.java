@@ -18,6 +18,7 @@ public class Utils {
 
     public static final String RANDOM_THEME_FROM_DIALOG = "1000";
 
+    public static final String HISTORY_TASKS = "HISTORY_TASKS";
     public static final int themeColors[] =
             {R.color.amaya_favourite_color_golden,
                     R.color.pankaj_theme_dark_pink,
