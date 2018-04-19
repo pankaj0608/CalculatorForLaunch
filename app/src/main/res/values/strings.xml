@@ -54,16 +54,19 @@
         <item>Tomato</item>
     </string-array>
 
-    <string-array name="pankaj_themes">
+    <string-array name="pankaj_color_themes">
         <item>Amaya-Gold</item>
         <item>Material-Pink</item>
         <item>Material-Purple</item>
         <item>Material-Light Blue</item>
         <item>Material-Green</item>
         <item>Material-Orange</item>
+        <item>Material-Teal</item>
+        <item>Material-Red</item>
         <item>Material-Blue Grey</item>
         <item>Material-Grey</item>
         <item>Material-Black</item>
+        <item>Random-Color</item>
     </string-array>
 
     <string-array name="pankaj_font_type">

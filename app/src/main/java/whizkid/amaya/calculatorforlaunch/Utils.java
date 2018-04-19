@@ -16,6 +16,8 @@ import java.text.DecimalFormat;
 
 public class Utils {
 
+    public static final String RANDOM_THEME_FROM_DIALOG = "1000";
+
     public static final int themeColors[] =
             {R.color.amaya_favourite_color_golden,
                     R.color.pankaj_theme_dark_pink,
@@ -23,9 +25,12 @@ public class Utils {
                     R.color.pankaj_theme_dark_light_blue,
                     R.color.pankaj_theme_dark_green,
                     R.color.pankaj_theme_dark_orange,
+                    R.color.pankaj_theme_dark_teal,
+                    R.color.pankaj_theme_dark_red,
                     R.color.pankaj_theme_dark_blue_grey,
                     R.color.pankaj_theme_dark_grey,
-                    R.color.pankaj_theme_dark_black
+                    R.color.pankaj_theme_dark_black,
+                    Integer.parseInt(RANDOM_THEME_FROM_DIALOG)
             };
 
     public static final int themeFonts[] =
@@ -45,6 +50,8 @@ public class Utils {
     public static final String KEYPAD_ITEM_SELECTED_FROM_DIALOG = "KEYPAD_ITEM_SELECTED_FROM_DIALOG";
     public static final String DEFAULT_THEME_FROM_DIALOG = "3";
     public static final String DEFAULT_FONT_FROM_DIALOG = "1";
+    public static final String THEME_COLOUR_FOR_LAYOUT_FROM_RANDOM_EFFECT = "THEME_COLOUR_FOR_LAYOUT_FROM_RANDOM_EFFECT";
+
 
     public static final String EMPTY_STRING = "";
     public static final String FALSE = "false";
@@ -236,7 +243,8 @@ public class Utils {
         }
 
         //remove 2 decimals
-        return createDifferentFonts(equation, getPreferenceColor());
+        ;
+        return createDifferentFonts(equation,getPreferenceColorForRandomLayout());
     }
 
 
@@ -402,11 +410,27 @@ public class Utils {
     }
 
 
-    static int getPreferenceColor() {
+    public static int getPreferenceColor() {
+
+        if(Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
+                Utils.DEFAULT_THEME_FROM_DIALOG)) == Integer.parseInt(RANDOM_THEME_FROM_DIALOG)) {
+            return themeColors[(int)(Math.random()*10)];
+        }
+
         return Utils.themeColors[
                 Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
                         Utils.DEFAULT_THEME_FROM_DIALOG))];
     }
+
+
+    public static int getPreferenceColorForRandomLayout() {
+        return Integer.parseInt(Utils.getValueFromSharedPreference(
+                Utils.THEME_COLOUR_FOR_LAYOUT_FROM_RANDOM_EFFECT,
+                Integer.toString(getPreferenceColor())));
+    }
+
+
+
 
     static int getPreferenceFont() {
         return Utils.themeFonts[

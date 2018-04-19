@@ -340,7 +340,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
                 //colour only if evaluation has been done and not on All Clear
                 if(evaluationDone && !editTextEquation.getText().toString().equals("0")) {
-                    editTextResult.setText(Utils.colourMyText(result, Utils.getPreferenceColor()));
+                    editTextResult.setText(Utils.colourMyText(result, Utils.getPreferenceColorForRandomLayout()));
                 }
                 else {
                     editTextResult.setText(result);
@@ -481,6 +481,10 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         int preferenceColour = Utils.getPreferenceColor();
 
         int preferenceFont = Utils.getPreferenceFont();
+
+        Utils.putStringInSharedPreference(
+                Utils.THEME_COLOUR_FOR_LAYOUT_FROM_RANDOM_EFFECT,
+                Integer.toString(preferenceColour));
 
 //        if (preferenceFont != null && preferenceFont.length() > 0) {
         for (int i = 0; i < resourcesButton.length; i++) {

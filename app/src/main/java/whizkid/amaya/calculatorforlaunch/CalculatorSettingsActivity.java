@@ -102,7 +102,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     private void setTextvaluesColourful() {
         try {
 
-            String[] themes = getResources().getStringArray(R.array.pankaj_themes);
+            String[] themes = getResources().getStringArray(R.array.pankaj_color_themes);
             String[] fonts = getResources().getStringArray(R.array.pankaj_font_type);
 
             //names to be displayed for themes
@@ -212,10 +212,21 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 System.out.println("which " + which);
 
-                                //store the value selected in the prefrence
-                                Utils.putStringInSharedPreference(
-                                        preferenceString,
-                                        Integer.toString(which));
+                                if(arrayResource == R.array.pankaj_color_themes
+                                        &&
+                                        which == getResources().getStringArray(R.array.pankaj_color_themes).length-1) {
+                                    //store the value selected in the prefrence
+                                    Utils.putStringInSharedPreference(
+                                            preferenceString,
+                                            Utils.RANDOM_THEME_FROM_DIALOG);
+                                }
+                                else {
+                                    //store the value selected in the prefrence
+                                    Utils.putStringInSharedPreference(
+                                            preferenceString,
+                                            Integer.toString(which));
+                                }
+
 
                                 //set the colourful values
                                 setTextvaluesColourful();
@@ -263,7 +274,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         if (v.getId() == R.id.settingsThemeTextView) {
 
             openThemeSettings_Dialog(v, R.string.pick_theme,
-                    R.array.pankaj_themes, Utils.THEME_ITEM_SELECTED_FROM_DIALOG);
+                    R.array.pankaj_color_themes, Utils.THEME_ITEM_SELECTED_FROM_DIALOG);
 
         } else if (v.getId() == R.id.settingsFontTypeTextView) {
 
