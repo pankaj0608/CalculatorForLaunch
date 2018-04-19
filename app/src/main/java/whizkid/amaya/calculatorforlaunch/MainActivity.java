@@ -644,7 +644,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                 Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
             }
         });
-
+        
         builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
