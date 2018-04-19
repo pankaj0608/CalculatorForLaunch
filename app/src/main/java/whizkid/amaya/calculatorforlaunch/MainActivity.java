@@ -610,12 +610,12 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
 
     public void showHistory(View view) {
-        if (false)
-            return;
+        //Try this link
+//        http://www.edumobile.org/android/custom-listview-in-a-dialog-in-android/
 
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
 //        builderSingle.setIcon(R.drawable.ic_launcher);
-        builderSingle.setTitle("Select One Name:-");
+        builderSingle.setTitle("Select from history:-");
 
         final ArrayAdapter<HistoryTasks> arrayAdapter = new ArrayAdapter<HistoryTasks>(this,
                 android.R.layout.select_dialog_item);
