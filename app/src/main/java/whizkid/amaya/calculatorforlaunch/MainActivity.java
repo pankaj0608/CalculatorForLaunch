@@ -634,7 +634,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
             }
         });
-        
+
         builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -922,7 +922,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             }
             Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_UNDO, editTextEquation.getText().toString());
 
-            saveHistoryData(editTextEquation.getText().toString());
+            saveHistoryData();
             //        editTextResult.clearAnimation();
             editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
 
@@ -1001,7 +1001,10 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
     }
 
 
-    private void saveHistoryData(String historyEquation) {
+    private void saveHistoryData() {
+        String historyEquation = editTextEquation.getText().toString();
+        String historyResult = editTextResult.getText().toString();
+
         Gson gson = new Gson();
 
         Type type = new TypeToken<List<HistoryTasks>>() {
@@ -1015,7 +1018,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             historyTasks = gson.fromJson(historyJson, type);
         }
 
-        historyTasks.add(new HistoryTasks(new Date(), historyEquation));
+        historyTasks.add(new HistoryTasks(new Date(), historyEquation, historyResult));
 
         String json = gson.toJson(historyTasks);
         Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, json);

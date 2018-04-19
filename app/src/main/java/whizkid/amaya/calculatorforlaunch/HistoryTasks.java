@@ -6,11 +6,12 @@ public class HistoryTasks {
 
     Date date;
     String equation;
+String result;
 
-
-    public HistoryTasks(Date date, String equation) {
+    public HistoryTasks(Date date, String equation, String result) {
         this.date = date;
         this.equation = equation;
+        this.result = result;
     }
 
     public Date getDate() {
@@ -29,8 +30,16 @@ public class HistoryTasks {
         this.equation = equation;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
     @Override
     public String toString() {
-        return "Pankaj \n" + this.equation;
+        return getResult() + "\n" + getEquation();
     }
 }
