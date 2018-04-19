@@ -544,7 +544,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         }
 
         ((TextView)findViewById(R.id.slidingMenuButton)).setTextColor(getResources().getColor(preferenceColour));
-        
+
     }
     public void saveInMemory(View view) {
 

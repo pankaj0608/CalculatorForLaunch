@@ -77,28 +77,34 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
     }
 
     private void setTextvaluesColourful() {
-//        try {
-//            String strText = "Theme\n";
-//            String colour =
-//                    (getResources().getResourceName(
-//                            Integer.parseInt(
-//                                    Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING))));
-//
-//            colour = colour.substring(colour.lastIndexOf("_") + 1);
-//            createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText + colour);
-//
-//
-//            strText = "Font Type\n";
-//            colour =
-//                    (getResources().getResourceName(
-//                            Integer.parseInt(
-//                                    Utils.getValueFromSharedPreference(Utils.SETTINGS_FONT_STYLE, Utils.EMPTY_STRING))));
-//
-//            colour = colour.substring(colour.lastIndexOf("/") + 1).toLowerCase();
-//            createDifferentFonts((TextView) findViewById(R.id.settingsFontTypeTextView), strText + colour);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+
+            String[] themes = getResources().getStringArray(R.array.pankaj_themes);
+            String[] fonts = getResources().getStringArray(R.array.pankaj_font_type);
+
+            //names to be displayed for themes
+            String strText = getResources().getString(R.string.ColorTheme) + "\n";
+
+            //name of the color selected setting
+            String colour =
+                    themes[Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
+                            Utils.DEFAULT_THEME_FROM_DIALOG))];
+
+            createDifferentFonts((TextView) findViewById(R.id.settingsThemeTextView), strText + colour);
+
+            //names to be displayed for fonts
+            strText = getResources().getString(R.string.FontType) + "\n";
+
+            //name of the current font selected setting
+            colour =
+                    fonts[Integer.parseInt(Utils.getValueFromSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG,
+                            Utils.DEFAULT_FONT_FROM_DIALOG))];
+
+            createDifferentFonts((TextView) findViewById(R.id.settingsFontTypeTextView), strText + colour);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -151,6 +157,7 @@ public class CalculatorSettingsActivity extends AppCompatActivity {
         SS.setSpan(new CustomTypefaceSpan("", sansSeifNormal_Thin),
                 strText.indexOf("\n"), strText.length(),
                 Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+
         textView.setText(SS);
     }
 

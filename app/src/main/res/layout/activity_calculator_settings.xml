@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="openThemeSettings"
-            android:text="Color Theme"
+            android:text="@string/ColorTheme"
             app:layout_columnWeight="1" />
 
         <TextView
@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="openThemeSettings"
-            android:text="Font Type"
+            android:text="@string/FontType"
             app:layout_columnWeight="1" />
 
         <TextView
