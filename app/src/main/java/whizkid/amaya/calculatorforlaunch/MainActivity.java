@@ -1020,8 +1020,13 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         historyTasks.add(new HistoryTasks(new Date(), historyEquation, historyResult));
 
+        if(historyTasks.size() > Utils.MAX_RECORDS_IN_HISTORY) {
+            historyTasks.remove(0);
+        }
+
         String json = gson.toJson(historyTasks);
         Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, json);
+
 
         System.out.println(historyTasks);
 
