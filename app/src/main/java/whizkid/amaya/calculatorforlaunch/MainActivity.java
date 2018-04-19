@@ -830,7 +830,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                         currentEquation = "0";
                     }
 
-                    editTextEquation.setText(currentEquation);
+                    editTextEquation.setText(Utils.correctEquation(currentEquation));
 
                 } else if (mySelectionValueStart >= 0) {
 
@@ -847,7 +847,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                         currentEquation = inital + end;
                     }
 
-                    editTextEquation.setText(currentEquation);
+                    editTextEquation.setText(Utils.correctEquation(currentEquation));
                 }
 
             } else {
