@@ -905,6 +905,12 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             }
         } else if (Utils.EVALUATE.equals(tag)) {
             //editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
+
+            //if evaluation already done then no need to redo it
+            if (evaluationDone) {
+                return;
+            }
+
             evaluationDone = true;
             mySelectionAdjustment = 0;
             mySelectionValueEnd = 0;
@@ -971,7 +977,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
     private ArrayList<HistoryTasks> getHistoryData() {
         Gson gson = new Gson();
 
-        Type type = new TypeToken<List<HistoryTasks>>() {}.getType();
+        Type type = new TypeToken<List<HistoryTasks>>() {
+        }.getType();
 
         String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
 
@@ -981,6 +988,15 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             historyTasks = gson.fromJson(historyJson, type);
         }
 
+        Collections.sort(historyTasks, new Comparator<HistoryTasks>() {
+            @Override
+            public int compare(HistoryTasks lhs, HistoryTasks rhs) {
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                return lhs.getDate().getTime() > rhs.getDate().getTime() ?
+                        -1 : (lhs.getDate().getTime() < rhs.getDate().getTime()) ? 1 : 0;
+            }
+        });
+
         return historyTasks;
     }
 
@@ -988,7 +1004,8 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
     private void saveHistoryData(String historyEquation) {
         Gson gson = new Gson();
 
-        Type type = new TypeToken<List<HistoryTasks>>() {}.getType();
+        Type type = new TypeToken<List<HistoryTasks>>() {
+        }.getType();
 
         String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
 
