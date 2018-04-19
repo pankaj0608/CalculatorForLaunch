@@ -7,7 +7,6 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import org.javia.arity.Symbols;
 import org.javia.arity.SyntaxException;
@@ -95,13 +94,13 @@ public class Utils {
 
     public static final long VIBRATION_DURATION = 25;
     private static Vibrator vibrator;
-    public static Context contextOfApplication_NotUse;
+    public static Context contextOfApplication;
     public static SharedPreferences mySharedPreferences;
     public static final String MY_SHARED_PREFERENCE = "MY_SHARED_PREFERENCE";
 
 
     public static void setBaseEssentials(Context context, SharedPreferences sharedPreferences, Vibrator aVibrator) {
-        contextOfApplication_NotUse = context;
+        contextOfApplication = context;
         mySharedPreferences = sharedPreferences;
         vibrator = aVibrator;
     }
@@ -129,6 +128,17 @@ public class Utils {
     }
 
 
+    public static SpannableStringBuilder colourMyText(String strText, int preferenceColour) {
+
+        SpannableStringBuilder SS = new SpannableStringBuilder(strText);
+
+        SS.setSpan(new ForegroundColorSpan(
+                        getContext().getResources().getColor(preferenceColour)),
+                0, strText.length(),
+                Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        return SS;
+    }
 
     private static SpannableStringBuilder createDifferentFonts(String strText, int preferenceColour) {
 
@@ -142,7 +152,7 @@ public class Utils {
 
                     if (strText.charAt(j) == operators[i]) {
                         SS.setSpan(new ForegroundColorSpan(
-                                        contextOfApplication_NotUse.getResources().getColor(preferenceColour)),
+                                        getContext().getResources().getColor(preferenceColour)),
                                 j, j + 1,
                                 Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
                     }
@@ -302,6 +312,12 @@ public class Utils {
         return mySharedPreferences;
 //        return contextOfApplication.getSharedPreferences(
 //                MY_SHARED_PREFERENCE, Context.MODE_PRIVATE);
+
+    }
+
+    private static Context getContext() {
+
+        return contextOfApplication;
 
     }
 

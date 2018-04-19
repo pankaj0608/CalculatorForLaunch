@@ -335,8 +335,17 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
                 String result = "";
 
 //                if (!clearDone) {
+
                 result = Utils.evalMe(s.toString());
-                editTextResult.setText(result);
+
+                //colour only if evaluation has been done and not on All Clear
+                if(evaluationDone && !editTextEquation.getText().toString().equals("0")) {
+                    editTextResult.setText(Utils.colourMyText(result, Utils.getPreferenceColor()));
+                }
+                else {
+                    editTextResult.setText(result);
+
+                }
 //                    clearDone = false;
 //                }
                 //editTextEquation.setSelection(editTextEquation.getText().length());
