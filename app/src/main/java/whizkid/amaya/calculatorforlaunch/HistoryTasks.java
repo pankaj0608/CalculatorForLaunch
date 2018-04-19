@@ -6,7 +6,7 @@ public class HistoryTasks {
 
     Date date;
     String equation;
-String result;
+    String result;
 
     public HistoryTasks(Date date, String equation, String result) {
         this.date = date;
@@ -40,6 +40,9 @@ String result;
 
     @Override
     public String toString() {
-        return getResult() + "\n" + getEquation();
+        return Utils.colourMyText(
+                getResult() +
+                        "\n" + getEquation(),
+                Utils.getPreferenceColor()).toString();
     }
 }

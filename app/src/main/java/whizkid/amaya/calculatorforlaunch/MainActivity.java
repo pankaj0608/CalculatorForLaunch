@@ -3,7 +3,9 @@ package whizkid.amaya.calculatorforlaunch;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -615,7 +618,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
 //        builderSingle.setIcon(R.drawable.ic_launcher);
-        builderSingle.setTitle("Select from history:-");
+//        builderSingle.setTitle("Select from history:-");
 
         final ArrayAdapter<HistoryTasks> arrayAdapter = new ArrayAdapter<HistoryTasks>(this,
                 android.R.layout.select_dialog_item);
@@ -653,7 +656,19 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 //                builderInner.show();
             }
         });
-        builderSingle.show();
+
+        //AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+
+        AlertDialog alertDialogObject = builderSingle.create();//DialogBuilder.create();
+        ListView listView = alertDialogObject.getListView();
+        listView.setDivider(new ColorDrawable(getResources().getColor(Utils.getPreferenceColor())));
+        listView.setDividerHeight(1);
+
+        alertDialogObject.show();
+        // set color listView.setDividerHeight(2);
+        // set height alertDialogObject.show();
+
+        //builderSingle.show();
 
     }
 
@@ -1020,7 +1035,7 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         historyTasks.add(new HistoryTasks(new Date(), historyEquation, historyResult));
 
-        if(historyTasks.size() > Utils.MAX_RECORDS_IN_HISTORY) {
+        if (historyTasks.size() > Utils.MAX_RECORDS_IN_HISTORY) {
             historyTasks.remove(0);
         }
 

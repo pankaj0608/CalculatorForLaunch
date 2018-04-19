@@ -433,8 +433,6 @@ public class Utils {
     }
 
 
-
-
     static int getPreferenceFont() {
         return Utils.themeFonts[
                 Integer.parseInt(Utils.getValueFromSharedPreference(Utils.FONT_ITEM_SELECTED_FROM_DIALOG,
