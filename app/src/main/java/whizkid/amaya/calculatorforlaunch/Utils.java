@@ -6,6 +6,7 @@ import android.os.Vibrator;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.TypefaceSpan;
 import android.widget.EditText;
 
 import org.javia.arity.Symbols;
@@ -153,6 +154,7 @@ public class Utils {
     private static SpannableStringBuilder createDifferentFonts(String strText, int preferenceColour) {
 
         SpannableStringBuilder SS = new SpannableStringBuilder(strText);
+        float spacing = 1;
         char operators[] = {'÷', 'x', '+', '-', '%', '^'};
 
         if (preferenceColour != -1) {

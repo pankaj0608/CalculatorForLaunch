@@ -15,9 +15,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -631,17 +634,17 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 //        arrayAdapter.add("Umang");
 //        arrayAdapter.add("Gatti");
 
-        builderSingle.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-
-            }
-        });
-
-        builderSingle.setPositiveButton(R.string.ClearHistory, new DialogInterface.OnClickListener() {
+        builderSingle.setNegativeButton(R.string.ClearHistory, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+            }
+        });
+
+        builderSingle.setPositiveButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
             }
         });
 
@@ -664,12 +667,24 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
             }
         });
 
+
         //AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
 
         AlertDialog alertDialogObject = builderSingle.create();//DialogBuilder.create();
         ListView listView = alertDialogObject.getListView();
         listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_very_light_grey)));
         listView.setDividerHeight(1);
+
+//        WindowManager.LayoutParams wmlp = alertDialogObject.getWindow().getAttributes();
+//        alertDialogObject.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//
+//        editTextMemory.setText(wmlp.x + " : " + wmlp.y);
+//        wmlp.gravity = Gravity.TOP | Gravity.LEFT;
+//        //wmlp.x = 300;   //x position
+//        wmlp.y = 100;   //y position
+//
+//        alertDialogObject.getWindow().setAttributes(wmlp);
+
 
 //        listView.
         alertDialogObject.show();
