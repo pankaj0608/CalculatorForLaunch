@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -680,10 +681,14 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         listView.setDividerHeight(1);
 
         Window window = alertDialogObject.getWindow();
-        window.setGravity(Gravity.BOTTOM | Gravity.LEFT);
+        window.setGravity(Gravity.TOP | Gravity.LEFT);
 
         WindowManager.LayoutParams params = window.getAttributes();
-        params.y = dpToPx(100);
+        params.y = dpToPx(250);
+        params.height = 300;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+//        params.y = editTextResult.getBottom();
+
         window.setAttributes(params);
 //        listView.
         alertDialogObject.show();
