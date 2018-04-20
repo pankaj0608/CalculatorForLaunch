@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -77,6 +79,8 @@ https://guides.codepath.com/android/developing-custom-themes
 http://www.vogella.com/tutorials/AndroidStylesThemes/article.html
 
 https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-eed7755da586
+
+https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
      */
 
@@ -675,17 +679,12 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
         listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_very_light_grey)));
         listView.setDividerHeight(1);
 
-//        WindowManager.LayoutParams wmlp = alertDialogObject.getWindow().getAttributes();
-//        alertDialogObject.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//
-//        editTextMemory.setText(wmlp.x + " : " + wmlp.y);
-//        wmlp.gravity = Gravity.TOP | Gravity.LEFT;
-//        //wmlp.x = 300;   //x position
-//        wmlp.y = 100;   //y position
-//
-//        alertDialogObject.getWindow().setAttributes(wmlp);
+        Window window = alertDialogObject.getWindow();
+        window.setGravity(Gravity.BOTTOM | Gravity.LEFT);
 
-
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.y = dpToPx(100);
+        window.setAttributes(params);
 //        listView.
         alertDialogObject.show();
         // set color listView.setDividerHeight(2);
@@ -693,6 +692,11 @@ https://android.jlelse.eu/android-developers-we-ve-been-using-themes-all-wrong-e
 
         //builderSingle.show();
 
+    }
+
+    private int dpToPx(int dp) {
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
     }
 
     public void changeMySettings(View view) {
