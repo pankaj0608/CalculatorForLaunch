@@ -686,10 +686,17 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
 
         ListView listView = (ListView) alertLayout.findViewById(R.id.listView1);
+        TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
+
+
         //lv.setAdapter(arrayAdapter);
         ArrayAdapter<HistoryTasks> adapter =
                 new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
         listView.setAdapter(adapter);
+
+        if(getHistoryData() ==null || getHistoryData().size() == 0) {
+            listViewFillerText.setText("No History Data");
+        }
 
 
         builderSingle.setView(alertLayout);

@@ -8,12 +8,13 @@
         <ListView
             android:id="@+id/listView1"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:minWidth="@dimen/_40sdp"/>
+            android:layout_height="fill_parent"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_400sdp"/>
+            android:id="@+id/listViewFillerText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_400sdp"
+            android:gravity="center"/>
 
 </LinearLayout>
 
