@@ -367,7 +367,8 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
                 //colour only if evaluation has been done and not on All Clear
                 if (evaluationDone && !editTextEquation.getText().toString().equals("0")) {
-                    editTextResult.setText(Utils.colourMyText(result, Utils.getPreferenceColorForRandomLayout()));
+                    editTextResult.setText(Utils.colourMyText(result, Utils.getPreferenceColor()));
+//                    editTextResult.setText(Utils.colourMyText(result, Utils.getPreferenceColorForRandomLayout()));
                 } else {
                     editTextResult.setText(result);
 
@@ -697,7 +698,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
         listView.setAdapter(calculatorCustomAdapter);
 
-        if(getHistoryData() ==null || getHistoryData().size() == 0) {
+        if (getHistoryData() == null || getHistoryData().size() == 0) {
             listViewFillerText.setText("No History Data");
         }
 
@@ -1123,7 +1124,6 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
 
 }
-
 
 
 //        ListView listView = alertDialogObject.getListView();

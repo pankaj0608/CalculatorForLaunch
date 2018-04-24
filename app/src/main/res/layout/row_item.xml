@@ -2,11 +2,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/history_list_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/_20sdp" />
 
     <TextView
         android:id="@+id/history_list_equation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:textSize="@dimen/_20sdp" />
+
 
 </LinearLayout>

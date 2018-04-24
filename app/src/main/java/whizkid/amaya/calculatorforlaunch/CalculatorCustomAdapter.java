@@ -21,6 +21,7 @@ public class CalculatorCustomAdapter extends ArrayAdapter<HistoryTasks> {
     // View lookup cache
     private static class ViewHolder {
         TextView textEquation;
+        TextView textResult;
 //        TextView txtType;
 //        TextView txtVersion;
     }
@@ -54,6 +55,8 @@ public class CalculatorCustomAdapter extends ArrayAdapter<HistoryTasks> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.row_item, parent, false);
             viewHolder.textEquation = (TextView) convertView.findViewById(R.id.history_list_equation);
+            viewHolder.textResult = (TextView) convertView.findViewById(R.id.history_list_result);
+
             result = convertView;
 
             convertView.setTag(viewHolder);
@@ -67,6 +70,8 @@ public class CalculatorCustomAdapter extends ArrayAdapter<HistoryTasks> {
 //        lastPosition = position;
 
         viewHolder.textEquation.setText(historyTasks.getEquation());
+        viewHolder.textResult.setText(Utils.colourMyText(historyTasks.getResult(), Utils.getPreferenceColor()));
+
 //        viewHolder.txtType.setText(dataModel.getType());
 //        viewHolder.txtVersion.setText(dataModel.getVersion_number());
 //        viewHolder.info.setOnClickListener(this);
