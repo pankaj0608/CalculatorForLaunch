@@ -694,7 +694,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         listView.setAdapter(calculatorCustomAdapter);
 
         if (getHistoryData() == null || getHistoryData().size() == 0) {
-            listViewFillerText.setText("No History Data");
+            listViewFillerText.setText(R.string.no_history_data);
             listViewFillerText.setTextColor(getResources().getColor(Utils.getPreferenceColor()));
         }
 
@@ -735,9 +735,14 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                         AlertDialog.BUTTON_POSITIVE).setGravity(ViewGroup.TEXT_ALIGNMENT_CENTER);
 
                 alertDialogObject.getButton(
-                        AlertDialog.BUTTON_POSITIVE).setTextSize(getResources().getDimension(R.dimen._6sdp));
+                        AlertDialog.BUTTON_POSITIVE).setTextSize(getResources().getDimension(R.dimen._8sdp));
                 alertDialogObject.getButton(
-                        AlertDialog.BUTTON_NEGATIVE).setTextSize(getResources().getDimension(R.dimen._6sdp));
+                        AlertDialog.BUTTON_NEGATIVE).setTextSize(getResources().getDimension(R.dimen._8sdp));
+
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_POSITIVE).setTransformationMethod(null);
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_NEGATIVE).setTransformationMethod(null);
 
                 if (getHistoryData() == null || getHistoryData().size() == 0) {
                     alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(View.GONE);

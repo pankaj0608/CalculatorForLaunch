@@ -45,6 +45,8 @@
     <string name="cancel">Cancel</string>
     <string name="close">Close</string>
     <string name="ClearHistory">Clear History</string>
+    <string name="no_history_data">No History Data</string>
+
 
 
     <string name="ColorTheme">Color Theme</string>
