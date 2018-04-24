@@ -8,13 +8,14 @@
         android:id="@+id/history_list_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="@dimen/_5sdp"
         android:textSize="@dimen/_20sdp" />
 
     <TextView
         android:id="@+id/history_list_equation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="@dimen/_5sdp"
         android:textSize="@dimen/_20sdp" />
-
 
 </LinearLayout>

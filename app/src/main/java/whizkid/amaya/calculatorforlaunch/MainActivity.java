@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AlertDialog;
@@ -16,17 +15,18 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -711,13 +711,37 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).
                         setTextColor(getResources().getColor(Utils.getPreferenceColor()));
 
-//                ConstraintLayout.LayoutParams layoutParams =
-//                        alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).getLayoutParams();
-//
-//                alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setLayoutParams(layoutParams);
 
+                LinearLayout.LayoutParams layoutParams =
+                        (LinearLayout.LayoutParams)
+                                alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).getLayoutParams();
+
+                layoutParams.weight = 1;
+                alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setLayoutParams(layoutParams);
+
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_NEGATIVE).setGravity(ViewGroup.TEXT_ALIGNMENT_CENTER);
+                layoutParams =
+                        (LinearLayout.LayoutParams)
+                                alertDialogObject.getButton(AlertDialog.BUTTON_POSITIVE).getLayoutParams();
+
+                layoutParams.weight = 1;
+
+                alertDialogObject.getButton(AlertDialog.BUTTON_POSITIVE).setLayoutParams(layoutParams);
                 alertDialogObject.getButton(AlertDialog.BUTTON_POSITIVE).
                         setTextColor(getResources().getColor(Utils.getPreferenceColor()));
+
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_POSITIVE).setGravity(ViewGroup.TEXT_ALIGNMENT_CENTER);
+
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_POSITIVE).setTextSize(getResources().getDimension(R.dimen._6sdp));
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_NEGATIVE).setTextSize(getResources().getDimension(R.dimen._6sdp));
+
+                if (getHistoryData() == null || getHistoryData().size() == 0) {
+                    alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(View.GONE);
+                }
 
             }
         });
