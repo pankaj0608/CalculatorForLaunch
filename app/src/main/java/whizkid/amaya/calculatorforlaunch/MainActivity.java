@@ -19,6 +19,7 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,7 @@ import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -653,43 +655,63 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
             }
         });
 
-        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String strName = arrayAdapter.getItem(which).getEquation();
-                editTextEquation.setText(Utils.correctEquation(strName));
-//                AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
-//                builderInner.setMessage(strName);
-//                builderInner.setTitle("Your Selected Item is ");
-//                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog,int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                builderInner.show();
-            }
-        });
+//        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                String strName = arrayAdapter.getItem(which).getEquation();
+//                editTextEquation.setText(Utils.correctEquation(strName));
+////                AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
+////                builderInner.setMessage(strName);
+////                builderInner.setTitle("Your Selected Item is ");
+////                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+////                    @Override
+////                    public void onClick(DialogInterface dialog,int which) {
+////                        dialog.dismiss();
+////                    }
+////                });
+////
+////                builderInner.show();
+//            }
+//        });
 
 
         //AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
 
+        LayoutInflater inflater = getLayoutInflater();
+        View alertLayout = inflater.inflate(R.layout.layout_custom_dialog, null);
+
+//        final EditText etUsername = alertLayout.findViewById(R.id.et_username);
+//        final EditText etEmail = alertLayout.findViewById(R.id.et_email);
+//        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
+
+        ListView lv = (ListView) alertLayout.findViewById(R.id.listView1);
+        //lv.setAdapter(arrayAdapter);
+        ArrayAdapter<HistoryTasks> adapter =
+                new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
+        lv.setAdapter(adapter);
+
+        builderSingle.setView(alertLayout);
+
         AlertDialog alertDialogObject = builderSingle.create();//DialogBuilder.create();
-        ListView listView = alertDialogObject.getListView();
-        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_very_light_grey)));
-        listView.setDividerHeight(1);
 
-        Window window = alertDialogObject.getWindow();
-        window.setGravity(Gravity.TOP | Gravity.LEFT);
 
-        WindowManager.LayoutParams params = window.getAttributes();
-        params.y = dpToPx(250);
-        params.height = 300;
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-//        params.y = editTextResult.getBottom();
+        alertDialogObject.setView(alertLayout);
 
-        window.setAttributes(params);
+
+//        ListView listView = alertDialogObject.getListView();
+//        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_very_light_grey)));
+//        listView.setDividerHeight(1);
+//
+//        Window window = alertDialogObject.getWindow();
+//        window.setGravity(Gravity.TOP | Gravity.LEFT);
+//
+//        WindowManager.LayoutParams params = window.getAttributes();
+//        params.y = dpToPx(250);
+//        params.height = 300;
+//        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+////        params.y = editTextResult.getBottom();
+//
+//        window.setAttributes(params);
 //        listView.
         alertDialogObject.show();
         // set color listView.setDividerHeight(2);
