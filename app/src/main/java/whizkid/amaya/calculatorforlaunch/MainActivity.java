@@ -684,15 +684,18 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //        final EditText etUsername = alertLayout.findViewById(R.id.et_username);
 //        final EditText etEmail = alertLayout.findViewById(R.id.et_email);
 //        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
-
+//
         ListView listView = (ListView) alertLayout.findViewById(R.id.listView1);
         TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
 
 
+        CalculatorCustomAdapter calculatorCustomAdapter = new CalculatorCustomAdapter(this, getHistoryData());
+//        listView.setAdapter(adapter);
+
         //lv.setAdapter(arrayAdapter);
         ArrayAdapter<HistoryTasks> adapter =
                 new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
-        listView.setAdapter(adapter);
+        listView.setAdapter(calculatorCustomAdapter);
 
         if(getHistoryData() ==null || getHistoryData().size() == 0) {
             listViewFillerText.setText("No History Data");
@@ -713,21 +716,6 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 alertDialogObject.dismiss();
             }
         });
-//        ListView listView = alertDialogObject.getListView();
-//        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_very_light_grey)));
-//        listView.setDividerHeight(1);
-//
-//        Window window = alertDialogObject.getWindow();
-//        window.setGravity(Gravity.TOP | Gravity.LEFT);
-//
-//        WindowManager.LayoutParams params = window.getAttributes();
-//        params.y = dpToPx(250);
-//        params.height = 300;
-//        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-////        params.y = editTextResult.getBottom();
-//
-//        window.setAttributes(params);
-//        listView.
         alertDialogObject.show();
         // set color listView.setDividerHeight(2);
         // set height alertDialogObject.show();
@@ -1135,3 +1123,21 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
 
 }
+
+
+
+//        ListView listView = alertDialogObject.getListView();
+//        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_very_light_grey)));
+//        listView.setDividerHeight(1);
+//
+//        Window window = alertDialogObject.getWindow();
+//        window.setGravity(Gravity.TOP | Gravity.LEFT);
+//
+//        WindowManager.LayoutParams params = window.getAttributes();
+//        params.y = dpToPx(250);
+//        params.height = 300;
+//        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+////        params.y = editTextResult.getBottom();
+//
+//        window.setAttributes(params);
+//
