@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -678,26 +679,34 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         //AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
 
         LayoutInflater inflater = getLayoutInflater();
-        View alertLayout = inflater.inflate(R.layout.layout_custom_dialog, null);
+        final View alertLayout = inflater.inflate(R.layout.layout_custom_dialog, null);
 
 //        final EditText etUsername = alertLayout.findViewById(R.id.et_username);
 //        final EditText etEmail = alertLayout.findViewById(R.id.et_email);
 //        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
 
-        ListView lv = (ListView) alertLayout.findViewById(R.id.listView1);
+        ListView listView = (ListView) alertLayout.findViewById(R.id.listView1);
         //lv.setAdapter(arrayAdapter);
         ArrayAdapter<HistoryTasks> adapter =
                 new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
-        lv.setAdapter(adapter);
+        listView.setAdapter(adapter);
+
 
         builderSingle.setView(alertLayout);
 
-        AlertDialog alertDialogObject = builderSingle.create();//DialogBuilder.create();
+        final AlertDialog alertDialogObject = builderSingle.create();//DialogBuilder.create();
 
 
         alertDialogObject.setView(alertLayout);
 
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String strName = arrayAdapter.getItem(position).getEquation();
+                editTextEquation.setText(Utils.correctEquation(strName));
+                alertDialogObject.dismiss();
+            }
+        });
 //        ListView listView = alertDialogObject.getListView();
 //        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.pankaj_very_light_grey)));
 //        listView.setDividerHeight(1);
