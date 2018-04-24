@@ -696,7 +696,6 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
         final AlertDialog alertDialogObject = builderSingle.create();//DialogBuilder.create();
 
-
         alertDialogObject.setView(alertLayout);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

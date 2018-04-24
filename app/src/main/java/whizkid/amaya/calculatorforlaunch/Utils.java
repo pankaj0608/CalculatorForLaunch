@@ -17,7 +17,7 @@ import java.text.DecimalFormat;
 
 public class Utils {
 
-    public static final int MAX_RECORDS_IN_HISTORY = 10;
+    public static final int MAX_RECORDS_IN_HISTORY = 20;
 
     public static final String RANDOM_THEME_FROM_DIALOG = "1000";
 
