@@ -645,7 +645,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
             }
         });
 
-        builderSingle.setPositiveButton(R.string.cancel, new DialogInterface.OnClickListener() {
+        builderSingle.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
 
