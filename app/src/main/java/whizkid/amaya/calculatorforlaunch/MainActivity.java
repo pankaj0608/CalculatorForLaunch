@@ -700,6 +700,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
         if (getHistoryData() == null || getHistoryData().size() == 0) {
             listViewFillerText.setText("No History Data");
+            listViewFillerText.setTextColor(getResources().getColor(Utils.getPreferenceColor()));
         }
 
 

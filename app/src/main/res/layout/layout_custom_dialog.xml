@@ -15,6 +15,7 @@
             android:id="@+id/listViewFillerText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_400sdp"
+            android:textSize="@dimen/_20sdp"
             android:gravity="center"/>
 
 </LinearLayout>
