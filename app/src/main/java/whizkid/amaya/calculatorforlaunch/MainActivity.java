@@ -3,7 +3,9 @@ package whizkid.amaya.calculatorforlaunch;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.widget.DrawerLayout;
@@ -31,6 +33,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -698,9 +702,47 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //        final EditText etEmail = alertLayout.findViewById(R.id.et_email);
 //        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
 //
-        SwipeMenuListView listView = (SwipeMenuListView) alertLayout.findViewById(R.id.listView1);
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+                // create "open" item
+                SwipeMenuItem openItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                        0xCE)));
+                // set item width
+                openItem.setWidth(40);//dp2px(90)
+                // set item title
+                openItem.setTitle("Open");
+                // set item title fontsize
+                openItem.setTitleSize(18);
+                // set item title font color
+                openItem.setTitleColor(Color.WHITE);
+                // add to menu
+//                menu.addMenuItem(openItem);
+
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                deleteItem.setWidth(80);//dp2px(90)
+                // set a icon
+                deleteItem.setIcon(R.drawable.ic_backspace_pankaj);
+                // add to menu
+                menu.addMenuItem(deleteItem);
+            }
+        };
+
+        SwipeMenuListView swipeMenuListView = (SwipeMenuListView) alertLayout.findViewById(R.id.listViewSwipe);
         TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
 
+
+        swipeMenuListView.setMenuCreator(creator);
 
         CalculatorCustomAdapter calculatorCustomAdapter = new CalculatorCustomAdapter(this, getHistoryData());
 //        listView.setAdapter(adapter);
@@ -708,7 +750,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         //lv.setAdapter(arrayAdapter);
         ArrayAdapter<HistoryTasks> adapter =
                 new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
-        listView.setAdapter(calculatorCustomAdapter);
+        swipeMenuListView.setAdapter(calculatorCustomAdapter);
 
         if (getHistoryData() == null || getHistoryData().size() == 0) {
             listViewFillerText.setText(R.string.no_history_data);
@@ -769,31 +811,34 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         });
 
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String strName = arrayAdapter.getItem(position).getEquation();
-//                editTextEquation.setText(Utils.correctEquation(strName));
-//                alertDialogObject.dismiss();
-//            }
-//        });
+        swipeMenuListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String strName = arrayAdapter.getItem(position).getEquation();
+                editTextEquation.setText(Utils.correctEquation(strName));
+                alertDialogObject.dismiss();
+            }
+        });
 
-        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+        swipeMenuListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     //clicked
-                    case 0:
-                        String strName = arrayAdapter.getItem(position).getEquation();
-                        editTextEquation.setText(Utils.correctEquation(strName));
-                        alertDialogObject.dismiss();
-                        break;
+//                    case 0:
+//                        String strName = arrayAdapter.getItem(position).getEquation();
+//                        editTextEquation.setText(Utils.correctEquation(strName));
+//                        alertDialogObject.dismiss();
+//                        break;
 
                     //delete
-                    case 1:
+                    case 0:
+                        removeHistorySingleData(position);
+                        menu.getMenuItems().remove(position);
+                //        alertDialogObject.dismiss();
                         break;
-
                 }
+
                 return false;
             }
         });
