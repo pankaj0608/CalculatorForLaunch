@@ -30,8 +30,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrInterface;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -173,6 +177,8 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //                    R.id.buttonUndolastEval,
                     R.id.buttonBack
             };
+
+    SlidrInterface slidr;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -458,6 +464,11 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //    }
 
 
+    public void openActivity2() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
+    }
+
     private void setPinkTheme() {
         if (Utils.TRUE.equals(
                 Utils.getValueFromSharedPreference(Utils.PINK_THEME, Utils.EMPTY_STRING))
@@ -620,6 +631,189 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
 
     public void showHistory(View view) {
+
+        if (false) {
+            openActivity2();
+            return;
+        }
+
+        //Try this link
+//        http://www.edumobile.org/android/custom-listview-in-a-dialog-in-android/
+
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+//        builderSingle.setIcon(R.drawable.ic_launcher);
+//        builderSingle.setTitle("Select from history:-");
+
+        final ArrayAdapter<HistoryTasks> arrayAdapter = new ArrayAdapter<HistoryTasks>(this,
+                android.R.layout.select_dialog_item);
+
+        arrayAdapter.addAll(getHistoryData());
+
+//        arrayAdapter.add("Hardik");
+//        arrayAdapter.add("Archit");
+//        arrayAdapter.add("Jignesh");
+//        arrayAdapter.add("Umang");
+//        arrayAdapter.add("Gatti");
+
+        builderSingle.setNegativeButton(R.string.ClearHistory, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+            }
+        });
+
+        builderSingle.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+
+//        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                String strName = arrayAdapter.getItem(which).getEquation();
+//                editTextEquation.setText(Utils.correctEquation(strName));
+////                AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
+////                builderInner.setMessage(strName);
+////                builderInner.setTitle("Your Selected Item is ");
+////                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+////                    @Override
+////                    public void onClick(DialogInterface dialog,int which) {
+////                        dialog.dismiss();
+////                    }
+////                });
+////
+////                builderInner.show();
+//            }
+//        });
+
+
+        //AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = getLayoutInflater();
+        final View alertLayout = inflater.inflate(R.layout.layout_custom_dialog, null);
+
+//        final EditText etUsername = alertLayout.findViewById(R.id.et_username);
+//        final EditText etEmail = alertLayout.findViewById(R.id.et_email);
+//        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
+//
+        SwipeMenuListView listView = (SwipeMenuListView) alertLayout.findViewById(R.id.listView1);
+        TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
+
+
+        CalculatorCustomAdapter calculatorCustomAdapter = new CalculatorCustomAdapter(this, getHistoryData());
+//        listView.setAdapter(adapter);
+
+        //lv.setAdapter(arrayAdapter);
+        ArrayAdapter<HistoryTasks> adapter =
+                new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
+        listView.setAdapter(calculatorCustomAdapter);
+
+        if (getHistoryData() == null || getHistoryData().size() == 0) {
+            listViewFillerText.setText(R.string.no_history_data);
+            listViewFillerText.setTextColor(getResources().getColor(Utils.getPreferenceColor()));
+        }
+
+
+        builderSingle.setView(alertLayout);
+
+        final AlertDialog alertDialogObject = builderSingle.create();//DialogBuilder.create();
+
+        alertDialogObject.setView(alertLayout);
+
+        alertDialogObject.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).
+                        setTextColor(getResources().getColor(Utils.getPreferenceColor()));
+
+
+                LinearLayout.LayoutParams layoutParams =
+                        (LinearLayout.LayoutParams)
+                                alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).getLayoutParams();
+
+                layoutParams.weight = 1;
+                alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setLayoutParams(layoutParams);
+
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_NEGATIVE).setGravity(ViewGroup.TEXT_ALIGNMENT_CENTER);
+                layoutParams =
+                        (LinearLayout.LayoutParams)
+                                alertDialogObject.getButton(AlertDialog.BUTTON_POSITIVE).getLayoutParams();
+
+                layoutParams.weight = 1;
+
+                alertDialogObject.getButton(AlertDialog.BUTTON_POSITIVE).setLayoutParams(layoutParams);
+                alertDialogObject.getButton(AlertDialog.BUTTON_POSITIVE).
+                        setTextColor(getResources().getColor(Utils.getPreferenceColor()));
+
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_POSITIVE).setGravity(ViewGroup.TEXT_ALIGNMENT_CENTER);
+
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_POSITIVE).setTextSize(getResources().getDimension(R.dimen._8sdp));
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_NEGATIVE).setTextSize(getResources().getDimension(R.dimen._8sdp));
+
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_POSITIVE).setTransformationMethod(null);
+                alertDialogObject.getButton(
+                        AlertDialog.BUTTON_NEGATIVE).setTransformationMethod(null);
+
+                if (getHistoryData() == null || getHistoryData().size() == 0) {
+                    alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(View.GONE);
+                }
+
+            }
+        });
+
+
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String strName = arrayAdapter.getItem(position).getEquation();
+//                editTextEquation.setText(Utils.correctEquation(strName));
+//                alertDialogObject.dismiss();
+//            }
+//        });
+
+        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    //clicked
+                    case 0:
+                        String strName = arrayAdapter.getItem(position).getEquation();
+                        editTextEquation.setText(Utils.correctEquation(strName));
+                        alertDialogObject.dismiss();
+                        break;
+
+                    //delete
+                    case 1:
+                        break;
+
+                }
+                return false;
+            }
+        });
+
+        alertDialogObject.show();
+        // set color listView.setDividerHeight(2);
+        // set height alertDialogObject.show();
+
+        //builderSingle.show();
+
+    }
+
+
+    public void showHistory_Original(View view) {
+
+        if (false) {
+            openActivity2();
+            return;
+        }
+
         //Try this link
 //        http://www.edumobile.org/android/custom-listview-in-a-dialog-in-android/
 
@@ -767,6 +961,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         //builderSingle.show();
 
     }
+
 
     private int dpToPx(int dp) {
         DisplayMetrics metrics = this.getResources().getDisplayMetrics();
@@ -1089,6 +1284,41 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
     }
 
+
+    private void removeHistorySingleData(int position) {
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<List<HistoryTasks>>() {
+        }.getType();
+
+        String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+
+        ArrayList<HistoryTasks> historyTasks = new ArrayList<>();
+
+        if (Utils.isNotNullString(historyJson)) {
+            historyTasks = gson.fromJson(historyJson, type);
+        }
+
+        Collections.sort(historyTasks, new Comparator<HistoryTasks>() {
+            @Override
+            public int compare(HistoryTasks lhs, HistoryTasks rhs) {
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                return lhs.getDate().getTime() > rhs.getDate().getTime() ?
+                        -1 : (lhs.getDate().getTime() < rhs.getDate().getTime()) ? 1 : 0;
+            }
+        });
+
+        historyTasks.remove(position);
+
+        String json = gson.toJson(historyTasks);
+        if(historyTasks.size() > 0) {
+            Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, json);
+        }
+        else {
+            Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+        }
+
+    }
 
     private ArrayList<HistoryTasks> getHistoryData() {
         Gson gson = new Gson();
