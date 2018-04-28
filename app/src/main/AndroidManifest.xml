@@ -20,23 +20,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER">
-                    Intent shortcutIntent = new Intent();
-                    shortcutIntent.setClassName("whizkid.amaya.calculatorforlaunch.MainActivity",
-                    "SampleIntent");
-                    shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    <!-- shortcutIntent.putExtra("someParameter", "HelloWorld"); -->
-
-                    Intent addIntent = new Intent();
-                    addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-                    addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, @string/app_name);
-                    addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                    Intent.ShortcutIconResource.fromContext(context, R.mipmap.ic_launcher));
-
-                    addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-                    context.sendBroadcast(addIntent);
-                </category>
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -48,3 +33,9 @@
     </application>
 
 </manifest> <!-- android:roundIcon="@mipmap/ic_launcher_round" --><!-- android:windowSoftInputMode="stateAlwaysHidden" --><!-- android:theme="@style/AppTheme" --><!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar"> --><!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" -->
+
+    <!--Intent shortcutIntent = new Intent();--><!--shortcutIntent.setClassName("whizkid.amaya.calculatorforlaunch.MainActivity",--><!--"SampleIntent");--><!--shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);--><!--shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);--><!--&lt;!&ndash; shortcutIntent.putExtra("someParameter", "HelloWorld"); &ndash;&gt;-->
+
+    <!--Intent addIntent = new Intent();--><!--addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);--><!--addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, @string/app_name);--><!--addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,--><!--Intent.ShortcutIconResource.fromContext(context, R.mipmap.ic_launcher));-->
+
+    <!--addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");--><!--context.sendBroadcast(addIntent);-->
