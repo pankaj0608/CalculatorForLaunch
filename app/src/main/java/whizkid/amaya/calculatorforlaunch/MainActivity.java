@@ -3,9 +3,7 @@ package whizkid.amaya.calculatorforlaunch;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.widget.DrawerLayout;
@@ -32,14 +30,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.r0adkll.slidr.Slidr;
-import com.r0adkll.slidr.model.SlidrInterface;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -182,7 +174,6 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                     R.id.buttonBack
             };
 
-    SlidrInterface slidr;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -702,47 +693,9 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //        final EditText etEmail = alertLayout.findViewById(R.id.et_email);
 //        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
 //
-        SwipeMenuCreator creator = new SwipeMenuCreator() {
-
-            @Override
-            public void create(SwipeMenu menu) {
-                // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(
-                        getApplicationContext());
-                // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
-                // set item width
-                openItem.setWidth(40);//dp2px(90)
-                // set item title
-                openItem.setTitle("Open");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
-                // add to menu
-//                menu.addMenuItem(openItem);
-
-                // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
-                        getApplicationContext());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
-                // set item width
-                deleteItem.setWidth(80);//dp2px(90)
-                // set a icon
-                deleteItem.setIcon(R.drawable.ic_backspace_pankaj);
-                // add to menu
-                menu.addMenuItem(deleteItem);
-            }
-        };
-
-        SwipeMenuListView swipeMenuListView = (SwipeMenuListView) alertLayout.findViewById(R.id.listViewSwipe);
+        ListView listView = (ListView) alertLayout.findViewById(R.id.listViewSwipe);
         TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
 
-
-        swipeMenuListView.setMenuCreator(creator);
 
         CalculatorCustomAdapter calculatorCustomAdapter = new CalculatorCustomAdapter(this, getHistoryData());
 //        listView.setAdapter(adapter);
@@ -750,7 +703,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         //lv.setAdapter(arrayAdapter);
         ArrayAdapter<HistoryTasks> adapter =
                 new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
-        swipeMenuListView.setAdapter(calculatorCustomAdapter);
+        listView.setAdapter(calculatorCustomAdapter);
 
         if (getHistoryData() == null || getHistoryData().size() == 0) {
             listViewFillerText.setText(R.string.no_history_data);
@@ -811,7 +764,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         });
 
 
-        swipeMenuListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String strName = arrayAdapter.getItem(position).getEquation();
@@ -819,30 +772,6 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 alertDialogObject.dismiss();
             }
         });
-
-        swipeMenuListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                switch (index) {
-                    //clicked
-//                    case 0:
-//                        String strName = arrayAdapter.getItem(position).getEquation();
-//                        editTextEquation.setText(Utils.correctEquation(strName));
-//                        alertDialogObject.dismiss();
-//                        break;
-
-                    //delete
-                    case 0:
-                        removeHistorySingleData(position);
-                        menu.getMenuItems().remove(position);
-                //        alertDialogObject.dismiss();
-                        break;
-                }
-
-                return false;
-            }
-        });
-
         alertDialogObject.show();
         // set color listView.setDividerHeight(2);
         // set height alertDialogObject.show();
@@ -1356,10 +1285,9 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         historyTasks.remove(position);
 
         String json = gson.toJson(historyTasks);
-        if(historyTasks.size() > 0) {
+        if (historyTasks.size() > 0) {
             Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, json);
-        }
-        else {
+        } else {
             Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
         }
 
@@ -1500,3 +1428,221 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //
 //        window.setAttributes(params);
 //
+
+
+//    public void showHistory_Version1(View view) {
+//
+//        if (false) {
+//            openActivity2();
+//            return;
+//        }
+//
+//        //Try this link
+////        http://www.edumobile.org/android/custom-listview-in-a-dialog-in-android/
+//
+//        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+////        builderSingle.setIcon(R.drawable.ic_launcher);
+////        builderSingle.setTitle("Select from history:-");
+//
+//        final ArrayAdapter<HistoryTasks> arrayAdapter = new ArrayAdapter<HistoryTasks>(this,
+//                android.R.layout.select_dialog_item);
+//
+//        arrayAdapter.addAll(getHistoryData());
+//
+////        arrayAdapter.add("Hardik");
+////        arrayAdapter.add("Archit");
+////        arrayAdapter.add("Jignesh");
+////        arrayAdapter.add("Umang");
+////        arrayAdapter.add("Gatti");
+//
+//        builderSingle.setNegativeButton(R.string.ClearHistory, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int id) {
+//                Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+//            }
+//        });
+//
+//        builderSingle.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int id) {
+//
+//            }
+//        });
+//
+////        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+////            @Override
+////            public void onClick(DialogInterface dialog, int which) {
+////                String strName = arrayAdapter.getItem(which).getEquation();
+////                editTextEquation.setText(Utils.correctEquation(strName));
+//////                AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
+//////                builderInner.setMessage(strName);
+//////                builderInner.setTitle("Your Selected Item is ");
+//////                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//////                    @Override
+//////                    public void onClick(DialogInterface dialog,int which) {
+//////                        dialog.dismiss();
+//////                    }
+//////                });
+//////
+//////                builderInner.show();
+////            }
+////        });
+//
+//
+//        //AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+//
+//        LayoutInflater inflater = getLayoutInflater();
+//        final View alertLayout = inflater.inflate(R.layout.layout_custom_dialog, null);
+//
+////        final EditText etUsername = alertLayout.findViewById(R.id.et_username);
+////        final EditText etEmail = alertLayout.findViewById(R.id.et_email);
+////        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
+////
+//        SwipeMenuCreator creator = new SwipeMenuCreator() {
+//
+//            @Override
+//            public void create(SwipeMenu menu) {
+//                // create "open" item
+//                SwipeMenuItem openItem = new SwipeMenuItem(
+//                        getApplicationContext());
+//                // set item background
+//                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+//                        0xCE)));
+//                // set item width
+//                openItem.setWidth(40);//dp2px(90)
+//                // set item title
+//                openItem.setTitle("Open");
+//                // set item title fontsize
+//                openItem.setTitleSize(18);
+//                // set item title font color
+//                openItem.setTitleColor(Color.WHITE);
+//                // add to menu
+////                menu.addMenuItem(openItem);
+//
+//                // create "delete" item
+//                SwipeMenuItem deleteItem = new SwipeMenuItem(
+//                        getApplicationContext());
+//                // set item background
+//                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+//                        0x3F, 0x25)));
+//                // set item width
+//                deleteItem.setWidth(80);//dp2px(90)
+//                // set a icon
+//                deleteItem.setIcon(R.drawable.ic_backspace_pankaj);
+//                // add to menu
+//                menu.addMenuItem(deleteItem);
+//            }
+//        };
+//
+//        SwipeMenuListView swipeMenuListView = (SwipeMenuListView) alertLayout.findViewById(R.id.listViewSwipe);
+//        TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
+//
+//
+//        swipeMenuListView.setMenuCreator(creator);
+//
+//        CalculatorCustomAdapter calculatorCustomAdapter = new CalculatorCustomAdapter(this, getHistoryData());
+////        listView.setAdapter(adapter);
+//
+//        //lv.setAdapter(arrayAdapter);
+//        ArrayAdapter<HistoryTasks> adapter =
+//                new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
+//        swipeMenuListView.setAdapter(calculatorCustomAdapter);
+//
+//        if (getHistoryData() == null || getHistoryData().size() == 0) {
+//            listViewFillerText.setText(R.string.no_history_data);
+//            listViewFillerText.setTextColor(getResources().getColor(Utils.getPreferenceColor()));
+//        }
+//
+//
+//        builderSingle.setView(alertLayout);
+//
+//        final AlertDialog alertDialogObject = builderSingle.create();//DialogBuilder.create();
+//
+//        alertDialogObject.setView(alertLayout);
+//
+//        alertDialogObject.setOnShowListener(new DialogInterface.OnShowListener() {
+//            @Override
+//            public void onShow(DialogInterface arg0) {
+//                alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).
+//                        setTextColor(getResources().getColor(Utils.getPreferenceColor()));
+//
+//
+//                LinearLayout.LayoutParams layoutParams =
+//                        (LinearLayout.LayoutParams)
+//                                alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).getLayoutParams();
+//
+//                layoutParams.weight = 1;
+//                alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setLayoutParams(layoutParams);
+//
+//                alertDialogObject.getButton(
+//                        AlertDialog.BUTTON_NEGATIVE).setGravity(ViewGroup.TEXT_ALIGNMENT_CENTER);
+//                layoutParams =
+//                        (LinearLayout.LayoutParams)
+//                                alertDialogObject.getButton(AlertDialog.BUTTON_POSITIVE).getLayoutParams();
+//
+//                layoutParams.weight = 1;
+//
+//                alertDialogObject.getButton(AlertDialog.BUTTON_POSITIVE).setLayoutParams(layoutParams);
+//                alertDialogObject.getButton(AlertDialog.BUTTON_POSITIVE).
+//                        setTextColor(getResources().getColor(Utils.getPreferenceColor()));
+//
+//                alertDialogObject.getButton(
+//                        AlertDialog.BUTTON_POSITIVE).setGravity(ViewGroup.TEXT_ALIGNMENT_CENTER);
+//
+//                alertDialogObject.getButton(
+//                        AlertDialog.BUTTON_POSITIVE).setTextSize(getResources().getDimension(R.dimen._8sdp));
+//                alertDialogObject.getButton(
+//                        AlertDialog.BUTTON_NEGATIVE).setTextSize(getResources().getDimension(R.dimen._8sdp));
+//
+//                alertDialogObject.getButton(
+//                        AlertDialog.BUTTON_POSITIVE).setTransformationMethod(null);
+//                alertDialogObject.getButton(
+//                        AlertDialog.BUTTON_NEGATIVE).setTransformationMethod(null);
+//
+//                if (getHistoryData() == null || getHistoryData().size() == 0) {
+//                    alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(View.GONE);
+//                }
+//
+//            }
+//        });
+//
+//
+//        swipeMenuListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String strName = arrayAdapter.getItem(position).getEquation();
+//                editTextEquation.setText(Utils.correctEquation(strName));
+//                alertDialogObject.dismiss();
+//            }
+//        });
+//
+//        swipeMenuListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+//                switch (index) {
+//                    //clicked
+////                    case 0:
+////                        String strName = arrayAdapter.getItem(position).getEquation();
+////                        editTextEquation.setText(Utils.correctEquation(strName));
+////                        alertDialogObject.dismiss();
+////                        break;
+//
+//                    //delete
+//                    case 0:
+//                        removeHistorySingleData(position);
+//                        menu.getMenuItems().remove(position);
+//                //        alertDialogObject.dismiss();
+//                        break;
+//                }
+//
+//                return false;
+//            }
+//        });
+//
+//        alertDialogObject.show();
+//        // set color listView.setDividerHeight(2);
+//        // set height alertDialogObject.show();
+//
+//        //builderSingle.show();
+
+//    }

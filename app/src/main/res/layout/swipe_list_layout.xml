@@ -5,13 +5,13 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-    <com.baoyz.swipemenulistview.SwipeMenuListView
+    <ListView
         android:id="@+id/listView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
 
-    </com.baoyz.swipemenulistview.SwipeMenuListView>
+    </ListView>
 
     <!--<TextView-->
     <!--android:id="@+id/listViewFillerText"-->
