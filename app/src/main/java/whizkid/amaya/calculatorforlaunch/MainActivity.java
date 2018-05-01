@@ -20,6 +20,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -719,6 +720,26 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         layoutManager.scrollToPosition(0);
 
         listViewRecycler.setLayoutManager(layoutManager);
+
+
+        listViewRecycler.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+
+
 
         if (getHistoryData() == null || getHistoryData().size() == 0) {
             listViewFillerText.setText(R.string.no_history_data);
