@@ -1144,14 +1144,15 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         });
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String strName = arrayAdapter.getItem(position).getEquation();
-                editTextEquation.setText(Utils.correctEquation(strName));
-                alertDialogObject.dismiss();
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String strName = arrayAdapter.getItem(position).getEquation();
+//                editTextEquation.setText(Utils.correctEquation(strName));
+//                alertDialogObject.dismiss();
+//            }
+//        });
+
         alertDialogObject.show();
         // set color listView.setDividerHeight(2);
         // set height alertDialogObject.show();
