@@ -835,7 +835,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                     boolean initiated;
 
                     private void init() {
-                        background = new ColorDrawable(Color.RED);
+                        background = new ColorDrawable(Utils.getPreferenceColorFromColourResources());//Color.RED
                         xMark = ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_backspace_pankaj);//pankaj commented R.drawable.ic_clear_24dp
                         xMark.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
                         xMarkMargin = (int) MainActivity.this.getResources().getDimension(R.dimen._10sdp); //pankaj commented R.dimen.ic_clear_margin
