@@ -808,6 +808,8 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //                alertDialogObject.dismiss();
 //            }
 //        });
+        calculatorCustomAdapterRecycler.setBaseEssentials(editTextEquation, alertDialogObject);
+
         alertDialogObject.show();
         // set color listView.setDividerHeight(2);
         // set height alertDialogObject.show();
@@ -1479,7 +1481,6 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         }
 
     }
-
 
 
     private void resetOperators() {

@@ -22,10 +22,21 @@ public class CalculatorCustomAdapterRecycler extends
     private TextView editTextEquation;
     private AlertDialog alertDialogObject;
 
+    public void setBaseEssentials(TextView editTextEquation, AlertDialog alertDialogObject) {
+        this.editTextEquation = editTextEquation;
+        this.alertDialogObject = alertDialogObject;
+    }
+
     @Override
     public void onClick(View v) {
         System.out.println("v " + v.getClass());
         System.out.println("v index " + mDataSource.indexOf(v));
+        System.out.println("v equation " + ((TextView)v.findViewById(R.id.history_list_equation)).getText());
+        System.out.println("v result " + ((TextView)v.findViewById(R.id.history_list_result)).getText());
+
+        String strName = ((TextView)v.findViewById(R.id.history_list_equation)).getText().toString();
+        editTextEquation.setText(Utils.correctEquation(strName));
+        alertDialogObject.dismiss();
     }
 
     // Provide a direct reference to each of the views within a data item
@@ -69,6 +80,7 @@ public class CalculatorCustomAdapterRecycler extends
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(historyView);
+
         return viewHolder;
     }
 
