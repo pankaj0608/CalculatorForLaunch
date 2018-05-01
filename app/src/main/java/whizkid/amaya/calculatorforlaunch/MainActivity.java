@@ -11,6 +11,7 @@ import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -687,23 +688,30 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         //AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
 
         LayoutInflater inflater = getLayoutInflater();
-        final View alertLayout = inflater.inflate(R.layout.layout_custom_dialog, null);
+        final View alertLayout = inflater.inflate(R.layout.layout_custom_dialog_recycler, null);
 
 //        final EditText etUsername = alertLayout.findViewById(R.id.et_username);
 //        final EditText etEmail = alertLayout.findViewById(R.id.et_email);
 //        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
 //
-        ListView listView = (ListView) alertLayout.findViewById(R.id.listViewSwipe);
+//        ListView listView = (ListView) alertLayout.findViewById(R.id.listViewSwipe);
+        RecyclerView listView = (RecyclerView) alertLayout.findViewById(R.id.recycler_view);
+
         TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
 
 
-        CalculatorCustomAdapter calculatorCustomAdapter = new CalculatorCustomAdapter(this, getHistoryData());
-//        listView.setAdapter(adapter);
+        CalculatorCustomAdapter calculatorCustomAdapter1 = new CalculatorCustomAdapter(this, getHistoryData());
+
+        CalculatorCustomAdapterRecycler
+                calculatorCustomAdapterRecycler = new CalculatorCustomAdapterRecycler(getHistoryData());
+
+        //        listView.setAdapter(adapter);
 
         //lv.setAdapter(arrayAdapter);
         ArrayAdapter<HistoryTasks> adapter =
                 new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
-        listView.setAdapter(calculatorCustomAdapter);
+//        listView.setAdapter(calculatorCustomAdapter)
+        listView.setAdapter(calculatorCustomAdapterRecycler);
 
         if (getHistoryData() == null || getHistoryData().size() == 0) {
             listViewFillerText.setText(R.string.no_history_data);
@@ -764,14 +772,14 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         });
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String strName = arrayAdapter.getItem(position).getEquation();
-                editTextEquation.setText(Utils.correctEquation(strName));
-                alertDialogObject.dismiss();
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String strName = arrayAdapter.getItem(position).getEquation();
+//                editTextEquation.setText(Utils.correctEquation(strName));
+//                alertDialogObject.dismiss();
+//            }
+//        });
         alertDialogObject.show();
         // set color listView.setDividerHeight(2);
         // set height alertDialogObject.show();
