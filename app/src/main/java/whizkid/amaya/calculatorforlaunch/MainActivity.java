@@ -733,7 +733,13 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         setUpItemTouchHelper(listViewRecycler);
         setUpAnimationDecoratorHelper(listViewRecycler);
 
-
+        listViewRecycler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("v " + v);
+//                int pos = YOUR_REYCLER_VIEW.indexOfChild(v);
+            }
+        });
 
         if (Utils.getHistoryData() == null || Utils.getHistoryData().size() == 0) {
             listViewFillerText.setText(R.string.no_history_data);
