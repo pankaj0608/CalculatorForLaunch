@@ -25,6 +25,7 @@ public class CalculatorCustomAdapterRecycler extends
     @Override
     public void onClick(View v) {
         System.out.println("v " + v.getClass());
+        System.out.println("v index " + mDataSource.indexOf(v));
     }
 
     // Provide a direct reference to each of the views within a data item
