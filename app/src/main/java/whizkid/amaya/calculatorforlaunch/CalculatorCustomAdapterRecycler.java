@@ -85,6 +85,7 @@ public class CalculatorCustomAdapterRecycler extends
 
     public void remove(int position) {
         mDataSource.remove(position);
+        Utils.removeHistorySingleData(position);
         notifyItemRemoved(position);
     }
 

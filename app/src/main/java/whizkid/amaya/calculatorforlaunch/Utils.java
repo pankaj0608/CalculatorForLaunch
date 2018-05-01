@@ -9,11 +9,20 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.TypefaceSpan;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.javia.arity.Symbols;
 import org.javia.arity.SyntaxException;
 import org.javia.arity.Util;
 
+import java.lang.reflect.Type;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 public class Utils {
 
@@ -536,6 +545,111 @@ public class Utils {
             }
         }
         return false;
+    }
+
+
+    public static void removeHistorySingleData(int position) {
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<List<HistoryTasks>>() {
+        }.getType();
+
+        String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+
+        ArrayList<HistoryTasks> historyTasks = new ArrayList<>();
+
+        if (Utils.isNotNullString(historyJson)) {
+            historyTasks = gson.fromJson(historyJson, type);
+        }
+
+        Collections.sort(historyTasks, new Comparator<HistoryTasks>() {
+            @Override
+            public int compare(HistoryTasks lhs, HistoryTasks rhs) {
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                return lhs.getDate().getTime() > rhs.getDate().getTime() ?
+                        -1 : (lhs.getDate().getTime() < rhs.getDate().getTime()) ? 1 : 0;
+            }
+        });
+
+        historyTasks.remove(position);
+
+        String json = gson.toJson(historyTasks);
+        if (historyTasks.size() > 0) {
+            Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, json);
+        } else {
+            Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+        }
+
+    }
+
+
+    public static ArrayList<HistoryTasks> getHistoryData() {
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<List<HistoryTasks>>() {
+        }.getType();
+
+        String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+
+        ArrayList<HistoryTasks> historyTasks = new ArrayList<>();
+
+        if (Utils.isNotNullString(historyJson)) {
+            historyTasks = gson.fromJson(historyJson, type);
+        }
+
+        Collections.sort(historyTasks, new Comparator<HistoryTasks>() {
+            @Override
+            public int compare(HistoryTasks lhs, HistoryTasks rhs) {
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                return lhs.getDate().getTime() > rhs.getDate().getTime() ?
+                        -1 : (lhs.getDate().getTime() < rhs.getDate().getTime()) ? 1 : 0;
+            }
+        });
+
+        return historyTasks;
+    }
+
+
+    public static void saveHistoryData(String historyEquation, String historyResult) {
+//        String historyEquation = editTextEquation.getText().toString();
+//        String historyResult = editTextResult.getText().toString();
+
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<List<HistoryTasks>>() {
+        }.getType();
+
+        String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
+
+        List<HistoryTasks> historyTasks = new ArrayList<>();
+
+        if (Utils.isNotNullString(historyJson)) {
+            historyTasks = gson.fromJson(historyJson, type);
+        }
+
+        historyTasks.add(new HistoryTasks(new Date(), historyEquation, historyResult));
+
+        if (historyTasks.size() > Utils.MAX_RECORDS_IN_HISTORY) {
+            historyTasks.remove(0);
+        }
+
+        String json = gson.toJson(historyTasks);
+        Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, json);
+
+
+        System.out.println(historyTasks);
+
+        Collections.sort(historyTasks, new Comparator<HistoryTasks>() {
+            @Override
+            public int compare(HistoryTasks lhs, HistoryTasks rhs) {
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                return lhs.getDate().getTime() > rhs.getDate().getTime() ?
+                        -1 : (lhs.getDate().getTime() < rhs.getDate().getTime()) ? 1 : 0;
+            }
+        });
+
+        System.out.println(historyTasks);
+
     }
 
 

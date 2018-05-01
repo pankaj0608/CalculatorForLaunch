@@ -651,7 +651,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         final ArrayAdapter<HistoryTasks> arrayAdapter = new ArrayAdapter<HistoryTasks>(this,
                 android.R.layout.select_dialog_item);
 
-        arrayAdapter.addAll(getHistoryData());
+        arrayAdapter.addAll(Utils.getHistoryData());
 
 //        arrayAdapter.add("Hardik");
 //        arrayAdapter.add("Archit");
@@ -708,16 +708,17 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
 
 
-        CalculatorCustomAdapter calculatorCustomAdapter1 = new CalculatorCustomAdapter(this, getHistoryData());
+        CalculatorCustomAdapter calculatorCustomAdapter1 =
+                new CalculatorCustomAdapter(this, Utils.getHistoryData());
 
         CalculatorCustomAdapterRecycler
-                calculatorCustomAdapterRecycler = new CalculatorCustomAdapterRecycler(getHistoryData());
+                calculatorCustomAdapterRecycler = new CalculatorCustomAdapterRecycler(Utils.getHistoryData());
 
         //        listView.setAdapter(adapter);
 
         //lv.setAdapter(arrayAdapter);
         ArrayAdapter<HistoryTasks> adapter =
-                new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
+                new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, Utils.getHistoryData());
 //        listView.setAdapter(calculatorCustomAdapter)
         listViewRecycler.setAdapter(calculatorCustomAdapterRecycler);
 
@@ -731,7 +732,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         setUpAnimationDecoratorHelper(listViewRecycler);
 
 
-        if (getHistoryData() == null || getHistoryData().size() == 0) {
+        if (Utils.getHistoryData() == null || Utils.getHistoryData().size() == 0) {
             listViewFillerText.setText(R.string.no_history_data);
             listViewFillerText.setTextColor(getResources().getColor(Utils.getPreferenceColor()));
         }
@@ -782,7 +783,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 alertDialogObject.getButton(
                         AlertDialog.BUTTON_NEGATIVE).setTransformationMethod(null);
 
-                if (getHistoryData() == null || getHistoryData().size() == 0) {
+                if (Utils.getHistoryData() == null || Utils.getHistoryData().size() == 0) {
                     alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(View.GONE);
                 }
 
@@ -1009,7 +1010,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         final ArrayAdapter<HistoryTasks> arrayAdapter = new ArrayAdapter<HistoryTasks>(this,
                 android.R.layout.select_dialog_item);
 
-        arrayAdapter.addAll(getHistoryData());
+        arrayAdapter.addAll(Utils.getHistoryData());
 
 //        arrayAdapter.add("Hardik");
 //        arrayAdapter.add("Archit");
@@ -1064,15 +1065,15 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
 
 
-        CalculatorCustomAdapter calculatorCustomAdapter = new CalculatorCustomAdapter(this, getHistoryData());
+        CalculatorCustomAdapter calculatorCustomAdapter = new CalculatorCustomAdapter(this, Utils.getHistoryData());
 //        listView.setAdapter(adapter);
 
         //lv.setAdapter(arrayAdapter);
         ArrayAdapter<HistoryTasks> adapter =
-                new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
+                new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, Utils.getHistoryData());
         listView.setAdapter(calculatorCustomAdapter);
 
-        if (getHistoryData() == null || getHistoryData().size() == 0) {
+        if (Utils.getHistoryData() == null || Utils.getHistoryData().size() == 0) {
             listViewFillerText.setText(R.string.no_history_data);
             listViewFillerText.setTextColor(getResources().getColor(Utils.getPreferenceColor()));
         }
@@ -1123,7 +1124,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 alertDialogObject.getButton(
                         AlertDialog.BUTTON_NEGATIVE).setTransformationMethod(null);
 
-                if (getHistoryData() == null || getHistoryData().size() == 0) {
+                if (Utils.getHistoryData() == null || Utils.getHistoryData().size() == 0) {
                     alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(View.GONE);
                 }
 
@@ -1418,7 +1419,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
             }
             Utils.putStringInSharedPreference(Utils.LAST_EQUATION_FOR_UNDO, editTextEquation.getText().toString());
 
-            saveHistoryData();
+            Utils.saveHistoryData(editTextEquation.getText().toString(), editTextResult.getText().toString());
             //        editTextResult.clearAnimation();
             editTextEquation.setText(Utils.evalMe(editTextEquation.getText().toString()));
 
@@ -1470,108 +1471,6 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
     }
 
 
-    private void removeHistorySingleData(int position) {
-        Gson gson = new Gson();
-
-        Type type = new TypeToken<List<HistoryTasks>>() {
-        }.getType();
-
-        String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
-
-        ArrayList<HistoryTasks> historyTasks = new ArrayList<>();
-
-        if (Utils.isNotNullString(historyJson)) {
-            historyTasks = gson.fromJson(historyJson, type);
-        }
-
-        Collections.sort(historyTasks, new Comparator<HistoryTasks>() {
-            @Override
-            public int compare(HistoryTasks lhs, HistoryTasks rhs) {
-                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-                return lhs.getDate().getTime() > rhs.getDate().getTime() ?
-                        -1 : (lhs.getDate().getTime() < rhs.getDate().getTime()) ? 1 : 0;
-            }
-        });
-
-        historyTasks.remove(position);
-
-        String json = gson.toJson(historyTasks);
-        if (historyTasks.size() > 0) {
-            Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, json);
-        } else {
-            Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
-        }
-
-    }
-
-    private ArrayList<HistoryTasks> getHistoryData() {
-        Gson gson = new Gson();
-
-        Type type = new TypeToken<List<HistoryTasks>>() {
-        }.getType();
-
-        String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
-
-        ArrayList<HistoryTasks> historyTasks = new ArrayList<>();
-
-        if (Utils.isNotNullString(historyJson)) {
-            historyTasks = gson.fromJson(historyJson, type);
-        }
-
-        Collections.sort(historyTasks, new Comparator<HistoryTasks>() {
-            @Override
-            public int compare(HistoryTasks lhs, HistoryTasks rhs) {
-                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-                return lhs.getDate().getTime() > rhs.getDate().getTime() ?
-                        -1 : (lhs.getDate().getTime() < rhs.getDate().getTime()) ? 1 : 0;
-            }
-        });
-
-        return historyTasks;
-    }
-
-
-    private void saveHistoryData() {
-        String historyEquation = editTextEquation.getText().toString();
-        String historyResult = editTextResult.getText().toString();
-
-        Gson gson = new Gson();
-
-        Type type = new TypeToken<List<HistoryTasks>>() {
-        }.getType();
-
-        String historyJson = Utils.getValueFromSharedPreference(Utils.HISTORY_TASKS, Utils.EMPTY_STRING);
-
-        List<HistoryTasks> historyTasks = new ArrayList<>();
-
-        if (Utils.isNotNullString(historyJson)) {
-            historyTasks = gson.fromJson(historyJson, type);
-        }
-
-        historyTasks.add(new HistoryTasks(new Date(), historyEquation, historyResult));
-
-        if (historyTasks.size() > Utils.MAX_RECORDS_IN_HISTORY) {
-            historyTasks.remove(0);
-        }
-
-        String json = gson.toJson(historyTasks);
-        Utils.putStringInSharedPreference(Utils.HISTORY_TASKS, json);
-
-
-        System.out.println(historyTasks);
-
-        Collections.sort(historyTasks, new Comparator<HistoryTasks>() {
-            @Override
-            public int compare(HistoryTasks lhs, HistoryTasks rhs) {
-                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-                return lhs.getDate().getTime() > rhs.getDate().getTime() ?
-                        -1 : (lhs.getDate().getTime() < rhs.getDate().getTime()) ? 1 : 0;
-            }
-        });
-
-        System.out.println(historyTasks);
-
-    }
 
     private void resetOperators() {
         operand1 = null;
