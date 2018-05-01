@@ -11,6 +11,7 @@ import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -626,7 +627,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
     }
 
 
-    public void showHistory(View view) {
+    public void showHistoryMe(View view) {
 
         if (false) {
             openActivity2();
@@ -695,7 +696,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //        final CheckBox cbToggle = alertLayout.findViewById(R.id.cb_show_pass);
 //
 //        ListView listView = (ListView) alertLayout.findViewById(R.id.listViewSwipe);
-        RecyclerView listView = (RecyclerView) alertLayout.findViewById(R.id.recycler_view);
+        RecyclerView listViewRecycler = (RecyclerView) alertLayout.findViewById(R.id.recycler_view);
 
         TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
 
@@ -711,7 +712,9 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         ArrayAdapter<HistoryTasks> adapter =
                 new ArrayAdapter<HistoryTasks>(this, android.R.layout.simple_list_item_1, getHistoryData());
 //        listView.setAdapter(calculatorCustomAdapter)
-        listView.setAdapter(calculatorCustomAdapterRecycler);
+        listViewRecycler.setAdapter(calculatorCustomAdapterRecycler);
+
+        listViewRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         if (getHistoryData() == null || getHistoryData().size() == 0) {
             listViewFillerText.setText(R.string.no_history_data);
