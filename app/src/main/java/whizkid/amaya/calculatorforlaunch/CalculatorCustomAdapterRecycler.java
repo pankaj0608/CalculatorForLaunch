@@ -11,10 +11,11 @@ import java.util.ArrayList;
 
 //https://www.journaldev.com/10416/android-listview-with-custom-adapter-example-tutorial
 
+//implements View.OnClickListener
 public class CalculatorCustomAdapterRecycler extends
         RecyclerView.Adapter<CalculatorCustomAdapterRecycler.ViewHolder> {
 
-//    private Context mContext;
+    //    private Context mContext;
 //    private LayoutInflater mInflater;
     private ArrayList<HistoryTasks> mDataSource;
 
@@ -40,7 +41,7 @@ public class CalculatorCustomAdapterRecycler extends
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CalculatorCustomAdapterRecycler(ArrayList<HistoryTasks>  myDataset) {
+    public CalculatorCustomAdapterRecycler(ArrayList<HistoryTasks> myDataset) {
         mDataSource = myDataset;
     }
 
@@ -48,7 +49,7 @@ public class CalculatorCustomAdapterRecycler extends
     // Create new views (invoked by the layout manager)
     @Override
     public CalculatorCustomAdapterRecycler.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+                                                                         int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -81,83 +82,15 @@ public class CalculatorCustomAdapterRecycler extends
         return mDataSource.size();
     }
 
-//    // View lookup cache
-//    private static class ViewHolder {
-//        TextView textEquation;
-//        TextView textResult;
-////        TextView txtType;
-////        TextView txtVersion;
-//    }
 
+    public void removeItem(int position) {
+        mDataSource.remove(position);
+        notifyItemRemoved(position);
+    }
 
-//    public CalculatorCustomAdapterRecycler(Context context, ArrayList<HistoryTasks> items) {
-//        super(context, R.layout.row_item, items);
-//        mContext = context;
-//        mDataSource = items;
-//        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//    }
-
-    // override other abstract methods here
-
-
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//
-//
-//        // Get view for row item
-//        // Get the data item for this position
-//        HistoryTasks historyTasks = getItem(position);
-//        // Check if an existing view is being reused, otherwise inflate the view
-//        ViewHolder viewHolder; // view lookup cache stored in tag
-//
-//        final View result;
-//
-//        if (convertView == null) {
-//
-//            viewHolder = new ViewHolder();
-//            LayoutInflater inflater = LayoutInflater.from(getContext());
-//            convertView = inflater.inflate(R.layout.row_item, parent, false);
-//            viewHolder.textEquation = (TextView) convertView.findViewById(R.id.history_list_equation);
-//            viewHolder.textResult = (TextView) convertView.findViewById(R.id.history_list_result);
-//
-//            result = convertView;
-//
-//            convertView.setTag(viewHolder);
-//        } else {
-//            viewHolder = (ViewHolder) convertView.getTag();
-//            result = convertView;
-//        }
-//
-////        Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
-////        result.startAnimation(animation);
-////        lastPosition = position;
-//
-//        viewHolder.textEquation.setText(historyTasks.getEquation());
-//        viewHolder.textResult.setText(Utils.colourMyText(historyTasks.getResult(), Utils.getPreferenceColor()));
-//
-////        viewHolder.txtType.setText(dataModel.getType());
-////        viewHolder.txtVersion.setText(dataModel.getVersion_number());
-////        viewHolder.info.setOnClickListener(this);
-////        viewHolder.info.setTag(position);
-//        // Return the completed view to render on screen
-//        return convertView;
-//    }
-//
-
-//    @Override
-//    public int getCount() {
-//        return mDataSource.size();
-//    }
-//
-//    @Override
-//    public long getItemId(int position) {
-//        return position;
-//    }
-//
-//    @Override
-//    public HistoryTasks getItem(int position) {
-//        return mDataSource.get(position);
-//    }
-
+    public void restoreItem(HistoryTasks item, int position) {
+        mDataSource.add(position, item);
+        notifyItemInserted(position);
+    }
 
 }
