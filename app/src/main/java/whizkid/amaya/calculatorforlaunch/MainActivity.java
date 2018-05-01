@@ -5,11 +5,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AlertDialog;
@@ -25,7 +27,6 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -813,7 +814,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
      * and while the items are animating to their new position the recycler view
      * background will be visible. That is rarely an desired effect.
      */
-    private void setUpItemTouchHelper(RecyclerView mRecyclerView) {
+    private void setUpItemTouchHelper(final RecyclerView mRecyclerView) {
 
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback =
                 new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -824,13 +825,13 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                     int xMarkMargin;
                     boolean initiated;
 
-//            private void init() {
-//                background = new ColorDrawable(Color.RED);
-//                xMark = ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_clear_24dp);
-//                xMark.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-//                xMarkMargin = (int) MainActivity.this.getResources().getDimension(R.dimen.ic_clear_margin);
-//                initiated = true;
-//            }
+                    private void init() {
+                        background = new ColorDrawable(Color.RED);
+                        xMark = ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_backspace_pankaj);//pankaj commented R.drawable.ic_clear_24dp
+                        xMark.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                        xMarkMargin = (int) MainActivity.this.getResources().getDimension(R.dimen._10sdp); //pankaj commented R.dimen.ic_clear_margin
+                        initiated = true;
+                    }
 
                     // not important, we don't want drag & drop
                     @Override
@@ -841,23 +842,29 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                     @Override
                     public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
                         int position = viewHolder.getAdapterPosition();
-                        TestAdapter testAdapter = (TestAdapter) recyclerView.getAdapter();
-                        if (testAdapter.isUndoOn() && testAdapter.isPendingRemoval(position)) {
-                            return 0;
-                        }
+//                        TestAdapter testAdapter = (TestAdapter) recyclerView.getAdapter();
+                        CalculatorCustomAdapterRecycler testAdapter = (CalculatorCustomAdapterRecycler) recyclerView.getAdapter();
+
+//                        if (testAdapter.isUndoOn() && testAdapter.isPendingRemoval(position)) {
+//                            return 0;
+//                        }
                         return super.getSwipeDirs(recyclerView, viewHolder);
                     }
 
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                         int swipedPosition = viewHolder.getAdapterPosition();
-                        TestAdapter adapter = (TestAdapter) mRecyclerView.getAdapter();
-                        boolean undoOn = adapter.isUndoOn();
-                        if (undoOn) {
-                            adapter.pendingRemoval(swipedPosition);
-                        } else {
-                            adapter.remove(swipedPosition);
-                        }
+//                        TestAdapter adapter = (TestAdapter) mRecyclerView.getAdapter();
+                        CalculatorCustomAdapterRecycler adapter = (CalculatorCustomAdapterRecycler) mRecyclerView.getAdapter();
+
+//                        boolean undoOn = adapter.isUndoOn();
+//                            adapter.pendingRemoval(swipedPosition);
+//                        } else {
+//                            adapter.remove(swipedPosition);
+//                        }
+
+                        adapter.remove(swipedPosition);
+
                     }
 
                     @Override
@@ -901,7 +908,8 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
 
     /**
-     * We're gonna setup another ItemDecorator that will draw the red background in the empty space while the items are animating to thier new positions
+     * We're gonna setup another ItemDecorator that will draw the red background in the
+     * empty space while the items are animating to thier new positions
      * after an item is removed.
      */
     private void setUpAnimationDecoratorHelper(RecyclerView mRecyclerView) {

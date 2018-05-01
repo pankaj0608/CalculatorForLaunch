@@ -83,10 +83,11 @@ public class CalculatorCustomAdapterRecycler extends
     }
 
 
-    public void removeItem(int position) {
+    public void remove(int position) {
         mDataSource.remove(position);
         notifyItemRemoved(position);
     }
+
 
     public void restoreItem(HistoryTasks item, int position) {
         mDataSource.add(position, item);
