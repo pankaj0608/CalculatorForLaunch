@@ -17,6 +17,7 @@ import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -30,7 +31,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,16 +38,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
 
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends AppCompatActivity {
@@ -704,6 +694,13 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //
 //        ListView listView = (ListView) alertLayout.findViewById(R.id.listViewSwipe);
         RecyclerView listViewRecycler = (RecyclerView) alertLayout.findViewById(R.id.recycler_view);
+
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(listViewRecycler.getContext(),
+                LinearLayout.VERTICAL);
+
+        listViewRecycler.addItemDecoration(dividerItemDecoration);
+
 
         TextView listViewFillerText = (TextView) alertLayout.findViewById(R.id.listViewFillerText);
 
