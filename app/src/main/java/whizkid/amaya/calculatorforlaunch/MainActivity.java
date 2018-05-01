@@ -712,7 +712,9 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 new CalculatorCustomAdapter(this, Utils.getHistoryData());
 
         CalculatorCustomAdapterRecycler
-                calculatorCustomAdapterRecycler = new CalculatorCustomAdapterRecycler(Utils.getHistoryData());
+                calculatorCustomAdapterRecycler =
+                new CalculatorCustomAdapterRecycler(
+                        Utils.getHistoryData());
 
         //        listView.setAdapter(adapter);
 
@@ -730,6 +732,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
         setUpItemTouchHelper(listViewRecycler);
         setUpAnimationDecoratorHelper(listViewRecycler);
+
 
 
         if (Utils.getHistoryData() == null || Utils.getHistoryData().size() == 0) {
@@ -901,6 +904,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
                         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
                     }
+
 
                 };
         ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);

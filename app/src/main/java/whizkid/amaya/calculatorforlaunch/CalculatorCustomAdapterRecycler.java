@@ -1,6 +1,7 @@
 package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,18 @@ import java.util.ArrayList;
 
 //implements View.OnClickListener
 public class CalculatorCustomAdapterRecycler extends
-        RecyclerView.Adapter<CalculatorCustomAdapterRecycler.ViewHolder> {
+        RecyclerView.Adapter<CalculatorCustomAdapterRecycler.ViewHolder> implements View.OnClickListener {
 
     //    private Context mContext;
 //    private LayoutInflater mInflater;
     private ArrayList<HistoryTasks> mDataSource;
+    private TextView editTextEquation;
+    private AlertDialog alertDialogObject;
+
+    @Override
+    public void onClick(View v) {
+
+    }
 
 
     // Provide a direct reference to each of the views within a data item
@@ -37,7 +45,10 @@ public class CalculatorCustomAdapterRecycler extends
 
             textEquation = (TextView) itemView.findViewById(R.id.history_list_equation);
             textResult = (TextView) itemView.findViewById(R.id.history_list_result);
+
+            itemView.setOnClickListener(CalculatorCustomAdapterRecycler.this);
         }
+
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -54,10 +65,10 @@ public class CalculatorCustomAdapterRecycler extends
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.row_item, parent, false);
+        View historyView = inflater.inflate(R.layout.row_item, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
+        ViewHolder viewHolder = new ViewHolder(historyView);
         return viewHolder;
     }
 
