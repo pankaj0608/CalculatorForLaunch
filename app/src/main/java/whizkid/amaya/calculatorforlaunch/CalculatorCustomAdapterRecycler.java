@@ -110,6 +110,13 @@ public class CalculatorCustomAdapterRecycler extends
         mDataSource.remove(position);
         Utils.removeHistorySingleData(position);
         notifyItemRemoved(position);
+
+        if (Utils.getHistoryData() == null || Utils.getHistoryData().size() == 0) {
+            alertDialogObject.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(View.GONE);
+            TextView listViewFillerText = alertDialogObject.findViewById(R.id.listViewFillerText);
+            listViewFillerText.setText(R.string.no_history_data);
+            listViewFillerText.setTextColor(Utils.getPreferenceColorFromColourResources());
+        }
     }
 
 

@@ -258,7 +258,7 @@ public class Utils {
 
         //remove 2 decimals
         ;
-        return createDifferentFonts(equation,getPreferenceColorForRandomLayout());
+        return createDifferentFonts(equation, getPreferenceColorForRandomLayout());
     }
 
 
@@ -424,11 +424,16 @@ public class Utils {
     }
 
 
+    public static int getPreferenceColorFromColourResources() {
+
+        return getContext().getResources().getColor(getPreferenceColor());
+    }
+
     public static int getPreferenceColor() {
 
-        if(Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
+        if (Integer.parseInt(Utils.getValueFromSharedPreference(Utils.THEME_ITEM_SELECTED_FROM_DIALOG,
                 Utils.DEFAULT_THEME_FROM_DIALOG)) == Integer.parseInt(RANDOM_THEME_FROM_DIALOG)) {
-            return themeColors[(int)(Math.random()*10)];
+            return themeColors[(int) (Math.random() * 10)];
         }
 
         return Utils.themeColors[
