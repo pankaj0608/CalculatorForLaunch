@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class CalculatorCustomAdapterRecycler extends
         RecyclerView.Adapter<CalculatorCustomAdapterRecycler.ViewHolder> {
 
-    private Context mContext;
-    private LayoutInflater mInflater;
+//    private Context mContext;
+//    private LayoutInflater mInflater;
     private ArrayList<HistoryTasks> mDataSource;
 
 
@@ -24,8 +24,8 @@ public class CalculatorCustomAdapterRecycler extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        TextView textEquation;
-        TextView textResult;
+        public TextView textEquation;
+        public TextView textResult;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview

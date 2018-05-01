@@ -5,11 +5,11 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-
+    <!--https://guides.codepath.com/android/using-the-recyclerview#overview-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:scrollbars="vertical">
 
     </android.support.v7.widget.RecyclerView>
@@ -18,6 +18,7 @@
         android:id="@+id/listViewFillerText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_400sdp"
+        android:text="I am filler"
         android:gravity="center"
         android:textSize="@dimen/_20sdp" />
 </LinearLayout>
