@@ -45,6 +45,8 @@ dependencies {
 
     //pankaj for swiping history
     implementation 'com.android.support:recyclerview-v7:27+'
+//    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
 //    implementation 'com.squareup.picasso:picasso:2.71828'
 //    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
 
