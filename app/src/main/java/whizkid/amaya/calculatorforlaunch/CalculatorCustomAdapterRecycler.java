@@ -14,13 +14,18 @@ import java.util.ArrayList;
 
 //implements View.OnClickListener
 public class CalculatorCustomAdapterRecycler extends
-        RecyclerView.Adapter<CalculatorCustomAdapterRecycler.ViewHolder> {
+        RecyclerView.Adapter<CalculatorCustomAdapterRecycler.ViewHolder> implements View.OnClickListener {
 
     //    private Context mContext;
 //    private LayoutInflater mInflater;
     private ArrayList<HistoryTasks> mDataSource;
     private TextView editTextEquation;
     private AlertDialog alertDialogObject;
+
+    @Override
+    public void onClick(View v) {
+        System.out.println("v " + v.getClass());
+    }
 
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
@@ -39,6 +44,8 @@ public class CalculatorCustomAdapterRecycler extends
 
             textEquation = (TextView) itemView.findViewById(R.id.history_list_equation);
             textResult = (TextView) itemView.findViewById(R.id.history_list_result);
+
+            itemView.setOnClickListener(CalculatorCustomAdapterRecycler.this);
         }
 
     }
