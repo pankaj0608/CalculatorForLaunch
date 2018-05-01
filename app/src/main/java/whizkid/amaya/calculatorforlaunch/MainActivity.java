@@ -714,7 +714,11 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //        listView.setAdapter(calculatorCustomAdapter)
         listViewRecycler.setAdapter(calculatorCustomAdapterRecycler);
 
-        listViewRecycler.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new
+                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        layoutManager.scrollToPosition(0);
+
+        listViewRecycler.setLayoutManager(layoutManager);
 
         if (getHistoryData() == null || getHistoryData().size() == 0) {
             listViewFillerText.setText(R.string.no_history_data);

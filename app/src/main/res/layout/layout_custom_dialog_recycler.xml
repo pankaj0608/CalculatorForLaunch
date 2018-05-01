@@ -18,7 +18,7 @@
         android:id="@+id/listViewFillerText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_400sdp"
-        android:text="I am filler"
+        android:text=""
         android:gravity="center"
         android:textSize="@dimen/_20sdp" />
 </LinearLayout>

@@ -71,7 +71,7 @@ public class CalculatorCustomAdapterRecycler extends
         textViewEquation.setText(historyTasks.getEquation());
 
         TextView textViewResult = viewHolder.textResult;
-        textViewResult.setText(historyTasks.getResult());
+        textViewResult.setText(Utils.colourMyText(historyTasks.getResult(), Utils.getPreferenceColor()));
     }
 
 
