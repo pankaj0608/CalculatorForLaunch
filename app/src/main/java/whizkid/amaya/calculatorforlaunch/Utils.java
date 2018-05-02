@@ -257,7 +257,19 @@ public class Utils {
         }
 
         //remove 2 decimals
-        ;
+//
+//        StringBuilder builder = new StringBuilder();
+//
+//        for(int i = 0; i < equation.length(); i++) {
+//            String c = ""+ equation.charAt(i);
+//            builder.append(c.toLowerCase());
+//            if(i+1 < equation.length()) {
+//                builder.append("\u00A0");
+//            }
+//        }
+//
+//        equation = builder.toString();
+
         return createDifferentFonts(equation, getPreferenceColorForRandomLayout());
     }
 
