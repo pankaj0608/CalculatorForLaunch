@@ -260,7 +260,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         editTextResult = (AppCompatTextView) findViewById(R.id.editTextResult);
         editTextEquation = (EditText) findViewById(R.id.editTextEquation);
         editTextMemory = (EditText) findViewById(R.id.editTextMemory);
-        
+
 //        String preferenceColour = Utils.getValueFromSharedPreference(Utils.SETTINGS_COLOR_THEME, Utils.EMPTY_STRING);
 
 //        if(Utils.EMPTY_STRING.equals(preferenceColour)) {

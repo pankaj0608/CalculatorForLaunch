@@ -3,9 +3,12 @@ package whizkid.amaya.calculatorforlaunch;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Vibrator;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ScaleXSpan;
 import android.text.style.TypefaceSpan;
 import android.widget.EditText;
 
@@ -162,9 +165,20 @@ public class Utils {
 
     private static SpannableStringBuilder createDifferentFonts(String strText, int preferenceColour) {
 
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < strText.length(); i++) {
+            builder.append(strText.charAt(i));
+            if (i + 1 < strText.length()) {
+                builder.append("\u00A0");
+            }
+        }
+
+        strText = builder.toString();
+
         SpannableStringBuilder SS = new SpannableStringBuilder(strText);
-        float spacing = 1;
+        float spacing = 0;
         char operators[] = {'÷', 'x', '+', '-', '%', '^'};
+        char operatorsLess[] = {'+'};
 
         if (preferenceColour != -1) {
 
@@ -181,6 +195,23 @@ public class Utils {
                 }
             }
         }
+
+//        https://stackoverflow.com/questions/28562590/character-style-span-to-set-letter-spacing
+//
+        for (int i = 0; i < operatorsLess.length; i++) {
+            //dont' add space to the last operator
+            for (int j = 0; j < strText.length(); j++) {
+
+                if (strText.charAt(j) == operatorsLess[i]) {
+                    SS.setSpan(new ScaleXSpan(
+                                    (spacing + 1) / 10),
+                            j, j + 1,
+                            Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+                }
+
+            }
+        }
+
 
         return SS;
     }
@@ -273,6 +304,33 @@ public class Utils {
         return createDifferentFonts(equation, getPreferenceColorForRandomLayout());
     }
 
+    private SpannableStringBuilder applySpacing(String originalText) {
+        float spacing = 0;//Spacing.NORMAL;
+        SpannableStringBuilder finalText;
+
+        if (originalText == null) {
+            return null;
+        }
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < originalText.length(); i++) {
+            builder.append(originalText.charAt(i));
+            if (i + 1 < originalText.length()) {
+                builder.append("\u00A0");
+            }
+        }
+//        SpannableString finalText = new SpannableString(builder.toString());
+        finalText = new SpannableStringBuilder(originalText);
+
+        if (builder.toString().length() > 1) {
+            for (int i = 1; i < builder.toString().length(); i += 2) {
+                finalText.setSpan(new ScaleXSpan((spacing + 1) / 10), i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
+        //super.setText(finalText, BufferType.SPANNABLE);
+
+        return finalText;
+    }
 
     /**
      * @param str
@@ -305,7 +363,7 @@ public class Utils {
             return str;
         }
 
-        double resultDouble = evalMeUsingSymbols(str);
+        double resultDouble = evalMeUsingSymbols(str.trim());
 
         String twoDigitPrecission =
                 getValueFromSharedPreference(Utils.SETTINGS_PRECISSION_TWO_DIGIT, FALSE);
@@ -434,7 +492,6 @@ public class Utils {
             vibrator.vibrate(Utils.VIBRATION_DURATION);
         }
     }
-
 
 
     public static int getColorFromResourceId(int colourReourceId) {
