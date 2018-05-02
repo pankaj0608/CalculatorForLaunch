@@ -29,4 +29,12 @@
         android:layout_gravity="end|center_vertical"
         style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
+    <!-- quick and dirty divider -->
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@android:color/darker_gray"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--/>-->
+
 </LinearLayout>
