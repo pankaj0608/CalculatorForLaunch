@@ -165,6 +165,8 @@ public class Utils {
 
     private static SpannableStringBuilder createDifferentFonts(String strText, int preferenceColour) {
 
+        strText = strText.replace("\u00A0", "");
+
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < strText.length(); i++) {
             builder.append(strText.charAt(i));
@@ -198,19 +200,19 @@ public class Utils {
 
 //        https://stackoverflow.com/questions/28562590/character-style-span-to-set-letter-spacing
 //
-        for (int i = 0; i < operatorsLess.length; i++) {
-            //dont' add space to the last operator
-            for (int j = 0; j < strText.length(); j++) {
-
-                if (strText.charAt(j) == operatorsLess[i]) {
-                    SS.setSpan(new ScaleXSpan(
-                                    (spacing + 1) / 10),
-                            j, j + 1,
-                            Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-                }
-
-            }
-        }
+//        for (int i = 0; i < operatorsLess.length; i++) {
+//            //dont' add space to the last operator
+//            for (int j = 0; j < strText.length(); j++) {
+//
+//                if (strText.charAt(j) == operatorsLess[i]) {
+//                    SS.setSpan(new ScaleXSpan(
+//                                    (spacing + 1) / 10),
+//                            j, j + 1,
+//                            Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+//                }
+//
+//            }
+//        }
 
 
         return SS;
