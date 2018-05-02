@@ -836,7 +836,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
                     private void init() {
                         background = new ColorDrawable(Utils.getPreferenceColorFromColourResources());//Color.RED
-                        xMark = ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_backspace_pankaj);//pankaj commented R.drawable.ic_clear_24dp
+                        xMark = ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_clear_24dp);//pankaj commented R.drawable.ic_backspace_pankaj
                         xMark.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
                         xMarkMargin = (int) MainActivity.this.getResources().getDimension(R.dimen._10sdp); //pankaj commented R.dimen.ic_clear_margin
                         initiated = true;
@@ -854,25 +854,27 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //                        TestAdapter testAdapter = (TestAdapter) recyclerView.getAdapter();
                         CalculatorCustomAdapterRecycler testAdapter = (CalculatorCustomAdapterRecycler) recyclerView.getAdapter();
 
-//                        if (testAdapter.isUndoOn() && testAdapter.isPendingRemoval(position)) {
-//                            return 0;
-//                        }
-                        return super.getSwipeDirs(recyclerView, viewHolder);
+                        if (testAdapter.isUndoOn() && testAdapter.isPendingRemoval(position)) {
+                            return 0;
+                        }
+                        else {
+                            return super.getSwipeDirs(recyclerView, viewHolder);
+                        }
                     }
 
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                         int swipedPosition = viewHolder.getAdapterPosition();
 //                        TestAdapter adapter = (TestAdapter) mRecyclerView.getAdapter();
-                        CalculatorCustomAdapterRecycler adapter = (CalculatorCustomAdapterRecycler) mRecyclerView.getAdapter();
+                        CalculatorCustomAdapterRecycler adapter =
+                                (CalculatorCustomAdapterRecycler) mRecyclerView.getAdapter();
 
-//                        boolean undoOn = adapter.isUndoOn();
-//                            adapter.pendingRemoval(swipedPosition);
-//                        } else {
-//                            adapter.remove(swipedPosition);
-//                        }
-
-                        adapter.remove(swipedPosition);
+                        boolean undoOn = adapter.isUndoOn();
+                        if (undoOn) {
+                            adapter.pendingRemoval(swipedPosition);
+                        } else {
+                            adapter.remove(swipedPosition);
+                        }
 
                     }
 

@@ -1,6 +1,7 @@
 package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 //https://www.journaldev.com/10416/android-listview-with-custom-adapter-example-tutorial
 
@@ -16,11 +18,20 @@ import java.util.ArrayList;
 public class CalculatorCustomAdapterRecycler extends
         RecyclerView.Adapter<CalculatorCustomAdapterRecycler.ViewHolder> implements View.OnClickListener {
 
+    private static final int PENDING_REMOVAL_TIMEOUT = 3000; // 3sec
+
     //    private Context mContext;
 //    private LayoutInflater mInflater;
-    private ArrayList<HistoryTasks> mDataSource;
+    private ArrayList<HistoryTasks> mDataSource = new ArrayList<HistoryTasks>();
+    private ArrayList<HistoryTasks> itemsPendingRemoval = new ArrayList<HistoryTasks>();
+
     private TextView editTextEquation;
     private AlertDialog alertDialogObject;
+    private boolean undoOn = true;
+
+    private Handler handler = new Handler(); // hanlder for running delayed runnables
+    HashMap<HistoryTasks, Runnable> pendingRunnables = new HashMap<>(); // map of items to pending runnables, so we can cancel a removal if need be
+
 
     public void setBaseEssentials(TextView editTextEquation, AlertDialog alertDialogObject) {
         this.editTextEquation = editTextEquation;
@@ -123,6 +134,38 @@ public class CalculatorCustomAdapterRecycler extends
     public void restoreItem(HistoryTasks item, int position) {
         mDataSource.add(position, item);
         notifyItemInserted(position);
+    }
+
+
+    public void setUndoOn(boolean undoOn) {
+        this.undoOn = undoOn;
+    }
+
+    public boolean isUndoOn() {
+        return undoOn;
+    }
+
+    public boolean isPendingRemoval(int position) {
+        HistoryTasks item = mDataSource.get(position);
+        return itemsPendingRemoval.contains(item);
+    }
+
+    public void pendingRemoval(int position) {
+        final HistoryTasks item = mDataSource.get(position);
+        if (!itemsPendingRemoval.contains(item)) {
+            itemsPendingRemoval.add(item);
+            // this will redraw row in "undo" state
+            notifyItemChanged(position);
+            // let's create, store and post a runnable to remove the item
+            Runnable pendingRemovalRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    remove(mDataSource.indexOf(item));
+                }
+            };
+            handler.postDelayed(pendingRemovalRunnable, PENDING_REMOVAL_TIMEOUT);
+            pendingRunnables.put(item, pendingRemovalRunnable);
+        }
     }
 
 }
