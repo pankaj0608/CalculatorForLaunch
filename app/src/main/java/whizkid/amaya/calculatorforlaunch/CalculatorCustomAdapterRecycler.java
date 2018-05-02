@@ -1,12 +1,14 @@
 package whizkid.amaya.calculatorforlaunch;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,10 +44,10 @@ public class CalculatorCustomAdapterRecycler extends
     public void onClick(View v) {
         System.out.println("v " + v.getClass());
         System.out.println("v index " + mDataSource.indexOf(v));
-        System.out.println("v equation " + ((TextView)v.findViewById(R.id.history_list_equation)).getText());
-        System.out.println("v result " + ((TextView)v.findViewById(R.id.history_list_result)).getText());
+        System.out.println("v equation " + ((TextView) v.findViewById(R.id.history_list_equation)).getText());
+        System.out.println("v result " + ((TextView) v.findViewById(R.id.history_list_result)).getText());
 
-        String strName = ((TextView)v.findViewById(R.id.history_list_equation)).getText().toString();
+        String strName = ((TextView) v.findViewById(R.id.history_list_equation)).getText().toString();
         editTextEquation.setText(Utils.correctEquation(strName));
         alertDialogObject.dismiss();
     }
@@ -55,8 +57,9 @@ public class CalculatorCustomAdapterRecycler extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        public TextView textEquation;
-        public TextView textResult;
+        TextView textEquation;
+        TextView textResult;
+        Button undoButton;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -67,6 +70,7 @@ public class CalculatorCustomAdapterRecycler extends
 
             textEquation = (TextView) itemView.findViewById(R.id.history_list_equation);
             textResult = (TextView) itemView.findViewById(R.id.history_list_result);
+            undoButton = (Button) itemView.findViewById(R.id.history_undo_button);
 
             itemView.setOnClickListener(CalculatorCustomAdapterRecycler.this);
         }
@@ -98,6 +102,9 @@ public class CalculatorCustomAdapterRecycler extends
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(CalculatorCustomAdapterRecycler.ViewHolder viewHolder, int position) {
+
+        final HistoryTasks item = mDataSource.get(position);
+
         // Get the data model based on position
         HistoryTasks historyTasks = mDataSource.get(position);
 
@@ -107,6 +114,34 @@ public class CalculatorCustomAdapterRecycler extends
 
         TextView textViewResult = viewHolder.textResult;
         textViewResult.setText(Utils.colourMyText(historyTasks.getResult(), Utils.getPreferenceColor()));
+
+        if (itemsPendingRemoval.contains(item)) {
+            // we need to show the "undo" state of the row
+            viewHolder.itemView.setBackgroundColor(Color.RED);
+            viewHolder.textEquation.setVisibility(View.GONE);
+            viewHolder.textResult.setVisibility(View.GONE);
+            viewHolder.undoButton.setVisibility(View.VISIBLE);
+            viewHolder.undoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    // user wants to undo the removal, let's cancel the pending task
+//                    Runnable pendingRemovalRunnable = pendingRunnables.get(item);
+//                    pendingRunnables.remove(item);
+//                    if (pendingRemovalRunnable != null)
+//                        handler.removeCallbacks(pendingRemovalRunnable);
+//                    itemsPendingRemoval.remove(item);
+//                    // this will rebind the row in "normal" state
+//                    notifyItemChanged(items.indexOf(item));
+                }
+            });
+        } else {
+            // we need to show the "normal" state
+            viewHolder.itemView.setBackgroundColor(Color.WHITE);
+            viewHolder.textEquation.setVisibility(View.VISIBLE);
+            viewHolder.textResult.setVisibility(View.VISIBLE);
+            viewHolder.undoButton.setVisibility(View.GONE);
+            viewHolder.undoButton.setOnClickListener(null);
+        }
     }
 
 
