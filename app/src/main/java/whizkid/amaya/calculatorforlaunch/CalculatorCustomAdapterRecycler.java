@@ -20,7 +20,7 @@ import java.util.HashMap;
 public class CalculatorCustomAdapterRecycler extends
         RecyclerView.Adapter<CalculatorCustomAdapterRecycler.ViewHolder> implements View.OnClickListener {
 
-    private static final int PENDING_REMOVAL_TIMEOUT = 3000; // 3sec
+    private static final int PENDING_REMOVAL_TIMEOUT = 1000; // 1.5sec
 
     //    private Context mContext;
 //    private LayoutInflater mInflater;
