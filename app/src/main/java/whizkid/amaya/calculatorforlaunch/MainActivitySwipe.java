@@ -88,9 +88,9 @@ public class MainActivitySwipe extends AppCompatActivity {
 
             private void init() {
                 background = new ColorDrawable(Color.RED);
-//                xMark = ContextCompat.getDrawable(MainActivitySwipe.this, R.drawable.ic_clear_24dp);
+                xMark = ContextCompat.getDrawable(MainActivitySwipe.this, R.drawable.ic_clear_24dp);
                 xMark.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-//                xMarkMargin = (int) MainActivitySwipe.this.getResources().getDimension(R.dimen.ic_clear_margin);
+                xMarkMargin = (int) MainActivitySwipe.this.getResources().getDimension(R.dimen.ic_clear_margin);
                 initiated = true;
             }
 

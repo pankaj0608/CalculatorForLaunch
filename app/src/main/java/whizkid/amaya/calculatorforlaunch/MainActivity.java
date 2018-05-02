@@ -838,7 +838,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                         background = new ColorDrawable(Utils.getPreferenceColorFromColourResources());//Color.RED
                         xMark = ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_clear_24dp);//pankaj commented R.drawable.ic_backspace_pankaj
                         xMark.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-                        xMarkMargin = (int) MainActivity.this.getResources().getDimension(R.dimen._10sdp); //pankaj commented R.dimen.ic_clear_margin
+                        xMarkMargin = (int) getResources().getDimension(R.dimen.ic_clear_margin);
                         initiated = true;
                     }
 
