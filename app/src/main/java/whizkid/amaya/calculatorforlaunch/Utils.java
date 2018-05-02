@@ -421,7 +421,7 @@ public class Utils {
 
         try {
             Symbols symbols = new Symbols();
-            return symbols.eval(equation);
+            return symbols.eval(equation.replace("\u00A0", ""));
         } catch (SyntaxException s) {
             return Double.valueOf(null);
         }
