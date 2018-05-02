@@ -117,21 +117,21 @@ public class CalculatorCustomAdapterRecycler extends
 
         if (itemsPendingRemoval.contains(item)) {
             // we need to show the "undo" state of the row
-            viewHolder.itemView.setBackgroundColor(Color.RED);
+            viewHolder.itemView.setBackgroundColor(Utils.getColorFromResourceId(R.color.pankaj_theme_dark_red));//Color.RED
             viewHolder.textEquation.setVisibility(View.GONE);
             viewHolder.textResult.setVisibility(View.GONE);
             viewHolder.undoButton.setVisibility(View.VISIBLE);
             viewHolder.undoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    // user wants to undo the removal, let's cancel the pending task
-//                    Runnable pendingRemovalRunnable = pendingRunnables.get(item);
-//                    pendingRunnables.remove(item);
-//                    if (pendingRemovalRunnable != null)
-//                        handler.removeCallbacks(pendingRemovalRunnable);
-//                    itemsPendingRemoval.remove(item);
-//                    // this will rebind the row in "normal" state
-//                    notifyItemChanged(items.indexOf(item));
+                    // user wants to undo the removal, let's cancel the pending task
+                    Runnable pendingRemovalRunnable = pendingRunnables.get(item);
+                    pendingRunnables.remove(item);
+                    if (pendingRemovalRunnable != null)
+                        handler.removeCallbacks(pendingRemovalRunnable);
+                    itemsPendingRemoval.remove(item);
+                    // this will rebind the row in "normal" state
+                    notifyItemChanged(mDataSource.indexOf(item));
                 }
             });
         } else {

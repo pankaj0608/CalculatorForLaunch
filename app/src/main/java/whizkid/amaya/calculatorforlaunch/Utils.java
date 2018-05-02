@@ -424,6 +424,12 @@ public class Utils {
     }
 
 
+
+    public static int getColorFromResourceId(int colourReourceId) {
+
+        return getContext().getResources().getColor(colourReourceId);
+    }
+
     public static int getPreferenceColorFromColourResources() {
 
         return getContext().getResources().getColor(getPreferenceColor());
