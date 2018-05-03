@@ -165,22 +165,32 @@ public class Utils {
 
     private static SpannableStringBuilder createDifferentFonts(String strText, int preferenceColour) {
 
-        strText = strText.replace("\u00A0", "");
+        float spacing = 0;
+        final char operators[] = {'÷', 'x', '+', '-', '%', '^'};
+        final ArrayList<String> operatorsLess = new ArrayList<>();
+
+        operatorsLess.add("÷");
+        operatorsLess.add("x");
+        operatorsLess.add("+");
+        operatorsLess.add("-");
+        operatorsLess.add("%");
+        operatorsLess.add("^");
+
+        strText = strText.replace("\u00A0", Utils.EMPTY_STRING);
 
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < strText.length(); i++) {
             builder.append(strText.charAt(i));
-            if (i + 1 < strText.length()) {
+            if (i + 1 < strText.length()
+                    && operatorsLess.contains(Character.toString(strText.charAt(i)))) {
                 builder.append("\u00A0");
             }
         }
 
+
         strText = builder.toString();
 
         SpannableStringBuilder SS = new SpannableStringBuilder(strText);
-        float spacing = 0;
-        char operators[] = {'÷', 'x', '+', '-', '%', '^'};
-        char operatorsLess[] = {'+'};
 
         if (preferenceColour != -1) {
 

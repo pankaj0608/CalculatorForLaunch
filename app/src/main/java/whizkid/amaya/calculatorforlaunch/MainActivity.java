@@ -1208,7 +1208,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //        ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
 
         String tag = view.getTag().toString();
-        String currentEquation = editTextEquation.getText().toString();
+        String currentEquation = editTextEquation.getText().toString().replace("\u00A0","");
         String currentEquationCopy = new String(editTextEquation.getText().toString());
 
 
