@@ -158,8 +158,8 @@
         android:id="@+id/buttonMultiply"
         style="@style/PadButtonStyle.Numeric.Operator"
         android:onClick="calculateMe"
-        android:tag="x"
-        android:text="x"
+        android:tag="×"
+        android:text="×"
         app:layout_columnWeight="1" />
 
     <!--</TableRow>-->

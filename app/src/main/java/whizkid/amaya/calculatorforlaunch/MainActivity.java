@@ -1208,7 +1208,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 //        ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
 
         String tag = view.getTag().toString();
-        String currentEquation = editTextEquation.getText().toString().replace("\u00A0","");
+        String currentEquation = editTextEquation.getText().toString();
         String currentEquationCopy = new String(editTextEquation.getText().toString());
 
 
@@ -1275,7 +1275,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
             int lastOperatorIndex = -1;
             int currentEquationLength = currentEquation.length();
             int lastIndexOfDivide = currentEquation.lastIndexOf("÷");
-            int lastIndexOfMultiply = currentEquation.lastIndexOf("x");
+            int lastIndexOfMultiply = currentEquation.lastIndexOf("×");
             int lastIndexOfAdd = currentEquation.lastIndexOf("+");
             int lastIndexOfSubtract = currentEquation.lastIndexOf("-");
 
@@ -1317,7 +1317,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
             int lastOperatorIndex = -1;
             int currentEquationLength = currentEquation.length();
             int lastIndexOfDivide = currentEquation.lastIndexOf("÷");
-            int lastIndexOfMultiply = currentEquation.lastIndexOf("x");
+            int lastIndexOfMultiply = currentEquation.lastIndexOf("×");
             int lastIndexOfAdd = currentEquation.lastIndexOf("+");
             int lastIndexOfSubtract = currentEquation.lastIndexOf("-");
             int lastIndexOfToPowerOf = currentEquation.lastIndexOf("^");

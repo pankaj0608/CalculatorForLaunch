@@ -166,29 +166,29 @@ public class Utils {
     private static SpannableStringBuilder createDifferentFonts(String strText, int preferenceColour) {
 
         float spacing = 0;
-        final char operators[] = {'÷', 'x', '+', '-', '%', '^'};
-        final ArrayList<String> operatorsLess = new ArrayList<>();
-
-        operatorsLess.add("÷");
-        operatorsLess.add("x");
-        operatorsLess.add("+");
-        operatorsLess.add("-");
-        operatorsLess.add("%");
-        operatorsLess.add("^");
-
-        strText = strText.replace("\u00A0", Utils.EMPTY_STRING);
-
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < strText.length(); i++) {
-            builder.append(strText.charAt(i));
-            if (i + 1 < strText.length()
-                    && operatorsLess.contains(Character.toString(strText.charAt(i)))) {
-                builder.append("\u00A0");
-            }
-        }
-
-
-        strText = builder.toString();
+        final char operators[] = {'÷', '×', '+', '-', '%', '^'};
+//        final ArrayList<String> operatorsLess = new ArrayList<>();
+//
+//        operatorsLess.add("÷");
+//        operatorsLess.add("×");
+//        operatorsLess.add("+");
+//        operatorsLess.add("-");
+//        operatorsLess.add("%");
+//        operatorsLess.add("^");
+//
+//        strText = strText.replace("\u00A0", Utils.EMPTY_STRING);
+//
+//        StringBuilder builder = new StringBuilder();
+//        for (int i = 0; i < strText.length(); i++) {
+//            builder.append(strText.charAt(i));
+//            if (i + 1 < strText.length()
+//                    && operatorsLess.contains(Character.toString(strText.charAt(i)))) {
+//                builder.append("\u00A0");
+//            }
+//        }
+//
+//
+//        strText = builder.toString();
 
         SpannableStringBuilder SS = new SpannableStringBuilder(strText);
 
@@ -238,7 +238,7 @@ public class Utils {
         if (equation.startsWith("%") ||
                 equation.startsWith("^") ||
                 equation.startsWith("÷") ||
-                equation.startsWith("x")) {
+                equation.startsWith("×")) {
 
             if (equation.length() > 1) {
                 equation = equation.substring(1);
@@ -250,29 +250,29 @@ public class Utils {
 
         equation = equation.replace("^^", "^");
         equation = equation.replace("^%", "^");
-        equation = equation.replace("^x", "^");
+        equation = equation.replace("^×", "^");
 
         equation = equation.replace("÷%", "÷");
-        equation = equation.replace("x%", "x");
+        equation = equation.replace("×%", "×");
         equation = equation.replace("+%", "+");
         equation = equation.replace("-%", "-");
 
         equation = equation.replace("%%", "%");
 
-        equation = equation.replace("xx", "x");
-        equation = equation.replace("xx", "x");
-        equation = equation.replace("x÷", "÷");
-        equation = equation.replace("÷x", "x");
-        equation = equation.replace("x+", "x");
+        equation = equation.replace("××", "×");
+        equation = equation.replace("××", "×");
+        equation = equation.replace("×÷", "÷");
+        equation = equation.replace("÷×", "×");
+        equation = equation.replace("×+", "×");
         equation = equation.replace("÷+", "÷");
         equation = equation.replace("÷÷", "÷");
         equation = equation.replace("++", "+");
         equation = equation.replace("+÷", "+");
-        equation = equation.replace("+x", "+");
+        equation = equation.replace("+×", "+");
         equation = equation.replace("---", "-");
         // equation = equation.replace("--", "+");
         equation = equation.replace("-÷", "-");
-        equation = equation.replace("-x", "-");
+        equation = equation.replace("-×", "-");
         equation = equation.replace("+-", "-");
         equation = equation.replace("-+", "-");
 
@@ -281,7 +281,7 @@ public class Utils {
 
         //to remove the first +,  +1 -> 1
         if (equation != null && equation.length() > 1 &&
-                (equation.startsWith("÷") || equation.startsWith("x")
+                (equation.startsWith("÷") || equation.startsWith("×")
                         || equation.startsWith("+") || equation.startsWith(PERCENTAGE))) {
             equation = equation.substring(1, equation.length());
         }
@@ -351,7 +351,7 @@ public class Utils {
     public static String evalMe(String str) {
 
         str = str.replace("÷", "/");
-        str = str.replace("x", "*");
+        str = str.replace("×", "*");
         str = str.replace(",", "");
 
         if (str == null || str.trim().length() == 0) {
@@ -581,8 +581,8 @@ public class Utils {
      * StringUtils.containsAny("", *)              = false
      * StringUtils.containsAny(*, null)            = false
      * StringUtils.containsAny(*, "")              = false
-     * StringUtils.containsAny("zzabyycdxx", "za") = true
-     * StringUtils.containsAny("zzabyycdxx", "by") = true
+     * StringUtils.containsAny("zzabyycd××", "za") = true
+     * StringUtils.containsAny("zzabyycd××", "by") = true
      * StringUtils.containsAny("aba","z")          = false
      * </pre>
      *
@@ -613,8 +613,8 @@ public class Utils {
      * StringUtils.containsAny("", *)                  = false
      * StringUtils.containsAny(*, null)                = false
      * StringUtils.containsAny(*, [])                  = false
-     * StringUtils.containsAny("zzabyycdxx",['z','a']) = true
-     * StringUtils.containsAny("zzabyycdxx",['b','y']) = true
+     * StringUtils.containsAny("zzabyycd××",['z','a']) = true
+     * StringUtils.containsAny("zzabyycd××",['b','y']) = true
      * StringUtils.containsAny("aba", ['z'])           = false
      * </pre>
      *
