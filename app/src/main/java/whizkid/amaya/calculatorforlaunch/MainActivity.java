@@ -112,6 +112,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
     int mySelectionValueEnd = 0;
     int mySelectionAdjustment = 0;
 
+    String lastButtonClicked = "";
     private CalculatorResources calculatorResources;
 
     int[] resourcesButton =
@@ -378,6 +379,12 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                     int selectionTo = mySelectionValueStart
                             + (mySelectionAdjustment == -1 ? 0 : mySelectionAdjustment);
 
+                    if (Utils.BACK.equals(lastButtonClicked)) {
+                        selectionTo = selectionTo - 1;
+
+                        selectionTo = selectionTo == -1 ? 0 : selectionTo;
+                    }
+
                     editTextEquation.setSelection(selectionTo);
 
                 } else {
@@ -601,6 +608,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
             memoryCurrent = "";
         }
 
+        lastButtonClicked = view.getTag().toString();
 
         if (view.getTag().equals(Utils.MEMORY_ADD)) {
             memoryCurrent = Utils.evalMe(
@@ -860,8 +868,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
                         if (testAdapter.isUndoOn() && testAdapter.isPendingRemoval(position)) {
                             return 0;
-                        }
-                        else {
+                        } else {
                             return super.getSwipeDirs(recyclerView, viewHolder);
                         }
                     }
@@ -1186,6 +1193,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
     public void clearAll(View view) {
         Utils.vibrateMe();
 
+        lastButtonClicked = "";
         evaluationDone = true;
 //        clearDone = true;
         mySelectionAdjustment = 0;
@@ -1210,12 +1218,13 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
         Utils.vibrateMe();
 
+
 //        ((ImageButton) findViewById(R.id.buttonUndolastEval)).setVisibility(View.INVISIBLE);
 
         String tag = view.getTag().toString();
         String currentEquation = editTextEquation.getText().toString();
         String currentEquationCopy = new String(editTextEquation.getText().toString());
-
+        lastButtonClicked = tag;
 
         if (Utils.INVERSE.equals(tag)) {
 
@@ -1376,6 +1385,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
         }
 
         if (Utils.BACK.equals(tag)) {
+
             if (currentEquation.length() > 1) {
 
                 System.out.println("Back pressed " + editTextEquation.getSelectionEnd());
