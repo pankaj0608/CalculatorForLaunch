@@ -374,7 +374,12 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 //minimum valid value of selctionStart is 0
                 if ((mySelectionValueStart + mySelectionAdjustment) <= s.toString().length()
                         && (mySelectionValueStart + mySelectionAdjustment >= 0)) {
-                    editTextEquation.setSelection(mySelectionValueStart + mySelectionAdjustment);
+
+                    int selectionTo = mySelectionValueStart
+                            + (mySelectionAdjustment == -1 ? 0 : mySelectionAdjustment);
+
+                    editTextEquation.setSelection(selectionTo);
+
                 } else {
                     if (editTextEquation.isFocused()) {
                         editTextEquation.setSelection(mySelectionValueStart);
