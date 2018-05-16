@@ -381,9 +381,9 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                     selectionTo = mySelectionValueStart
                             + (mySelectionAdjustment == -1 ? 0 : mySelectionAdjustment);
 
-                    if(Utils.CHANGESIGN.equals(lastButtonClicked)) {
+                    if (Utils.CHANGESIGN.equals(lastButtonClicked)) {
 
-                        selectionTo = mySelectionValueStart +  mySelectionAdjustment;
+                        selectionTo = mySelectionValueStart + mySelectionAdjustment;
                     }
 
                     if (Utils.BACK.equals(lastButtonClicked)) {
@@ -1293,32 +1293,94 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 return;
             }
 
-            int lastOperatorIndex = -1;
-            int currentEquationLength = currentEquation.length();
-            int lastIndexOfDivide = currentEquation.lastIndexOf("÷");
-            int lastIndexOfMultiply = currentEquation.lastIndexOf("×");
-            int lastIndexOfAdd = currentEquation.lastIndexOf("+");
-            int lastIndexOfSubtract = currentEquation.lastIndexOf("-");
+            // 3+78-9899
+            int mySelectionValueStart = editTextEquation.getSelectionStart();
+            int mySelectionValueEnd = editTextEquation.getSelectionEnd();
 
-            lastOperatorIndex = lastIndexOfDivide > lastOperatorIndex ? lastIndexOfDivide : lastOperatorIndex;
-            lastOperatorIndex = lastIndexOfMultiply > lastOperatorIndex ? lastIndexOfMultiply : lastOperatorIndex;
-            lastOperatorIndex = lastIndexOfAdd > lastOperatorIndex ? lastIndexOfAdd : lastOperatorIndex;
-            lastOperatorIndex = lastIndexOfSubtract > lastOperatorIndex ? lastIndexOfSubtract : lastOperatorIndex;
+            final int currentCursorIndex = editTextEquation.getSelectionStart();
+            int previousOperatorIndex = editTextEquation.getSelectionStart();
+            ;
+            int nextOperatorIndex = editTextEquation.getSelectionStart();
+            ;
 
-            //It means no Operators hence put a - infront of the equation
-            if (lastOperatorIndex == -1) {
+            //find the operator surrounding the current cursor position
+            //ignoew the first - sign
+            if (!Utils.containsAny(currentEquation.substring(1), Utils.BASIC_OPERATORS)) {
+                // It means no Operators hence put a - infront of the equation
                 currentEquation = "-" + currentEquation;
                 if (currentEquation.startsWith("--")) {
                     currentEquation = currentEquation.substring(2);
                 }
             } else {
-                //replace the last operand with sign change 9x123 , lastOperatorIndex = 1
-                String inital = currentEquation.substring(0, lastOperatorIndex + 1);
-                String end = currentEquation.substring(lastOperatorIndex + 1);
+                //it means we have more operators. Now find the string to have - sign
+
+
+                //find the previous index
+                while (previousOperatorIndex - 1 > 0) {
+                    if (!Utils.containsAny(
+                            currentEquation.
+                                    substring(previousOperatorIndex - 1, previousOperatorIndex),
+                            Utils.BASIC_OPERATORS)) {
+                        previousOperatorIndex--;
+                        continue;
+                    } else {
+                        break;
+                    }
+                }
+
+                //find the next index
+                while (nextOperatorIndex + 1 < editTextEquation.getText().toString().length()) {
+                    if (!Utils.containsAny(
+                            currentEquation.
+                                    substring(nextOperatorIndex, nextOperatorIndex + 1),
+                            Utils.BASIC_OPERATORS)) {
+                        nextOperatorIndex++;
+                        continue;
+                    } else {
+                        break;
+                    }
+                }
+
+                System.out.println(previousOperatorIndex + " : " + nextOperatorIndex);
+
+                String inital = currentEquation.substring(0, previousOperatorIndex);
+                String end = currentEquation.substring(nextOperatorIndex - 1);
+
                 currentEquation = inital
                         + "-"
                         + end;
+                System.out.println("currentEquation " + Utils.correctEquation(currentEquation));
+                System.out.println("currentEquation " + currentEquation);
+
             }
+
+
+//            int lastOperatorIndex = -1;
+//            int currentEquationLength = currentEquation.length();
+//            int lastIndexOfDivide = currentEquation.lastIndexOf("÷");
+//            int lastIndexOfMultiply = currentEquation.lastIndexOf("×");
+//            int lastIndexOfAdd = currentEquation.lastIndexOf("+");
+//            int lastIndexOfSubtract = currentEquation.lastIndexOf("-");
+//
+//            lastOperatorIndex = lastIndexOfDivide > lastOperatorIndex ? lastIndexOfDivide : lastOperatorIndex;
+//            lastOperatorIndex = lastIndexOfMultiply > lastOperatorIndex ? lastIndexOfMultiply : lastOperatorIndex;
+//            lastOperatorIndex = lastIndexOfAdd > lastOperatorIndex ? lastIndexOfAdd : lastOperatorIndex;
+//            lastOperatorIndex = lastIndexOfSubtract > lastOperatorIndex ? lastIndexOfSubtract : lastOperatorIndex;
+//
+//            //It means no Operators hence put a - infront of the equation
+//            if (lastOperatorIndex == -1) {
+//                currentEquation = "-" + currentEquation;
+//                if (currentEquation.startsWith("--")) {
+//                    currentEquation = currentEquation.substring(2);
+//                }
+//            } else {
+//                //replace the last operand with sign change 9x123 , lastOperatorIndex = 1
+//                String inital = currentEquation.substring(0, lastOperatorIndex + 1);
+//                String end = currentEquation.substring(lastOperatorIndex + 1);
+//                currentEquation = inital
+//                        + "-"
+//                        + end;
+//            }
             //for changesign find the last index of number and change it's sign
 
 

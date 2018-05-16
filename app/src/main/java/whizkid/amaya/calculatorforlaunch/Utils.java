@@ -33,6 +33,8 @@ public class Utils {
 
     public static final String RANDOM_THEME_FROM_DIALOG = "1000";
 
+    final static String BASIC_OPERATORS = "÷×+-";
+
     public static final String HISTORY_TASKS = "HISTORY_TASKS";
     public static final int themeColors[] =
             {R.color.amaya_favourite_color_golden,
