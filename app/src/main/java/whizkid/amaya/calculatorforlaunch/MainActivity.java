@@ -1316,7 +1316,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
 
                 //find the previous index
-                while (previousOperatorIndex - 1 > 0) {
+                while (previousOperatorIndex > 0) {
                     if (!Utils.containsAny(
                             currentEquation.
                                     substring(previousOperatorIndex - 1, previousOperatorIndex),
@@ -1343,14 +1343,26 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
                 System.out.println(previousOperatorIndex + " : " + nextOperatorIndex);
 
-                String inital = currentEquation.substring(0, previousOperatorIndex);
-                String end = currentEquation.substring(nextOperatorIndex - 1);
+                String inital = currentEquation.substring(0,
+                        previousOperatorIndex == 0 ? nextOperatorIndex : previousOperatorIndex);
 
-                currentEquation = inital
-                        + "-"
-                        + end;
-                System.out.println("currentEquation " + Utils.correctEquation(currentEquation));
+                String end = currentEquation.substring(nextOperatorIndex);
+
+                if(previousOperatorIndex == 0) {
+                    currentEquation = "-" +
+                            inital
+                            + end;
+                }
+                else {
+                    currentEquation = inital
+                            + "-"
+                            + end;
+                }
+
                 System.out.println("currentEquation " + currentEquation);
+
+                currentEquation = Utils.correctEquation(currentEquation).toString();
+                System.out.println("corrected currentEquation " + currentEquation);
 
             }
 
