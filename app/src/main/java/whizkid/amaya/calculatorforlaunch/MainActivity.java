@@ -376,13 +376,15 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 if ((mySelectionValueStart + mySelectionAdjustment) <= s.toString().length()
                         && (mySelectionValueStart + mySelectionAdjustment >= 0)) {
 
-                    int selectionTo = mySelectionValueStart +  mySelectionAdjustment;
-//
-//                    if(selectionTo > editTextEquation.getText().toString().length()) {
+                    int selectionTo = 0;
 
-                        selectionTo = mySelectionValueStart
-                                + (mySelectionAdjustment == -1 ? 0 : mySelectionAdjustment);
-//                    }
+                    selectionTo = mySelectionValueStart
+                            + (mySelectionAdjustment == -1 ? 0 : mySelectionAdjustment);
+
+                    if(Utils.CHANGESIGN.equals(lastButtonClicked)) {
+
+                        selectionTo = mySelectionValueStart +  mySelectionAdjustment;
+                    }
 
                     if (Utils.BACK.equals(lastButtonClicked)) {
                         selectionTo = selectionTo - 1;
