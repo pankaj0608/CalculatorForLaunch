@@ -1523,7 +1523,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 editTextEquation.setText(correctedEquation);
 
                 if(correctedEquation.toString().length() < currentEquation.length()
-                        && mySelectionValueStart-1 > 0) {
+                        && mySelectionValueStart-1 >= 0) {
                     editTextEquation.setSelection(mySelectionValueStart-1);
                 }
             }
