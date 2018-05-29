@@ -22,6 +22,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -1518,7 +1519,13 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                     currentEquation = new String(currentEquationCopy);
                 }
 
-                editTextEquation.setText(Utils.correctEquation(currentEquation));
+                SpannableStringBuilder correctedEquation = Utils.correctEquation(currentEquation);
+                editTextEquation.setText(correctedEquation);
+
+                if(correctedEquation.toString().length() < currentEquation.length()
+                        && mySelectionValueStart-1 > 0) {
+                    editTextEquation.setSelection(mySelectionValueStart-1);
+                }
             }
 
         }
