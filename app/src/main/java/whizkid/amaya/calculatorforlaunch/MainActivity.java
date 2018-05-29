@@ -1299,9 +1299,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
             final int currentCursorIndex = editTextEquation.getSelectionStart();
             int previousOperatorIndex = editTextEquation.getSelectionStart();
-            ;
             int nextOperatorIndex = editTextEquation.getSelectionStart();
-            ;
 
             //find the operator surrounding the current cursor position
             //ignoew the first - sign
@@ -1330,7 +1328,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
                 //find the next index
                 while (nextOperatorIndex + 1 < editTextEquation.getText().toString().length()) {
-                    if (!Utils.containsAny(
+                    if (Utils.containsAny(
                             currentEquation.
                                     substring(nextOperatorIndex, nextOperatorIndex + 1),
                             Utils.BASIC_OPERATORS)) {
@@ -1347,6 +1345,10 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                         previousOperatorIndex == 0 ? nextOperatorIndex : previousOperatorIndex);
 
                 String end = currentEquation.substring(nextOperatorIndex);
+
+                System.out.println("inital " + inital);
+                System.out.println("end " + end);
+
 
                 if(previousOperatorIndex == 0) {
                     currentEquation = "-" +

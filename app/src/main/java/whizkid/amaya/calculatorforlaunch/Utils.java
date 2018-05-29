@@ -272,6 +272,8 @@ public class Utils {
         equation = equation.replace("+÷", "+");
         equation = equation.replace("+×", "+");
         equation = equation.replace("---", "-");
+        equation = equation.replace("--", "");
+
         // equation = equation.replace("--", "+");
         equation = equation.replace("-÷", "-");
         equation = equation.replace("-×", "-");
