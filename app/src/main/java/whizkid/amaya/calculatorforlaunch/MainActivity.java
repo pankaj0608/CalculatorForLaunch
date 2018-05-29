@@ -1342,7 +1342,8 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 System.out.println(previousOperatorIndex + " : " + nextOperatorIndex);
 
                 String inital = currentEquation.substring(0,
-                        previousOperatorIndex == 0 ? nextOperatorIndex : previousOperatorIndex);
+                        previousOperatorIndex == 0 || previousOperatorIndex == 1
+                                ? nextOperatorIndex : previousOperatorIndex);
 
                 String end = currentEquation.substring(nextOperatorIndex);
 
@@ -1350,7 +1351,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
                 System.out.println("end " + end);
 
 
-                if(previousOperatorIndex == 0) {
+                if(previousOperatorIndex == 0 || previousOperatorIndex == 1) {
                     currentEquation = "-" +
                             inital
                             + end;
