@@ -1328,7 +1328,7 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
                 //find the next index
                 while (nextOperatorIndex + 1 < editTextEquation.getText().toString().length()) {
-                    if (Utils.containsAny(
+                    if (!Utils.containsAny(
                             currentEquation.
                                     substring(nextOperatorIndex, nextOperatorIndex + 1),
                             Utils.BASIC_OPERATORS)) {
@@ -1341,26 +1341,31 @@ https://gist.github.com/ishitcno1/9408188 - dialog box postion
 
                 System.out.println(previousOperatorIndex + " : " + nextOperatorIndex);
 
-                String inital = currentEquation.substring(0,
-                        previousOperatorIndex == 0 || previousOperatorIndex == 1
-                                ? nextOperatorIndex : previousOperatorIndex);
+//                String inital = currentEquation.substring(0,
+//                        previousOperatorIndex == 0 || previousOperatorIndex == 1
+//                                ? nextOperatorIndex : previousOperatorIndex);
 
-                String end = currentEquation.substring(nextOperatorIndex);
+//                String end = currentEquation.substring(nextOperatorIndex);
+
+                String inital = currentEquation.substring(0, previousOperatorIndex);
+                String end = currentEquation.substring(previousOperatorIndex);
 
                 System.out.println("inital " + inital);
                 System.out.println("end " + end);
 
-
-                if(previousOperatorIndex == 0 || previousOperatorIndex == 1) {
-                    currentEquation = "-" +
-                            inital
-                            + end;
-                }
-                else {
-                    currentEquation = inital
+                currentEquation = inital
                             + "-"
                             + end;
-                }
+//                if(previousOperatorIndex == 0 || previousOperatorIndex == 1) {
+//                    currentEquation = "-" +
+//                            inital
+//                            + end;
+//                }
+//                else {
+//                    currentEquation = inital
+//                            + "-"
+//                            + end;
+//                }
 
                 System.out.println("currentEquation " + currentEquation);
 
